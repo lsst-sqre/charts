@@ -1,0 +1,85 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "saltransform-mtm1m3ts"
+  labels:
+    helm.sh/chart: {{ include "kafka-efd-apps.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "saltransform"
+      subsystem: "MTM1M3TS"
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: "saltransform"
+        subsystem: "MTM1M3TS"
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9092"
+    spec:
+      containers:
+      - name: mtm1m3ts
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy:  {{ .Values.image.pullPolicy }}
+        command:
+          - "kafkaefd"
+          - "saltransform"
+          - "run"
+          - "--auto-offset-reset"
+          - "earliest"
+          - "--subsystem"
+          - "MTM1M3TS"
+          # - "--rewind-to-start"
+        env:
+          - name: BROKER
+            value: "{{ .Values.env.broker }}"
+          - name: SCHEMAREGISTRY
+            value: "{{ .Values.env.schemaRegistry }}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "saltransform-mtm1m3"
+  labels:
+    helm.sh/chart: {{ include "kafka-efd-apps.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "saltransform"
+      subsystem: "MTM1M3"
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: "saltransform"
+        subsystem: "MTM1M3"
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9092"
+    spec:
+      containers:
+      - name: mtm1m3ts
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy:  {{ .Values.image.pullPolicy }}
+        command:
+          - "kafkaefd"
+          - "saltransform"
+          - "run"
+          - "--auto-offset-reset"
+          - "earliest"
+          - "--subsystem"
+          - "MTM1M3"
+        env:
+          - name: BROKER
+            value: "{{ .Values.env.broker }}"
+          - name: SCHEMAREGISTRY
+            value: "{{ .Values.env.schemaRegistry }}"

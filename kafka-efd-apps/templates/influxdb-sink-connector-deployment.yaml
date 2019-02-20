@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "influxdb-sink-connector"
+  labels:
+    helm.sh/chart: {{ include "kafka-efd-apps.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "influxdb-sink-connector"
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: "influxdb-sink-connector"
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+      - name:  "influxdb-sink-connector"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy:  {{ .Values.image.pullPolicy }}
+        command: ["/bin/sh"]
+        args: ["-c", "kafkaefd admin connectors create influxdb-sink --influxdb https://influxdb-efd-kafka.lsst.codes --database efd --daemon $(kafkaefd admin topics list --inline --filter lsst.sal.*)"]
+        env:
+          - name: BROKER
+            value: "{{ .Values.env.broker }}"
+          - name: SCHEMAREGISTRY
+            value: "{{ .Values.env.schemaRegistry }}"
+          - name: KAFKA_CONNECT
+            value: "{{ .Values.env.kafkaConnect }}"

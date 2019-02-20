@@ -1,7 +1,33 @@
-# charts
-LSST SQuaRE [Helm charts](https://github.com/helm/helm/tree/master/docs) repository.
+# SQuaRE charts
 
-## Creating a new chart
+LSST SQuaRE Helm charts repository.
+
+## Using this repository
+
+To install a Helm chart from this repository first add the repository:
+
+```
+helm repo add lsstsqre https://lsst-sqre.github.io/charts/
+helm repo update
+```
+
+### Available charts
+
+| Chart name     | Version | Description                                                    |
+|----------------|---------|----------------------------------------------------------------|
+| kafka-efd-apps |  0.1.0  | Deploy the InfluxDB Sink connector and the SAL transform apps.  |
+
+### Installing charts
+
+Use the `helm install` command to install the charts:
+
+```
+helm install lsstsqre/mychart --name myrelease
+```
+
+See the [Helm Documentation](https://github.com/helm/helm/tree/master/docs) for more information.
+
+## Adding a new chart to this repository
 
 This command will create  a [collection of files](https://github.com/helm/helm/blob/master/docs/charts.md#the-chart-file-structure) that defines your chart:
 
@@ -48,10 +74,12 @@ helm package mychart
 The `index.yaml` file contains information about each chart in the repository. After you create your chart update the index file with the command:
 
 ```
-helm repo index
+helm repo index .
 ```
 
-Before pushing your changes to this git repository, you can test things out locally with the `helm serve` command, which starts a local server.
+## Pushing your changes
+
+Before pushing your changes to this repository, you can test things out locally with the `helm serve` command, which starts a local server.
 
 ```
 helm serve
