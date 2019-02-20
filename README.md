@@ -74,7 +74,7 @@ helm package mychart
 The `index.yaml` file contains information about each chart in the repository. After you create your chart update the index file with the command:
 
 ```
-helm repo index
+helm repo index .
 ```
 
 ## Pushing your changes
