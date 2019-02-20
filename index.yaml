@@ -3,11 +3,11 @@ entries:
   kafka-efd-apps:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-19T16:57:49.271651448-07:00
+    created: 2019-02-20T14:40:59.611601206-07:00
     description: A Helm chart for Kubernetes
-    digest: 5b944d737181e19fdc11c7d5c48e974bccd310a19763188899dab92e01075879
+    digest: 03c7e4b7d5691de73de1965a6fe473d0b82e506db76b0dfca5b5a5535e2fbfa8
     name: kafka-efd-apps
     urls:
     - kafka-efd-apps-0.1.0.tgz
     version: 0.1.0
-generated: 2019-02-19T16:57:49.271044885-07:00
+generated: 2019-02-20T14:40:59.610265005-07:00
