@@ -1,0 +1,11 @@
+Your release is named {{ .Release.Name }}.
+
+To learn more about the release, try:
+
+  helm status {{ .Release.Name }}
+  helm get {{ .Release.Name }}
+
+To check if the InfluxDB Sink Connector is running, try:
+
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app=influxdb-sink-connector,app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  kubectl logs $POD_NAME
