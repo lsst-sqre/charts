@@ -10,4 +10,8 @@ image:
 env:
   broker:  "confluent-cp-kafka-headless.kafka:9092"
   schemaRegistry: "http://confluent-cp-schema-registry.kafka:8081"
-  kafkaConnect: "http://confluent-cp-kafka-connect:8083"
+  kafkaConnect: "http://confluent-cp-kafka-connect.kafka:8083"
+
+secret:
+  githubUser: ""
+  githubToken: ""
