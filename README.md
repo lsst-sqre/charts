@@ -1,8 +1,4 @@
-# SQuaRE charts
-
-LSST SQuaRE Helm charts repository.
-
-## Using this repository
+# Using this repository
 
 To install a Helm chart from this repository first add the repository:
 
@@ -11,13 +7,13 @@ helm repo add lsstsqre https://lsst-sqre.github.io/charts/
 helm repo update
 ```
 
-### Available charts
+## Available charts
 
 | Chart name     | Version | Description                                                    |
 |----------------|---------|----------------------------------------------------------------|
 | kafka-efd-apps |  0.1.0  | Deploy the InfluxDB Sink connector and the SAL transform apps.  |
 
-### Installing charts
+## Installing charts
 
 Use the `helm install` command to install the charts:
 
@@ -27,7 +23,7 @@ helm install lsstsqre/mychart --name myrelease
 
 See the [Helm Documentation](https://github.com/helm/helm/tree/master/docs) for more information.
 
-## Adding a new chart to this repository
+# Adding a new chart to this repository
 
 This command will create  a [collection of files](https://github.com/helm/helm/blob/master/docs/charts.md#the-chart-file-structure) that defines your chart:
 
@@ -35,20 +31,20 @@ This command will create  a [collection of files](https://github.com/helm/helm/b
 helm create mychart
 ```
 
-### Templates
+## Templates
 
 Helm finds the YAML definitions for your Kubernetes objects in the `templates/` directory. Helm runs each file in this directory through a Go template rendering engine.
 
-### Values
+## Values
 
 The `values.yaml` file defines the defaults for each template variable.
 
-### Documentation
+## Documentation
 
 Another useful file in the `templates/` directory is the `NOTES.txt` file. It is a templated, plaintext file that gets printed out after the chart is successfully deployed.
 
 
-## Debugging your chart
+# Debugging your chart
 
 As you develop your chart, it’s a good idea to run it through the linter to ensure you’re following best practices and that your templates are well-formed:
 
@@ -62,14 +58,14 @@ A convenient command to debug your new chart is:
 helm install --dry-run --debug mychart
 ```
 
-## Packaging your chart
+# Packaging your chart
 
 This command will create a `tgz` package for the chart in the current directory.
 ```
 helm package mychart
 ```
 
-## Updating the index
+# Updating the index
 
 The `index.yaml` file contains information about each chart in the repository. After you create your chart update the index file with the command:
 
@@ -77,7 +73,7 @@ The `index.yaml` file contains information about each chart in the repository. A
 helm repo index .
 ```
 
-## Pushing your changes
+# Pushing your changes
 
 Before pushing your changes to this repository, you can test things out locally with the `helm serve` command, which starts a local server.
 
