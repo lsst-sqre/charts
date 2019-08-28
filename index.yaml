@@ -9,6 +9,15 @@ entries:
     name: kafka-connect-manager
     urls:
     - kafka-connect-manager-0.1.0.tgz
+  cadc-tap:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2019-08-27T18:33:54.565553-07:00"
+    description: A Helm chart for the CADC TAP service
+    digest: c696e9d7c774e0c65e9cf702586f093c09c773c488316650c406ec9c0fba9d34
+    name: cadc-tap
+    urls:
+    - cadc-tap-0.1.0.tgz
     version: 0.1.0
   kafka-efd-apps:
   - apiVersion: v1

@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "cadc-tap.fullname" . }}-uws-db
+  labels:
+    app: {{ template "cadc-tap.fullname" . }}-uws-db
+    chart: {{ template "cadc-tap.chart" . }}
+spec:
+  selector:
+    app: {{ template "cadc-tap.fullname" . }}-uws-db
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432

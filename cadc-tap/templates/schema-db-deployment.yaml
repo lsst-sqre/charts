@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "cadc-tap.fullname" . }}-schema-db
+  labels:
+    app: {{ template "cadc-tap.fullname" . }}
+    chart: {{ template "cadc-tap.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "cadc-tap.fullname" . }}-schema-db
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "cadc-tap.fullname" . }}-schema-db
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ template "cadc-tap.fullname" . }}-schema-db
+        env:
+        - name: MYSQL_DATABASE
+          value: "TAP_SCHEMA"
+        - name: MYSQL_USER
+          value: "TAP_SCHEMA"
+        - name: MYSQL_PASSWORD
+          value: "TAP_SCHEMA"
+        - name: MYSQL_ROOT_HOST
+          value: "%"
+        image: lsstdax/tap-schema-db:latest
+        ports:
+        - containerPort: 3306
