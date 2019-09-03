@@ -29,4 +29,15 @@ entries:
     urls:
     - kafka-efd-apps-0.1.0.tgz
     version: 0.1.0
+  landing-page:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2019-08-28T21:43:38.673917-07:00"
+    description: Simple landing page for linking to services, and showing MOTD.
+    digest: cb5d9907553091362993b7096e9dfc5823f0e29d39cb5b60a65da9e280c7985b
+    home: https://github.com/lsst-dm/lsp-landing-page
+    name: landing-page
+    urls:
+    - landing-page-0.1.0.tgz
+    version: 0.1.0
 generated: 2019-09-06T16:48:07.892464704-07:00

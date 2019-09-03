@@ -1,0 +1,15 @@
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: {{ template "landing-page.fullname" . }}
+  labels:
+    app: {{ template "landing-page.fullname" . }}
+    chart: {{ template "landing-page.chart" . }}
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: {{ template "landing-page.fullname" . }}
+          servicePort: 80
+        path: /
