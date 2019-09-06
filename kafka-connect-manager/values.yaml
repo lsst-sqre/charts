@@ -1,0 +1,28 @@
+# Default values for kafka-efd-apps.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: lsstsqre/kafka-connect-manager
+  tag: latest
+  pullPolicy: Always
+
+influxdb:
+  # InfluxDB URL
+  url: ""
+  # InfluxDB database
+  db: ""
+  # Number of connector tasks
+  tasks: 1
+  # Regex to filer topic names
+  filter: "*"
+  # Interval to check for new kafka topics in seconds
+  checkInterval: 15
+  # InfluxDB credentials
+  user: ""
+  password: ""
+
+env:
+  broker:  "confluent-cp-kafka-headless.kafka:9092"
+  schemaRegistry: "http://confluent-cp-schema-registry.kafka:8081"
+  kafkaConnect: "http://confluent-cp-kafka-connect.kafka:8083"

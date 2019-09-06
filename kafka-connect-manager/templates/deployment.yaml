@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kafka-connect-manager.name" . }}
+  labels:
+    helm.sh/chart: {{ include "kafka-connect-manager.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "kafka-connect-manager.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "kafka-connect-manager.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+      - name:  {{ include "kafka-connect-manager.name" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy:  {{ .Values.image.pullPolicy }}
+        command: ["/bin/sh"]
+        args: ["-c", "connect_manager create influxdb-sink --influxdb_url {{ .Values.influxdb.url }}  --database {{ .Values.influxdb.db }} --tasks {{ .Values.influxdb.tasks }} --filter {{ .Values.influxdb.filter }} --auto-update --check-interval {{ .Values.influxdb.checkInterval }}"]
+        env:
+          - name: BROKER
+            value: "{{ .Values.env.broker }}"
+          - name: SCHEMAREGISTRY
+            value: "{{ .Values.env.schemaRegistry }}"
+          - name: KAFKA_CONNECT
+            value: "{{ .Values.env.kafkaConnect }}"
+          - name: INFLUXDB_USER
+            valueFrom:
+              secretKeyRef:
+                name: influxdb_credentials
+                key: influxdb_user
+          - name: INFLUXDB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: influxdb_credentials
+                key: influxdb_password

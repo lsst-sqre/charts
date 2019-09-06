@@ -9,9 +9,10 @@ helm repo update
 
 ## Available charts
 
-| Chart name     | Version | Description                                                    |
-|----------------|---------|----------------------------------------------------------------|
-| kafka-efd-apps |  0.1.0  | Deploy the InfluxDB Sink connector and the SAL transform apps.  |
+| Chart name            | Version | Description                                                    |
+|-----------------------|---------|----------------------------------------------------------------|
+| kafka-efd-apps        | 0.1.0  | Deploy the InfluxDB Sink connector and the SAL transform apps.  |
+| kafka-connect-manager | 0.1.0  | Deploy the Kafka connect manager                                |
 
 ## Installing charts
 
