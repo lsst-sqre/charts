@@ -96,6 +96,7 @@ routes:
     hub: ''
 
 fileserver:
+  image: 'lsstsqre/sciplat-fileserver'
   shared_volume_size: '10Gi'
 
 prepuller:

@@ -12,7 +12,7 @@ spec:
       containers:
         - name: {{ template "nublado.fullname" . }}-fileserver
           imagePullPolicy: "Always"
-          image: "lsstsqre/sciplat-fileserver"
+          image: {{ .Values.fileserver.image }}
           env:
             - name: LOGLEVEL
               value: INFO
