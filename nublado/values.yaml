@@ -30,7 +30,7 @@ hub:
   gid: 768
   #proxy_auth_token: ''
   #crypto_key: ''
-  image: 'lsstsqre/sciplat-hub-with-config:latest'
+  image: 'lsstsqre/sciplat-hub-with-config:exp_0.16.6'
 
 # Dask settings
 dask:
@@ -94,10 +94,6 @@ routes:
     api: ''
     soda: ''
     hub: ''
-
-fileserver:
-  image: 'lsstsqre/sciplat-fileserver'
-  shared_volume_size: '10Gi'
 
 prepuller:
   minute_to_run: 35

@@ -12,17 +12,27 @@ entries:
   cadc-tap:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-09-17T23:23:40.069095-07:00"
+    created: "2019-09-23T13:08:42.862831-07:00"
     description: A Helm chart for the CADC TAP service
     digest: c696e9d7c774e0c65e9cf702586f093c09c773c488316650c406ec9c0fba9d34
     name: cadc-tap
     urls:
     - cadc-tap-0.1.0.tgz
     version: 0.1.0
+  fileserver:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2019-09-23T13:08:42.86312-07:00"
+    description: NFS fileserver for science platforms
+    digest: 8fb8fce138b9c93235eec2635b94df5391e9d17e20542f25cc57db96b6ddcb02
+    name: fileserver
+    urls:
+    - fileserver-0.1.0.tgz
+    version: 0.1.0
   firefly:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-09-17T23:23:40.069881-07:00"
+    created: "2019-09-23T13:08:42.863436-07:00"
     description: A Helm chart for Firefly
     digest: df44428a1d486bd201a9caca0efd940611fb55a839b2d5ce9ccf6f3f9fb92ce9
     name: firefly
@@ -42,7 +52,7 @@ entries:
   landing-page:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-09-17T23:23:40.071142-07:00"
+    created: "2019-09-23T13:08:42.864025-07:00"
     description: Simple landing page for linking to services, and showing MOTD.
     digest: cb5d9907553091362993b7096e9dfc5823f0e29d39cb5b60a65da9e280c7985b
     home: https://github.com/lsst-dm/lsp-landing-page
@@ -53,11 +63,11 @@ entries:
   nublado:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-09-17T23:23:40.07201-07:00"
+    created: "2019-09-23T13:08:42.864686-07:00"
     description: A Helm chart for Kubernetes
-    digest: 53ad37c73d1724f90447b05becdcc27a07b7578474e33baa04469ccfa64e1901
+    digest: 9dc6b739e5319f7bf964e292d97fb7bf0c7d33325af235061371cabe19f31f8e
     name: nublado
     urls:
     - nublado-0.1.0.tgz
     version: 0.1.0
-generated: "2019-09-17T23:23:40.067113-07:00"
+generated: "2019-09-23T13:08:42.862183-07:00"

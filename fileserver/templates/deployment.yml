@@ -1,21 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "nublado.fullname" . }}-fileserver
+  name: {{ template "fileserver.fullname" . }}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: {{ template "nublado.fullname" . }}-fileserver
+        name: {{ template "fileserver.fullname" . }}
     spec:
       containers:
-        - name: {{ template "nublado.fullname" . }}-fileserver
+        - name: {{ template "fileserver.fullname" . }}
           imagePullPolicy: "Always"
-          image: {{ .Values.fileserver.image }}
-          env:
-            - name: LOGLEVEL
-              value: INFO
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
           - name: nfs
             containerPort: 2049
@@ -31,4 +28,4 @@ spec:
       volumes:
         - name: storage
           persistentVolumeClaim:
-            claimName: {{ template "nublado.fullname" . }}-physpvc
+            claimName: {{ template "fileserver.fullname" . }}-physpvc
