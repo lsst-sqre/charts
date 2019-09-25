@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "firefly.fullname" . }}
+  labels:
+{{ include "firefly.labels" . | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "firefly.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "firefly.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: firefly
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /firefly/workarea
+          name: firefly-workarea
+        - mountPath: /firefly/config
+          name: firefly-config
+        env:
+        - name: MANAGER
+          value: "TRUE"
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "firefly.fullname" . }}-secret
+              key: ADMIN_PASSWORD
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "firefly.fullname" . }}-secret
+              key: ADMIN_PASSWORD
+        - name: FIREFLY_OPTS
+          value: "-Dvisualize.fits.search.path=/datasets"
+        - name: FIREFLY_SHARED_WORK_DIR
+          value: /firefly/workarea
+        - name: SERVER_CONFIG_DIR
+          value: /firefly/config
+        - name: MAX_JVM_SIZE
+          value: "{{ .Values.max_jvm_size }}"
+        - name: DEBUG
+          value: "{{ .Values.debug }}"
+      volumes:
+      - name: datasets
+        emptyDir: {}
+      - name: firefly-workarea
+        emptyDir: {}
+      - name: firefly-config
+        emptyDir: {}

@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "firefly.fullname" . }}
+  labels:
+{{ include "firefly.labels" . | indent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0m"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "24k"
+    nginx.ingress.kubernetes.io/client-header-buffer-size: "24k"
+    nginx.ingress.kubernetes.io/rewrite-target: /suit$1$2
+    nginx.ingress.kubernetes.io/proxy-redirect-from: /suit/
+    nginx.ingress.kubernetes.io/proxy-redirect-to: /portal/app/
+    nginx.ingress.kubernetes.io/proxy-cookie-path: /suit /portal/app
+spec:
+  rules:
+  - http:
+      paths:
+      - path: "/portal/app(/|$)(.*)"
+        backend:
+          serviceName: {{ include "firefly.fullname" . }}
+          servicePort: 8080

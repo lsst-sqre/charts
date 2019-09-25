@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "cadc-tap.fullname" . }}-uws-db
+  labels:
+    app: {{ template "cadc-tap.fullname" . }}
+    chart: {{ template "cadc-tap.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "cadc-tap.fullname" . }}-uws-db
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "cadc-tap.fullname" . }}-uws-db
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: postgresql
+        image: lsstdax/postgresql-db-demo:latest
+        ports:
+        - containerPort: 5432

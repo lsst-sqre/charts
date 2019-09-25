@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fileserver.fullname" . }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: {{ template "fileserver.fullname" . }}
+    spec:
+      containers:
+        - name: {{ template "fileserver.fullname" . }}
+          imagePullPolicy: "Always"
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+          - name: nfs
+            containerPort: 2049
+          - name: mountd
+            containerPort: 20048
+          - name: rpcbind
+            containerPort: 111              
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: storage
+              mountPath: /exports
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: {{ template "fileserver.fullname" . }}-physpvc

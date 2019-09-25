@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "nublado.fullname" . }}-fs-mounts
+data:
+  mountpoints.json: |
+    [ 
+      {
+        "mountpoint": "/home",
+        "mode": "rw",
+        "fileserver-export": "/home",
+        "fileserver-host": ""
+      },
+      { 
+        "mountpoint": "/datasets",
+        "fileserver-export": "/datasets",
+        "fileserver-host": ""
+      },
+      { 
+        "mountpoint": "/software",
+        "fileserver-export": "/software",
+        "fileserver-host": ""
+      },
+      { 
+        "mountpoint": "/project",
+        "mode": "rw",
+        "fileserver-export": "/project",
+        "fileserver-host": ""
+      },
+      { 
+        "mountpoint": "/scratch",
+        "mode": "rw",
+        "fileserver-export": "/scratch",
+        "fileserver-host": ""
+      }
+    ]
