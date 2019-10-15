@@ -33,10 +33,10 @@ spec:
           - name: INFLUXDB_USER
             valueFrom:
               secretKeyRef:
-                name: influxdb_credentials
+                name: influxdb-credentials
                 key: influxdb_user
           - name: INFLUXDB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: influxdb_credentials
+                name: influxdb-credentials
                 key: influxdb_password
