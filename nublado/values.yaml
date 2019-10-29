@@ -70,8 +70,12 @@ lab:
     size_range: 4
     size_index: 1
 
-  # How long to wait before reaping idle container (in seconds)
-  idle_timeout: 43200
+  # How long to wait before reaping lab container (in seconds)
+  cull_timeout: 43200
+  # Culling policy: "age" or "idle", colon, "local" or "remote"
+  #  locality is relative to lab container; "remote" asks the hub
+  #  to shut it down, "local" kills the local lab process.
+  cull_policy: 'age:remote'
 
   repos: 'https://github.com/lsst-sqre/notebook-demo'
 

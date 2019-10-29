@@ -75,8 +75,10 @@ spec:
               value: '{{.Values.lab.image_name}}'
             # Set if you want something other than 12 hours.  Setting to
             # zero or a negative value disables.
-            - name: LAB_IDLE_TIMEOUT
-              value: '{{.Values.lab.idle_timeout}}'
+            - name: LAB_CULL_TIMEOUT
+              value: '{{.Values.lab.cull_timeout}}'
+            - name: LAB_CULL_POLICY
+              value: '{{.Values.lab.cull_policy}}'
             - name: LAB_MEM_LIMIT
               value: '{{.Values.lab.resources.mem_limit}}'
             - name: LAB_CPU_LIMIT
