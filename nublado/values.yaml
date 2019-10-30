@@ -30,7 +30,7 @@ hub:
   gid: 768
   #proxy_auth_token: ''
   #crypto_key: ''
-  image: 'lsstsqre/sciplat-hub-with-config:exp_0.16.6'
+  image: 'lsstsqre/sciplat-hub-with-config:exp_0.16.7.cfg2'
 
 # Dask settings
 dask:
