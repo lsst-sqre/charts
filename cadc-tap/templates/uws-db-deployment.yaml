@@ -3,24 +3,23 @@ kind: Deployment
 metadata:
   name: {{ template "cadc-tap.fullname" . }}-uws-db
   labels:
-    app: {{ template "cadc-tap.fullname" . }}
-    chart: {{ template "cadc-tap.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: {{ template "cadc-tap.fullname" . }}-uws-db
+{{ include "cadc-tap.labels" . | indent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: {{ template "cadc-tap.fullname" . }}-uws-db
-      release: {{ .Release.Name }}
+{{ include "cadc-tap.labels" . | indent 6 }}
   template:
     metadata:
       labels:
         app: {{ template "cadc-tap.fullname" . }}-uws-db
-        release: {{ .Release.Name }}
+{{ include "cadc-tap.labels" . | indent 8 }}
     spec:
       containers:
       - name: postgresql
-        image: lsstdax/postgresql-db-demo:latest
+        image: lsstdax/uws-db:{{ .Values.tag }}
+        imagePullPolicy: Always
         ports:
         - containerPort: 5432

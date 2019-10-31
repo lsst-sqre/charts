@@ -19,6 +19,6 @@ spec:
 {{ end }}
       paths:
       - backend:
-          serviceName: {{ template "cadc-tap.fullname" . }}
+          serviceName: {{ template "cadc-tap.fullname" . }}-tap-server
           servicePort: 8080
         path: /api/tap(/|$)(.*)

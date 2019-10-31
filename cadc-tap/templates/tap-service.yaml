@@ -1,16 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ template "cadc-tap.fullname" . }}
+  name: {{ template "cadc-tap.fullname" . }}-tap-server
   labels:
-    app: {{ template "cadc-tap.fullname" . }}
-    chart: {{ template "cadc-tap.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: {{ template "cadc-tap.fullname" . }}-tap-server
+{{ include "cadc-tap.labels" . | indent 4 }}
 spec:
   selector:
-    app: {{ template "cadc-tap.fullname" . }}
-    release: {{ .Release.Name }}
+    app: {{ template "cadc-tap.fullname" . }}-tap-server
   ports:
   - protocol: TCP
     port: 80
