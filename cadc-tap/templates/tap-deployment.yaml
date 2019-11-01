@@ -35,4 +35,4 @@ spec:
       volumes:
       - name: google-creds
         secret:
-          secretName: {{ template "cadc-tap.fullname" . }}-secret
+          secretName: {{ template "cadc-tap.fullname" . }}-secrets

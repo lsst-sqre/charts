@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "cadc-tap.fullname" . }}-querymonkey
+  labels:
+    app: {{ template "cadc-tap.fullname" . }}-querymonkey
+{{ include "cadc-tap.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.querymonkey_replicas }}
+  selector:
+    matchLabels:
+      app: {{ template "cadc-tap.fullname" . }}-querymonkey
+{{ include "cadc-tap.labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "cadc-tap.fullname" . }}-querymonkey
+{{ include "cadc-tap.labels" . | indent 8 }}
+    spec:
+      containers:
+      - name: {{ template "cadc-tap.fullname" . }}-querymonkey
+        image: lsstdax/querymonkey:{{ .Values.tag }}
+        env:
+        - name: TAP_URL
+          value: http://{{ template "cadc-tap.fullname" . }}-tap-server/tap
+        - name: SLACK_WEBHOOK
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "cadc-tap.fullname" . }}-secrets
+              key: slack_webhook_url
