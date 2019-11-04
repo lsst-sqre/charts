@@ -8,6 +8,9 @@ metadata:
 spec:
   rules:
   - http:
+{{ if .Values.host }}
+    host: {{ .Values.host }}
+{{ end }}
       paths:
       - backend:
           serviceName: {{ template "landing-page.fullname" . }}
