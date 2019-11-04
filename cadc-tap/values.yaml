@@ -17,7 +17,10 @@ google_creds: ""
 
 # Slack webhook URL, base64 encoded.
 # This is the URL that the querymonkey should use to post issues about
-# running queries on.
+# running queries on.  Since this is a secret, unauthenticated randomly
+# generated URL, you can pass it in using either
+# --set-file slack_webhook_url=webhook_file or
+# --set-string slack_webhook_url=https://slack.com/url .
 slack_webhook_url: ""
 
 # Number of querymonkey instances.  0 by default (which is off).
@@ -32,7 +35,7 @@ ingress:
   # Additional annotations to use for endpoints that allow anonymous
   # access, such as /capabilities, /availability
   anonymous_annotations: {}
-  # Additional annotatiosn to use for endpoints that are authenticated,
+  # Additional annotations to use for endpoints that are authenticated,
   # such as /sync, /async, /tables
   authenticated_annotations: {}
 
