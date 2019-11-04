@@ -22,9 +22,11 @@ metadata:
   name: {{ template "cadc-tap.fullname" . }}-anonymous-ingress
 spec:
   rules:
-  - http:
 {{ if .Values.host }}
-    host: {{ .Values.host }}
+  - host: {{ .Values.host }}
+    http:
+{{ else }}
+  - http:
 {{ end }}
       paths:
       - backend:
