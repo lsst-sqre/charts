@@ -7,9 +7,11 @@ metadata:
     chart: {{ template "landing-page.chart" . }}
 spec:
   rules:
-  - http:
 {{ if .Values.host }}
-    host: {{ .Values.host }}
+  - host: {{ .Values.host }}
+    http:
+{{ else }}
+  - http:
 {{ end }}
       paths:
       - backend:
