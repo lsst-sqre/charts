@@ -4,7 +4,7 @@ metadata:
   name: {{ template "cadc-tap.fullname" . }}-uws-db
   labels:
     app: {{ template "cadc-tap.fullname" . }}-uws-db
-    chart: {{ template "cadc-tap.chart" . }}
+{{ include "cadc-tap.labels" . | indent 4 }}
 spec:
   selector:
     app: {{ template "cadc-tap.fullname" . }}-uws-db

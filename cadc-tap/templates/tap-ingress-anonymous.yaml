@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "900"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
+    nginx.ingress.kubernetes.io/rewrite-target: "/tap/$1"
+{{ if .Values.ingress.ssl }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-redirect-from: "http://$host/tap/"
+    nginx.ingress.kubernetes.io/proxy-redirect-to: "https://$host/api/tap/"
+{{ else }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-redirect-from: "http://$host/tap/"
+    nginx.ingress.kubernetes.io/proxy-redirect-to: "http://$host/api/tap/"
+{{ end }}
+{{ if .Values.ingress.anonymous_annotations }}
+{{ toYaml .Values.ingress.anonymous_annotations | indent 4}}
+{{ end }}
+  name: {{ template "cadc-tap.fullname" . }}-anonymous-ingress
+spec:
+  rules:
+{{ if .Values.host }}
+  - host: {{ .Values.host }}
+    http:
+{{ else }}
+  - http:
+{{ end }}
+      paths:
+      - backend:
+          serviceName: {{ template "cadc-tap.fullname" . }}-tap-server
+          servicePort: 8080
+        path: /api/tap/(availability)
+      - backend:
+          serviceName: {{ template "cadc-tap.fullname" . }}-tap-server
+          servicePort: 8080
+        path: /api/tap/(capabilities)
+      - backend:
+          serviceName: {{ template "cadc-tap.fullname" . }}-tap-server
+          servicePort: 8080
+        path: /api/tap/(swagger-ui.*)

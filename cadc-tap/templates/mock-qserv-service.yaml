@@ -1,0 +1,16 @@
+{{ if .Values.use_mock_qserv }}
+kind: Service
+apiVersion: v1
+metadata:
+  name: qserv-master01
+  labels:
+    app: {{ template "cadc-tap.fullname" . }}-mock-qserv
+{{ include "cadc-tap.labels" . | indent 4 }}
+spec:
+  selector:
+    app: {{ template "cadc-tap.fullname" . }}-mock-qserv
+  ports:
+  - protocol: TCP
+    port: 4040
+    targetPort: 3306
+{{ end }}

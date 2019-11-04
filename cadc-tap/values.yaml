@@ -4,13 +4,40 @@
 
 replicaCount: 1
 
-image:
-  repository: lsstdax/lsst-tap-demo
-  tag: latest
-  pullPolicy: Always
+# Version tag of all images to use.
+tag: "1.0"
 
+# Spin up a container to pretend to be QServ.
+use_mock_qserv: True
 
-#extraoptions: "-Dca.nrc.cadc.auth.Authenticator=org.opencadc.tap.impl.AuthenticatorImpl"
+# GCE service account credential JSON file, base64 encoded.
+# You can also pass this in using --set-file google_creds=google_creds.json
+# on the command line, to allow not checking it in.
+google_creds: ""
+
+# Slack webhook URL, base64 encoded.
+# This is the URL that the querymonkey should use to post issues about
+# running queries on.  Since this is a secret, unauthenticated randomly
+# generated URL, you can pass it in using either
+# --set-file slack_webhook_url=webhook_file or
+# --set-string slack_webhook_url=https://slack.com/url .
+slack_webhook_url: ""
+
+# Number of querymonkey instances.  0 by default (which is off).
+# This is because the querymonkey doesn't work with the mock_qserv
+# (due to the lack of scisql function support).
+querymonkey_replicas: 0
+
+# Settings for the ingress rules.
+ingress:
+  # Force SSL, which is used in annotations and rewriting redirects.
+  ssl: True
+  # Additional annotations to use for endpoints that allow anonymous
+  # access, such as /capabilities, /availability
+  anonymous_annotations: {}
+  # Additional annotations to use for endpoints that are authenticated,
+  # such as /sync, /async, /tables
+  authenticated_annotations: {}
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

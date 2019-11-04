@@ -1,0 +1,27 @@
+{{ if .Values.use_mock_qserv }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "cadc-tap.fullname" . }}-mock-qserv
+  labels:
+    app: {{ template "cadc-tap.fullname" . }}-mock-qserv
+{{ include "cadc-tap.labels" . | indent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "cadc-tap.fullname" . }}-mock-qserv
+{{ include "cadc-tap.labels" . | indent 6 }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "cadc-tap.fullname" . }}-mock-qserv
+{{ include "cadc-tap.labels" . | indent 8 }}
+    spec:
+      containers:
+      - name: mock-qserv
+        image: lsstdax/mock-qserv:{{ .Values.tag }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3306
+{{ end }}
