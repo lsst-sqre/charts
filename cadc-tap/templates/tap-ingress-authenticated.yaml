@@ -19,7 +19,7 @@ metadata:
 {{ if .Values.ingress.authenticated_annotations }}
 {{ toYaml .Values.ingress.authenticated_annotations | indent 4 }}
 {{ end }}
-  name: {{ template "cadc-tap.fullname" . }}-ingress
+  name: {{ template "cadc-tap.fullname" . }}-authenticated-ingress
 spec:
   rules:
 {{ if .Values.host }}
