@@ -1,9 +1,14 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fileserver.fullname" . }}
+  labels:
+    app: fileserver
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: fileserver
   template:
     metadata:
       labels:
