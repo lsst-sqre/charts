@@ -1,13 +1,18 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "nublado.fullname" . }}-proxy
+  labels:
+    app: {{ template "nublado.fullname" . }}-proxy
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         name: {{ template "nublado.fullname" . }}-proxy
+    selector:
+      matchLabels:
+        app: {{ template "nublado.fullname" . }}-proxy
     spec:
       serviceAccountName: {{ template "nublado.fullname" . }}-hub
       containers:

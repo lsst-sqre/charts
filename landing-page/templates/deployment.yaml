@@ -7,6 +7,9 @@ metadata:
     chart: {{ template "landing-page.chart" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "landing-page.fullname" . }}
   template:
     metadata:
       labels:
