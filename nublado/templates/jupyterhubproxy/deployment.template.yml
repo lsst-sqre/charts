@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ template "nublado.fullname" . }}-proxy
   labels:
-    app: proxy
+    app: {{ template "nublado.fullname" . }}-proxy
 spec:
   replicas: 1
   template:
@@ -12,7 +12,7 @@ spec:
         name: {{ template "nublado.fullname" . }}-proxy
     selector:
       matchLabels:
-        app: proxy
+        app: {{ template "nublado.fullname" . }}-proxy
     spec:
       serviceAccountName: {{ template "nublado.fullname" . }}-hub
       containers:

@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   name: {{ template "fileserver.fullname" . }}
   labels:
-    app: fileserver
+    app: {{ template "fileserver.fullname" . }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fileserver
+      app: {{ template "fileserver.fullname" . }}
   template:
     metadata:
       labels:
