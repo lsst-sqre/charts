@@ -25,6 +25,14 @@ github_organization_denylist: ''
 cilogon_group_whitelist: ''
 cilogon_group_denylist: ''
 
+vault_secrets:
+  # Use the vault-secrets-operator to load secrets from vault
+  # instead of creating them from values here.
+  enabled: False
+
+  # Path to load secrets for in the vault.
+  path: ""
+
 hub:
   uid: 768
   gid: 768
