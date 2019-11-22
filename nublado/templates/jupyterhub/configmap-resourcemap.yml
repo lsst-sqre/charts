@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: {{ template "nublado.fullname" . }}-resourcemap
 data:
-  resourcemap.json: |-
-    {{ .Files.Get "static/configmap-resourcemap.json" | b64enc }}
+  resourcemap.json: |
+{{ .Values.resourcemap | indent 4 }}
