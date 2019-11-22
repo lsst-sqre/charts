@@ -25,12 +25,22 @@ github_organization_denylist: ''
 cilogon_group_whitelist: ''
 cilogon_group_denylist: ''
 
+vault_secrets:
+  # Use the vault-secrets-operator to load secrets from vault
+  # instead of creating them from values here.
+  enabled: False
+
+  # Path to load secrets for in the vault.
+  path: ""
+
 hub:
   uid: 768
   gid: 768
   #proxy_auth_token: ''
   #crypto_key: ''
-  image: 'lsstsqre/sciplat-hub-with-config:exp_0.16.7.cfg2'
+  image: 'lsstsqre/sciplat-hub-with-config:0.16.7'
+
+  persistent_home: True
 
 # Dask settings
 dask:
@@ -81,6 +91,9 @@ lab:
 
 proxy:
   max_http_header_size: 16384
+  ingress:
+    host: ''
+    annotations: []
 
 routes:
   hub: '/nb'
@@ -103,3 +116,59 @@ prepuller:
   minute_to_run: 35
   uid: 769
   gid: 769
+
+mountpoints: |
+  [
+    {
+      "mountpoint": "/home",
+      "mode": "rw",
+      "fileserver-export": "/home",
+      "fileserver-host": ""
+    },
+    {
+      "mountpoint": "/datasets",
+      "fileserver-export": "/datasets",
+      "fileserver-host": ""
+    },
+    {
+      "mountpoint": "/software",
+      "fileserver-export": "/software",
+      "fileserver-host": ""
+    },
+    {
+      "mountpoint": "/project",
+      "mode": "rw",
+      "fileserver-export": "/project",
+      "fileserver-host": ""
+    },
+    {
+      "mountpoint": "/scratch",
+      "mode": "rw",
+      "fileserver-export": "/scratch",
+      "fileserver-host": ""
+    }
+  ]
+
+resourcemap: |
+  [
+    { "disabled": true,
+      "user": "Username for user with custom resources",
+      "group": "Groupname for group with custom resources",
+      "resources": {
+        "size_index": "integer representing which size container is default: 0 is smallest",
+        "mem_quota": "integer, namespace quota size in MB",
+        "cpu_quota": "integer, namespace quota CPU limit"
+      }
+    }
+  ]
+
+signing_certificate: |
+  -----BEGIN PUBLIC KEY-----
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3ALFUwJelCzi8FmGMOtK
+  zbDj03mhGE/EslZ75/SpCgAeBbow44Wt3E+NqY1QGmadY+pRsl5G7ahtiAZscvij
+  Vx+1BfEyOx6HbXBZzDmVpNxELnagw+8OsH2JBJxeHjcbwZ7N+b3guwtHdSHLZmMx
+  yBw/57OqYwfdAOjswFM4sUCwWo7ZkpGsVxeqQTflqMgJRBDKTtMk2Vjx6fwvP1x9
+  uTxT9TIUseCngIYo64fVdQw0y/o6m0FrLM2N2F3E4KWkbUlTbisKcTWealKuX3Oz
+  UgDtpFHI+BUNgVakNgk0B4/G6mNnz1goZAn3JKZS8bAd5Au9x1O3ZPb9FkNn5xxN
+  3wIDAQAB
+  -----END PUBLIC KEY-----

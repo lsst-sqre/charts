@@ -1,3 +1,4 @@
+{{ if .Values.hub.persistent_home }}
 kind: PersistentVolumeClaim
 apiVersion: v1
 annotations:
@@ -10,4 +11,4 @@ spec:
   resources:
     requests:
       storage: 1Gi
-
+{{ end }}

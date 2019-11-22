@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: {{ template "nublado.fullname" . }}-proxy
   labels:
-    app: {{ template "nublado.fullname" . }}-proxy
+    name: {{ template "nublado.fullname" . }}-proxy
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      name: {{ template "nublado.fullname" . }}-proxy
   template:
     metadata:
       labels:
         name: {{ template "nublado.fullname" . }}-proxy
-    selector:
-      matchLabels:
-        app: {{ template "nublado.fullname" . }}-proxy
     spec:
       serviceAccountName: {{ template "nublado.fullname" . }}-hub
       containers:
-        - name: {{ template "nublado.fullname" . }}-hub
+        - name: {{ template "nublado.fullname" . }}-proxy
           imagePullPolicy: "Always"
           image: "jupyterhub/configurable-http-proxy"
           command:
