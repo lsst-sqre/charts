@@ -5,9 +5,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: {{ template "nublado.fullname" . }}-dask
-  apiGroup: ""
 roleRef:
   kind: Role
   name: {{ template "nublado.fullname" . }}-dask
-  apiGroup: ""
-
+  apiGroup: rbac.authorization.k8s.io
