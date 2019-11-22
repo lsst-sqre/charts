@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: {{ template "nublado.fullname" . }}-hub
   labels:
-    app: {{ template "nublado.fullname" . }}-hub
+    name: {{ template "nublado.fullname" . }}-hub
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "nublado.fullname" . }}-hub
+      name: {{ template "nublado.fullname" . }}-hub
   template:
     metadata:
       labels:
-        app: {{ template "nublado.fullname" . }}-hub
+        name: {{ template "nublado.fullname" . }}-hub
     spec:
       serviceAccountName: {{ template "nublado.fullname" . }}-hub
       securityContext:
@@ -139,11 +139,11 @@ spec:
             - name: PROXY_SERVICE_HOST
               value: '{{ template "nublado.fullname" . }}-proxy.{{.Release.Namespace}}'
             - name: PROXY_SERVICE_PORT_API
-              value: '8081'
+              value: '8001'
             - name: HUB_SERVICE_HOST
               value: '{{ template "nublado.fullname" . }}-hub.{{.Release.Namespace}}'
-            - name: PROXY_SERVICE_PORT_API
-              value: '8001'
+            - name: HUB_SERVICE_PORT_API
+              value: '8081'
             - name: GITHUB_ORGANIZATION_WHITELIST
               valueFrom:
                 secretKeyRef:

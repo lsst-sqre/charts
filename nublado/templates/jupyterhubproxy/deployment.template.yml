@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "nublado.fullname" . }}-proxy
+      name: {{ template "nublado.fullname" . }}-proxy
   template:
     metadata:
       labels:
-        app: {{ template "nublado.fullname" . }}-proxy
+        name: {{ template "nublado.fullname" . }}-proxy
     spec:
       serviceAccountName: {{ template "nublado.fullname" . }}-hub
       containers:
