@@ -3,7 +3,7 @@ entries:
   cadc-tap:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-11-22T13:42:04.69989954-06:00"
+    created: "2019-11-22T15:40:22.464320334-06:00"
     description: A Helm chart for the CADC TAP service
     digest: da136611d916e42402731aec96ac012fbe6c2c71261365e74850a08b3c88cabd
     name: cadc-tap
@@ -13,7 +13,7 @@ entries:
   fileserver:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-11-22T13:42:04.700257568-06:00"
+    created: "2019-11-22T15:40:22.464793818-06:00"
     description: NFS fileserver for science platforms
     digest: d3a9530677fab6a7d0559a37d0473d53a5ad5c35e8956264106870a79b1730dd
     name: fileserver
@@ -23,7 +23,7 @@ entries:
   firefly:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-11-22T13:42:04.700673931-06:00"
+    created: "2019-11-22T15:40:22.465929502-06:00"
     description: A Helm chart for Firefly
     digest: df44428a1d486bd201a9caca0efd940611fb55a839b2d5ce9ccf6f3f9fb92ce9
     name: firefly
@@ -33,7 +33,7 @@ entries:
   kafka-connect-manager:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-11-22T13:42:04.701000701-06:00"
+    created: "2019-11-22T15:40:22.466802437-06:00"
     description: A Helm chart for Kubernetes
     digest: c77560797533169b80f5772e22a71eca25ece9d0d751c13f65aef5a08d7e3f42
     name: kafka-connect-manager
@@ -43,7 +43,7 @@ entries:
   kafka-efd-apps:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-11-22T13:42:04.70134726-06:00"
+    created: "2019-11-22T15:40:22.46722781-06:00"
     description: A Helm chart for Kubernetes
     digest: 03c7e4b7d5691de73de1965a6fe473d0b82e506db76b0dfca5b5a5535e2fbfa8
     name: kafka-efd-apps
@@ -53,7 +53,7 @@ entries:
   landing-page:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-11-22T13:42:04.702400064-06:00"
+    created: "2019-11-22T15:40:22.467623331-06:00"
     description: Simple landing page for linking to services, and showing MOTD.
     digest: 86a557d1345402d2ff8623ac8b328e8645f9c7cbf12433560a105a677b83d77c
     home: https://github.com/lsst-dm/lsp-landing-page
@@ -64,11 +64,11 @@ entries:
   nublado:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-11-22T13:42:04.704235763-06:00"
+    created: "2019-11-22T15:40:22.468550895-06:00"
     description: A Helm chart for Kubernetes
-    digest: b22f61aaebecd207446ce67f9abf0f444bcf6ec38b28cfe647fb1c976d6cc107
+    digest: b9b66c7e370c06bebf97c59e2fc03c8969bf065042a8332c82e9711843adfd83
     name: nublado
     urls:
-    - nublado-0.3.0.tgz
-    version: 0.3.0
-generated: "2019-11-22T13:42:04.698953547-06:00"
+    - nublado-0.3.1.tgz
+    version: 0.3.1
+generated: "2019-11-22T15:40:22.463094065-06:00"
