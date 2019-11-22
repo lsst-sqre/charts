@@ -40,6 +40,8 @@ hub:
   #crypto_key: ''
   image: 'lsstsqre/sciplat-hub-with-config:0.16.7'
 
+  persistent_home: True
+
 # Dask settings
 dask:
   allow_spawn: 'true'

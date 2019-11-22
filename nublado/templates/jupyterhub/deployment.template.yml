@@ -213,8 +213,10 @@ spec:
           # If you use sqlite, you want this to persist sessions across
           #  jupyterhub restarts.
           volumeMounts:
+{{ if .Values.hub.persistent_home }}
             - name: home-jovyan
               mountPath: /home/jovyan
+{{ end }}
             - name: fs-mounts
               mountPath: /opt/lsst/software/jupyterhub/mounts
             - name: resourcemap
@@ -223,9 +225,11 @@ spec:
               mountPath: /opt/jwt
               readOnly: true
       volumes:
+{{ if .Values.hub.persistent_home }}
         - name: home-jovyan
           persistentVolumeClaim:
            claimName: {{ template "nublado.fullname" . }}-hub-physpvc
+{{ end }}
         - name: jwt-cert
           configMap:
             defaultMode: 420
