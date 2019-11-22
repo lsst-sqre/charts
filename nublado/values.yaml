@@ -38,7 +38,7 @@ hub:
   gid: 768
   #proxy_auth_token: ''
   #crypto_key: ''
-  image: 'lsstsqre/sciplat-hub-with-config:exp_0.16.7.cfg2'
+  image: 'lsstsqre/sciplat-hub-with-config:0.16.7'
 
 # Dask settings
 dask:
@@ -89,6 +89,9 @@ lab:
 
 proxy:
   max_http_header_size: 16384
+  ingress:
+    host: ''
+    annotations: []
 
 routes:
   hub: '/nb'

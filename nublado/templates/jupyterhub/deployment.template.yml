@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        name: {{ template "nublado.fullname" . }}-hub
+        app: {{ template "nublado.fullname" . }}-hub
     spec:
       serviceAccountName: {{ template "nublado.fullname" . }}-hub
       securityContext:
