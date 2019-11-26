@@ -213,6 +213,9 @@ spec:
           # If you use sqlite, you want this to persist sessions across
           #  jupyterhub restarts.
           volumeMounts:
+            - name: metadata
+              mountPath: /etc/metadata
+              readOnly: false
 {{ if .Values.hub.persistent_home }}
             - name: home-jovyan
               mountPath: /home/jovyan
@@ -225,6 +228,12 @@ spec:
               mountPath: /opt/jwt
               readOnly: true
       volumes:
+        - name: metadata
+          downwardAPI:
+            items:
+              - path: "annotations"
+                fieldref:
+                  fieldPath: metadata.annotations
 {{ if .Values.hub.persistent_home }}
         - name: home-jovyan
           persistentVolumeClaim:
