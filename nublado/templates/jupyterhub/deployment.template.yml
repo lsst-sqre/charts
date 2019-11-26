@@ -232,7 +232,7 @@ spec:
           downwardAPI:
             items:
               - path: "annotations"
-                fieldref:
+                fieldRef:
                   fieldPath: metadata.annotations
 {{ if .Values.hub.persistent_home }}
         - name: home-jovyan
