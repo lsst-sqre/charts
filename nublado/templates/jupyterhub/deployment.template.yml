@@ -234,6 +234,9 @@ spec:
               - path: "annotations"
                 fieldRef:
                   fieldPath: metadata.annotations
+              - path: "labels"
+                fieldRef:
+                  fieldPath: metadata.labels
 {{ if .Values.hub.persistent_home }}
         - name: home-jovyan
           persistentVolumeClaim:
