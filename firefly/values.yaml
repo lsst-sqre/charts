@@ -2,15 +2,32 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-max_jvm_size: "2G"
-replicaCount: 1
-debug: "FALSE"
-admin_password: ""
-
 image:
   repository: ipac/suit
   tag: lsst-stable
   pullPolicy: Always
+
+max_jvm_size: "2G"
+replicaCount: 1
+debug: "FALSE"
+
+vault_secrets:
+  # Use the vault-secrets-operator to load secrets from vault
+  # instead of creating them from values here.
+  enabled: False
+
+  # Path to load secrets for in the vault.
+  path: ""
+
+secrets:
+  # Create a normal k8s secret using the values provided here.
+  # Even if you don't have these secrets, you still need to have
+  # either secrets.enabled or vault_secrets.enabled.
+  enabled: True
+
+  # Administrative password, stored in a secret.  If you don't
+  # provide one here, one will be automatically generated for you.
+  admin_password: ""
 
 imagePullSecrets: []
 nameOverride: ""
