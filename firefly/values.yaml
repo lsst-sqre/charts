@@ -61,3 +61,6 @@ resources: {}
 nodeSelector: {}
 
 tolerations: []
+
+redis:
+  resources: {}
