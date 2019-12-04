@@ -29,6 +29,14 @@ secrets:
   # provide one here, one will be automatically generated for you.
   admin_password: ""
 
+volumes:
+  datasets:
+    emptyDir: {}
+  firefly_workarea:
+    emptyDir: {}
+  firefly_config:
+    emptyDir: {}
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
