@@ -66,8 +66,8 @@ spec:
           value: "{{ .Values.debug }}"
       volumes:
       - name: datasets
-        emptyDir: {}
+        {{- toYaml .Values.volumes.datasets | nindent 8 }}
       - name: firefly-workarea
-        emptyDir: {}
+        {{- toYaml .Values.volumes.firefly_workarea | nindent 8 }}
       - name: firefly-config
-        emptyDir: {}
+        {{- toYaml .Values.volumes.firefly_config | nindent 8 }}

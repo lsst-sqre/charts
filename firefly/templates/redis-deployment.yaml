@@ -33,7 +33,7 @@ spec:
         image: redis:5
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
-          {{- toYaml .Values.resources | nindent 10 }}
+          {{- toYaml .Values.redis.resources | nindent 10 }}
         ports:
         - containerPort: 6379
         env:
