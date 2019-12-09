@@ -1,10 +1,10 @@
 {{ if .Values.hub.persistent_home }}
 kind: PersistentVolumeClaim
 apiVersion: v1
-annotations:
-  pv.beta.kubernetes.io/gid: {{ .Values.hub.gid }}
 metadata:
   name: {{ template "nublado.fullname" . }}-hub-physpvc
+  annotations:
+    pv.beta.kubernetes.io/gid: "{{ .Values.hub.gid }}"
 spec:
   accessModes:
     - "ReadWriteOnce"
