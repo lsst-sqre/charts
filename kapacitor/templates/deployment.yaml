@@ -33,7 +33,7 @@ spec:
         - name: KAPACITOR_INFLUXDB_0_USERNAME
           valueFrom:
             secretKeyRef:
-              key: influxdb-username
+              key: influxdb-user
               name: {{ .Values.existingSecret }}
         - name: KAPACITOR_INFLUXDB_0_PASSWORD
           valueFrom:

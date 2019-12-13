@@ -62,8 +62,8 @@ resources:
 # influxURL: http://influxdb-influxdb.tick:8086
 
 ## Name of an existing Secrect used to set the environment variables for the
-## InfluxDB username and password. The expected keys in the secret are
-## `influxdb-username` and `influxdb-password`.
+## InfluxDB user and password. The expected keys in the secret are
+## `influxdb-user` and `influxdb-password`.
 ##
 #
 # existingSecret: influxdb-auth
