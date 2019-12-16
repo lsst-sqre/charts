@@ -21,6 +21,8 @@ spec:
       - name: {{ template "cadc-tap.fullname" . }}-tap-server
         image: lsstdax/lsst-tap-service:{{ .Values.tag }}
         imagePullPolicy: Always
+        resources:
+          {{toYaml .Values.resources | nindent 10}}
         ports:
         - containerPort: 8080
         volumeMounts:

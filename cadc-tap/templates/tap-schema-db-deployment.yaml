@@ -32,3 +32,5 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3306
+        resources:
+          {{toYaml .Values.aux_resources | nindent 10}}

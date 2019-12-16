@@ -65,6 +65,9 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
+aux_resources: {}
+  # Same for resources, but for the non-main TAP service services (such as databases).
+
 nodeSelector: {}
 
 tolerations: []
