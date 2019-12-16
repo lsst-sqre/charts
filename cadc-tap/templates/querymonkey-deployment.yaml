@@ -10,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: {{ template "cadc-tap.fullname" . }}-querymonkey
-{{ include "cadc-tap.labels" . | indent 6 }}
   template:
     metadata:
       labels:
