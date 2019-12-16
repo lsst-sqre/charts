@@ -11,7 +11,6 @@ spec:
   selector:
     matchLabels:
       app: {{ template "cadc-tap.fullname" . }}-mock-qserv
-{{ include "cadc-tap.labels" . | indent 6 }}
   template:
     metadata:
       labels:
