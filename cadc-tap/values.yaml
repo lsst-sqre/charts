@@ -10,6 +10,9 @@ tag: "1.0"
 # Spin up a container to pretend to be QServ.
 use_mock_qserv: True
 
+gcs_bucket: ""
+gcs_bucket_url: ""
+
 vault_secrets:
   # Use the vault-secrets-operator to load secrets from vault
   # instead of creating them from values here.
