@@ -4,25 +4,34 @@
 
 image:
   repository: lsstsqre/kafka-connect-manager
-  tag: latest
+  tag: v0.5.0
   pullPolicy: Always
 
+## See https://kafka-connect-manager.lsst.io/cli-reference.html
 influxdb:
-  # InfluxDB URL
-  url: ""
-  # InfluxDB database
-  db: ""
-  # Number of connector tasks
+  enabled: true
+  ## InfluxDB URL, can be internal to the cluster
+  influxdbUrl: "https://influxdb-summit-efd.lsst.codes"
+  ## InfluxDB database used by the connector to write to
+  database: "efd"
+  ## Number of connector tasks
   tasks: 1
-  # Regex to filer topic names
-  filter: "*"
-  # Interval to check for new kafka topics in seconds
+  ## Regex to filer topic names, for the EFD application SAL topics in kafka
+  ## have the lsst.sal prefix
+  filter: "lsst.sal.*"
+  ## If autoUpdate is enabled, check for new kafka topics and add them to the connector
+  ## dynamically
+  autoUpdate: true
+  ## If autoUpdate is enabled, this variable sets the interval to check for
+  # new kafka topics (seconds)
   checkInterval: 15
-  # InfluxDB credentials
-  user: ""
-  password: ""
+  ## Blacklist problematic topics
+  # blacklist: ""
+  ## Error policy
+  errorPolicy: NOOP
+  ## InfluxDB credentials
+  existingSecret: influxdb-auth
 
 env:
-  broker:  "confluent-cp-kafka-headless.kafka:9092"
-  schemaRegistry: "http://confluent-cp-schema-registry.kafka:8081"
-  kafkaConnect: "http://confluent-cp-kafka-connect.kafka:8083"
+  broker:  "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"
+  kafkaConnect: "http://cp-helm-charts-cp-kafka-connect.cp-helm-charts:8083"

@@ -21,22 +21,39 @@ spec:
       - name:  {{ include "kafka-connect-manager.name" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy:  {{ .Values.image.pullPolicy }}
-        command: ["/bin/sh"]
-        args: ["-c", "connect_manager create influxdb-sink --influxdb_url {{ .Values.influxdb.url }}  --database {{ .Values.influxdb.db }} --tasks {{ .Values.influxdb.tasks }} --filter {{ .Values.influxdb.filter }} --auto-update --check-interval {{ .Values.influxdb.checkInterval }}"]
+        command:
+        - connect_manager
+        - create
+        {{- if .Values.influxdb.enabled }}
+        - influxdb-sink
+        {{- end }}
+        - --influxdb_url
+        - {{ .Values.influxdb.influxdbUrl }}
+        - --database
+        - {{ .Values.influxdb.database }}
+        - --tasks
+        - "{{ .Values.influxdb.tasks }}"
+        - --filter
+        - {{ .Values.influxdb.filter }}
+        - --error-policy
+        - {{ .Values.influxdb.errorPolicy }}
+        {{- if .Values.influxdb.autoUpdate }}
+        - --auto-update
+        - --check-interval
+        - "{{ .Values.influxdb.checkInterval }}"
+        {{- end }}
         env:
           - name: BROKER
             value: "{{ .Values.env.broker }}"
-          - name: SCHEMAREGISTRY
-            value: "{{ .Values.env.schemaRegistry }}"
           - name: KAFKA_CONNECT
             value: "{{ .Values.env.kafkaConnect }}"
           - name: INFLUXDB_USER
             valueFrom:
               secretKeyRef:
-                name: influxdb-credentials
-                key: influxdb_user
+                name: {{ .Values.influxdb.existingSecret }}
+                key: influxdb-user
           - name: INFLUXDB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: influxdb-credentials
-                key: influxdb_password
+                name: {{ .Values.influxdb.existingSecret }}
+                key: influxdb-password
