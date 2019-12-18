@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "nublado.fullname" . }}-jupyterhub-config
+data:
+  jupyterhub_config.py: |
+{{ .Values.jupyterhub_config | indent 4}}

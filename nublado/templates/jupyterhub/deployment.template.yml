@@ -226,6 +226,8 @@ spec:
               mountPath: /opt/lsst/software/jupyterhub/mounts
             - name: resourcemap
               mountPath: /opt/lsst/software/jupyterhub/resources
+            - name: jupyterhub-config
+              mountPath: /opt/lsst/software/jupyterhub/config
             - name: jwt-cert
               mountPath: /opt/jwt
               readOnly: true
@@ -265,3 +267,10 @@ spec:
             - key: resourcemap.json
               path: resourcemap.json
             name: {{ template "nublado.fullname" . }}-resourcemap
+        - name: jupyterhub-config
+          configMap:
+            defaultMode: 420
+            items:
+            - key: jupyterhub_config.py
+              path: jupyterhub_config.py
+            name: {{ template "nublado.fullname" . }}-jupyterhub-config
