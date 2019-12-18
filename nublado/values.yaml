@@ -38,7 +38,7 @@ hub:
   gid: 768
   #proxy_auth_token: ''
   #crypto_key: ''
-  image: 'lsstsqre/sciplat-hub:0.16.10.1'
+  image: 'lsstsqre/sciplat-hub:latest'
 
   persistent_home: True
 
