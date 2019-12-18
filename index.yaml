@@ -3,7 +3,7 @@ entries:
   cadc-tap:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-17T15:37:29.429936663-07:00"
+    created: "2019-12-18T10:46:52.740226-07:00"
     description: A Helm chart for the CADC TAP service
     digest: 0935d7c69720eeca4af6386781395a3c22f6b4f368620b79762281b5e86f607f
     name: cadc-tap
@@ -13,7 +13,7 @@ entries:
   fileserver:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-17T15:37:29.430175325-07:00"
+    created: "2019-12-18T10:46:52.740575-07:00"
     description: NFS fileserver for science platforms
     digest: d3a9530677fab6a7d0559a37d0473d53a5ad5c35e8956264106870a79b1730dd
     name: fileserver
@@ -23,7 +23,7 @@ entries:
   firefly:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-17T15:37:29.430436886-07:00"
+    created: "2019-12-18T10:46:52.741196-07:00"
     description: A Helm chart for Firefly
     digest: 775520267061b17dce0917f60af0343dcd7b6649060bc753ff16230ee9856295
     name: firefly
@@ -33,10 +33,9 @@ entries:
   influxdb:
   - apiVersion: v1
     appVersion: 1.7.6
-    created: "2019-12-17T15:37:29.431081389-07:00"
+    created: "2019-12-18T10:46:52.74256-07:00"
     description: Scalable datastore for metrics, events, and real-time analytics.
     digest: 4353a27fc420fef72306472b19097224a0822e294e8a57b0aa7724a66c0bcb9d
-    engine: gotpl
     home: https://www.influxdata.com/time-series-platform/influxdb/
     keywords:
     - influxdb
@@ -56,7 +55,7 @@ entries:
   kafka-connect-manager:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-17T15:37:29.431314888-07:00"
+    created: "2019-12-18T10:46:52.743053-07:00"
     description: A Helm chart for Kubernetes
     digest: c77560797533169b80f5772e22a71eca25ece9d0d751c13f65aef5a08d7e3f42
     name: kafka-connect-manager
@@ -66,7 +65,7 @@ entries:
   kafka-efd-apps:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-17T15:37:29.431531873-07:00"
+    created: "2019-12-18T10:46:52.743526-07:00"
     description: A Helm chart for Kubernetes
     digest: 03c7e4b7d5691de73de1965a6fe473d0b82e506db76b0dfca5b5a5535e2fbfa8
     name: kafka-efd-apps
@@ -76,11 +75,10 @@ entries:
   kapacitor:
   - apiVersion: v1
     appVersion: 1.5.2
-    created: "2019-12-17T15:37:29.431889761-07:00"
+    created: "2019-12-18T10:46:52.744202-07:00"
     description: InfluxDB's native data processing engine. It can process both stream
       and batch data from InfluxDB.
     digest: cbd92728771ac7780bc454b3b71950e00702c4dcc81ed5b7af86ae7588ea969d
-    engine: gotpl
     home: https://www.influxdata.com/time-series-platform/kapacitor/
     keywords:
     - kapacitor
@@ -99,7 +97,7 @@ entries:
   landing-page:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-17T15:37:29.432102832-07:00"
+    created: "2019-12-18T10:46:52.744677-07:00"
     description: Simple landing page for linking to services, and showing MOTD.
     digest: 86a557d1345402d2ff8623ac8b328e8645f9c7cbf12433560a105a677b83d77c
     home: https://github.com/lsst-dm/lsp-landing-page
@@ -110,11 +108,20 @@ entries:
   nublado:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2019-12-17T15:37:29.433050602-07:00"
+    created: "2019-12-18T10:46:52.750203-07:00"
+    description: A Helm chart for Kubernetes
+    digest: f9d4d8f6747ffe31ed21cb70166a4dd229dc887af41ec8083c5c5f49860a7498
+    name: nublado
+    urls:
+    - nublado-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2019-12-18T10:46:52.748945-07:00"
     description: A Helm chart for Kubernetes
     digest: 00ce322776854aac0f288dee5d7d023d9167cff95ea5e5eb8a2587ef414eac89
     name: nublado
     urls:
     - nublado-0.3.6.tgz
     version: 0.3.6
-generated: "2019-12-17T15:37:29.429338095-07:00"
+generated: "2019-12-18T10:46:52.734755-07:00"
