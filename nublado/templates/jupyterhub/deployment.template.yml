@@ -77,6 +77,8 @@ spec:
               value: '{{.Values.lab.image.weeklies}}'
             - name: PREPULLER_RELEASES
               value: '{{.Values.lab.image.releases}}'
+            - name: PREPULLER_CACHEFILE
+              value: '{{.Values.lab.image.cachefile}}'
             # Set if you do not want to scan a repository for images.
             - name: LAB_IMAGE
               value: '{{.Values.lab.image_name}}'
