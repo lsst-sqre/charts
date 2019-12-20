@@ -61,6 +61,7 @@ lab:
     repo_host: ''
     repo_owner: 'lsstsqre'
     repo_name: 'sciplat-lab'
+    cachefile: '/tmp/repo-cache.json'
 
     # Number of images of each type to put in the spawner page
     experimentals: 0
