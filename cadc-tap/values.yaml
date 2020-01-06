@@ -7,6 +7,10 @@ replicaCount: 1
 # Version tag of all images to use.
 tag: "1.0"
 
+# QServ hostname to connect to.
+# If you're using mock_qserv, this value should be fine.
+qserv_host: "qserv-master01"
+
 # Spin up a container to pretend to be QServ.
 use_mock_qserv: True
 
