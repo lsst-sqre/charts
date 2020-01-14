@@ -96,6 +96,22 @@ oauth:
     # This is a comma separated list of Heroku organizations (OPTIONAL)
     he_orgs: ""
 
+## Alternatively, the OAuth configuration can use an existing secret.
+##
+## Example:
+# oauth:
+#   enabled: true
+#   existingSecret: chronograf-oauth
+#   github:
+#     enabled: true
+##
+## This configuration assumes that a kubernetes secret named chronograf-oauth
+## exists and contain the required secrets, in this case: token_secret,
+## gh_client_id, gh_client_secret and gh_orgs.
+##
+## See the templates/deployment.yaml for the secrets required by the other
+## OAuth Providers.
+
 ## Extra environment variables that will be passed onto deployment pods
 env: {}
 
