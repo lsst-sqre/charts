@@ -39,6 +39,8 @@ vault_secrets:
 host: lsst-lsp-<instance>.ncsa.illinois.edu
 jwks_n: v3F6CDrszPNvgSHdNaNCOYnbPXwia4jmgWNCi9TmnALPTToVpUZ3qLWO1Y70hiGTIcV966eUT3Mb3odjk62BuCT927pxAi1oNYGAO0o0raUfZ8wAsMIYQPB1Tg6KrHNg3lB40YgHmjQg7pCvGHErSOr2iY4JTeGcQVJEbzHKNmo_he-q1O90n6Ir31_KpzbnkQfan_6kZ4LiEaM5hDHyWV7ixJRR2tv6jGqRy3-8gJ6yQAq5zbnem2LN9bJmQmqa-YttCBIUqLEuEWVERFt4YdirwF-04f32UxXAxC1m76zUYQ_PlFFgXe-yRervYV0cH3NSylmLy5Qla02AIZ7y3Q
 oauth2_proxy_client_id: <client id from cilogon.org>
+user_capability: "exec:user"
+admin_capability: "exec:admin"
 
 oauth2_proxy:
   image: "lsstdm/oauth2_proxy:stable"

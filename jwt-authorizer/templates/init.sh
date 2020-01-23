@@ -62,6 +62,8 @@ vault_secrets:
 host: ${HOSTNAME}
 jwks_n: ${JWKS_N}
 oauth2_proxy_client_id: ${OAUTH2_PROXY_CLIENT_ID}
+user_capability: "exec:user"
+admin_capability: "exec:admin"
 
 oauth2_proxy:
   image: "lsstdm/oauth2_proxy:stable"
