@@ -32,7 +32,7 @@ data:
           INTERNAL: https://{{ .Values.host }}/api
         KEY_FILE: {{ .Values.signing_key_file | default "/etc/jwt-authorizer/secrets/signing_key.pem" }}
     
-      SECRET_KEY_FILE: {{ .Values.flask_secret_file | default "/etc/jwt-authorizer/secrets/flask_secret.txt" }}
+      FLASK_SECRET_KEY_FILE: {{ .Values.flask_secret_file | default "/etc/jwt-authorizer/secrets/flask_secret.txt" }}
     
       OAUTH2_STORE_SESSION:
         TICKET_PREFIX: oauth2_proxy
