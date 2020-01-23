@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: jwt-authorizer
+  name: jwt-authorizer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: jwt-authorizer
+  template:
+    metadata:
+      labels:
+        k8s-app: jwt-authorizer
+    spec:
+      containers:
+      - image:  "{{ .Values.jwt_authorizer.image | default "lsstdm/jwt_authorizer:stable" }}"
+        imagePullPolicy: Always
+        name: jwt-authorizer
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+        - name: jwt-authorizer-config
+          mountPath: "/etc/jwt-authorizer"
+          readOnly: true
+        - name: jwt-authorizer-secret
+          mountPath: "/etc/jwt-authorizer/secrets"
+          readOnly: true
+      volumes:
+      - name: jwt-authorizer-config
+        configMap:
+          name: jwt-authorizer-config
+      - name: jwt-authorizer-secret
+        secret:
+          secretName: jwt-authorizer-secret

@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jwt-authorizer-config
+data:
+  authorizer.yaml: |
+    global:
+      REALM: {{ .Values.host }}
+    
+      # Options are Bearer, Basic, none
+      WWW_AUTHENTICATE: Basic
+      LOGLEVEL: {{ .Values.jwt_authorizer.loglevel | default "DEBUG" }}
+    
+      # Authorizer Configurations
+      # NO_AUTHORIZE: True
+    
+      # Resource Checkers
+      RESOURCE_CHECKS_DEFAULT: 
+        - group_membership
+    
+      # group_membership options
+      GROUP_MAPPING:
+        {{ range $key, $value := .Values.jwt_authorizer.group_mapping }}
+        {{ $key | quote }}: {{ $value }}
+        {{- end }}
+    
+      OAUTH2_JWT:
+        ISS: https://{{ .Values.host }}
+        KEY_ID: reissuer
+        AUD:
+          DEFAULT: https://{{ .Values.host }}
+          INTERNAL: https://{{ .Values.host }}/api
+        KEY_FILE: {{ .Values.signing_key_file | default "/etc/jwt-authorizer/secrets/signing_key.pem" }}
+    
+      SECRET_KEY_FILE: {{ .Values.flask_secret_file | default "/etc/jwt-authorizer/secrets/flask_secret.txt" }}
+    
+      OAUTH2_STORE_SESSION:
+        TICKET_PREFIX: oauth2_proxy
+        REDIS_URL: redis://redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0
+        OAUTH2_PROXY_SECRET_FILE: {{ .Values.oauth2_proxy_secret_file | default "/etc/jwt-authorizer/secrets/oauth2_proxy_cookie_secret.txt" }}
+    
+      KNOWN_CAPABILITIES:
+        {{ range $key, $value := .Values.jwt_authorizer.known_capabilities }}
+        {{ $key | quote }}: {{ $value | quote }}
+        {{- end }}
+
+      ISSUERS:
+        https://cilogon.org:
+          audience: {{ .Values.oauth2_proxy_client_id }}
+          issuer_key_ids: ["244B235F6B28E34108D101EAC7362C4E"]
+        https://{{ .Values.host }}:
+          audience: ["https://{{ .Values.host }}", "https://{{ .Values.host }}/api"]
+          issuer_key_ids: ["reissuer"]
+
