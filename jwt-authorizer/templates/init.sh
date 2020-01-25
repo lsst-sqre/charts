@@ -31,35 +31,34 @@ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 modulus_hex=$(openssl rsa -pubin -inform PEM -modulus -noout -in public.pem | sed 's/Modulus=//')
 modulus_urlsafe_b64=$(printf -- "$modulus_hex" | xxd -r -p | $b64 | sed 's/+/-/g;s/\//_/g;s/=//g')
 
-echo "done"
+echo "...done"
 ISSUER_PRIVATE_KEY=$(cat private.pem)
 ISSUER_PRIVATE_KEY_INDENT=$(printf -- "$ISSUER_PRIVATE_KEY")
 JWKS_N=$modulus_urlsafe_b64
 
-echo "generate random"
+echo "generate secret for flask"
 AUTHORIZER_FLASK_SECRET=$(dd if=/dev/urandom bs=32 count=1 2> /dev/null | $b64)
+echo "...done"
 
 mv public.pem ${NAMESPACE}-public.pem
 mv private.pem ${NAMESPACE}-private.pem
-echo $AUTHORIZER_FLASK_SECRET > ${NAMESPACE}-flask-secret.txt
-echo $OAUTH2_PROXY_COOKIE_SECRET > ${NAMESPACE}-oauth2-proxy-cookie-secret.txt
-echo $OAUTH2_PROXY_CLIENT_SECRET > ${NAMESPACE}-oauth2-proxy-client-secret.txt
-
-echo "WARNING: Secrets in ${NAMESPACE}-values.yml"
+echo -n $AUTHORIZER_FLASK_SECRET > ${NAMESPACE}-flask_secret.txt
+echo -n $OAUTH2_PROXY_COOKIE_SECRET > ${NAMESPACE}-oauth2-proxy-cookie-secret.txt
+echo -n $OAUTH2_PROXY_CLIENT_SECRET > ${NAMESPACE}-oauth2-proxy-client-secret.txt
 
 cat <<EOF > ${NAMESPACE}-values.yml
 secrets:
-  enabled: True
-  flask_secret: ${AUTHORIZER_FLASK_SECRET}
-  oauth2_proxy_cookie_secret: ${OAUTH2_PROXY_COOKIE_SECRET}
-  oauth2_proxy_client_secret: ${OAUTH2_PROXY_CLIENT_SECRET}
-  signing_key: |
-$(printf -- "$ISSUER_PRIVATE_KEY" | sed 's/^/    /')
-
-vault_secrets:
   enabled: False
+  flask_secret: "" # See: ${NAMESPACE}-flask_secret.txt
+  oauth2_proxy_cookie_secret: "" # See: ${NAMESPACE}-oauth2-proxy-cookie-secret.txt
+  oauth2_proxy_client_secret: "" # See: ${NAMESPACE}-oauth2-proxy-client-secret.txt
+  signing_key: "" # See: ${NAMESPACE}-private.pem
 
 host: ${HOSTNAME}
+vault_secrets:
+  enabled: True
+  path: "secret/k8s_operator/${HOSTNAME}/jwt_authorizer"
+
 jwks_n: ${JWKS_N}
 oauth2_proxy_client_id: ${OAUTH2_PROXY_CLIENT_ID}
 user_capability: "exec:user"
@@ -99,4 +98,26 @@ jwt_authorizer:
     read:tap: ["lsst_int_lspdev"]
     read:image: ["lsst_int_lspdev"]
 
+EOF
+
+cat <<EOF 
+If you are not using vault, enable secrets.enabled, and insert secrets
+into ${NAMESPACE}-values.yaml.
+
+If you are using vault, load the secrets:
+
+export VAULT_ADDR=...
+export VAULT_TOKEN=...
+vault kv put "secret/k8s_operator/${HOSTNAME}/jwt_authorizer" \\
+    flask_secret.txt=@${NAMESPACE}-flask-secret.txt \\
+    signing_key.pem=@${NAMESPACE}-private.pem \\
+    oauth2-proxy-cookie-secret.txt=@${NAMESPACE}-oauth2-proxy-cookie-secret.txt \\
+    oauth2-proxy-client-secret.txt=@${NAMESPACE}-oauth2-proxy-client-secret.txt
+
+# Finally, remove secrets
+rm \\
+    ${NAMESPACE}-flask_secret.txt \\
+    ${NAMESPACE}-private.pem \\
+    ${NAMESPACE}-oauth2-proxy-cookie-secret.txt \\
+    ${NAMESPACE}-oauth2-proxy-client-secret.txt
 EOF

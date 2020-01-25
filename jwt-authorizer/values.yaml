@@ -1,56 +1,56 @@
+# templates/init.sh can interactively generate a values file.
+
 secrets:
-  enabled: True
-  flask_secret: <generated flask secret>
-  oauth2_proxy_cookie_secret: <generated cookie secret>
-  oauth2_proxy_client_secret: <cilogon secret>
-  
-  signing_key: |
-    -----BEGIN RSA PRIVATE KEY-----
-    MIIEogIBAAKCAQEAv3F6CDrszPNvgSHdNaNCOYnbPXwia4jmgWNCi9TmnALPTToV
-    pUZ3qLWO1Y70hiGTIcV966eUT3Mb3odjk62BuCT927pxAi1oNYGAO0o0raUfZ8wA
-    sMIYQPB1Tg6KrHNg3lB40YgHmjQg7pCvGHErSOr2iY4JTeGcQVJEbzHKNmo/he+q
-    1O90n6Ir31/KpzbnkQfan/6kZ4LiEaM5hDHyWV7ixJRR2tv6jGqRy3+8gJ6yQAq5
-    zbnem2LN9bJmQmqa+YttCBIUqLEuEWVERFt4YdirwF+04f32UxXAxC1m76zUYQ/P
-    lFFgXe+yRervYV0cH3NSylmLy5Qla02AIZ7y3QIDAQABAoIBACQs7UJg4B5aYdek
-    7ogUMY9t3V/g9SAc3nHUr958fJc+cK3HLA/vIO1gYX05ZjtyXLsk9oZxRDU/KyUB
-    sG9Xegux8cZzlKc0rVxu/Cw3+XxWl3ils/uysaKTzZbSaKHtq4BW9H2jlswszYxH
-    Cs8zk1pUDAIyNM/isgQl54ibf/qIBWlL4cKqmB91msbongbxJtXhxzmQYo0vuWFz
-    J6k9za48AURYfIjGRzOPCxTn7NZJ43DgdYABxrzqgsgFz6jURXJZHjSkf03Vmla+
-    mnLC3IG5n9PSMAJY+LDi24pWvzIUCa2A36wjX9YS5mKLOBWdIC4J9DjNNBXDNc/V
-    sezUHAECgYEA6skAtOQQyOaKLRU5Fadpcr1CO7UH0T+pC0FSAJb8pQ7he7ytV9Vh
-    GmSkQdW4ectXCeUWKvpoqP29t4Ot21fRnyKCVsqGiFeGB/Fu67dNMiG8DZ1Z/gIH
-    xndPOmuq1pq5piqo0dLt84u9gS1373JoFawBCWye64YP6B+ac7Hj7wkCgYEA0L3m
-    IfXoChwI5mLjIdMrGrfPmmI1FgRp6PsOOQBHWZxQwvjRIQYVVgeQGPlavR9PuamX
-    0Pc37tzKzKLKgLD3SG/fEfypkJGQMHQeV4fRwy3LOKZJxQDZ2FY+qSHjm2UW/TrQ
-    jwQjAx3hj+h1GGRD9FwVoUnaxepo4PQkyjwCRjUCgYAK9l+mEpAGEV2aRUdpD2wJ
-    A3U4PHek+Yf3EpG1nVcmjc9Ra7ncRAZIqTJSMJxwc2IZAC1MzGxel5poGyne9/a9
-    q2rSippFe3Cypj87mk9sa87QA+zTw1yBk8iLPcO4SXkpnQxM38Bkgr3SbkEPWRQr
-    DuDtg7jX3maXvAIGLOQroQKBgATmD/qIDNP/6G2PsIjgrchIvASBfYFwxROEoMbR
-    rNr7giGxOScvP1zvfIA5idmaXIKc6kUrKBLg95lp0JrIjGUUywVfCpOr9thMQVII
-    i/Gqp3RC4sROys366CmL9A13h9yVfsN8c13lW5/G8siJwdaAOrm4Q/wVDjUJRbvB
-    QMRpAoGAE4xW8YSPRenaYPtuDIL/3O1Qx0k64P6VQlxfpthzckAMfPVveyjuB0L7
-    pBQEzVzeVIj5hDHotyh/3sSx6U5vcbHjhwH/9GiyjTX7/Bzw0f/hJz0i6VCbtKCT
-    JldrC+8If5Y+C2O9QHemheL5pLsGnf/XPmjf1JKnXZb6OXh9PAA=
-    -----END RSA PRIVATE KEY-----
+  enabled: False
+  # <generated flask secret>
+  flask_secret: "" 
+  # <generated cookie secret>
+  oauth2_proxy_cookie_secret: "" 
+  # <cilogon/OIDC secret>
+  oauth2_proxy_client_secret: "" 
+  # Generating a private key, then public key, then getting url-save version of it all
+  # echo "Generating Issuer Keypair... private.pem, public.pem"
+  # openssl genrsa -out private.pem 2048 2> /dev/null
+  # openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+  # modulus_hex=$(openssl rsa -pubin -inform PEM -modulus -noout -in public.pem | sed 's/Modulus=//')
+  # modulus_urlsafe_b64=$(printf -- "$modulus_hex" | xxd -r -p | $b64 | sed 's/+/-/g;s/\//_/g;s/=//g')
+  signing_key: ""  # JWT Signing Key (private key)
+
+
+# lsst-lsp-<instance>.ncsa.illinois.edu
+host: "" 
 
 vault_secrets:
   enabled: False
+  # secret/k8s_operator/<host>/jwt_authorizer
+  path: "" 
 
-host: lsst-lsp-<instance>.ncsa.illinois.edu
-jwks_n: v3F6CDrszPNvgSHdNaNCOYnbPXwia4jmgWNCi9TmnALPTToVpUZ3qLWO1Y70hiGTIcV966eUT3Mb3odjk62BuCT927pxAi1oNYGAO0o0raUfZ8wAsMIYQPB1Tg6KrHNg3lB40YgHmjQg7pCvGHErSOr2iY4JTeGcQVJEbzHKNmo_he-q1O90n6Ir31_KpzbnkQfan_6kZ4LiEaM5hDHyWV7ixJRR2tv6jGqRy3-8gJ6yQAq5zbnem2LN9bJmQmqa-YttCBIUqLEuEWVERFt4YdirwF-04f32UxXAxC1m76zUYQ_PlFFgXe-yRervYV0cH3NSylmLy5Qla02AIZ7y3Q
-oauth2_proxy_client_id: <client id from cilogon.org>
+#  derived from public key of signing key - $(modulus_urlsafe_b64) from above
+jwks_n: "" 
+
+# <client id from cilogon.org or OIDC provider>
+oauth2_proxy_client_id: "" 
+
+# Default capability required for user-based operations (like generating a token)
 user_capability: "exec:user"
+
+# Default capability required for admin-based operations (like revoking a token, possibly)
 admin_capability: "exec:admin"
 
 oauth2_proxy:
   image: "lsstdm/oauth2_proxy:stable"
+  # URLs for oauth2_proxy. This can be simpler, but we need all of them so we can have a
+  # special one for login_url - to include the LSST skin.
   issuer_url: https://cilogon.org
   login_url: https://cilogon.org/authorize/?skin=LSST
   jwks_url: https://cilogon.org/oauth2/certs
   redeem_url: https://cilogon.org/oauth2/token
 
 jwt_authorizer:
-  image: "lsstdm/jwt_authorizer:pull_request_14"
+  image: "lsstdm/jwt_authorizer:stable"
+
+  # Defining all capabilites applications may need.
+  # This feeds into the token downlad page
   known_capabilities:
     exec:portal: Use the Portal to execute operations. Mostly used from notebook APIs.
     read:image: Read images from the SODA and other image retrieval interfaces
@@ -64,6 +64,7 @@ jwt_authorizer:
     read:workspace/user: Read the data in your file workspace
     write:workspace/user: Write data to your file workspace
 
+  # Mapping of capabilities to groups that are part of the `isMemberOf` claim
   group_mapping:
     exec:admin: ["lsst_int_lsp_admin"]
     exec:user: ["lsst_int_lspdev"]
