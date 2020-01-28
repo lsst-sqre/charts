@@ -11,6 +11,9 @@ metadata:
     app: {{ template "kapacitor.fullname" . }}
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "kapacitor.fullname" . }}
   template:
     metadata:
       labels:
