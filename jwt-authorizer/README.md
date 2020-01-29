@@ -38,6 +38,7 @@ from the client `cilogon:/client_id/6ca7b54ac075b65bccb9c885f9ba4a75` to your ne
 client.
 
 ## Configuring Applications
+There is a boostrap.sh script to help bootstrap values for a helm values file.
 
 ### Protecting services
 

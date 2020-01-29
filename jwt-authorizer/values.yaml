@@ -17,7 +17,7 @@ secrets:
   signing_key: ""  # JWT Signing Key (private key)
 
 
-# lsst-lsp-<instance>.ncsa.illinois.edu
+# e.g. lsst-lsp-<instance>.ncsa.illinois.edu
 host: "" 
 
 vault_secrets:
