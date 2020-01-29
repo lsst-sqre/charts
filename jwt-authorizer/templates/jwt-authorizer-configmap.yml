@@ -45,7 +45,7 @@ data:
         {{- end }}
 
       ISSUERS:
-        https://cilogon.org:
+        {{ .Values.oauth2_proxy.issuer_url }}:
           audience: {{ .Values.oauth2_proxy_client_id }}
           issuer_key_ids: ["244B235F6B28E34108D101EAC7362C4E"]
         https://{{ .Values.host }}:
