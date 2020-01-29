@@ -1,4 +1,4 @@
-# Deploying
+# Pre-Deployment for LSP
 
 ## Prerequisites
 This process assumes your ingress for the hostname has already been set up.
@@ -11,7 +11,7 @@ If you do not have a client as secret, you first need to obtain one from CILogon
 Go here:
 https://cilogon.org/oauth2/register
 
-1. Add Client Name, e.g. "LSST LSP instance SSO"
+1. Add Client Name, e.g. "LSST LSP <instance> SSO"
 2. Contact Email
 3. Add hostname for Home URL
   - `http://lsst-lsp-instance.example.com`
@@ -36,66 +36,6 @@ This is your client id and client secret.
 A separate email is required to CILogonhelp address to apply the client configuration
 from the client `cilogon:/client_id/6ca7b54ac075b65bccb9c885f9ba4a75` to your new
 client.
-
-## Configuring Auth Services
-
-### Prerequisites
-
-- pip, or
-- git, to clone this repo
-- curl, in case you don't have pip or git
-
-#### Source
-Clone this repo, switch to this directory (kube/template).
-
-```
-git clone https://github.com/lsst/jwt_authorizer
-cd jwt_authorizer/kube/template
-```
-
-If you don't have git, you can also get it with curl:
-```
-curl -sSLO https://github.com/lsst/jwt_authorizer/archive/master.tar.gz
-tar xvzf master.tar.gz
-cd jwt-authorizer-master/kube/template
-```
-
-#### Running the init scripts
-init.sh relies on j2cli. By default it will try to use a local version
-then fall back to a version in in docker. If you would like to override that.
-You can override with the J2_BIN for with your own executable. 
-
-You can `pip install j2cli[yaml]` otherwise and it should work too, but it may try to
-install an old version of pyyaml.
-
-If you don't have pip on the system, but at least have python installed, you should be
-able to bootstrap everything, as long as you at least have curl:
-
-```
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py --user
-pip install --user j2cli[yaml]
-```
-
-You will want to modify your PATH too:
-`PATH=$PATH:$HOME/.local/bin:$HOME/bin`
-
-### Run ./init.sh
-This will gather required input and write out YAML files to a directory for 
-your workspace. Those yaml files must be applied.
-
-### Applying the Config and Cleanup
-You can `kubectl apply -R -f .` the config.
-
-The output of this step will, by necessity, contain secrets in the output
-directory. You have some secrets in the clear, you may want to save those 
-somewhere safe (or delete them, if appropriate). The public signing key that
-jwt_authorizer uses to sign tokens is available in a PEM format under
-`public.pem`. *Applications that validate the JWT tokens,
-such as the notebook may need this file*. Other application may rely on the
-JWKS-formatted public key that's deployed to 
-`https://{{ HOSTNAME }}/.well-known/jwks.json`.
-
 
 ## Configuring Applications
 
@@ -155,8 +95,5 @@ the reliant resource uses to accept a capability. `any` or `all`
 header will be set according to the configuration.
 
 ### Verifying tokens
-This deploys a JWKS file to .well-known/jwks.json. Some applications
-may use that file for verifying a token they receive is valid.
-
-A public key is also available, if it was saved. (See [previous section](#applying-the-config-and-leanup))
-If it's not saved, it is also derivable from the jwks.json file.
+The jwt-authorizer application deploys a JWKS file to .well-known/jwks.json. 
+Some applications may use that file for verifying a token they receive is valid.
