@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cat <<EOF
-This script will help generate secrets for a Helm values file.
+This script will help bootstrap secrets/config for a Helm values file.
 
 EOF
 
