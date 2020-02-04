@@ -96,6 +96,12 @@ proxy:
     host: ''
     annotations: []
 
+wf:
+  image: 'lsstsqre/wfdispatcher:latest'
+  no_verify_signature: ''
+  no_verify_audience: ''
+  api_addr: '0.0.0.0'
+
 routes:
   hub: '/nb'
   firefly: '/portal/app/'
@@ -103,6 +109,7 @@ routes:
   api: '/api'
   tap: '/api/tap'
   soda: '/api/soda'
+  wf: '/wf'
   
   external:
     fileserver: ''
@@ -112,6 +119,7 @@ routes:
     api: ''
     soda: ''
     hub: ''
+    wf: ''
 
 prepuller:
   minute_to_run: 35

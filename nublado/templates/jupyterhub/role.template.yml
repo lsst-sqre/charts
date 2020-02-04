@@ -4,5 +4,17 @@ metadata:
   name: {{ template "nublado.fullname" . }}-hub
 rules:
 - apiGroups: [""]
-  resources: ["pods","events"]
+  resources: ["pods","events","services","configmaps","serviceaccounts"]
   verbs: ["get", "list", "create", "watch", "delete"]
+- apiGroups: [""]
+  resources: ["pods/log"]
+  verbs: ["get", "list"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get"]
+- apiGroups: ["argoproj.io"]
+  resources: ["workflows", "workflows/finalizers"]
+  verbs: ["get", "list", "create", "watch", "delete", "update", "patch"]
+- apiGroups: ["argoproj.io"]
+  resources: ["workflowtemplates", "workflowtemplates/finalizers"]
+  verbs: ["get", "list", "watch"]
