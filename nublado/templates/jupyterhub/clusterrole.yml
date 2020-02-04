@@ -6,7 +6,8 @@ rules:
 rules:
 - apiGroups: [""]
   resources: ["pods","events", "namespaces", "serviceaccounts", "services",
-  "persistentvolumeclaims", "persistentvolumes", "resourcequotas"]
+  "persistentvolumeclaims", "persistentvolumes", "resourcequotas",
+  "configmaps"]
   verbs: ["get", "list", "create", "watch", "delete"]
 - apiGroups: [""]
   resources: ["pods/log"]
