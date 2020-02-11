@@ -1,4 +1,4 @@
-# templates/init.sh can interactively generate a values file.
+# bootstrap.sh can help generate secrets
 
 secrets:
   enabled: False
@@ -19,7 +19,12 @@ secrets:
 
 # e.g. lsst-lsp-<instance>.ncsa.illinois.edu
 host: "" 
+
+# Session length/Token expiration (in minutes)
 session_length: 1440
+
+# Existing PVC for redis claim
+# If empty, redis will use emptydir
 redis_claim: ""
 
 vault_secrets:
