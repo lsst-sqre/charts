@@ -32,7 +32,7 @@ spec:
         - -cookie-secure=true
         - -upstream=http://{{ template "helpers.fullname" . }}-jwt-authorizer.{{ .Release.Namespace }}.svc.cluster.local:8080/
         - -http-address=0.0.0.0:4180
-        - -cookie-expire=24h
+        - -cookie-expire={{ .Values.session_length }}m
         - -pass-authorization-header
         - -session-store-type=redis
         - -redis-connection-url=redis://{{ template "helpers.fullname" . }}-redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0

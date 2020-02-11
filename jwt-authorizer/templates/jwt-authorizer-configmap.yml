@@ -9,6 +9,7 @@ data:
     
       # Options are Bearer, Basic, none
       WWW_AUTHENTICATE: Basic
+      OAUTH2_JWT_EXP: {{ .Values.session_length }}
       LOGLEVEL: {{ .Values.jwt_authorizer.loglevel | default "DEBUG" }}
     
       # Authorizer Configurations
