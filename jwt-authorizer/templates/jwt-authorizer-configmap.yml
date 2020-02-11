@@ -10,7 +10,7 @@ data:
       # Options are Bearer, Basic, none
       WWW_AUTHENTICATE: Basic
       OAUTH2_JWT_EXP: {{ .Values.session_length }}
-      LOGLEVEL: {{ .Values.jwt_authorizer.loglevel | default "DEBUG" }}
+      LOGLEVEL: {{ .Values.jwt_authorizer.loglevel }}
     
       # Authorizer Configurations
       # NO_AUTHORIZE: True
@@ -31,14 +31,14 @@ data:
         AUD:
           DEFAULT: https://{{ .Values.host }}
           INTERNAL: https://{{ .Values.host }}/api
-        KEY_FILE: {{ .Values.signing_key_file | default "/etc/jwt-authorizer/secrets/signing_key.pem" }}
+        KEY_FILE: /etc/jwt-authorizer/secrets/signing_key.pem
     
-      FLASK_SECRET_KEY_FILE: {{ .Values.flask_secret_file | default "/etc/jwt-authorizer/secrets/flask_secret.txt" }}
+      FLASK_SECRET_KEY_FILE: /etc/jwt-authorizer/secrets/flask_secret.txt
     
       OAUTH2_STORE_SESSION:
         TICKET_PREFIX: oauth2_proxy
         REDIS_URL: redis://redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0
-        OAUTH2_PROXY_SECRET_FILE: {{ .Values.oauth2_proxy_secret_file | default "/etc/jwt-authorizer/secrets/oauth2_proxy_cookie_secret.txt" }}
+        OAUTH2_PROXY_SECRET_FILE: /etc/jwt-authorizer/secrets/oauth2_proxy_cookie_secret.txt
     
       KNOWN_CAPABILITIES:
         {{ range $key, $value := .Values.jwt_authorizer.known_capabilities }}
