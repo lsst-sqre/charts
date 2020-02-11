@@ -30,7 +30,7 @@ redis_claim: ""
 vault_secrets:
   enabled: False
   # secret/k8s_operator/<host>/jwt_authorizer
-  path: "" 
+  path: ""
 
 #  derived from public key of signing key - $(modulus_urlsafe_b64) from above
 jwks_n: "" 
@@ -55,6 +55,7 @@ oauth2_proxy:
 
 jwt_authorizer:
   image: "lsstdm/jwt_authorizer:stable"
+  loglevel: DEBUG
 
   # Defining all capabilites applications may need.
   # This feeds into the token downlad page
