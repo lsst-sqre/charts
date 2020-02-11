@@ -37,8 +37,8 @@ A separate email is required to CILogonhelp address to apply the client configur
 from the client `cilogon:/client_id/6ca7b54ac075b65bccb9c885f9ba4a75` to your new
 client.
 
-## Configuring Applications
-There is a boostrap.sh script to help bootstrap values for a helm values file.
+## Configuring Applications to use the authorizer
+There is a bootstrap.sh script to help bootstrap secrets and values for a helm values file.
 
 ### Protecting services
 
