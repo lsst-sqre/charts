@@ -1,13 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: jwt-authorizer
+  name: {{ template "helpers.fullname" . }}-jwt-authorizer
 spec:
   rules:
   - host: {{ .Values.host }}
     http:
       paths:
       - backend:
-          serviceName: oauth2-proxy
+          serviceName: {{ template "helpers.fullname" . }}-oauth2-proxy
           servicePort: 4180
         path: /auth

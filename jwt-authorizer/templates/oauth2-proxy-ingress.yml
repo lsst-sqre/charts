@@ -7,13 +7,13 @@ metadata:
           add_header 'WWW-Authenticate' 'Basic' always;
           return 401;
       }
-  name: oauth2-proxy
+  name: {{ template "helpers.fullname" . }}-oauth2-proxy
 spec:
   rules:
   - host: {{ .Values.host }}
     http:
       paths:
       - backend:
-          serviceName: oauth2-proxy
+          serviceName: {{ template "helpers.fullname" . }}-oauth2-proxy
           servicePort: 4180
         path: /oauth2

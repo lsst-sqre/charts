@@ -2,17 +2,17 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: redis
-  name: redis
+    app: {{ template "helpers.fullname" . }}-redis
+  name: {{ template "helpers.fullname" . }}-redis
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: redis
+      app: {{ template "helpers.fullname" . }}-redis
   template:
     metadata:
       labels:
-        app: redis
+        app: {{ template "helpers.fullname" . }}-redis
     spec:
       containers:
       - name: redis

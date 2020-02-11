@@ -3,8 +3,8 @@ kind: Service
 metadata:
   annotations:
   labels:
-    k8s-app: oauth2-proxy
-  name: oauth2-proxy
+    k8s-app: {{ template "helpers.fullname" . }}-oauth2-proxy
+  name: {{ template "helpers.fullname" . }}-oauth2-proxy
 spec:
   ports:
   - name: http
@@ -12,6 +12,6 @@ spec:
     protocol: TCP
     targetPort: 4180
   selector:
-    k8s-app: oauth2-proxy
+    k8s-app: {{ template "helpers.fullname" . }}-oauth2-proxy
   sessionAffinity: None
   type: ClusterIP

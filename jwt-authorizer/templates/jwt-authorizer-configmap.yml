@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: jwt-authorizer-config
+  name: {{ template "helpers.fullname" . }}-jwt-authorizer-config
 data:
   authorizer.yaml: |
     global:

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: well-known-jwks-config
+  name: {{ template "helpers.fullname" . }}-well-known-jwks-config
 data:
   jwks.json: |
     {

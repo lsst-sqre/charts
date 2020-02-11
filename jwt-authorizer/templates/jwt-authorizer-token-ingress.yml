@@ -9,13 +9,13 @@ metadata:
     nginx.ingress.kubernetes.io/auth-url: https://{{ .Values.host }}/auth?capability={{ .Values.user_capability }}
     nginx.ingress.kubernetes.io/configuration-snippet: |
       error_page 403 = "https://{{ .Values.host }}/oauth2/start?rd=$request_uri";
-  name: jwt-authorizer-token-ingress
+  name: {{ template "helpers.fullname" . }}-jwt-authorizer-token-ingress
 spec:
   rules:
   - host: {{ .Values.host }}
     http:
       paths:
       - backend:
-          serviceName: jwt-authorizer
+          serviceName: {{ template "helpers.fullname" . }}-jwt-authorizer
           servicePort: 8080
         path: /auth/token
