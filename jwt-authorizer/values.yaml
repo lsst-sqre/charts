@@ -20,6 +20,7 @@ secrets:
 # e.g. lsst-lsp-<instance>.ncsa.illinois.edu
 host: "" 
 session_length: 1440
+redis_claim: ""
 
 vault_secrets:
   enabled: False
