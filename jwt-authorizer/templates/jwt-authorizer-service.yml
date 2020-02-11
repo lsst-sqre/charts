@@ -3,8 +3,8 @@ kind: Service
 metadata:
   annotations:
   labels:
-    k8s-app: jwt-authorizer
-  name: jwt-authorizer
+    k8s-app:  {{ template "helpers.fullname" . }}-jwt-authorizer
+  name:  {{ template "helpers.fullname" . }}-jwt-authorizer
 spec:
   ports:
   - name: http
@@ -12,6 +12,6 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    k8s-app: jwt-authorizer
+    k8s-app: {{ template "helpers.fullname" . }}-jwt-authorizer
   sessionAffinity: None
   type: ClusterIP

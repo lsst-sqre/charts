@@ -3,8 +3,8 @@ kind: Service
 metadata:
   annotations:
   labels:
-    k8s-app: well-known-jwks
-  name: well-known-jwks
+    k8s-app: {{ template "helpers.fullname" . }}-well-known-jwks
+  name: {{ template "helpers.fullname" . }}-well-known-jwks
 spec:
   ports:
   - name: http
@@ -12,6 +12,6 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    k8s-app: well-known-jwks
+    k8s-app: {{ template "helpers.fullname" . }}-well-known-jwks
   sessionAffinity: None
   type: ClusterIP

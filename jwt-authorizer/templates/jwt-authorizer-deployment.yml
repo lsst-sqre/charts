@@ -1,18 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: {{ template "helpers.fullname" . }}-jwt-authorizer
   labels:
-    k8s-app: jwt-authorizer
-  name: jwt-authorizer
+    k8s-app: {{ template "helpers.fullname" . }}-jwt-authorizer
+{{ include "helpers.labels" . | indent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: jwt-authorizer
+      k8s-app: {{ template "helpers.fullname" . }}-jwt-authorizer
   template:
     metadata:
       labels:
-        k8s-app: jwt-authorizer
+        k8s-app: {{ template "helpers.fullname" . }}-jwt-authorizer
+{{ include "helpers.labels" . | indent 8 }}
     spec:
       containers:
       - image:  "{{ .Values.jwt_authorizer.image | default "lsstdm/jwt_authorizer:stable" }}"
@@ -31,7 +33,7 @@ spec:
       volumes:
       - name: jwt-authorizer-config
         configMap:
-          name: jwt-authorizer-config
+          name: {{ template "helpers.fullname" . }}-jwt-authorizer-config
       - name: jwt-authorizer-secret
         secret:
-          secretName: jwt-authorizer-secret
+          secretName: {{ template "helpers.fullname" . }}-jwt-authorizer-secret
