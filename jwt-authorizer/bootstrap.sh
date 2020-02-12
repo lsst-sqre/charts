@@ -16,9 +16,6 @@ fi
 echo "Hostname:"
 read HOSTNAME
 
-echo "CILogon client ID for hostname (for callback https://$HOSTNAME/oauth2/callback):"
-read OAUTH2_PROXY_CLIENT_ID
-
 echo "CILogon Client Secret:"
 read OAUTH2_PROXY_CLIENT_SECRET
 
@@ -68,10 +65,9 @@ vault_secrets:
   enabled: True
   path: "secret/k8s_operator/${HOSTNAME}/jwt_authorizer"
 
-* Make sure to also edit the following:
+* Make sure to also edit with the following:
 host: ${HOSTNAME}
 jwks_n: ${JWKS_N}
-oauth2_proxy_client_id: ${OAUTH2_PROXY_CLIENT_ID}
 
 * If you are using vault, load the secrets, (and remove them after)
 
