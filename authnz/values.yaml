@@ -18,7 +18,7 @@ secrets:
 
 
 # e.g. lsst-lsp-<instance>.ncsa.illinois.edu
-host: "" 
+host: ""
 
 # Session length/Token expiration (in minutes)
 session_length: 1440
@@ -52,6 +52,8 @@ oauth2_proxy:
   login_url: https://cilogon.org/authorize/?skin=LSST
   jwks_url: https://cilogon.org/oauth2/certs
   redeem_url: https://cilogon.org/oauth2/token
+  # Pinned keys from issuer_url/expected key from jwks_url
+  issuer_key_ids: ["244B235F6B28E34108D101EAC7362C4E"]
 
 jwt_authorizer:
   image: "lsstdm/jwt_authorizer:stable"
