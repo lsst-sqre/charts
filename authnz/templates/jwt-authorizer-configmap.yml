@@ -41,14 +41,17 @@ data:
         OAUTH2_PROXY_SECRET_FILE: /etc/jwt-authorizer/secrets/oauth2_proxy_cookie_secret.txt
     
       KNOWN_CAPABILITIES:
-        {{ range $key, $value := .Values.jwt_authorizer.known_capabilities }}
+        {{- range $key, $value := .Values.jwt_authorizer.known_capabilities }}
         {{ $key | quote }}: {{ $value | quote }}
         {{- end }}
 
       ISSUERS:
         {{ .Values.oauth2_proxy.issuer_url }}:
           audience: {{ .Values.oauth2_proxy_client_id }}
-          issuer_key_ids: ["244B235F6B28E34108D101EAC7362C4E"]
+          issuer_key_ids:
+            {{- range $key_id := .Values.oauth2_proxy.issuer_key_ids }}
+            - {{ $key_id | quote }}
+            {{- end }}
         https://{{ .Values.host }}:
           audience: ["https://{{ .Values.host }}", "https://{{ .Values.host }}/api"]
           issuer_key_ids: ["reissuer"]
