@@ -37,7 +37,7 @@ data:
     
       OAUTH2_STORE_SESSION:
         TICKET_PREFIX: oauth2_proxy
-        REDIS_URL: redis://redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0
+        REDIS_URL: redis://{{ template "helpers.fullname" . }}-redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0
         OAUTH2_PROXY_SECRET_FILE: /etc/jwt-authorizer/secrets/oauth2_proxy_cookie_secret.txt
     
       KNOWN_CAPABILITIES:
