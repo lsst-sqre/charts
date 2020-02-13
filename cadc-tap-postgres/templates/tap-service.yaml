@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
+  labels:
+    app: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
+{{ include "cadc-tap-postgres.labels" . | indent 4 }}
+spec:
+  selector:
+    app: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

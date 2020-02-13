@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
+  labels:
+    app: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
+{{ include "cadc-tap-postgres.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
+  template:
+    metadata:
+      labels:
+        app: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
+{{ include "cadc-tap-postgres.labels" . | indent 8 }}
+    spec:
+      containers:
+      - name: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
+        image: lsstdax/tap-postgres-server:{{ .Values.tag }}
+        imagePullPolicy: Always
+        resources:
+          {{toYaml .Values.resources | nindent 10}}
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: google-creds
+          mountPath: "/etc/creds"
+          readOnly: true
+        env:
+        - name: CATALINA_OPTS
+          value: "-Dtap.username=tap_schema -Dtap.password=pw-tapschema -Dtap.url=jdbc:postgresql://{{ template "cadc-tap-postgres.fullname" . }}-tap-db:5432/tap_schema -Dtap.maxActive=1 -Dca.nrc.cadc.reg.client.RegistryClient.local=true -Duws.username=postgres -Duws.maxActive=2 -Duws.jdbc.driverClassName=org.postgresql.Driver -Duws.url=jdbc:postgresql://{{ template "cadc-tap-postgres.fullname" . }}-uws-db/ -Dgcs_bucket={{ .Values.gcs_bucket }} -Dgcs_bucket_url={{ .Values.gcs_bucket_url }} -Dca.nrc.cadc.util.PropertiesReader.dir=/etc/creds/"
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: "/etc/creds/google_creds.json"
+      volumes:
+      - name: google-creds
+        secret:
+          secretName: {{ template "cadc-tap-postgres.fullname" . }}-secrets
