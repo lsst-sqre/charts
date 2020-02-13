@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "cadc-tap-postgres.fullname" . }}-uws-db
+  labels:
+    app: {{ template "cadc-tap-postgres.fullname" . }}-uws-db
+{{ include "cadc-tap-postgres.labels" . | indent 4 }}
+spec:
+  selector:
+    app: {{ template "cadc-tap-postgres.fullname" . }}-uws-db
+  ports:
+  - protocol: TCP
+    port: 5432
+    targetPort: 5432
