@@ -42,6 +42,10 @@ spec:
         - --check-interval
         - "{{ .Values.influxdb.checkInterval }}"
         {{- end }}
+        {{- if .Values.influxdb.timestamp }}
+        - --timestamp
+        - "{{ .Values.influxdb.timestamp }}"
+        {{- end }}
         env:
           - name: BROKER
             value: "{{ .Values.env.broker }}"

@@ -10,15 +10,15 @@ image:
 ## See https://kafka-connect-manager.lsst.io/cli-reference.html
 influxdb:
   enabled: true
-  ## InfluxDB URL, can be internal to the cluster
-  influxdbUrl: "https://influxdb-summit-efd.lsst.codes"
-  ## InfluxDB database used by the connector to write to
-  database: "efd"
+  ## InfluxDB URL, can be internal to the cluster. Required.
+  influxdbUrl: ""
+  ## InfluxDB database used by the connector to write to. Required.
+  database: ""
   ## Number of connector tasks
   tasks: 1
   ## Regex to filer topic names, for the EFD application SAL topics in kafka
-  ## have the lsst.sal prefix
-  filter: "lsst.sal.*"
+  ## have the lsst.sal prefix. Required.
+  filter: ""
   ## If autoUpdate is enabled, check for new kafka topics and add them to the connector
   ## dynamically
   autoUpdate: true
@@ -29,8 +29,10 @@ influxdb:
   # blacklist: ""
   ## Error policy
   errorPolicy: NOOP
-  ## InfluxDB credentials
-  existingSecret: influxdb-auth
+  ## Timestamp to be used as InfluxDB time, if not specified sys_time() is used.
+  timestamp: ""
+  ## InfluxDB credentials. Required.
+  existingSecret: ""
 
 env:
   broker:  "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"
