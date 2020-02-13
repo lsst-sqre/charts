@@ -39,7 +39,7 @@ AUTHORIZER_FLASK_SECRET=$(dd if=/dev/urandom bs=32 count=1 2> /dev/null | $b64)
 cat <<EOF
 Writing Files:
 private.pem
-flask_secret.txt
+flask-secret.txt
 oauth2-proxy-cookie-secret.txt
 oauth2-proxy-client-secret.txt
 EOF
@@ -74,7 +74,7 @@ jwks_n: ${JWKS_N}
 # export VAULT_ADDR=...
 # export VAULT_TOKEN=...
 vault kv put "secret/k8s_operator/${HOSTNAME}/jwt_authorizer" \\
-    flask_secret.txt=@flask-secret.txt \\
+    flask_secret.txt=@flask_secret.txt \\
     signing_key.pem=@private.pem \\
     oauth2-proxy-cookie-secret.txt=@oauth2-proxy-cookie-secret.txt \\
     oauth2-proxy-client-secret.txt=@oauth2-proxy-client-secret.txt
