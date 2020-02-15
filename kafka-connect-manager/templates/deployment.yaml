@@ -27,6 +27,10 @@ spec:
         {{- if .Values.influxdb.enabled }}
         - influxdb-sink
         {{- end }}
+        {{- if .Values.influxdb.name }}
+        - --name
+        - "{{ .Values.influxdb.name }}"
+        {{- end }}
         - --influxdb_url
         - {{ .Values.influxdb.influxdbUrl }}
         - --database
@@ -41,6 +45,10 @@ spec:
         - --auto-update
         - --check-interval
         - "{{ .Values.influxdb.checkInterval }}"
+        {{- end }}
+        {{- if .Values.influxdb.timestamp }}
+        - --timestamp
+        - "{{ .Values.influxdb.timestamp }}"
         {{- end }}
         env:
           - name: BROKER
