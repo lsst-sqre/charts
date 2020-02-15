@@ -4,12 +4,13 @@
 
 image:
   repository: lsstsqre/kafka-connect-manager
-  tag: v0.5.0
+  tag: v0.6.0
   pullPolicy: Always
-
 ## See https://kafka-connect-manager.lsst.io/cli-reference.html
 influxdb:
   enabled: true
+  ## Name of the connector to create
+  name: influxdb-sink
   ## InfluxDB URL, can be internal to the cluster. Required.
   influxdbUrl: ""
   ## InfluxDB database used by the connector to write to. Required.
