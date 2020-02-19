@@ -34,6 +34,8 @@ spec:
             - containerPort: 8080
               name: api
           env:
+            - name: FQDN
+              value: '{{.Values.fqdn}}'
             - name: HELM_TAG
               value: '{{ template "nublado.fullname" . }}'
             # Set to non-empty value to enable debugging.
@@ -48,6 +50,47 @@ spec:
             # IP address to bind to
             - name: WF_API_ADDR
               value: '{{.Values.wf.api_addr}}'
+            # Settings from Hub
+            - name: LAB_MEM_LIMIT
+              value: '{{.Values.lab.resources.mem_limit}}'
+            - name: LAB_CPU_LIMIT
+              value: '{{.Values.lab.resources.cpu_limit}}'
+            - name: LAB_MEM_GUARANTEE
+              value: '{{.Values.lab.resources.mem_guarantee}}'
+            - name: LAB_CPU_GUARANTEE
+              value: '{{.Values.lab.resources.cpu_guarantee}}'
+            - name: LAB_NODEJS_MAX_MEM
+              value: '{{.Values.lab.resources.nodejs_max_mem}}'
+            - name: TINY_CPU_MAX
+              value: '{{.Values.lab.resources.tiny_cpu_max}}'
+            - name: MB_PER_CPU
+              value: '{{.Values.lab.resources.mb_per_cpu}}'
+            - name: LAB_SIZE_RANGE
+              value: '{{.Values.lab.resources.size_range}}'
+            - name: HUB_ROUTE
+              value: '{{.Values.routes.hub}}'
+            - name: FIREFLY_ROUTE
+              value: '{{.Values.routes.firefly}}'
+            - name: JS9_ROUTE
+              value: '{{.Values.routes.js9}}'
+            - name: API_ROUTE
+              value: '{{.Values.routes.api}}'
+            - name: TAP_ROUTE
+              value: '{{.Values.routes.tap}}'
+            - name: SODA_ROUTE
+              value: '{{.Values.routes.soda}}'
+            - name: EXTERNAL_FIREFLY_URL
+              value: '{{.Values.routes.external.firefly}}'
+            - name: EXTERNAL_JS9_URL
+              value: '{{.Values.routes.external.js9}}'
+            - name: EXTERNAL_INSTANCE_URL
+              value: '{{.Values.routes.external.instance}}'
+            - name: EXTERNAL_API_URL
+              value: '{{.Values.routes.external.api}}'
+            - name: EXTERNAL_SODA_URL
+              value: '{{.Values.routes.external.soda}}'
+            - name: EXTERNAL_HUB_URL
+              value: '{{.Values.routes.external.hub}}'
           # If you use sqlite, you want this to persist sessions across
           #  jupyterhub restarts.
           volumeMounts:
