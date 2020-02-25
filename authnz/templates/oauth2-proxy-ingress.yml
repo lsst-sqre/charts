@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/server-snippet: |
+      location @Basic401 {
+          add_header 'WWW-Authenticate' 'Basic' always;
+          return 401;
+      }
+  name: {{ template "helpers.fullname" . }}-oauth2-proxy
+spec:
+  rules:
+  - host: {{ .Values.host }}
+    http:
+      paths:
+      - backend:
+          serviceName: {{ template "helpers.fullname" . }}-oauth2-proxy
+          servicePort: 4180
+        path: /oauth2

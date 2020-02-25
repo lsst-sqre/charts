@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: {{ template "helpers.fullname" . }}-oauth2-proxy
+  name: {{ template "helpers.fullname" . }}-oauth2-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: {{ template "helpers.fullname" . }}-oauth2-proxy
+  template:
+    metadata:
+      labels:
+        k8s-app: {{ template "helpers.fullname" . }}-oauth2-proxy
+    spec:
+      containers:
+      - image: {{ .Values.oauth2_proxy.image | default "lsstdm/oauth2_proxy:stable" }}
+        imagePullPolicy: Always
+        name: oauth2-proxy
+        args:
+        - -provider=oidc
+        - -skip-oidc-discovery
+        - -oidc-issuer-url={{ .Values.oauth2_proxy.issuer_url }}
+        - -login-url={{ .Values.oauth2_proxy.login_url }}
+        - -oidc-jwks-url={{ .Values.oauth2_proxy.jwks_url }}
+        - -redeem-url={{ .Values.oauth2_proxy.redeem_url }}
+        - -scope={{ .Values.oauth2_proxy.scope | default "openid email org.cilogon.userinfo" }}
+        - -email-domain=*
+        - -cookie-name=oauth2_proxy
+        - -cookie-domain={{ .Values.host }}
+        - -cookie-secure=true
+        - -upstream=http://{{ template "helpers.fullname" . }}-jwt-authorizer.{{ .Release.Namespace }}.svc.cluster.local:8080/
+        - -http-address=0.0.0.0:4180
+        - -cookie-expire={{ .Values.session_length }}m
+        - -pass-authorization-header
+        - -session-store-type=redis
+        - -redis-connection-url=redis://{{ template "helpers.fullname" . }}-redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0
+        - -skip-jwt-bearer-tokens
+        - -extra-jwt-issuers=https://{{ .Values.host }}=https://{{ .Values.host }}
+        env:
+        - name: OAUTH2_PROXY_CLIENT_ID
+          value: {{ .Values.oauth2_proxy_client_id }}
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name:  {{ template "helpers.fullname" . }}-jwt-authorizer-secret
+              key: oauth2_proxy_client_secret.txt
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          valueFrom:
+            secretKeyRef:
+              name:  {{ template "helpers.fullname" . }}-jwt-authorizer-secret
+              key: oauth2_proxy_cookie_secret.txt
+        ports:
+        - containerPort: 4180
+          protocol: TCP
