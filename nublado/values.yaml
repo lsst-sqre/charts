@@ -70,16 +70,22 @@ lab:
     releases: 1
 
   resources:
-    cpu_limit: 1.0
-    mem_limit: '2048M'
-    cpu_guarantee: 0.02
-    mem_guarantee: '64K'
-    # what are these for?
-    #nodejs_max_mem: ''
-    #tiny_cpu_max: ''
-    #mb_per_cpu: ''
-    size_range: 4
+    # Jupyterlab needs more than the default NodeJS stack size if many
+    #  extensions are installed.
+    nodejs_max_mem: '6144'
+    # This is a comma-separated string to be used in an environment variable
+    options_form_sizes: 'tiny,small,medium,large'
+    # This is a zero-based index, so in the default list, 'small' is the
+    #  default size
     size_index: 1
+    # Each size has twice the capacity of the one below it.
+    # This is the max CPU of the smallest size
+    tiny_cpu_max: '0.5'
+    # Generally 2048 for public cloud and 3072 at NCSA
+    mb_per_cpu: 2048
+    # For CPU and mem, (1 / size_range) is the minimum allocation.
+    #  25% empirically seems to work
+    size_range: 4
 
   # How long to wait before reaping lab container (in seconds)
   cull_timeout: 43200
