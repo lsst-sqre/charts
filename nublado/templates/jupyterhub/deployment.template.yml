@@ -88,14 +88,6 @@ spec:
               value: '{{.Values.lab.cull_timeout}}'
             - name: LAB_CULL_POLICY
               value: '{{.Values.lab.cull_policy}}'
-            - name: LAB_MEM_LIMIT
-              value: '{{.Values.lab.resources.mem_limit}}'
-            - name: LAB_CPU_LIMIT
-              value: '{{.Values.lab.resources.cpu_limit}}'
-            - name: LAB_MEM_GUARANTEE
-              value: '{{.Values.lab.resources.mem_guarantee}}'
-            - name: LAB_CPU_GUARANTEE
-              value: '{{.Values.lab.resources.cpu_guarantee}}'
             - name: LAB_NODEJS_MAX_MEM
               value: '{{.Values.lab.resources.nodejs_max_mem}}'
             - name: TINY_CPU_MAX
@@ -104,6 +96,8 @@ spec:
               value: '{{.Values.lab.resources.mb_per_cpu}}'
             - name: LAB_SIZE_RANGE
               value: '{{.Values.lab.resources.size_range}}'
+            - name: OPTIONS_FORM_SIZELIST
+              value: '{{.Values.lab.resources.options_form_sizes}}'
             - name: JUPYTERLAB_CONFIG_DIR
               value: '/opt/lsst/software/jupyterhub/config'
             - name: HUB_ROUTE
