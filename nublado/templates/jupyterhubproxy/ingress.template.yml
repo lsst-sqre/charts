@@ -4,7 +4,6 @@ metadata:
   name: {{ template "nublado.fullname" . }}-proxy
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/affinity: "cookie"
     nginx.ingress.kubernetes.io/proxy-body-size: "0m"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.routes.hub }}/$2
