@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "nublado.fullname" . }}-js9
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0m"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+{{ if .Values.proxy.ingress.annotations }}
+{{ toYaml .Values.proxy.ingress.annotations | indent 4 }}
+{{ end }}
+spec:
+  rules:
+{{ if .Values.proxy.ingress.host }}
+  - host: {{ .Values.proxy.ingress.host }}
+    http:
+{{ else }}
+  - http:
+{{ end }}
+      paths:
+      - path: {{ .Values.routes.js9 }}(/|$)(.*)
+        backend:
+          serviceName: {{ template "nublado.fullname" . }}-js9
+          servicePort: 80
+
