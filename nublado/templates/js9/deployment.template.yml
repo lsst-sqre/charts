@@ -26,7 +26,7 @@ spec:
               memory: 1G
               cpu: 0.5
           ports:
-            - containerPort: 8080
+            - containerPort: 80
               name: web
             - containerPort: 2718
               name: e
