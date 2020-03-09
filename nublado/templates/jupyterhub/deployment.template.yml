@@ -46,6 +46,10 @@ spec:
             # One of "github", "cilogon", or "jwt"
             - name: OAUTH_PROVIDER
               value: '{{.Values.oauth_provider}}'
+            # If set, enables Multus CNI (and thus bridging to physical
+            #  network); needed at the summit.
+            - name: ENABLE_MULTUS
+              value: '{{.Values.lab.enable_multus}}'
             # If set, enables running lab containers with k8s privileges
             #  to start/stop/list containers (to spawn dask worker pods)
             - name: ALLOW_DASK_SPAWN
