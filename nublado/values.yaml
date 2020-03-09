@@ -96,6 +96,12 @@ lab:
 
   repos: 'https://github.com/lsst-sqre/notebook-demo'
 
+  # Set this to turn on the Multus CNI, necessary for bridging to the
+  #  physical network at the summit.
+
+  enable_multus: ''
+  
+
 proxy:
   max_http_header_size: 16384
   ingress:
