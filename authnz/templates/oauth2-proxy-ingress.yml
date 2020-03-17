@@ -11,8 +11,8 @@ metadata:
   name: {{ template "helpers.fullname" . }}-oauth2-proxy
 spec:
   rules:
-{{ if .Values.ingress.host }}
-  - host: {{ .Values.ingress.host }}
+{{ if .Values.host }}
+  - host: {{ .Values.host }}
     http:
 {{ else }}
   - http:
