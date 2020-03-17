@@ -17,8 +17,15 @@ secrets:
   signing_key: ""  # JWT Signing Key (private key)
 
 
+# Hostname used to construct issuers and URLs.
 # e.g. lsst-lsp-<instance>.ncsa.illinois.edu
 host: ""
+
+# Controls the host for the ingress.  Normally set to the same value as
+# the realm, but leave blank for environments using the wildcard virtual
+# host (such as nublado.lsst.codes).
+ingress:
+  host: ""
 
 # Session length/Token expiration (in minutes)
 session_length: 1440
