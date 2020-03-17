@@ -12,8 +12,8 @@ metadata:
   name: {{ template "helpers.fullname" . }}-jwt-authorizer-token-ingress
 spec:
   rules:
-{{ if .Values.ingress.host }}
-  - host: {{ .Values.ingress.host }}
+{{ if .Values.host }}
+  - host: {{ .Values.host }}
     http:
 {{ else }}
   - http:
