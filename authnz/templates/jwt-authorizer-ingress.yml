@@ -6,8 +6,8 @@ metadata:
   name: {{ template "helpers.fullname" . }}-jwt-authorizer
 spec:
   rules:
-{{ if .Values.host }}
-  - host: {{ .Values.host }}
+{{ if .Values.ingress.host }}
+  - host: {{ .Values.ingress.host }}
     http:
 {{ else }}
   - http:
