@@ -3,7 +3,7 @@ entries:
   authnz:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.636682777-07:00"
+    created: "2020-03-18T11:48:27.69437413-07:00"
     description: A Helm chart for the authentication and authorization application
       (oauth2_proxy and jwt_authorizer)
     digest: e2d4e68b5c215b9aa7d88027aae67fbb61b066147be579e4c4ec88b09c968245
@@ -13,7 +13,7 @@ entries:
     version: 0.1.0
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.635421701-07:00"
+    created: "2020-03-18T11:48:27.692807553-07:00"
     description: A Helm chart for the authentication and authorization application
       (oauth2_proxy and jwt_authorizer)
     digest: 9df3ee26557bf1c0463bac0fd7ac4ad69f442730c0e070383bd53a0c096b6621
@@ -24,7 +24,7 @@ entries:
   cadc-tap:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.637535951-07:00"
+    created: "2020-03-18T11:48:27.695620493-07:00"
     description: A Helm chart for the CADC TAP service
     digest: fbb3a3bd0676a55f25a9c70e97abff2ed37ba467458d2f8968ccf2ba34d6dcb5
     name: cadc-tap
@@ -34,7 +34,7 @@ entries:
   cadc-tap-postgres:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.638255324-07:00"
+    created: "2020-03-18T11:48:27.696806567-07:00"
     description: A Helm chart for the CADC TAP Postgres service
     digest: 7cd17d4c1c27aaa58bc60e9fadbc2413c44df7ca99dc74890c26f6217d410798
     name: cadc-tap-postgres
@@ -44,7 +44,7 @@ entries:
   chronograf:
   - apiVersion: v1
     appVersion: 1.7.12
-    created: "2020-03-17T15:33:15.64048209-07:00"
+    created: "2020-03-18T11:48:27.699670617-07:00"
     description: Open-source web application written in Go and React.js that provides
       the tools to visualize your monitoring data and easily create alerting and automation
       rules.
@@ -64,7 +64,7 @@ entries:
     version: 1.3.0
   - apiVersion: v1
     appVersion: 1.7.12
-    created: "2020-03-17T15:33:15.639403408-07:00"
+    created: "2020-03-18T11:48:27.698021288-07:00"
     description: Open-source web application written in Go and React.js that provides
       the tools to visualize your monitoring data and easily create alerting and automation
       rules.
@@ -85,7 +85,7 @@ entries:
   fileserver:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.641802125-07:00"
+    created: "2020-03-18T11:48:27.700138657-07:00"
     description: NFS fileserver for science platforms
     digest: d3a9530677fab6a7d0559a37d0473d53a5ad5c35e8956264106870a79b1730dd
     name: fileserver
@@ -95,7 +95,7 @@ entries:
   firefly:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.64284523-07:00"
+    created: "2020-03-18T11:48:27.700903965-07:00"
     description: A Helm chart for Firefly
     digest: 775520267061b17dce0917f60af0343dcd7b6649060bc753ff16230ee9856295
     name: firefly
@@ -105,7 +105,7 @@ entries:
   influxdb:
   - apiVersion: v1
     appVersion: 1.7.6
-    created: "2020-03-17T15:33:15.644494389-07:00"
+    created: "2020-03-18T11:48:27.70256358-07:00"
     description: Scalable datastore for metrics, events, and real-time analytics.
     digest: 4353a27fc420fef72306472b19097224a0822e294e8a57b0aa7724a66c0bcb9d
     engine: gotpl
@@ -127,7 +127,7 @@ entries:
     version: 3.0.3
   kafka-connect-manager:
   - apiVersion: v1
-    created: "2020-03-17T15:33:15.645861913-07:00"
+    created: "2020-03-18T11:48:27.704374516-07:00"
     description: A Helm chart for Kubernetes
     digest: f3f03fec1fd1115b601dfbd69da90670c768e954c34e47fa00f716877dce26e2
     name: kafka-connect-manager
@@ -136,7 +136,7 @@ entries:
     version: 0.3.0
   - apiVersion: v1
     appVersion: 0.5.0
-    created: "2020-03-17T15:33:15.645438797-07:00"
+    created: "2020-03-18T11:48:27.703774717-07:00"
     description: A Helm chart for Kubernetes
     digest: 2b56b8f154445ba51c0dc659f02e2059618a2f6a7286237f477101635f7ce8b4
     name: kafka-connect-manager
@@ -145,7 +145,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.644953896-07:00"
+    created: "2020-03-18T11:48:27.703056103-07:00"
     description: A Helm chart for Kubernetes
     digest: c77560797533169b80f5772e22a71eca25ece9d0d751c13f65aef5a08d7e3f42
     name: kafka-connect-manager
@@ -155,7 +155,7 @@ entries:
   kapacitor:
   - apiVersion: v1
     appVersion: 1.5.2
-    created: "2020-03-17T15:33:15.647508629-07:00"
+    created: "2020-03-18T11:48:27.707053167-07:00"
     description: InfluxDB's native data processing engine. It can process both stream
       and batch data from InfluxDB.
     digest: eb7b6523a9f78cafef938a35af99aaccc8b5707f720b6ec131c203681f9696fb
@@ -177,7 +177,7 @@ entries:
     version: 1.3.0
   - apiVersion: v1
     appVersion: 1.5.2
-    created: "2020-03-17T15:33:15.646686169-07:00"
+    created: "2020-03-18T11:48:27.705970756-07:00"
     description: InfluxDB's native data processing engine. It can process both stream
       and batch data from InfluxDB.
     digest: cbd92728771ac7780bc454b3b71950e00702c4dcc81ed5b7af86ae7588ea969d
@@ -200,7 +200,7 @@ entries:
   landing-page:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.648431711-07:00"
+    created: "2020-03-18T11:48:27.708028108-07:00"
     description: Simple landing page for linking to services, and showing MOTD.
     digest: 22477c9b449a8a0fd1b302d7ff792076fa794f4ee60fc9fbe66ae98fb5680d0a
     home: https://github.com/lsst-dm/lsp-landing-page
@@ -210,7 +210,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.647977858-07:00"
+    created: "2020-03-18T11:48:27.707549188-07:00"
     description: Simple landing page for linking to services, and showing MOTD.
     digest: 86a557d1345402d2ff8623ac8b328e8645f9c7cbf12433560a105a677b83d77c
     home: https://github.com/lsst-dm/lsp-landing-page
@@ -221,7 +221,7 @@ entries:
   nublado:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-03-17T15:33:15.650046392-07:00"
+    created: "2020-03-18T11:48:27.710370263-07:00"
     description: A Helm chart for Kubernetes
     digest: f0d59a8cb4d0a173074159404501061343c6450b1914119a328d433c0359ebdd
     name: nublado
@@ -229,8 +229,26 @@ entries:
     - nublado-0.7.3.tgz
     version: 0.7.3
   opendistro-es:
+  - apiVersion: v1
+    appVersion: 1.4.0
+    created: "2020-03-18T11:48:27.7163056-07:00"
+    description: Open Distro for Elasticsearch
+    digest: 733b71f4ee2b788b981e4d4bc2bcdd191b98e72083015bce46e5418d20a91af9
+    engine: gotpl
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: derek.heldt-werle@viasat.com
+      name: Derek Heldt-Werle
+    - email: kalvin.chau@viasat.com
+      name: Kalvin Chau
+    name: opendistro-es
+    sources:
+    - https://pages.git.viasat.com/ATG/charts
+    urls:
+    - opendistro-es-1.4.0.tgz
+    version: 1.4.0
   - appVersion: 1.0.0
-    created: "2020-03-17T15:33:15.652125724-07:00"
+    created: "2020-03-18T11:48:27.712855401-07:00"
     description: Open Distro for Elasticsearch
     digest: 007a286e2a17c8646f36f2c65ea0b9f39d4a06fb697bff8ec86a31c4afba87c6
     engine: gotpl
@@ -246,4 +264,4 @@ entries:
     urls:
     - opendistro-es-1.1.0.tgz
     version: 1.1.0
-generated: "2020-03-17T15:33:15.633694629-07:00"
+generated: "2020-03-18T11:48:27.65597215-07:00"
