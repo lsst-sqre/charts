@@ -1,0 +1,62 @@
+{{- if .Values.replicator.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kafka-connect-manager.name" . }}
+  labels:
+    helm.sh/chart: {{ include "kafka-connect-manager.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "kafka-connect-manager.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "kafka-connect-manager.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+      - name:  {{ include "kafka-connect-manager.name" . }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy:  {{ .Values.image.pullPolicy }}
+        command:
+        - connect_manager
+        - create
+        - replicator
+        {{- if .Values.replicator.name }}
+        - --name
+        - {{ .Values.replicator.name | quote }}
+        {{- end }}
+        - --src-kafka
+        - {{ .Values.replicator.srcKafka | quote }}
+        - --dest-kafka
+        - {{ .Values.replicator.destKafka | quote}}
+        - --topic-rename-format
+        - {{ .Values.replicator.topicRenameFormat | quote }}
+        - --tasks
+        - {{ .Values.replicator.tasks | quote }}
+        - --schema-registry-topic
+        - {{ .Values.replicator.schemaRegistryTopic | quote }}
+        - --schema-schema-registry-url
+        - {{ .Values.replicator.schemaRegistryUrl | quote }}
+        {{- if .Values.replicator.groupId }}
+        - --group-id
+        - {{ .Values.replicator.groupId | quote }}
+        {{- end }}
+        - --filter
+        - {{ .Values.replicator.filter | quote }}
+        {{- range .Values.replicator.blacklist }}
+        - --blacklist
+        - {{ . | quote }}
+        {{- end }}
+        - --check-interval
+        - {{ .Values.replicator.checkInterval | quote }}
+        env:
+          - name: BROKER
+            value: {{ .Values.env.broker | quote }}
+          - name: KAFKA_CONNECT
+            value: {{ .Values.env.kafkaConnect | quote }}
+{{- end }}
