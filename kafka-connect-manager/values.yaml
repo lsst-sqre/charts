@@ -1,21 +1,22 @@
-# Default values for kafka-efd-apps.
+# Default values for kafka-connect-manager Helm chart
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+# See https://kafka-connect-manager.lsst.io/cli-reference.html
 
 image:
   repository: lsstsqre/kafka-connect-manager
-  tag: v0.6.0
+  tag: v0.7.0
   pullPolicy: Always
-## See https://kafka-connect-manager.lsst.io/cli-reference.html
+
 influxdb:
-  enabled: true
+  enabled: false
   ## Name of the connector to create
   name: influxdb-sink
   ## InfluxDB URL, can be internal to the cluster. Required.
   influxdbUrl: ""
   ## InfluxDB database used by the connector to write to. Required.
   database: ""
-  ## Number of connector tasks
+  ## Number of Kafka Connect tasks
   tasks: 1
   ## Regex to filer topic names, for the EFD application SAL topics in kafka
   ## have the lsst.sal prefix. Required.
@@ -24,16 +25,52 @@ influxdb:
   ## dynamically
   autoUpdate: true
   ## If autoUpdate is enabled, this variable sets the interval to check for
-  # new kafka topics (seconds)
-  checkInterval: 15
-  ## Blacklist problematic topics
-  # blacklist: ""
+  # new kafka topics, in milliseconds
+  checkInterval: 15000
+  ## List of topics to exclude in InfluxDB, for example:
+  ## blacklist:
+  ##   - topic1
+  ##   - topic2
+  ##   - topic3
+  blacklist:
   ## Error policy
   errorPolicy: NOOP
   ## Timestamp to be used as InfluxDB time, if not specified sys_time() is used.
   timestamp: ""
   ## InfluxDB credentials. Required.
   existingSecret: ""
+
+replicator:
+  enabled: false
+  ## Name of the connector to create
+  name: replicator
+  ## A list of host and port pairs to use for establishing the initial
+  ## connection to the source Kafka cluster
+  srcKafka: ""
+  ## A list of host and port pairs to use for establishing the initial
+  ## connection to the destination Kafka cluster
+  destKafka: ""
+  ## A format string for the topic name in the destination cluster
+  topicRenameFormat: "replica.${topic}"
+  ## Number of Kafka Connect tasks
+  tasks: 1
+  ## The topic that has the logs for the Kafka Schema Registry
+  schemaRegistryTopic: "_schemas"
+  ## URL for the destination Schema Registry configured in IMPORT mode
+  schemaRegistryUrl: ""
+  ## The Kafka Connect gropId specifies which workers to use in case
+  ## the replicator needs to run on a separate cluster
+  groupId: ""
+  ## Regex of topics to replicate to the destination cluster
+  filter: ""
+  ## List of topics to exclude from replication, for example:
+  ## blacklist:
+  ##   - topic1
+  ##   - topic2
+  ##   - topic3
+  blacklist:
+  ## How often to poll the source cluster for new topics, in milliseconds
+  checkInterval: 300000
 
 env:
   broker:  "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"

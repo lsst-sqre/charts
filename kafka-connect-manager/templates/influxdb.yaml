@@ -1,3 +1,4 @@
+{{- if .Values.influxdb.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,42 +20,44 @@ spec:
     spec:
       containers:
       - name:  {{ include "kafka-connect-manager.name" . }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy:  {{ .Values.image.pullPolicy }}
         command:
         - connect_manager
         - create
-        {{- if .Values.influxdb.enabled }}
         - influxdb-sink
-        {{- end }}
-        {{- if .Values.influxdb.name }}
+        {{- if .Values.influxdb.name | quote }}
         - --name
-        - "{{ .Values.influxdb.name }}"
+        - {{ .Values.influxdb.name | quote }}
         {{- end }}
         - --influxdb_url
-        - {{ .Values.influxdb.influxdbUrl }}
+        - {{ .Values.influxdb.influxdbUrl | quote }}
         - --database
-        - {{ .Values.influxdb.database }}
+        - {{ .Values.influxdb.database | quote }}
         - --tasks
-        - "{{ .Values.influxdb.tasks }}"
+        - {{ .Values.influxdb.tasks | quote }}
         - --filter
-        - {{ .Values.influxdb.filter }}
+        - {{ .Values.influxdb.filter | quote }}
+        {{- range .Values.influxdb.blacklist }}
+        - --blacklist
+        - {{ . | quote }}
+        {{- end }}
         - --error-policy
-        - {{ .Values.influxdb.errorPolicy }}
+        - {{ .Values.influxdb.errorPolicy | quote }}
         {{- if .Values.influxdb.autoUpdate }}
         - --auto-update
         - --check-interval
-        - "{{ .Values.influxdb.checkInterval }}"
+        - {{ .Values.influxdb.checkInterval | quote }}
         {{- end }}
         {{- if .Values.influxdb.timestamp }}
         - --timestamp
-        - "{{ .Values.influxdb.timestamp }}"
+        - "{{ .Values.influxdb.timestamp  | quote }}"
         {{- end }}
         env:
           - name: BROKER
-            value: "{{ .Values.env.broker }}"
+            value: {{ .Values.env.broker | quote }}
           - name: KAFKA_CONNECT
-            value: "{{ .Values.env.kafkaConnect }}"
+            value: {{ .Values.env.kafkaConnect | quote }}
           - name: INFLUXDB_USER
             valueFrom:
               secretKeyRef:
@@ -65,3 +68,4 @@ spec:
               secretKeyRef:
                 name: {{ .Values.influxdb.existingSecret }}
                 key: influxdb-password
+{{- end }}
