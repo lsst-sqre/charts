@@ -40,7 +40,7 @@ spec:
         - {{ .Values.replicator.tasks | quote }}
         - --schema-registry-topic
         - {{ .Values.replicator.schemaRegistryTopic | quote }}
-        - --schema-schema-registry-url
+        - --schema-registry-url
         - {{ .Values.replicator.schemaRegistryUrl | quote }}
         {{- if .Values.replicator.groupId }}
         - --group-id
