@@ -34,7 +34,7 @@ spec:
               - name: PREPULLER_OWNER
                 value: "{{.Values.lab.image.repo_owner}}"
               - name: PREPULLER_IMAGE_NAME
-                value: "{{.Values.lab.image.image_name}}"
+                value: "{{.Values.lab.image.repo_name}}"
               # Normally 0/3/2/1
               - name: PREPULLER_EXPERIMENTALS
                 value: "{{.Values.lab.image.experimentals}}"
