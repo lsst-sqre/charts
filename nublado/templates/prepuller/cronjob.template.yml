@@ -29,11 +29,11 @@ spec:
                 value: "{{.Values.lab.image_name}}"
               # Use the next three with your own image with an LSST/DM
               #  dated tag format ( [d|w][YYYYMMDD] or r[MajMin])
-              - name: PREPULLER_REPO
+              - name: LAB_REPO_HOST
                 value: "{{.Values.lab.image.repo_host}}"
-              - name: PREPULLER_OWNER
+              - name: LAB_REPO_OWNER
                 value: "{{.Values.lab.image.repo_owner}}"
-              - name: PREPULLER_IMAGE_NAME
+              - name: LAB_REPO_NAME
                 value: "{{.Values.lab.image.repo_name}}"
               # Normally 0/3/2/1
               - name: PREPULLER_EXPERIMENTALS
