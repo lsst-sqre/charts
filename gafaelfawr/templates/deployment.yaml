@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "helpers.fullname" . }}
+  labels:
+    app: {{ template "helpers.fullname" . }}
+{{ include "helpers.labels" . | indent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: {{ template "helpers.fullname" . }}
+  template:
+    metadata:
+      labels:
+        name: {{ template "helpers.fullname" . }}
+{{ include "helpers.labels" . | indent 8 }}
+    spec:
+      containers:
+        - name: jwt-authorizer
+          image: "{{ .Values.image }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: app
+          volumeMounts:
+            - name: {{ template "helpers.fullname" . }}-config
+              mountPath: "/etc/jwt-authorizer"
+              readOnly: true
+            - name: {{ template "helpers.fullname" . }}-secret
+              mountPath: "/etc/gafaelfawr/secrets"
+              readOnly: true
+      volumes:
+        - name: {{ template "helpers.fullname" . }}-config
+          configMap:
+            name: {{ template "helpers.fullname" . }}-configmap
+        - name: jwt-authorizer-secret
+          secret:
+            secretName: {{ template "helpers.fullname" . }}-secret
