@@ -1,6 +1,10 @@
 # Default values for fileserver.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+vault_secrets:
+  # Use the vault-secrets-operator to load secrets from vault
+  # instead of creating them from values here.
+  enabled: True
 
 image:
   repository: 'lsstsqre/lsp-postgres'

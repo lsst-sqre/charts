@@ -42,4 +42,4 @@ spec:
             secretKeyRef:
               name: {{ template "postgres.fullname" . }}-postgres
               key: jupyterhub_password
-        {{-end }}
+        {{- end }}
