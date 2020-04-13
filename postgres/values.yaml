@@ -3,10 +3,10 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: 'lsstsqre/sciplat-fileserver'
+  repository: 'lsstsqre/lsp-postgres'
   tag: 'latest'
 
-shared_volume_size: '10Gi'
+postgres_volume_size: '1Gi'
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
