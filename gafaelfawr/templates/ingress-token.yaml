@@ -18,7 +18,6 @@ spec:
 {{ end }}
       paths:
       - path: /auth/token
-        pathType: Prefix
         backend:
           serviceName: {{ template "helpers.fullname" . }}
           servicePort: 8080

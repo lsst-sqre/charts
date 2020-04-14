@@ -14,17 +14,14 @@ spec:
 {{ end }}
       paths:
       - path: /auth
-        pathType: Prefix
         backend:
           serviceName: {{ template "helpers.fullname" . }}
           servicePort: 8080
       - path: /login
-        pathType: Exact
         backend:
           serviceName: {{ template "helpers.fullname" . }}
           servicePort: 8080
       - path: /.well-known/jwks.json
-        pathType: Exact
         backend:
           serviceName: {{ template "helpers.fullname" . }}
           servicePort: 8080
