@@ -19,5 +19,5 @@ spec:
       paths:
       - path: /auth/token
         backend:
-          serviceName: {{ template "helpers.fullname" . }}
+          serviceName: {{ template "helpers.fullname" . }}-service
           servicePort: 8080
