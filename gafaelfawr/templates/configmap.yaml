@@ -16,7 +16,10 @@ data:
 
       group_mapping:
         {{- range $key, $value := .Values.config.group_mapping }}
-        {{ $key | quote }}: {{ $value }}
+        {{ $key | quote }}:
+          {{- range $group := $value }}
+          - {{ $group | quote }}
+          {{- end }}
         {{- end }}
 
       {{- if .Values.config.github }}
