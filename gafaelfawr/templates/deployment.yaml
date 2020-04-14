@@ -34,6 +34,6 @@ spec:
         - name: {{ template "helpers.fullname" . }}-config
           configMap:
             name: {{ template "helpers.fullname" . }}-configmap
-        - name: jwt-authorizer-secret
+        - name: {{ template "helpers.fullname" . }}-secret
           secret:
             secretName: {{ template "helpers.fullname" . }}-secret
