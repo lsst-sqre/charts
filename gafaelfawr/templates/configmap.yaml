@@ -21,7 +21,7 @@ data:
 
       {{- if .Values.config.github }}
       github:
-        client_id: {{ .Values.gafaelgawr.github.client_id }}
+        client_id: {{ .Values.config.github.client_id }}
         client_secret_file: /etc/gafaelfawr/secrets/github_client_secret.txt
       {{- end }}
 
