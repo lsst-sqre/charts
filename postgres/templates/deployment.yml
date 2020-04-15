@@ -23,8 +23,10 @@ spec:
             containerPort: 5432
           volumeMounts:
             - name: storage
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql
           env:
+          - name: DEBUG
+            value: {{ .Values.debug }}
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
