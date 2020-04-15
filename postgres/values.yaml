@@ -15,8 +15,9 @@ image:
 
 postgres_volume_size: '1Gi'
 
+# This will fail on startup if it isn't set.  That's intended.
 root_db:
-  password: 'dummy'
+  password: ''
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
