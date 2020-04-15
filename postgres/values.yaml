@@ -5,6 +5,8 @@ vault_secrets:
   # Use the vault-secrets-operator to load secrets from vault
   # instead of creating them from values here.
   enabled: True
+  # Default is nublado.lsst.codes
+  path: 'secret/k8s_operator/nublado.lsst.codes/postgres'
 
 image:
   repository: 'lsstsqre/lsp-postgres'
