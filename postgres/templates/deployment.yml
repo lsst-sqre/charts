@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "helpers.fullname" . }}
+  name: {{ template "postgres.fullname" . }}
   labels:
-    app: {{ template "helpers.fullname" . }}
+    app: {{ template "postgres.fullname" . }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: {{ template "helpers.fullname" . }}
+      name: {{ template "postgres.fullname" . }}
   template:
     metadata:
       labels:
-        name: {{ template "helpers.fullname" . }}
+        name: {{ template "postgres.fullname" . }}
     spec:
       containers:
-        - name: {{ template "helpers.fullname" . }}
+        - name: {{ template "postgres.fullname" . }}
           imagePullPolicy: "Always"
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
@@ -30,7 +30,7 @@ spec:
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ template "helpers.fullname" . }}
+                name: {{ template "postgres.fullname" . }}
                 key: root_password
           {{- with .Values.jupyterhub_db }}
           - name: VRO_DB_JUPYTERHUB_USER
@@ -40,11 +40,11 @@ spec:
           - name: VRO_DB_JUPYTERHUB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ template "helpers.fullname" . }}
+                name: {{ template "postgres.fullname" . }}
                 key: jupyterhub_password
           {{- end }}
             
       volumes:
         - name: storage
           persistentVolumeClaim:
-            claimName: {{ template "helpers.fullname" . }}-physpvc
+            claimName: {{ template "postgres.fullname" . }}-physpvc
