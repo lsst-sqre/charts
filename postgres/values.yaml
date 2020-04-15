@@ -4,7 +4,7 @@
 vault_secrets:
   # Use the vault-secrets-operator to load secrets from vault
   # instead of creating them from values here.
-  enabled: False
+  # You will need to set path for your individual deployment
   path: ''
 
 debug: ''
