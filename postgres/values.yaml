@@ -8,7 +8,7 @@ vault_secrets:
   # Default is nublado.lsst.codes
   path: 'secret/k8s_operator/nublado.lsst.codes/postgres'
 
-debug: "TRUE"
+debug: 'true'
 
 image:
   repository: 'lsstsqre/lsp-postgres'
