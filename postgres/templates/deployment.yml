@@ -36,6 +36,11 @@ spec:
         - name: storage
           persistentVolumeClaim:
             claimName: {{ template "postgres.fullname" . }}-physpvc
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "postgres.fullname" . }}
+              key: root_password
         {{- with .Values.jupyterhub_db }}
         - name: VRO_DB_JUPYTERHUB_PASSWORD
           valueFrom:
