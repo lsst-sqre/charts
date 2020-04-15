@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ template "postgres.fullname" . }}-physpvc
+  name: {{ template "helpers.fullname" . }}-physpvc
 spec:
   accessModes:
     - "ReadWriteOnce"
