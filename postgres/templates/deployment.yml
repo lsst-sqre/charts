@@ -40,6 +40,6 @@ spec:
         - name: VRO_DB_JUPYTERHUB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ template "postgres.fullname" . }}-postgres
+              name: {{ template "postgres.fullname" . }}
               key: jupyterhub_password
         {{- end }}
