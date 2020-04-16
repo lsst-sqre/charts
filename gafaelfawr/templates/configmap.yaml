@@ -23,9 +23,25 @@ data:
         {{- end }}
 
       {{- if .Values.config.github }}
+
       github:
-        client_id: {{ .Values.config.github.client_id }}
+        client_id: {{ .Values.config.github.client_id | quote }}
         client_secret_file: /etc/gafaelfawr/secrets/github_client_secret.txt
+
+      {{- else if .Values.config.cilogon }}
+
+      oidc:
+        client_id: {{ .Values.config.cilogon.client_id | quote }}
+        client_secret_file: "/etc/gafaelfawr/secrets/oauth2_proxy_client_secret.txt"
+        login_url: "https://cilogon.org/authorize"
+        login_params:
+          skin: LSST
+        redirect_url: "https://{{ .Values.host }}/oauth2/callback"
+        token_url: "https://cilogon.org/oauth2/token"
+        scopes:
+          - email
+          - org.cilogon.userinfo
+
       {{- end }}
 
       oauth2_store_session:
@@ -48,3 +64,9 @@ data:
             - "https://{{ .Values.host }}"
             - "https://{{ .Values.host }}/api"
           issuer_key_ids: ["reissuer"]
+        {{- if .Values.config.cilogon }}
+        "https://cilogon.org":
+          audience: {{ .Values.config.cilogon.client_id | quote }}
+          issuer_key_ids:
+            - "244B235F6B28E34108D101EAC7362C4E"
+        {{- end }}
