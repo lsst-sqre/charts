@@ -3,12 +3,52 @@ kind: ConfigMap
 metadata:
   name: {{ template "helpers.fullname" . }}-configmap
 data:
-  authorizer.yaml: |
+  gafaelfawr.yaml: |
     default:
-      realm: {{ .Values.host }}
-      loglevel: {{ .Values.config.loglevel }}
-      session_secret_file: /etc/gafaelfawr/secrets/session_secret.txt
-      redis_url: redis://{{ template "helpers.fullname" . }}-redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0
+      realm: {{ .Values.host | quote }}
+      loglevel: {{ .Values.config.loglevel | quote }}
+      session_secret_file: "/etc/gafaelfawr/secrets/session-secret"
+      redis_url: "redis://{{ template "helpers.fullname" . }}-redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0"
+      after_logout_url: "https://{{ .Values.host }}/"
+
+      issuer:
+        iss: "https://{{ .Values.host }}"
+        key_id: "reissuer"
+        aud:
+          default: "https://{{ .Values.host }}"
+          internal: "https://{{ .Values.host }}/api"
+        key_file: "/etc/gafaelfawr/secrets/signing-key"
+        exp_minutes: {{ .Values.issuer.exp_minutes }}
+
+      {{- if .Values.github }}
+
+      github:
+        client_id: {{ .Values.github.client_id | quote }}
+        client_secret_file: "/etc/gafaelfawr/secrets/github-client-secret"
+
+      {{- else if .Values.cilogon }}
+
+      oidc:
+        client_id: {{ .Values.cilogon.client_id | quote }}
+        client_secret_file: "/etc/gafaelfawr/secrets/cilogon-client-secret"
+        login_url: "https://cilogon.org/authorize"
+        login_params:
+          skin: "LSST"
+        {{- if .Values.cilogon.redirect_url }}
+        redirect_url: {{ .Values.cilogon.redirect_url | quote }}
+        {{- else }}
+        redirect_url: "https://{{ .Values.host }}/login"
+        {{- end }}
+        token_url: "https://cilogon.org/oauth2/token"
+        scopes:
+          - "email"
+          - "org.cilogon.userinfo"
+        issuer: "https://cilogon.org"
+        audience: {{ .Values.config.cilogon.client_id | quote }}
+        key_ids:
+          - "244B235F6B28E34108D101EAC7362C4E"
+
+      {{- end }}
 
       known_capabilities:
         {{- range $key, $value := .Values.config.known_capabilities }}
@@ -22,38 +62,3 @@ data:
           - {{ $group | quote }}
           {{- end }}
         {{- end }}
-
-      {{- if .Values.config.github }}
-
-      github:
-        client_id: {{ .Values.config.github.client_id | quote }}
-        client_secret_file: /etc/gafaelfawr/secrets/github_client_secret.txt
-
-      {{- else if .Values.config.cilogon }}
-
-      oidc:
-        client_id: {{ .Values.config.cilogon.client_id | quote }}
-        client_secret_file: "/etc/gafaelfawr/secrets/oauth2_proxy_client_secret.txt"
-        login_url: "https://cilogon.org/authorize"
-        login_params:
-          skin: LSST
-        redirect_url: "https://{{ .Values.host }}/oauth2/callback"
-        token_url: "https://cilogon.org/oauth2/token"
-        scopes:
-          - email
-          - org.cilogon.userinfo
-        issuer: "https://cilogon.org"
-        audience: {{ .Values.config.cilogon.client_id | quote }}
-        key_ids:
-          - "244B235F6B28E34108D101EAC7362C4E"
-
-      {{- end }}
-
-      issuer:
-        iss: https://{{ .Values.host }}
-        key_id: reissuer
-        aud:
-          default: https://{{ .Values.host }}
-          internal: https://{{ .Values.host }}/api
-        key_file: /etc/gafaelfawr/secrets/signing_key.pem
-        exp_minutes: {{ .Values.session_length }}

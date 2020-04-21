@@ -17,7 +17,7 @@ spec:
 {{ include "helpers.labels" . | indent 8 }}
     spec:
       containers:
-        - name: jwt-authorizer
+        - name: gafaelfawr
           image: "{{ .Values.image }}"
           imagePullPolicy: Always
           ports:
@@ -25,7 +25,7 @@ spec:
               name: app
           volumeMounts:
             - name: {{ template "helpers.fullname" . }}-config
-              mountPath: "/etc/jwt-authorizer"
+              mountPath: "/etc/gafaelfawr"
               readOnly: true
             - name: {{ template "helpers.fullname" . }}-secret
               mountPath: "/etc/gafaelfawr/secrets"

@@ -21,6 +21,10 @@ spec:
         backend:
           serviceName: {{ template "helpers.fullname" . }}-service
           servicePort: 8080
+      - path: /logout
+        backend:
+          serviceName: {{ template "helpers.fullname" . }}-service
+          servicePort: 8080
       - path: /oauth2/callback
         backend:
           serviceName: {{ template "helpers.fullname" . }}-service
