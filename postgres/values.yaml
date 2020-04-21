@@ -14,3 +14,4 @@ image:
   tag: 'latest'
 
 postgres_volume_size: '1Gi'
+postgres_storage_class: 'fast'

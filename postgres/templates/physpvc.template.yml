@@ -8,5 +8,6 @@ spec:
   resources:
     requests:
       storage: {{.Values.postgres_volume_size}}
-  storageClassName: fast
+  storageClassName: {{.Values.postgres_storage_class}}
+
 
