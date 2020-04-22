@@ -101,8 +101,8 @@ lab:
 
   enable_multus: ''
 
-  # This is used in SAL environments.  The value "nosite" means no SAL.
-  dds_domain: 'nosite'
+  # This is used in SAL environments.  The value "nocontrol" means no SAL.
+  dds_domain: 'nocontrol'
 
 
 proxy:
