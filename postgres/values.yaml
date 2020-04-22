@@ -15,3 +15,4 @@ image:
 
 postgres_volume_size: '1Gi'
 postgres_storage_class: 'fast'
+volume_name: ''

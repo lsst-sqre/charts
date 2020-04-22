@@ -9,5 +9,8 @@ spec:
     requests:
       storage: {{.Values.postgres_volume_size}}
   storageClassName: {{.Values.postgres_storage_class}}
+{{ if .Values.volume_name }}
+  volume_name: {{ .Values.volume_name }}
+{{ end }}
 
 
