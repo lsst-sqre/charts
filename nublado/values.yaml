@@ -100,7 +100,10 @@ lab:
   #  physical network at the summit.
 
   enable_multus: ''
-  
+
+  # This is used in SAL environments.  The value "nosite" means no SAL.
+  dds_domain: 'nosite'
+
 
 proxy:
   max_http_header_size: 16384
