@@ -8,32 +8,33 @@ host: ""
 ingress:
   host: ""
 
-# Session length/Token expiration (in minutes)
-session_length: 1440
+# Docker image to use.
+image: "lsstsqre/gafaelfawr:1.0.0"
 
 # Existing PVC for redis claim
 # If empty, redis will use emptydir
 redis_claim: ""
 
-vault_secrets:
-  # secret/k8s_operator/<host>/gafaelfawr
-  path: ""
+# Path to the Vault secret to use to generate Kubernetes secrets.
+# secret/k8s_operator/<host>/gafaelfawr
+vault_secrets_path: ""
 
-# <client id from cilogon.org or OIDC provider>
-oauth2_proxy_client_id: "" 
-
-# Default capability required for user-based operations (like generating a token)
-user_capability: "exec:user"
-
-# Docker image to use.
-image: "lsstdm/jwt_authorizer:0.3.0"
+# Default scope required for user-based operations (like generating a
+# token), used to construct authorization URLs for the /tokens route.
+user_scope: "exec:user"
 
 config:
+  # Choose from the text form of Python logging levels.
   loglevel: DEBUG
 
-  # Defining all capabilites applications may need.
-  # This feeds into the token downlad page
-  known_capabilities:
+  # Session length and token expiration (in minutes).
+  issuer:
+    exp_minutes: 1440  # 1 day
+
+  # Names and descriptions of all scopes in use.  This is used to populate
+  # the new token creation page.  Only scopes listed here will be options
+  # when creating a new token.
+  known_scopes:
     "exec:portal": Use the Portal to execute operations. Mostly used from notebook APIs.
     "read:image": Read images from the SODA and other image retrieval interfaces
     "read:image/metadata": Read image metadata from SIA and other image interfaces
@@ -46,14 +47,16 @@ config:
     "read:workspace/user": Read the data in your file workspace
     "write:workspace/user": Write data to your file workspace
 
-  # Mapping of capabilities to groups that are part of the `isMemberOf` claim
+  # Mapping of scopes to groups that provide that scope.  Tokens from an
+  # OpenID Connect provider such as CILogon that include groups in an
+  # isMemberOf claim will be granted scopes based on this mapping.
   group_mapping:
-    exec:admin: ["lsst_int_lsp_admin"]
-    exec:user: ["lsst_int_lspdev"]
-    read:workspace: ["lsst_int_lspdev"]
-    read:workspace/user: ["lsst_int_lspdev"]
-    write:workspace/user: ["lsst_int_lspdev"]
-    exec:portal: ["lsst_int_lspdev"]
-    exec:notebook: ["lsst_int_lspdev"]
-    read:tap: ["lsst_int_lspdev"]
-    read:image: ["lsst_int_lspdev"]
+    "exec:admin": ["lsst_int_lsp_admin"]
+    "exec:user": ["lsst_int_lspdev"]
+    "read:workspace": ["lsst_int_lspdev"]
+    "read:workspace/user": ["lsst_int_lspdev"]
+    "write:workspace/user": ["lsst_int_lspdev"]
+    "exec:portal": ["lsst_int_lspdev"]
+    "exec:notebook": ["lsst_int_lspdev"]
+    "read:tap": ["lsst_int_lspdev"]
+    "read:image": ["lsst_int_lspdev"]
