@@ -150,6 +150,7 @@ reaper:
   keep_experimentals: 10
   keep_dailies: 15
   keep_weekies: 78
+  user: 'cwalken'
 
 mountpoints: |
   [
