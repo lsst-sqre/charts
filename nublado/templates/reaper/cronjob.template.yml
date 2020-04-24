@@ -1,0 +1,72 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "nublado.fullname" . }}-reaper
+spec:
+  schedule: "{{.Values.reaper.minute_to_run}} {{.Values.reaper.hour_to_run}} * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: "Never"
+          serviceAccountName: {{ template "nublado.fullname" . }}-prepuller
+          securityContext:
+            # Run as provisionator, not root.
+            runAsUser: {{ .Values.prepuller.uid }}
+            runAsGroup: {{ .Values.prepuller.gid }}
+          containers:
+            - name: {{ template "nublado.fullname" . }}-reaper
+              # Reaper and prepuller are the same image.
+              command: [ "/usr/local/bin/reaper" ]
+              imagePullPolicy: "Always"
+              image: "lsstsqre/prepuller"
+              env:
+              - name: DEBUG
+                value: "{{.Values.debug}}"
+              # image_list and no_scan can be used to completely replace
+              #  the prepull repository scan with a static list of images.
+              - name: PREPULLER_IMAGE_LIST
+                value: "{{.Values.lab.image_name}}"
+              - name: PREPULLER_NO_SCAN
+                value: "{{.Values.lab.image_name}}"
+              # Use the next three with your own image with an LSST/DM
+              #  dated tag format ( [d|w][YYYYMMDD] or r[MajMin])
+              - name: LAB_REPO_HOST
+                value: "{{.Values.lab.image.repo_host}}"
+              - name: LAB_REPO_OWNER
+                value: "{{.Values.lab.image.repo_owner}}"
+              - name: LAB_REPO_NAME
+                value: "{{.Values.lab.image.repo_name}}"
+              # Normally 10/15/78
+              - name: REAPER_KEEP_EXPERIMENTALS
+                value: "{{.Values.reaper.keep_experimentals}}"
+              - name: REAPER_KEEP_DAILIES
+                value: "{{.Values.reaper.keep_dailies}}"
+              - name: REAPER_KEEP_WEEKLIES
+                value: "{{.Values.reaper.keep_weeklies}}"
+              # Probably won't need to change any of these.
+              - name: PREPULLER_INSECURE
+                value: ""
+              - name: PREPULLER_PORT
+                value: ""
+              - name: PREPULLER_SORT_FIELD
+                value: ""
+              - name: PREPULLER_COMMAND
+                value: ""
+              - name: PREPULLER_NAMESPACE
+                value: "{{.Release.Namespace}}"
+              - name: ALLOW_DASK_SPAWN
+                value: "{{.Values.dask.allow_spawn}}"
+              - name: RESTRICT_LAB_NODES
+                value: "{{.Values.lab.restrict_nodes}}"
+              - name: RESTRICT_DASK_NODES
+                value: "{{.Values.lab.restrict_dask}}"
+              - name: IMAGE_REAPER_USER
+                value: "{{.Values.reaper.user}}"
+              - name: IMAGE_REAPER_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    key: image_reaper_password
+                    name: {{ template "nublado.fullname" . }}-hub
+
+  
