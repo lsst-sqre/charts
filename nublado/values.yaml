@@ -144,6 +144,14 @@ prepuller:
   uid: 769
   gid: 769
 
+reaper:
+  hour_to_run: 2
+  minute_to_run: 23
+  keep_experimentals: 10
+  keep_dailies: 15
+  keep_weekies: 78
+  user: 'cwalken'
+
 mountpoints: |
   [
     {
