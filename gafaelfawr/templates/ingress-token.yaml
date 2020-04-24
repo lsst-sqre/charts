@@ -6,7 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/auth-request-redirect: $request_uri
     nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-Token
     nginx.ingress.kubernetes.io/auth-signin: https://{{ .Values.host }}/login
-    nginx.ingress.kubernetes.io/auth-url: https://{{ .Values.host }}/auth?scope={{ .Values.user_capability }}
+    nginx.ingress.kubernetes.io/auth-url: https://{{ .Values.host }}/auth?scope={{ .Values.user_scope }}
   name: {{ template "helpers.fullname" . }}-token-ingress
 spec:
   rules:
