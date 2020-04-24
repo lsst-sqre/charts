@@ -23,40 +23,39 @@ vault_secrets_path: ""
 # token), used to construct authorization URLs for the /tokens route.
 user_scope: "exec:user"
 
-config:
-  # Choose from the text form of Python logging levels.
-  loglevel: DEBUG
+# Choose from the text form of Python logging levels.
+loglevel: DEBUG
 
-  # Session length and token expiration (in minutes).
-  issuer:
-    exp_minutes: 1440  # 1 day
+# Session length and token expiration (in minutes).
+issuer:
+  exp_minutes: 1440  # 1 day
 
-  # Names and descriptions of all scopes in use.  This is used to populate
-  # the new token creation page.  Only scopes listed here will be options
-  # when creating a new token.
-  known_scopes:
-    "exec:portal": Use the Portal to execute operations. Mostly used from notebook APIs.
-    "read:image": Read images from the SODA and other image retrieval interfaces
-    "read:image/metadata": Read image metadata from SIA and other image interfaces
-    "read:tap": Execute SELECT queries in the TAP interface on project datasets
-    "read:tap/efd": Execute SELECT queries in the TAP interface on EFD datasets
-    "read:tap/user": Execute SELECT queries in the TAP interface on your data
-    "write:tap/user": Upload tables to your database workspace
-    "read:tap/history": Read the history of your TAP queries.
-    "read:workspace": Read project datasets from the file workspace
-    "read:workspace/user": Read the data in your file workspace
-    "write:workspace/user": Write data to your file workspace
+# Names and descriptions of all scopes in use.  This is used to populate
+# the new token creation page.  Only scopes listed here will be options
+# when creating a new token.
+known_scopes:
+  "exec:portal": Use the Portal to execute operations. Mostly used from notebook APIs.
+  "read:image": Read images from the SODA and other image retrieval interfaces
+  "read:image/metadata": Read image metadata from SIA and other image interfaces
+  "read:tap": Execute SELECT queries in the TAP interface on project datasets
+  "read:tap/efd": Execute SELECT queries in the TAP interface on EFD datasets
+  "read:tap/user": Execute SELECT queries in the TAP interface on your data
+  "write:tap/user": Upload tables to your database workspace
+  "read:tap/history": Read the history of your TAP queries.
+  "read:workspace": Read project datasets from the file workspace
+  "read:workspace/user": Read the data in your file workspace
+  "write:workspace/user": Write data to your file workspace
 
-  # Mapping of scopes to groups that provide that scope.  Tokens from an
-  # OpenID Connect provider such as CILogon that include groups in an
-  # isMemberOf claim will be granted scopes based on this mapping.
-  group_mapping:
-    "exec:admin": ["lsst_int_lsp_admin"]
-    "exec:user": ["lsst_int_lspdev"]
-    "read:workspace": ["lsst_int_lspdev"]
-    "read:workspace/user": ["lsst_int_lspdev"]
-    "write:workspace/user": ["lsst_int_lspdev"]
-    "exec:portal": ["lsst_int_lspdev"]
-    "exec:notebook": ["lsst_int_lspdev"]
-    "read:tap": ["lsst_int_lspdev"]
-    "read:image": ["lsst_int_lspdev"]
+# Mapping of scopes to groups that provide that scope.  Tokens from an
+# OpenID Connect provider such as CILogon that include groups in an
+# isMemberOf claim will be granted scopes based on this mapping.
+group_mapping:
+  "exec:admin": ["lsst_int_lsp_admin"]
+  "exec:user": ["lsst_int_lspdev"]
+  "read:workspace": ["lsst_int_lspdev"]
+  "read:workspace/user": ["lsst_int_lspdev"]
+  "write:workspace/user": ["lsst_int_lspdev"]
+  "exec:portal": ["lsst_int_lspdev"]
+  "exec:notebook": ["lsst_int_lspdev"]
+  "read:tap": ["lsst_int_lspdev"]
+  "read:image": ["lsst_int_lspdev"]
