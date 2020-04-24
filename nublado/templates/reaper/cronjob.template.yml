@@ -1,3 +1,4 @@
+{{ if .Values.reaper.enabled }}
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
@@ -68,5 +69,4 @@ spec:
                   secretKeyRef:
                     key: image_reaper_password
                     name: {{ template "nublado.fullname" . }}-hub
-
-  
+{{ end }}
