@@ -6,7 +6,7 @@ data:
   gafaelfawr.yaml: |
     default:
       realm: {{ .Values.host | quote }}
-      loglevel: {{ .Values.config.loglevel | quote }}
+      loglevel: {{ .Values.loglevel | quote }}
       session_secret_file: "/etc/gafaelfawr/secrets/session-secret"
       redis_url: "redis://{{ template "helpers.fullname" . }}-redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0"
       after_logout_url: "https://{{ .Values.host }}/"
@@ -44,19 +44,19 @@ data:
           - "email"
           - "org.cilogon.userinfo"
         issuer: "https://cilogon.org"
-        audience: {{ .Values.config.cilogon.client_id | quote }}
+        audience: {{ .Values.cilogon.client_id | quote }}
         key_ids:
           - "244B235F6B28E34108D101EAC7362C4E"
 
       {{- end }}
 
       known_capabilities:
-        {{- range $key, $value := .Values.config.known_capabilities }}
+        {{- range $key, $value := .Values.known_scopes }}
         {{ $key | quote }}: {{ $value | quote }}
         {{- end }}
 
       group_mapping:
-        {{- range $key, $value := .Values.config.group_mapping }}
+        {{- range $key, $value := .Values.group_mapping }}
         {{ $key | quote }}:
           {{- range $group := $value }}
           - {{ $group | quote }}
