@@ -51,7 +51,7 @@ spec:
         {{- end }}
         {{- if .Values.influxdb.timestamp }}
         - --timestamp
-        - "{{ .Values.influxdb.timestamp  | quote }}"
+        - {{ .Values.influxdb.timestamp  | quote }}
         {{- end }}
         env:
           - name: BROKER
