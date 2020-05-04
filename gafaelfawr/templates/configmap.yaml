@@ -31,8 +31,12 @@ data:
       client_id: {{ .Values.cilogon.client_id | quote }}
       client_secret_file: "/etc/gafaelfawr/secrets/cilogon-client-secret"
       login_url: "https://cilogon.org/authorize"
+      {{- if .Values.cilogon.login_params }}
       login_params:
-        skin: "LSST"
+        {{- range $key, $value := .Values.cilogon.login_params }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+      {{- end }}
       {{- if .Values.cilogon.redirect_url }}
       redirect_url: {{ .Values.cilogon.redirect_url | quote }}
       {{- else }}
