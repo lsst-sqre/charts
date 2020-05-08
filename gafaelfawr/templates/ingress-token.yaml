@@ -7,6 +7,8 @@ metadata:
     nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-Token
     nginx.ingress.kubernetes.io/auth-signin: https://{{ .Values.host }}/login
     nginx.ingress.kubernetes.io/auth-url: https://{{ .Values.host }}/auth?scope={{ .Values.user_scope }}
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      error_page 403 = "/auth/forbidden?scope={{ .Values.user_scope }}";
   name: {{ template "helpers.fullname" . }}-token-ingress
 spec:
   rules:
