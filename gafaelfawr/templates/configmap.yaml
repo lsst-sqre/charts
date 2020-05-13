@@ -8,6 +8,12 @@ data:
     loglevel: {{ .Values.loglevel | quote }}
     session_secret_file: "/etc/gafaelfawr/secrets/session-secret"
     redis_url: "redis://{{ template "helpers.fullname" . }}-redis-service.{{ .Release.Namespace }}.svc.cluster.local:6379/0"
+    {{- if .Values.proxies }}
+    proxies:
+      {{- range $netblock := .Values.proxies }}
+      - {{ $netblock | quote }}
+      {{- end }}
+    {{- end }}
     after_logout_url: "https://{{ .Values.host }}/"
 
     issuer:

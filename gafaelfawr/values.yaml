@@ -9,7 +9,7 @@ ingress:
   host: ""
 
 # Docker image to use.
-image: "lsstsqre/gafaelfawr:1.2.0"
+image: "lsstsqre/gafaelfawr:1.2.1"
 
 # Existing PVC for redis claim
 # If empty, redis will use emptydir
@@ -25,6 +25,13 @@ user_scope: "exec:user"
 
 # Choose from the text form of Python logging levels.
 loglevel: DEBUG
+
+# List of netblocks used for internal Kubernetes IP addresses, used to
+# determine the true client IP for logging.
+proxies:
+  - "10.0.0.0/8"
+  - "172.16.0.0/12"
+  - "192.168.0.0/16"
 
 # Session length and token expiration (in minutes).
 issuer:
