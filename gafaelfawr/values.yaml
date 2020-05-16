@@ -9,7 +9,7 @@ ingress:
   host: ""
 
 # Docker image to use.
-image: "lsstsqre/gafaelfawr:1.2.1"
+image: "lsstsqre/gafaelfawr:1.3.0"
 
 # Existing PVC for redis claim
 # If empty, redis will use emptydir
