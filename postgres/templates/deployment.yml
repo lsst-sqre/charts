@@ -43,6 +43,17 @@ spec:
                 name: postgres
                 key: jupyterhub_password
           {{- end }}
+          {{- with .Values.lovelog_db }}
+          - name: VRO_DB_LOVELOG_USER
+            value: {{ .user }}
+          - name: VRO_DB_LOVELOG_DB
+            value: {{ .db }}
+          - name: VRO_DB_LOVELOG_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres
+                key: lovelog_password
+          {{- end }}
             
       volumes:
         - name: storage
