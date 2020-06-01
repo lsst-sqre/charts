@@ -9,7 +9,7 @@ ingress:
   host: ""
 
 # Docker image to use.
-image: "lsstsqre/gafaelfawr:1.3.0"
+image: "lsstsqre/gafaelfawr:1.3.1"
 
 # Existing PVC for redis claim
 # If empty, redis will use emptydir
@@ -24,7 +24,7 @@ vault_secrets_path: ""
 user_scope: "exec:user"
 
 # Choose from the text form of Python logging levels.
-loglevel: DEBUG
+loglevel: INFO
 
 # List of netblocks used for internal Kubernetes IP addresses, used to
 # determine the true client IP for logging.
