@@ -51,6 +51,8 @@ spec:
             - name: WF_API_ADDR
               value: '{{.Values.wf.api_addr}}'
             # Settings from Hub
+            - name: ALLOW_DASK_SPAWN
+              value: '{{.Values.dask.allow_spawn}}'
             - name: LAB_NODEJS_MAX_MEM
               value: '{{.Values.lab.resources.nodejs_max_mem}}'
             - name: TINY_CPU_MAX
