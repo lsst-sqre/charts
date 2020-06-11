@@ -18,8 +18,8 @@ spec:
     spec:
       containers:
         - name: gafaelfawr
-          image: "{{ .Values.image }}"
-          imagePullPolicy: Always
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           ports:
             - containerPort: 8080
               name: app
