@@ -9,6 +9,10 @@ image:
   tag: master
   pullPolicy: IfNotPresent
 
+gafaelfawr_secrets_path: ""
+
+environment_url: ""
+
 nameOverride: ""
 fullnameOverride: ""
 
