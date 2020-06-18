@@ -1,0 +1,20 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: {{ template "sciencemonkey.fullname" . }}
+  labels:
+    app: {{ template "sciencemonkey.fullname" . }}
+    chart: {{ template "sciencemonkey.chart" . }}
+spec:
+  rules:
+{{ if .Values.host }}
+  - host: {{ .Values.host }}
+    http:
+{{ else }}
+  - http:
+{{ end }}
+      paths:
+      - backend:
+          serviceName: {{ template "sciencemonkey.fullname" . }}
+          servicePort: 8080
+        path: /sciencemonkey

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "sciencemonkey.fullname" . }}
+  labels:
+{{ include "sciencemonkey.labels" . | indent 4 }}
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "sciencemonkey.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
