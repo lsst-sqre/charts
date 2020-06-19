@@ -1,3 +1,4 @@
+{{ if .Values.ingress.enabled }}
 kind: Ingress
 apiVersion: networking.k8s.io/v1beta1
 metadata:
@@ -5,6 +6,11 @@ metadata:
   labels:
     app: {{ template "mobu.fullname" . }}
     chart: {{ template "mobu.chart" . }}
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+{{ if .Values.ingress.annotations }}
+{{ toYaml .Values.ingress.annotations | indent 4 }}
+{{ end }}
 spec:
   rules:
 {{ if .Values.host }}
@@ -18,3 +24,4 @@ spec:
           serviceName: {{ template "mobu.fullname" . }}
           servicePort: 8080
         path: /mobu
+{{ end }}
