@@ -1,10 +1,10 @@
 kind: Ingress
 apiVersion: networking.k8s.io/v1beta1
 metadata:
-  name: {{ template "sciencemonkey.fullname" . }}
+  name: {{ template "mobu.fullname" . }}
   labels:
-    app: {{ template "sciencemonkey.fullname" . }}
-    chart: {{ template "sciencemonkey.chart" . }}
+    app: {{ template "mobu.fullname" . }}
+    chart: {{ template "mobu.chart" . }}
 spec:
   rules:
 {{ if .Values.host }}
@@ -15,6 +15,6 @@ spec:
 {{ end }}
       paths:
       - backend:
-          serviceName: {{ template "sciencemonkey.fullname" . }}
+          serviceName: {{ template "mobu.fullname" . }}
           servicePort: 8080
-        path: /sciencemonkey
+        path: /mobu

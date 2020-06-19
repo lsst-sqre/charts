@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "sciencemonkey.fullname" . }}
+  name: {{ include "mobu.fullname" . }}
   labels:
-{{ include "sciencemonkey.labels" . | indent 4 }}
+{{ include "mobu.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "sciencemonkey.name" . }}
+      app.kubernetes.io/name: {{ include "mobu.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "sciencemonkey.name" . }}
+        app.kubernetes.io/name: {{ include "mobu.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      serviceAccountName: {{ template "sciencemonkey.serviceAccountName" . }}
+      serviceAccountName: {{ template "mobu.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -36,14 +36,14 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /sciencemonkey/user
+              path: /mobu/user
               port: http
           readinessProbe:
             httpGet:
-              path: /sciencemonkey/user
+              path: /mobu/user
               port: http
           volumeMounts:
-            - name: {{ template "sciencemonkey.fullname" . }}-secret
+            - name: {{ template "mobu.fullname" . }}-secret
               mountPath: "/etc/secrets"
               readOnly: true
           resources:
@@ -61,6 +61,6 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
-        - name: {{ template "sciencemonkey.fullname" . }}-secret
+        - name: {{ template "mobu.fullname" . }}-secret
           secret:
-            secretName: {{ template "sciencemonkey.fullname" . }}-secret
+            secretName: {{ template "mobu.fullname" . }}-secret
