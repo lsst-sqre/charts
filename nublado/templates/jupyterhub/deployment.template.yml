@@ -43,9 +43,6 @@ spec:
             # Set to non-empty value to enable debugging.
             - name: DEBUG
               value: '{{.Values.debug}}'
-            # One of "github", "cilogon", or "jwt"
-            - name: OAUTH_PROVIDER
-              value: '{{.Values.oauth_provider}}'
             # If set, enables Multus CNI (and thus bridging to physical
             #  network); needed at the summit.
             - name: ENABLE_MULTUS
@@ -148,53 +145,17 @@ spec:
               value: '{{ template "nublado.fullname" . }}-hub.{{.Release.Namespace}}'
             - name: HUB_SERVICE_PORT_API
               value: '8081'
-            - name: GITHUB_ORGANIZATION_WHITELIST
+            - name: ALLOWED_GROUPS
               valueFrom:
                 secretKeyRef:
                   name: {{ template "nublado.fullname" . }}-hub
-                  key: github_organization_whitelist
-            - name: CILOGON_GROUP_WHITELIST
+                  key: allowed_groups
+            - name: FORBIDDEN_GROUPS
               valueFrom:
                 secretKeyRef:
                   name: {{ template "nublado.fullname" . }}-hub
-                  key: cilogon_group_whitelist
-            - name: GITHUB_ORGANIZATION_DENYLIST
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "nublado.fullname" . }}-hub
-                  key: github_organization_denylist
+                  key: forbidden_groups
                   optional: true
-            - name: CILOGON_GROUP_DENYLIST
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "nublado.fullname" . }}-hub
-                  key: cilogon_group_denylist
-                  optional: true
-            - name: OAUTH_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "nublado.fullname" . }}-hub
-                  key: oauth_client_id
-            - name: OAUTH_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "nublado.fullname" . }}-hub
-                  key: oauth_secret
-            - name: OAUTH_CALLBACK_URL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "nublado.fullname" . }}-hub
-                  key: oauth_callback_url
-            # You want this if you're using CILogon rather than GitHub
-            #  and not using 'cilogon.org'
-            # - name: CILOGON_HOST
-            #   value: 'test.cilogon.org'
-            # Use this to restrict the list of available ID Providers
-            #- name: CILOGON_IDP_SELECTION
-            #  value: 'https://idp.ncsa.illinois.edu/idp/shibboleth'
-            # Use this to set the CILogon skin
-            #- name: CILOGON_SKIN
-            #  value: 'LSST'
             # This may contain credentials, so it should be a secret
             - name: SESSION_DB_URL
               valueFrom:
@@ -230,9 +191,6 @@ spec:
               mountPath: /opt/lsst/software/jupyterhub/resources
             - name: jupyterhub-config
               mountPath: /opt/lsst/software/jupyterhub/config
-            - name: jwt-cert
-              mountPath: /opt/jwt
-              readOnly: true
       volumes:
         - name: metadata
           downwardAPI:
@@ -248,13 +206,6 @@ spec:
           persistentVolumeClaim:
            claimName: {{ template "nublado.fullname" . }}-hub-physpvc
 {{ end }}
-        - name: jwt-cert
-          configMap:
-            defaultMode: 420
-            items:
-            - key: signing-certificate.pem
-              path: signing-certificate.pem
-            name: {{ template "nublado.fullname" . }}-jwt-cert
         - name: fs-mounts
           configMap:
             defaultMode: 420

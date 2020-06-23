@@ -6,24 +6,12 @@
 #fqdn: 'example.com'
 scheme: 'https://'
 
-# GitHub Application settings for OAuth apps
-# Get these from github.com OAuth settings by creating an app
-# Something like these (these don't really exist)
-#oauth_client_id: 'a357c71304f31654c665'
-#oauth_secret: '2eb0f52c3a416e7287287e478599314d451fef2d'
-
 # Set up debugging, set to enable
 debug: 'true'
 
-# OAuth provider to use: 
-# One of "github", "cilogon", or "jwt"
-oauth_provider: 'github'
-
-# Allow and deny lists
-github_organization_whitelist: ''
-github_organization_denylist: ''
-cilogon_group_whitelist: ''
-cilogon_group_denylist: ''
+# Allowed and forbidden groups (from the groups in the JWT)
+allowed_groups: ''
+forbidden_groups: ''
 
 vault_secrets:
   # Use the vault-secrets-operator to load secrets from vault
@@ -199,26 +187,16 @@ resourcemap: |
     }
   ]
 
-signing_certificate: |
-  -----BEGIN PUBLIC KEY-----
-  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3ALFUwJelCzi8FmGMOtK
-  zbDj03mhGE/EslZ75/SpCgAeBbow44Wt3E+NqY1QGmadY+pRsl5G7ahtiAZscvij
-  Vx+1BfEyOx6HbXBZzDmVpNxELnagw+8OsH2JBJxeHjcbwZ7N+b3guwtHdSHLZmMx
-  yBw/57OqYwfdAOjswFM4sUCwWo7ZkpGsVxeqQTflqMgJRBDKTtMk2Vjx6fwvP1x9
-  uTxT9TIUseCngIYo64fVdQw0y/o6m0FrLM2N2F3E4KWkbUlTbisKcTWealKuX3Oz
-  UgDtpFHI+BUNgVakNgk0B4/G6mNnz1goZAn3JKZS8bAd5Au9x1O3ZPb9FkNn5xxN
-  3wIDAQAB
-  -----END PUBLIC KEY-----
-
 jupyterhub_config: |
   '''Runtime configuration for JupyterHub in the LSST environment.
   '''
 
-  import jupyterhubutils
   import logging
   from eliot.stdlib import EliotHandler
   from jupyterhubutils import LSSTConfig
+  from jupyterhubutils.authenticator import LSSTJWTAuthenticator
   from jupyterhubutils.scanrepo import prime_repo_cache
+  from jupyterhubutils.spawner import LSSTSpawner
   from jupyterhubutils.utils import make_logger
 
   # get_config() only works in the Hub configuration environment
@@ -226,28 +204,25 @@ jupyterhub_config: |
 
   lc = LSSTConfig()
 
-  # Set logging
-  c.Application.log_format = lc.log_format
-  c.Application.log_datefmt = lc.log_datefmt
-  c.Application.log_level = lc.log_level
-  c.Application.log = make_logger(name='JupyterHub')
-  c.Application.log.handlers = [EliotHandler()]
-
-  jupyterhubutils.configure_auth_and_spawner(lc)
+  # Set up logging
   jhu_logger = make_logger(name='jupyterhubutils')
   if lc.debug:
       jhu_logger.setLevel(logging.DEBUG)
       jhu_logger.debug("Enabling 'jupyterhubutils' debug-level logging.")
       jhu_logger.warning("If there is no prior debug log something is wrong.")
 
+  c.Application.log_format = lc.log_format
+  c.Application.log_datefmt = lc.log_datefmt
+  c.Application.log_level = lc.log_level
+  c.Application.log = make_logger(name='JupyterHub')
+  c.Application.log.handlers = [EliotHandler()]
+
+  # Set authenticator and spawner classes
+  c.JupyterHub.spawner_class = LSSTSpawner
+  c.JupyterHub.authenticator_class = LSSTJWTAuthenticator
+
   # Prime the repo cache
   prime_repo_cache(lc)
-
-  # Set up the spawner
-  c.JupyterHub.spawner_class = lc.spawner_class
-
-  # Set up the authenticator
-  c.JupyterHub.authenticator_class = lc.authenticator_class
 
   # Don't try to cleanup servers on exit - since in general for k8s, we want
   # the hub to be able to restart without losing user containers
