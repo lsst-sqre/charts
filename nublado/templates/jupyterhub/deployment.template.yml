@@ -145,17 +145,6 @@ spec:
               value: '{{ template "nublado.fullname" . }}-hub.{{.Release.Namespace}}'
             - name: HUB_SERVICE_PORT_API
               value: '8081'
-            - name: ALLOWED_GROUPS
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "nublado.fullname" . }}-hub
-                  key: allowed_groups
-            - name: FORBIDDEN_GROUPS
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "nublado.fullname" . }}-hub
-                  key: forbidden_groups
-                  optional: true
             # This may contain credentials, so it should be a secret
             - name: SESSION_DB_URL
               valueFrom:
