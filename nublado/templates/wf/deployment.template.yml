@@ -41,12 +41,6 @@ spec:
             # Set to non-empty value to enable debugging.
             - name: DEBUG
               value: '{{.Values.debug}}'
-            # Set to non-empty values to disable audience/signature
-            #  verification
-            - name: WF_NO_VERIFY_SIGNATURE
-              value: '{{.Values.wf.no_verify_signature}}'
-            - name: WF_NO_VERIFY_AUDIENCE
-              value: '{{.Values.wf.no_verify_audience}}'
             # IP address to bind to
             - name: WF_API_ADDR
               value: '{{.Values.wf.api_addr}}'
