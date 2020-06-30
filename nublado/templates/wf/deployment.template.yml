@@ -41,12 +41,6 @@ spec:
             # Set to non-empty value to enable debugging.
             - name: DEBUG
               value: '{{.Values.debug}}'
-            # Set to non-empty values to disable audience/signature
-            #  verification
-            - name: WF_NO_VERIFY_SIGNATURE
-              value: '{{.Values.wf.no_verify_signature}}'
-            - name: WF_NO_VERIFY_AUDIENCE
-              value: '{{.Values.wf.no_verify_audience}}'
             # IP address to bind to
             - name: WF_API_ADDR
               value: '{{.Values.wf.api_addr}}'
@@ -99,9 +93,6 @@ spec:
               mountPath: /opt/lsst/software/jupyterhub/mounts
             - name: resourcemap
               mountPath: /opt/lsst/software/jupyterhub/resources
-            - name: jwt-cert
-              mountPath: /opt/jwt
-              readOnly: true
       volumes:
         - name: metadata
           downwardAPI:
@@ -112,13 +103,6 @@ spec:
               - path: "labels"
                 fieldRef:
                   fieldPath: metadata.labels
-        - name: jwt-cert
-          configMap:
-            defaultMode: 420
-            items:
-            - key: signing-certificate.pem
-              path: signing-certificate.pem
-            name: {{ template "nublado.fullname" . }}-jwt-cert
         - name: fs-mounts
           configMap:
             defaultMode: 420
