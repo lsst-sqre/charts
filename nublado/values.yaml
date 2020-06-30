@@ -9,10 +9,6 @@ scheme: 'https://'
 # Set up debugging, set to enable
 debug: 'true'
 
-# Allowed and forbidden groups (from the groups in the JWT)
-allowed_groups: ''
-forbidden_groups: ''
-
 vault_secrets:
   # Use the vault-secrets-operator to load secrets from vault
   # instead of creating them from values here.
