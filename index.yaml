@@ -1,0 +1,196 @@
+apiVersion: v1
+entries:
+  cadc-tap:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-06-30T23:01:40.747955672Z"
+    description: A Helm chart for the CADC TAP service
+    digest: e9c11ff334e69bf9fcbbd0e28644959684196a54786a47219afa19f9e964a127
+    name: cadc-tap
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-0.1.9/cadc-tap-0.1.9.tgz
+    version: 0.1.9
+  cadc-tap-postgres:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-06-30T23:01:40.86044833Z"
+    description: A Helm chart for the CADC TAP Postgres service
+    digest: e6e0a0b520051d3db5dd30d28094bb42295be5622e26f257a78366031a9a2256
+    name: cadc-tap-postgres
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-postgres-0.1.1/cadc-tap-postgres-0.1.1.tgz
+    version: 0.1.1
+  chronograf:
+  - apiVersion: v1
+    appVersion: 1.7.12
+    created: "2020-06-30T23:01:40.969110493Z"
+    description: Open-source web application written in Go and React.js that provides
+      the tools to visualize your monitoring data and easily create alerting and automation
+      rules.
+    digest: 23f5e4e1d80b97cf0f56aa401968b3fc2c398393fc800846b772eff1e13ba83f
+    home: https://www.influxdata.com/time-series-platform/chronograf/
+    keywords:
+    - chronograf
+    - visualizaion
+    - timeseries
+    maintainers:
+    - email: jack@influxdb.com
+      name: jackzampolin
+    name: chronograf
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/chronograf-1.3.0/chronograf-1.3.0.tgz
+    version: 1.3.0
+  fileserver:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-06-30T23:01:41.076396664Z"
+    description: NFS fileserver for science platforms
+    digest: ce2b5e55a4b4ef22ad1c6300af1ed3cf3730cfe6967b25eae58763b60aad3b35
+    name: fileserver
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/fileserver-0.2.1/fileserver-0.2.1.tgz
+    version: 0.2.1
+  firefly:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-06-30T23:01:41.199287719Z"
+    description: A Helm chart for Firefly
+    digest: 3fb97a6bed004264b63cd4eaf015f36b7a8a70c27fc3a01e9a31cf8f7b580f68
+    name: firefly
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/firefly-0.1.2/firefly-0.1.2.tgz
+    version: 0.1.2
+  gafaelfawr:
+  - apiVersion: v1
+    appVersion: 1.3.2
+    created: "2020-06-30T23:01:41.289115412Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 3bf5ad01674c61b79fd27891e4c8a3c3f4668b70b7bfabaecf119c787b89dabc
+    home: https://github.com/lsst/gafaelfawr
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-1.3.3/gafaelfawr-1.3.3.tgz
+    version: 1.3.3
+  influxdb:
+  - apiVersion: v1
+    appVersion: 1.7.6
+    created: "2020-06-30T23:01:41.378391107Z"
+    description: Scalable datastore for metrics, events, and real-time analytics.
+    digest: d91968801a557ffa54eeb7c4ed0471f3c0d03a8d61ccfcfa49d8f0fec2640413
+    home: https://www.influxdata.com/time-series-platform/influxdb/
+    keywords:
+    - influxdb
+    - database
+    - timeseries
+    maintainers:
+    - email: jack@influxdb.com
+      name: jackzampolin
+    - email: urakiny@gmail.com
+      name: aisuko
+    name: influxdb
+    sources:
+    - https://github.com/influxdata/influxdb
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/influxdb-3.0.3/influxdb-3.0.3.tgz
+    version: 3.0.3
+  kafka-connect-manager:
+  - apiVersion: v1
+    appVersion: 0.7.2
+    created: "2020-06-30T23:01:41.464546505Z"
+    description: A Helm chart to deploy the kafka connectors used by the EFD
+    digest: 6b3b18aae3ad194b24eb4a741dc24c5a2dbcee205ab4e3ca065cb1a157e6633f
+    home: https://kafka-connect-manager.lsst.io/
+    keywords:
+    - Kafka, InfluxDB, Confluent Replicator, EFD
+    maintainers:
+    - email: afausti@lsst.org
+      name: Angelo Fausti
+      url: https://afausti.github.io/
+    name: kafka-connect-manager
+    sources:
+    - https://github.com/lsst-sqre/kafka-connect-manager
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kafka-connect-manager-0.4.0/kafka-connect-manager-0.4.0.tgz
+    version: 0.4.0
+  kapacitor:
+  - apiVersion: v1
+    appVersion: 1.5.2
+    created: "2020-06-30T23:01:41.549715904Z"
+    description: InfluxDB's native data processing engine. It can process both stream
+      and batch data from InfluxDB.
+    digest: bd25caf45960a26b0a0f80098aa8156f120ec120a111d9f9557e839f85b23fea
+    home: https://www.influxdata.com/time-series-platform/kapacitor/
+    keywords:
+    - kapacitor
+    - stream
+    - etl
+    - timeseries
+    maintainers:
+    - email: jack@influxdb.com
+      name: jackzampolin
+    name: kapacitor
+    sources:
+    - https://github.com/influxdata/kapacitor
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kapacitor-1.3.0/kapacitor-1.3.0.tgz
+    version: 1.3.0
+  landing-page:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-06-30T23:01:41.62933531Z"
+    description: Simple landing page for linking to services, and showing MOTD.
+    digest: ff285ca885c0081562fda6945db02bdee78bb144bbcc93325078ab3d68e50bf7
+    home: https://github.com/lsst-dm/lsp-landing-page
+    name: landing-page
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/landing-page-0.2.2/landing-page-0.2.2.tgz
+    version: 0.2.2
+  mobu:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-06-30T23:01:41.704795721Z"
+    description: The mobu generates system load by pretending to be a random scientist
+    digest: c1a7aabf729cfe85ba03a7850823698a4e23e671c311da5c48ea6a7676e3f2bd
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.1/mobu-0.1.1.tgz
+    version: 0.1.1
+  nublado:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-06-30T23:01:41.903682586Z"
+    description: A Helm chart for Kubernetes
+    digest: 8be1d3e200510a021830bac14309bbe6da7cc0520bb556b95bdb2a8952bd5f23
+    name: nublado
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado-0.8.10/nublado-0.8.10.tgz
+    version: 0.8.10
+  opendistro-es:
+  - apiVersion: v1
+    appVersion: 1.4.0
+    created: "2020-06-30T23:01:41.99355908Z"
+    description: Open Distro for Elasticsearch
+    digest: c6c993836b2c82cae030e2f921cd8a1156157b8657569ac6b9af8ee7738eb9c9
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: derek.heldt-werle@viasat.com
+      name: Derek Heldt-Werle
+    - email: kalvin.chau@viasat.com
+      name: Kalvin Chau
+    name: opendistro-es
+    sources:
+    - https://pages.git.viasat.com/ATG/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/opendistro-es-1.4.0/opendistro-es-1.4.0.tgz
+    version: 1.4.0
+  postgres:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-06-30T23:01:42.081657381Z"
+    description: Postgres RDBMS for LSP
+    digest: 2b188aad022f474a6e5f44644822e9ac9e9aa9390924382b151f9a53d6621a85
+    name: postgres
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/postgres-0.0.23/postgres-0.0.23.tgz
+    version: 0.0.23
+generated: "2020-06-30T23:01:40.637550211Z"
