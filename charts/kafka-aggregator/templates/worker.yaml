@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  labels:
+{{ include "kafka-aggregator.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "kafka-aggregator.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "kafka-aggregator.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/bin/sh", "-c"]
+          args:
+          - >
+            kafkaaggregator -l info generate-agents &&
+            kafkaaggregator -l info worker
+          resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: KAFKA_BROKER_URL
+              value: {{ .Values.env.broker | quote }}
+            - name: SCHEMA_REGISTRY_URL
+              value: {{ .Values.env.registry_url | quote }}
+            - name: INTERNAL_SCHEMA_REGISTRY_URL
+              value: {{ .Values.env.internal_registry_url | quote }}
+            - name: STORE
+              value: {{ .Values.env.store | quote }}
+            - name: WINDOW_SIZE
+              value: {{ .Values.env.window_size | quote }}
+            - name: WINDOW_EXPIRES
+              value: {{ .Values.env.window_expires  | quote }}
+            - name: MIN_SAMPLE_SIZE
+              value: {{ .Values.env.min_sample_size | quote }}
+            - name: TOPIC_PARTITIONS
+              value: {{ .Values.env.topic_partitions | quote }}
+            - name: SOURCE_TOPIC_NAME_PREFIX
+              value: {{ .Values.env.source_topic_name_prefix | quote }}
+            - name: TOPIC_REGEX
+              value: {{ .Values.env.topic_regex | quote }}
+            - name: EXCLUDED_TOPICS
+              value: {{ .Values.env.excluded_topics | quote }}
+            - name: TOPIC_RENAME_FORMAT
+              value: {{ .Values.env.topic_rename_format | quote }}
+            - name: EXCLUDED_FIELD_NAMES
+              value: {{ .Values.env.excluded_field_names | quote }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
