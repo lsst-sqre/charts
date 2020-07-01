@@ -93,6 +93,25 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/influxdb-3.0.3/influxdb-3.0.3.tgz
     version: 3.0.3
+  kafka-aggregator:
+  - apiVersion: v1
+    appVersion: 0.1.0
+    created: "2020-07-01T01:39:44.269938654Z"
+    description: A Kafka aggregator based on the Faust Python Stream Processing library
+    digest: d8a08978835e0a90f040d363fd020d2d9ab8897d88f604296dcd1acbae70ab60
+    home: https://kafka-aggregator.lsst.io/
+    keywords:
+    - Kafka, Faust, Python
+    maintainers:
+    - email: afausti@lsst.org
+      name: Angelo Fausti
+      url: https://afausti.github.io/
+    name: kafka-aggregator
+    sources:
+    - https://github.com/lsst-sqre/kafka-aggregator
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kafka-aggregator-0.1.1/kafka-aggregator-0.1.1.tgz
+    version: 0.1.1
   kafka-connect-manager:
   - apiVersion: v1
     appVersion: 0.7.2
