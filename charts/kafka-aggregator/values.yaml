@@ -1,0 +1,71 @@
+# Default values for kafka-aggregator.
+
+replicaCount: 1
+
+image:
+  repository: lsstsqre/kafkaaggregator
+  tag: master
+  pullPolicy: Always
+
+env:
+  # The Kafka broker URL.
+  broker:  "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"
+  # The Confluent Schema Registry URL.
+  registry_url: "https://schema-registry-sandbox-efd.lsst.codes"
+  # Internal Confluent Schema Registry URL, used for aggregated topic schemas.
+  internal_registry_url: "https://schema-registry-sandbox-efd.lsst.codes"
+  # The backend used for table storage.
+  store: "memory://"
+  # Size of the tumbling window in seconds used to aggregate messages.
+  window_size: 1
+  # Window expiration time in seconds.
+  window_expires: 1
+  # Minimum sample size to compute statistics.
+  min_sample_size: 2
+  # Default number of partitions for new topics.
+  topic_partitions: 4
+  # Prefix for the source topic name used in the aggregation example.
+  source_topic_name_prefix: "example"
+  # Regex to select source topics to aggregate.
+  topic_regex: "^example-[0-9][0-9][0-9]?$"
+  # Topics excluded from aggregation.
+  excluded_topics: ""
+  # A format string for the aggregation topic name, which must contain
+  # {source_topic_name}`` as a placeholder for the source topic name.
+  topic_rename_format: "{source_topic_name}-aggregated"
+  # List of field names to exclude from aggregation.
+  excluded_field_names: ""
+
+# If the example is enabled, it creates a job to initialize and to
+# produce messages for the example topics.
+example:
+  enabled: true
+  env:
+    # Number of source topics used in the aggregation example.
+    ntopics: 100
+    # Number of fields for source topics used in the aggregation example.
+    nfields: 10
+    # The frequency in Hz in wich messages are produced.
+    frequency: 10
+    # The maximum number of messages to produce.  Set max_messages to a number
+    # smaller than 1 to produce an indefinite number of messages.
+    max_messages: 0
+
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
