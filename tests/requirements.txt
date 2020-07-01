@@ -1,0 +1,5 @@
+GitPython
+pytest
+pyyaml
+requests
+semver
