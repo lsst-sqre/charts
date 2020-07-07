@@ -145,6 +145,8 @@ spec:
               value: '{{ template "nublado.fullname" . }}-hub.{{.Release.Namespace}}'
             - name: HUB_SERVICE_PORT_API
               value: '8081'
+            - name: LAB_NO_SUDO
+              value: '{{.Values.lab.no_sudo}}'
             # This may contain credentials, so it should be a secret
             - name: SESSION_DB_URL
               valueFrom:
@@ -180,6 +182,12 @@ spec:
               mountPath: /opt/lsst/software/jupyterhub/resources
             - name: jupyterhub-config
               mountPath: /opt/lsst/software/jupyterhub/config
+            - name: base-passwd
+              mountPath: /opt/lsst/software/jupyterhub/base-passwd
+              subPath: base-passwd
+            - name: base-group
+              mountPath: /opt/lsst/software/jupyterhub/base-group
+              subPath: base-group
       volumes:
         - name: metadata
           downwardAPI:
@@ -216,3 +224,17 @@ spec:
             - key: jupyterhub_config.py
               path: jupyterhub_config.py
             name: {{ template "nublado.fullname" . }}-jupyterhub-config
+        - name: base-passwd
+          configMap:
+            defaultMode: 420
+            items:
+            - key: passwd
+              path: passwd
+            name: {{ template "nublado.fullname" . }}-base-passwd
+        - name: base-group
+          configMap:
+            defaultMode: 420
+            items:
+            - key: group
+              path: group
+            name: {{ template "nublado.fullname" . }}-base-group
