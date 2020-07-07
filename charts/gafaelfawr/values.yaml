@@ -44,6 +44,7 @@ issuer:
 # the new token creation page.  Only scopes listed here will be options
 # when creating a new token.
 known_scopes:
+  "exec:admin": Administrative access to all APIs.
   "exec:portal": Use the Portal to execute operations. Mostly used from notebook APIs.
   "read:image": Read images from the SODA and other image retrieval interfaces
   "read:image/metadata": Read image metadata from SIA and other image interfaces
