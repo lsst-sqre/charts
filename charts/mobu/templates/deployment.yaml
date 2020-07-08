@@ -43,7 +43,7 @@ spec:
               path: /mobu/user
               port: http
           volumeMounts:
-            - name: {{ template "mobu.fullname" . }}-secret
+            - name: {{ template "mobu.fullname" . }}-gafaelfawr-secret
               mountPath: "/etc/secrets"
               readOnly: true
           resources:
@@ -61,6 +61,6 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
-        - name: {{ template "mobu.fullname" . }}-secret
+        - name: {{ template "mobu.fullname" . }}-gafaelfawr-secret
           secret:
-            secretName: {{ template "mobu.fullname" . }}-secret
+            secretName: {{ template "mobu.fullname" . }}-gafaelfawr-secret
