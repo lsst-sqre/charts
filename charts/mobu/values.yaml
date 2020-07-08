@@ -9,6 +9,7 @@ image:
   tag: master
   pullPolicy: Always
 
+mobu_secrets_path: ""
 gafaelfawr_secrets_path: ""
 
 environment_url: ""
