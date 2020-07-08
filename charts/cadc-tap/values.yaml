@@ -72,6 +72,10 @@ resources: {}
   #  cpu: 100m
   #  memory: 128Mi
 
+# Setting for the java heap size, which will set the maximum size of the heap.  Otherwise
+# java will determine it based on how much memory is available and black maths.
+jvm_max_heap_size: 4G
+
 aux_resources: {}
   # Same for resources, but for the non-main TAP service services (such as databases).
 
