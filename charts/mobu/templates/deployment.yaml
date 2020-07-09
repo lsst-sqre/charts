@@ -26,6 +26,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: ALERT_HOOK
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "mobu.fullname" . }}-mobu-secret
+                  key: ALERT_HOOK
             - name: PRIVATE_KEY_PATH
               value: "/etc/secrets/signing-key"
             - name: ENVIRONMENT_URL
@@ -43,7 +48,7 @@ spec:
               path: /mobu/user
               port: http
           volumeMounts:
-            - name: {{ template "mobu.fullname" . }}-secret
+            - name: {{ template "mobu.fullname" . }}-gafaelfawr-secret
               mountPath: "/etc/secrets"
               readOnly: true
           resources:
@@ -61,6 +66,6 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
-        - name: {{ template "mobu.fullname" . }}-secret
+        - name: {{ template "mobu.fullname" . }}-gafaelfawr-secret
           secret:
-            secretName: {{ template "mobu.fullname" . }}-secret
+            secretName: {{ template "mobu.fullname" . }}-gafaelfawr-secret
