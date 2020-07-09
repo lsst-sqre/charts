@@ -186,6 +186,15 @@ entries:
   mobu:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-07-09T22:47:11.069328048Z"
+    description: The mobu generates system load by pretending to be a random scientist
+    digest: 6c5fc3ebecaec63a65b459eeef144dfd78ed5de64b855b9555bff5037b4601d4
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.2/mobu-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-06-30T23:01:41.704795721Z"
     description: The mobu generates system load by pretending to be a random scientist
     digest: c1a7aabf729cfe85ba03a7850823698a4e23e671c311da5c48ea6a7676e3f2bd
