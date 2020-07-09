@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "helpers.fullname" . }}-configmap
+data:
+  neophile.yaml: |
+    allow_expressions: true
+    cache_enabled: false
+    github_user: {{ .Values.github_user | quote }}
+    repositories:
+      {{- range $repository := .Values.repositories }}
+      - owner: {{ $repository.owner }}
+        repo: {{ $repository.repo }}
+      {{- end }}
+    work_area: "/data"
