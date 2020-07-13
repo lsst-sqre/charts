@@ -261,6 +261,7 @@ base_passwd_file: |
   dbus:x:81:81:System message bus:/:/sbin/nologin
   lsst_lcl:x:1000:1000::/home/lsst_lcl:/bin/bash
   tss:x:59:59:Account used by the trousers package to sandbox the tcsd daemon:/dev/null:/sbin/nologin
+  provisionator:x:769:769:Lab provisioning user:/home/provisionator:/bin/bash
 
 base_group_file: |
   root:x:0:
@@ -298,3 +299,5 @@ base_group_file: |
   tss:x:59:
   cgred:x:997:
   screen:x:84:
+  jovyan:x:768:
+  provisionator:x:769:
