@@ -24,6 +24,7 @@ hub:
   #crypto_key: ''
   image: 'lsstsqre/sciplat-hub:latest'
   persistent_home: True
+  eliot_root_logging: True
 
 # Dask settings
 dask:

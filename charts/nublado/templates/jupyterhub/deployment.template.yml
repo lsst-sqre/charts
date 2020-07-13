@@ -38,11 +38,14 @@ spec:
               value: INFO
             - name: FQDN
               value: '{{.Values.fqdn}}'
-            - name: HELM_TAG
+            - name: INSTANCE_NAME
               value: '{{ template "nublado.fullname" . }}'
             # Set to non-empty value to enable debugging.
             - name: DEBUG
               value: '{{.Values.debug}}'
+            # Grab the root logger?  Good for Hub, bad otherwise, usually.
+            - name: ELIOT_ROOT_LOGGING
+              value: '{{.Values.hub.eliot_root_logging}}'
             # If set, enables Multus CNI (and thus bridging to physical
             #  network); needed at the summit.
             - name: ENABLE_MULTUS
