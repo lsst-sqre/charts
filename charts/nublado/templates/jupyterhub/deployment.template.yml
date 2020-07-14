@@ -43,7 +43,7 @@ spec:
             # Set to non-empty value to enable debugging.
             - name: DEBUG
               value: '{{.Values.debug}}'
-            # Grab the root logger?  Good for Hub, bad otherwise, usually.
+            # Grab the root logger?  Good for Hub/WF, bad otherwise, usually.
             - name: ELIOT_ROOT_LOGGING
               value: '{{.Values.hub.eliot_root_logging}}'
             # If set, enables Multus CNI (and thus bridging to physical
