@@ -208,35 +208,35 @@ spec:
 {{ end }}
         - name: fs-mounts
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: mountpoints.json
               path: mountpoints.json
             name: {{ template "nublado.fullname" . }}-fs-mounts
         - name: resourcemap
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: resourcemap.json
               path: resourcemap.json
             name: {{ template "nublado.fullname" . }}-resourcemap
         - name: jupyterhub-config
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: jupyterhub_config.py
               path: jupyterhub_config.py
             name: {{ template "nublado.fullname" . }}-jupyterhub-config
         - name: base-passwd
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: passwd
               path: passwd
             name: {{ template "nublado.fullname" . }}-base-passwd
         - name: base-group
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: group
               path: group
