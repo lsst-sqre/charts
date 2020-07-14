@@ -36,11 +36,13 @@ spec:
           env:
             - name: FQDN
               value: '{{.Values.fqdn}}'
-            - name: HELM_TAG
+            - name: INSTANCE_NAME
               value: '{{ template "nublado.fullname" . }}'
             # Set to non-empty value to enable debugging.
             - name: DEBUG
               value: '{{.Values.debug}}'
+            - name: LAB_NO_SUDO
+              value: '{{.Values.lab.no_sudo}}'
             # IP address to bind to
             - name: WF_API_ADDR
               value: '{{.Values.wf.api_addr}}'
@@ -93,6 +95,12 @@ spec:
               mountPath: /opt/lsst/software/jupyterhub/mounts
             - name: resourcemap
               mountPath: /opt/lsst/software/jupyterhub/resources
+            - name: base-passwd
+              mountPath: /opt/lsst/software/jupyterhub/base-passwd
+              subPath: base-passwd
+            - name: base-group
+              mountPath: /opt/lsst/software/jupyterhub/base-group
+              subPath: base-group
       volumes:
         - name: metadata
           downwardAPI:
@@ -117,3 +125,17 @@ spec:
             - key: resourcemap.json
               path: resourcemap.json
             name: {{ template "nublado.fullname" . }}-resourcemap
+        - name: base-passwd
+          configMap:
+            defaultMode: 420
+            items:
+            - key: passwd
+              path: passwd
+            name: {{ template "nublado.fullname" . }}-base-passwd
+        - name: base-group
+          configMap:
+            defaultMode: 420
+            items:
+            - key: group
+              path: group
+            name: {{ template "nublado.fullname" . }}-base-group
