@@ -35,14 +35,17 @@ spec:
               name: api
           env:
             - name: LOGLEVEL
-              value: INFO
+              value: '{{Values.hub.loglevel}}'
             - name: FQDN
               value: '{{.Values.fqdn}}'
-            - name: HELM_TAG
+            - name: INSTANCE_NAME
               value: '{{ template "nublado.fullname" . }}'
             # Set to non-empty value to enable debugging.
             - name: DEBUG
               value: '{{.Values.debug}}'
+            # Grab the root logger?  Good for Hub/WF, bad otherwise, usually.
+            - name: ELIOT_ROOT_LOGGING
+              value: '{{.Values.hub.eliot_root_logging}}'
             # If set, enables Multus CNI (and thus bridging to physical
             #  network); needed at the summit.
             - name: ENABLE_MULTUS
@@ -145,6 +148,8 @@ spec:
               value: '{{ template "nublado.fullname" . }}-hub.{{.Release.Namespace}}'
             - name: HUB_SERVICE_PORT_API
               value: '8081'
+            - name: LAB_NO_SUDO
+              value: '{{.Values.lab.no_sudo}}'
             # This may contain credentials, so it should be a secret
             - name: SESSION_DB_URL
               valueFrom:
@@ -180,6 +185,12 @@ spec:
               mountPath: /opt/lsst/software/jupyterhub/resources
             - name: jupyterhub-config
               mountPath: /opt/lsst/software/jupyterhub/config
+            - name: base-passwd
+              mountPath: /opt/lsst/software/jupyterhub/base-passwd
+              subPath: base-passwd
+            - name: base-group
+              mountPath: /opt/lsst/software/jupyterhub/base-group
+              subPath: base-group
       volumes:
         - name: metadata
           downwardAPI:
@@ -197,22 +208,36 @@ spec:
 {{ end }}
         - name: fs-mounts
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: mountpoints.json
               path: mountpoints.json
             name: {{ template "nublado.fullname" . }}-fs-mounts
         - name: resourcemap
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: resourcemap.json
               path: resourcemap.json
             name: {{ template "nublado.fullname" . }}-resourcemap
         - name: jupyterhub-config
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: jupyterhub_config.py
               path: jupyterhub_config.py
             name: {{ template "nublado.fullname" . }}-jupyterhub-config
+        - name: base-passwd
+          configMap:
+            defaultMode: 0444
+            items:
+            - key: passwd
+              path: passwd
+            name: {{ template "nublado.fullname" . }}-base-passwd
+        - name: base-group
+          configMap:
+            defaultMode: 0444
+            items:
+            - key: group
+              path: group
+            name: {{ template "nublado.fullname" . }}-base-group

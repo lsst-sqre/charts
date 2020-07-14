@@ -34,13 +34,19 @@ spec:
             - containerPort: 8080
               name: api
           env:
+            # In general this should look like the Hub
             - name: FQDN
               value: '{{.Values.fqdn}}'
-            - name: HELM_TAG
+            - name: INSTANCE_NAME
               value: '{{ template "nublado.fullname" . }}'
-            # Set to non-empty value to enable debugging.
             - name: DEBUG
               value: '{{.Values.debug}}'
+            - name: LOGLEVEL
+              value: '{{.Values.hub.loglevel}}'
+            - name: LAB_NO_SUDO
+              value: '{{.Values.lab.no_sudo}}'
+            - name: ELIOT_ROOT_LOGGING
+              value: '{{.Values.hub.eliot_root_logging}}'
             # IP address to bind to
             - name: WF_API_ADDR
               value: '{{.Values.wf.api_addr}}'
@@ -93,6 +99,12 @@ spec:
               mountPath: /opt/lsst/software/jupyterhub/mounts
             - name: resourcemap
               mountPath: /opt/lsst/software/jupyterhub/resources
+            - name: base-passwd
+              mountPath: /opt/lsst/software/jupyterhub/base-passwd
+              subPath: base-passwd
+            - name: base-group
+              mountPath: /opt/lsst/software/jupyterhub/base-group
+              subPath: base-group
       volumes:
         - name: metadata
           downwardAPI:
@@ -105,15 +117,29 @@ spec:
                   fieldPath: metadata.labels
         - name: fs-mounts
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: mountpoints.json
               path: mountpoints.json
             name: {{ template "nublado.fullname" . }}-fs-mounts
         - name: resourcemap
           configMap:
-            defaultMode: 420
+            defaultMode: 0444
             items:
             - key: resourcemap.json
               path: resourcemap.json
             name: {{ template "nublado.fullname" . }}-resourcemap
+        - name: base-passwd
+          configMap:
+            defaultMode: 0444
+            items:
+            - key: passwd
+              path: passwd
+            name: {{ template "nublado.fullname" . }}-base-passwd
+        - name: base-group
+          configMap:
+            defaultMode: 0444
+            items:
+            - key: group
+              path: group
+            name: {{ template "nublado.fullname" . }}-base-group
