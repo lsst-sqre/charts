@@ -24,7 +24,10 @@ hub:
   #crypto_key: ''
   image: 'lsstsqre/sciplat-hub:latest'
   persistent_home: True
+  # Eliot as the root logger is good for Hub and WF Dispatcher.  Bad
+  # otherwise.
   eliot_root_logging: True
+  loglevel: INFO # Overridden by debug
 
 # Dask settings
 dask:

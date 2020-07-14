@@ -35,7 +35,7 @@ spec:
               name: api
           env:
             - name: LOGLEVEL
-              value: INFO
+              value: '{{Values.hub.loglevel}}'
             - name: FQDN
               value: '{{.Values.fqdn}}'
             - name: INSTANCE_NAME

@@ -34,15 +34,19 @@ spec:
             - containerPort: 8080
               name: api
           env:
+            # In general this should look like the Hub
             - name: FQDN
               value: '{{.Values.fqdn}}'
             - name: INSTANCE_NAME
               value: '{{ template "nublado.fullname" . }}'
-            # Set to non-empty value to enable debugging.
             - name: DEBUG
               value: '{{.Values.debug}}'
+            - name: LOGLEVEL
+              value: '{{.Values.hub.loglevel}}'
             - name: LAB_NO_SUDO
               value: '{{.Values.lab.no_sudo}}'
+            - name: ELIOT_ROOT_LOGGING
+              value: '{{.Values.hub.eliot_root_logging}}'
             # IP address to bind to
             - name: WF_API_ADDR
               value: '{{.Values.wf.api_addr}}'
