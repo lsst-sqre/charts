@@ -10,7 +10,7 @@ spec:
         metadata:
           labels:
             name: {{ template "helpers.fullname" . }}
-{{ include "helpers.labels" . | indent 8 }}
+{{ include "helpers.labels" . | indent 12 }}
         spec:
           containers:
             - name: {{ template "helpers.fullname" . }}
