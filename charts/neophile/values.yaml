@@ -1,0 +1,21 @@
+# Name of the GitHub user (must match the token in the secret).
+github_user: ""
+
+# Repositories to monitor.
+repositories: {}
+
+# Docker image to use.
+image:
+  repository: "lsstsqre/neophile"
+  tag: "0.0.1"
+  pullPolicy: "IfNotPresent"
+
+# Execution schedule (default is 4am on Monday).
+schedule: "0 4 * * 1"
+
+# Existing PVC for the work area.  If empty, neophile will use emptyDir.
+volume_claim: ""
+
+# Path to the Vault secret to use to generate Kubernetes secrets.
+# secret/k8s_operator/<host>/neophile
+vault_secrets_path: ""

@@ -1,0 +1,46 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ template "helpers.fullname" . }}
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            name: {{ template "helpers.fullname" . }}
+{{ include "helpers.labels" . | indent 8 }}
+        spec:
+          containers:
+            - name: {{ template "helpers.fullname" . }}
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+              args:
+                - "neophile"
+                - "-c"
+                - "/etc/neophile/neophile.yaml"
+                - "process"
+              env:
+                - name: NEOPHILE_GITHUB_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ template "helpers.fullname" . }}-secret
+                      key: "github_token"
+              volumeMounts:
+                - name: {{ template "helpers.fullname" . }}-config
+                  mountPath: "/etc/neophile"
+                  readOnly: true
+                - name: {{ template "helpers.fullname" . }}-data
+                  mountPath: "/data"
+          volumes:
+            - name: {{ template "helpers.fullname" . }}-config
+              configMap:
+                name: {{ template "helpers.fullname" . }}-configmap
+            - name: {{ template "helpers.fullname" . }}-data
+              {{- if .Values.volume_claim }}
+              persistentVolumeClaim:
+                claimName: {{ .Values.volume_claim }}
+              {{- else }}
+              emptyDir: {}
+              {{- end }}
