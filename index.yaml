@@ -205,6 +205,16 @@ entries:
   neophile:
   - apiVersion: v1
     appVersion: 0.0.1
+    created: "2020-07-15T01:37:53.519384623Z"
+    description: Periodically check for needed dependency updates
+    digest: c9422b24994bdc4c2a89dab1d44b9486b3fbcf38e0473582061dbcc398e6d176
+    home: https://github.com/lsst-sqre/neophile
+    name: neophile
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/neophile-0.0.3/neophile-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v1
+    appVersion: 0.0.1
     created: "2020-07-15T01:26:13.402736622Z"
     description: Periodically check for needed dependency updates
     digest: b87081283c1ec30d430774ed54ea34e9ae9e1ed64afa6b1fa0b007dd85c828cc
