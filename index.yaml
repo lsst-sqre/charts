@@ -202,6 +202,17 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.1/mobu-0.1.1.tgz
     version: 0.1.1
+  neophile:
+  - apiVersion: v1
+    appVersion: 0.0.1
+    created: "2020-07-15T00:12:36.482421128Z"
+    description: Periodically check for needed dependency updates
+    digest: 5511287283115e88371614149130a9beb31721825c9d8a760fed1674996084c3
+    home: https://github.com/lsst-sqre/neophile
+    name: neophile
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/neophile-0.0.1/neophile-0.0.1.tgz
+    version: 0.0.1
   nublado:
   - apiVersion: v1
     appVersion: "1.0"
