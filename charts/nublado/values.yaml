@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 # Variables you absolutely need (with examples commented out):
-#fqdn: 'example.com'
+# fqdn: 'example.com'
 scheme: 'https://'
 
 # Set up debugging, set to enable
@@ -12,7 +12,7 @@ debug: 'true'
 vault_secrets:
   # Use the vault-secrets-operator to load secrets from vault
   # instead of creating them from values here.
-  enabled: False
+  enabled: false
 
   # Path to load secrets for in the vault.
   path: ""
@@ -20,14 +20,14 @@ vault_secrets:
 hub:
   uid: 768
   gid: 768
-  #proxy_auth_token: ''
-  #crypto_key: ''
+  # proxy_auth_token: ''
+  # crypto_key: ''
   image: 'lsstsqre/sciplat-hub:latest'
-  persistent_home: True
+  persistent_home: true
   # Eliot as the root logger is good for Hub and WF Dispatcher.  Bad
   # otherwise.
-  eliot_root_logging: True
-  loglevel: INFO # Overridden by debug
+  eliot_root_logging: true
+  loglevel: INFO  # Overridden by debug
 
 # Dask settings
 dask:
@@ -132,7 +132,7 @@ prepuller:
 
 reaper:
   # You only need one reaper globally for a given Lab image
-  enabled: False
+  enabled: false
   hour_to_run: 2
   minute_to_run: 23
   keep_experimentals: 10

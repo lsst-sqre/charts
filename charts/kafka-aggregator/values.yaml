@@ -9,7 +9,7 @@ image:
 
 env:
   # The Kafka broker URL.
-  broker:  "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"
+  broker: "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"
   # The Confluent Schema Registry URL.
   registry_url: "https://schema-registry-sandbox-efd.lsst.codes"
   # Internal Confluent Schema Registry URL, used for aggregated topic schemas.

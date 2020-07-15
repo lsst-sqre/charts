@@ -1,5 +1,8 @@
 apiVersion: v1
 appVersion: "1.0"
 description: NFS fileserver for science platforms
+home: https://hub.docker.com/r/lsstsqre/sciplat-fileserver
 name: fileserver
-version: 0.2.1
+maintainers:
+  - name: athornton
+version: 0.2.2
