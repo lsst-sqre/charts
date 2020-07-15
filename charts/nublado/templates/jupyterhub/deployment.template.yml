@@ -186,11 +186,11 @@ spec:
             - name: jupyterhub-config
               mountPath: /opt/lsst/software/jupyterhub/config
             - name: base-passwd
-              mountPath: /opt/lsst/software/jupyterhub/base-passwd
-              subPath: base-passwd
+              mountPath: /opt/lsst/software/jupyterhub/base-files/passwd
+              subPath: passwd
             - name: base-group
-              mountPath: /opt/lsst/software/jupyterhub/base-group
-              subPath: base-group
+              mountPath: /opt/lsst/software/jupyterhub/base-files/group
+              subPath: group
       volumes:
         - name: metadata
           downwardAPI:
