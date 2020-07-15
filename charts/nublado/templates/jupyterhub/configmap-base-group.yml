@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: {{ template "nublado.fullname" . }}-base-group
 data:
-  passwd: |
+  group: |
 {{ .Values.base_group_file | indent 4}}
