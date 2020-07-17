@@ -11,7 +11,7 @@ repositories: {}
 # Docker image to use.
 image:
   repository: "lsstsqre/neophile"
-  tag: "0.0.1"
+  tag: "0.1.0"
   pullPolicy: "IfNotPresent"
 
 # Execution schedule (default is 4am on Monday).
