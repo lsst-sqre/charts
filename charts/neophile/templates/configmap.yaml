@@ -6,6 +6,9 @@ data:
   neophile.yaml: |
     allow_expressions: true
     cache_enabled: false
+    {{- if .Values.github_email }}
+    github_email: {{ .Values.github_email | quote }}
+    {{- end }}
     github_user: {{ .Values.github_user | quote }}
     repositories:
       {{- range $repository := .Values.repositories }}
