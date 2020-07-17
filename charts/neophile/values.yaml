@@ -1,6 +1,10 @@
 # Name of the GitHub user (must match the token in the secret).
 github_user: ""
 
+# Email address to use for GitHub commits.  Leave blank to use the public
+# email address of the user.
+github_email: ""
+
 # Repositories to monitor.
 repositories: {}
 
