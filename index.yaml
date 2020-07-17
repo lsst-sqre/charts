@@ -3,6 +3,18 @@ entries:
   cadc-tap:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-07-17T01:24:26.173871957Z"
+    description: A Helm chart for the CADC TAP service
+    digest: 44e7c769f263e1959763050da4f93b9f3827db17771da80616e44e6155650cff
+    home: https://github.com/lsst-sqre/lsst-tap-service
+    maintainers:
+    - name: cbanek
+    name: cadc-tap
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-0.1.11/cadc-tap-0.1.11.tgz
+    version: 0.1.11
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-07-08T19:49:21.103637423Z"
     description: A Helm chart for the CADC TAP service
     digest: 3703c73c22247ae5dce8c777f29556fd42b8d49e8333829162f72d28e7bfe5e8
@@ -20,6 +32,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-0.1.9/cadc-tap-0.1.9.tgz
     version: 0.1.9
   cadc-tap-postgres:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-07-17T01:24:26.268389224Z"
+    description: A Helm chart for the CADC TAP Postgres service
+    digest: 9ea11901763afbfd8751457a4609a523e2b04b047d4f20893fb17480db136d20
+    home: https://github.com/lsst-sqre/tap-postgres
+    maintainers:
+    - name: cbanek
+    name: cadc-tap-postgres
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-postgres-0.1.2/cadc-tap-postgres-0.1.2.tgz
+    version: 0.1.2
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-06-30T23:01:40.86044833Z"
@@ -52,6 +76,18 @@ entries:
   fileserver:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-07-17T01:24:26.350494896Z"
+    description: NFS fileserver for science platforms
+    digest: d35c4010803dd81dd10b126e6a36331f4f4698637bca49ab0319aec29150a6b0
+    home: https://hub.docker.com/r/lsstsqre/sciplat-fileserver
+    maintainers:
+    - name: athornton
+    name: fileserver
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/fileserver-0.2.2/fileserver-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-06-30T23:01:41.076396664Z"
     description: NFS fileserver for science platforms
     digest: ce2b5e55a4b4ef22ad1c6300af1ed3cf3730cfe6967b25eae58763b60aad3b35
@@ -62,6 +98,18 @@ entries:
   firefly:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-07-17T01:24:26.474492554Z"
+    description: A Helm chart for Firefly
+    digest: 458d319955ae75c520ac4f4e44a62dbcfc795d919f7d8e7923102943b4a8b50e
+    home: https://github.com/Caltech-IPAC/firefly
+    maintainers:
+    - name: cbanek
+    name: firefly
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/firefly-0.1.3/firefly-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-06-30T23:01:41.199287719Z"
     description: A Helm chart for Firefly
     digest: 3fb97a6bed004264b63cd4eaf015f36b7a8a70c27fc3a01e9a31cf8f7b580f68
@@ -70,6 +118,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/firefly-0.1.2/firefly-0.1.2.tgz
     version: 0.1.2
   gafaelfawr:
+  - apiVersion: v1
+    appVersion: 1.3.2
+    created: "2020-07-17T01:24:26.557901126Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 30203f75fbc085fd9d49148a99eec4a35492b1b86f86812bc767c5c742df7fd7
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-1.3.5/gafaelfawr-1.3.5.tgz
+    version: 1.3.5
   - apiVersion: v1
     appVersion: 1.3.2
     created: "2020-07-07T20:31:19.976791515Z"
@@ -115,6 +175,24 @@ entries:
   kafka-aggregator:
   - apiVersion: v1
     appVersion: 0.1.0
+    created: "2020-07-17T01:24:26.66117189Z"
+    description: A Kafka aggregator based on the Faust Python Stream Processing library
+    digest: e36761ca47dd02ad57acc9af416b5a920d57fa4e9b688d1c1ea78fbaf6b0ada5
+    home: https://kafka-aggregator.lsst.io/
+    keywords:
+    - Kafka, Faust, Python
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: kafka-aggregator
+    sources:
+    - https://github.com/lsst-sqre/kafka-aggregator
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kafka-aggregator-0.1.2/kafka-aggregator-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
+    appVersion: 0.1.0
     created: "2020-07-01T01:39:44.269938654Z"
     description: A Kafka aggregator based on the Faust Python Stream Processing library
     digest: d8a08978835e0a90f040d363fd020d2d9ab8897d88f604296dcd1acbae70ab60
@@ -132,6 +210,24 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/kafka-aggregator-0.1.1/kafka-aggregator-0.1.1.tgz
     version: 0.1.1
   kafka-connect-manager:
+  - apiVersion: v1
+    appVersion: 0.7.2
+    created: "2020-07-17T01:24:26.752258759Z"
+    description: A Helm chart to deploy the kafka connectors used by the EFD
+    digest: dac5f8adb81e18cdae0ea8a04173ccb3561e1025e0fd3dfd7bb86a93e3c5d38b
+    home: https://kafka-connect-manager.lsst.io/
+    keywords:
+    - Kafka, InfluxDB, Confluent Replicator, EFD
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: kafka-connect-manager
+    sources:
+    - https://github.com/lsst-sqre/kafka-connect-manager
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kafka-connect-manager-0.4.1/kafka-connect-manager-0.4.1.tgz
+    version: 0.4.1
   - apiVersion: v1
     appVersion: 0.7.2
     created: "2020-06-30T23:01:41.464546505Z"
@@ -175,6 +271,18 @@ entries:
   landing-page:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-07-17T01:24:26.863526021Z"
+    description: Simple landing page for linking to services, and showing MOTD.
+    digest: 73cb45889fe6360448c107a886981a7561a15c47d4d7474375806525fa1f626f
+    home: https://github.com/lsst-dm/lsp-landing-page
+    maintainers:
+    - name: cbanek
+    name: landing-page
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/landing-page-0.2.3/landing-page-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-06-30T23:01:41.62933531Z"
     description: Simple landing page for linking to services, and showing MOTD.
     digest: ff285ca885c0081562fda6945db02bdee78bb144bbcc93325078ab3d68e50bf7
@@ -184,6 +292,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/landing-page-0.2.2/landing-page-0.2.2.tgz
     version: 0.2.2
   mobu:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-07-17T01:24:26.946831293Z"
+    description: The mobu generates system load by pretending to be a random scientist
+    digest: f7cc2843651f73f19bca05f24dfdec54ec049641dbadde46bd302867ee7c27f0
+    home: https://github.com/lsst-sqre/mobu
+    maintainers:
+    - name: cbanek
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.3/mobu-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-07-09T22:47:11.069328048Z"
@@ -203,6 +323,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.1/mobu-0.1.1.tgz
     version: 0.1.1
   neophile:
+  - apiVersion: v1
+    appVersion: 0.0.1
+    created: "2020-07-17T01:24:27.049828558Z"
+    description: Periodically check for needed dependency updates
+    digest: 96f9aa05c78359d8a861b4b1a8745fda6f6ce1a10ee39f831072e0e051f2b176
+    home: https://neophile.lsst.io/
+    maintainers:
+    - name: rra
+    name: neophile
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/neophile-0.0.4/neophile-0.0.4.tgz
+    version: 0.0.4
   - apiVersion: v1
     appVersion: 0.0.1
     created: "2020-07-15T01:37:53.519384623Z"
@@ -234,6 +366,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/neophile-0.0.1/neophile-0.0.1.tgz
     version: 0.0.1
   nublado:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-07-17T01:24:27.175839818Z"
+    description: A Helm chart for Kubernetes
+    digest: 34c1c84a09e695123018d73502f2199d256b3fc737c6d3819016cd885ddc9503
+    home: https://github.com/lsst-sqre/nublado
+    maintainers:
+    - name: athornton
+    name: nublado
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado-0.9.4/nublado-0.9.4.tgz
+    version: 0.9.4
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-07-15T17:37:33.764766658Z"
@@ -282,6 +426,24 @@ entries:
   opendistro-es:
   - apiVersion: v1
     appVersion: 1.4.0
+    created: "2020-07-17T01:24:27.260867991Z"
+    description: Open Distro for Elasticsearch
+    digest: 8536281ef9be2a136be3aec54a5e81096e24946bd73c7b98756cf2a801624336
+    home: https://opendistro.github.io/for-elasticsearch/
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: derek.heldt-werle@viasat.com
+      name: DerekHeldtWerle
+    - email: kalvin.chau@viasat.com
+      name: kalvinnchau
+    name: opendistro-es
+    sources:
+    - https://pages.git.viasat.com/ATG/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/opendistro-es-1.4.1/opendistro-es-1.4.1.tgz
+    version: 1.4.1
+  - apiVersion: v1
+    appVersion: 1.4.0
     created: "2020-06-30T23:01:41.99355908Z"
     description: Open Distro for Elasticsearch
     digest: c6c993836b2c82cae030e2f921cd8a1156157b8657569ac6b9af8ee7738eb9c9
@@ -315,6 +477,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/opendistro-es-1.1.0/opendistro-es-1.1.0.tgz
     version: 1.1.0
   postgres:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-07-17T01:24:27.348830563Z"
+    description: Postgres RDBMS for LSP
+    digest: e0608c5eed6e1239b851dfcaf6a4bf8454e74f201cbab8e73c694d2249002f09
+    home: https://hub.docker.com/r/lsstsqre/lsp-postgres
+    maintainers:
+    - name: athornton
+    name: postgres
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/postgres-0.0.24/postgres-0.0.24.tgz
+    version: 0.0.24
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-06-30T23:01:42.081657381Z"
