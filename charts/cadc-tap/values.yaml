@@ -12,7 +12,7 @@ tag: "1.0"
 qserv_host: "qserv-master01:4040"
 
 # Spin up a container to pretend to be QServ.
-use_mock_qserv: True
+use_mock_qserv: true
 
 gcs_bucket: ""
 gcs_bucket_url: ""
@@ -20,7 +20,7 @@ gcs_bucket_url: ""
 vault_secrets:
   # Use the vault-secrets-operator to load secrets from vault
   # instead of creating them from values here.
-  enabled: False
+  enabled: false
 
   # Path to load secrets for in the vault.
   path: ""
@@ -29,7 +29,7 @@ secrets:
   # Create a normal k8s secret using the values provided here.
   # Even if you don't have these secrets, you still need to have
   # either secrets.enabled or vault_secrets.enabled.
-  enabled: True
+  enabled: true
 
   # GCE service account credential JSON file, base64 encoded.
   # You can also pass this in using --set-file secrets.google_creds=google_creds.json
@@ -52,7 +52,7 @@ querymonkey_replicas: 0
 # Settings for the ingress rules.
 ingress:
   # Force SSL, which is used in annotations and rewriting redirects.
-  ssl: True
+  ssl: true
   # Additional annotations to use for endpoints that allow anonymous
   # access, such as /capabilities, /availability
   anonymous_annotations: {}

@@ -1,5 +1,8 @@
 apiVersion: v1
 appVersion: "1.0"
 description: A Helm chart for the CADC TAP Postgres service
+home: https://github.com/lsst-sqre/tap-postgres
 name: cadc-tap-postgres
-version: 0.1.1
+maintainers:
+  - name: cbanek
+version: 0.1.2

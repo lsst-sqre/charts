@@ -1,6 +1,8 @@
 apiVersion: v1
 name: neophile
-version: 0.0.3
+version: 0.0.4
 description: Periodically check for needed dependency updates
-home: https://github.com/lsst-sqre/neophile
+home: https://neophile.lsst.io/
+maintainers:
+  - name: rra
 appVersion: 0.0.1

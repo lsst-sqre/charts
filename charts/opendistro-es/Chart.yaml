@@ -17,13 +17,14 @@ appVersion: 1.4.0
 description: 'Open Distro for Elasticsearch'
 engine: gotpl
 kubeVersion: ^1.10.0-0
+home: https://opendistro.github.io/for-elasticsearch/
 maintainers:
 - email: derek.heldt-werle@viasat.com
-  name: Derek Heldt-Werle
+  name: DerekHeldtWerle
 - email: kalvin.chau@viasat.com
-  name: Kalvin Chau
+  name: kalvinnchau
 name: opendistro-es
 sources:
 - https://pages.git.viasat.com/ATG/charts
 # Chart version
-version: 1.4.0
+version: 1.4.1

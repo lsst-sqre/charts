@@ -2,5 +2,7 @@ apiVersion: v1
 appVersion: "1.0"
 description: Simple landing page for linking to services, and showing MOTD.
 name: landing-page
-version: 0.2.2
+version: 0.2.3
 home: https://github.com/lsst-dm/lsp-landing-page
+maintainers:
+  - name: cbanek

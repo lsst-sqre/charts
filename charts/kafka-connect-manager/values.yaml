@@ -73,5 +73,5 @@ replicator:
   checkInterval: 300000
 
 env:
-  broker:  "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"
+  broker: "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"
   kafkaConnect: "http://cp-helm-charts-cp-kafka-connect.cp-helm-charts:8083"

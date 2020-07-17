@@ -44,7 +44,6 @@ kibana:
       existingCertSecret:
 
 
-
   configDirectory: "/usr/share/kibana/config"
   certsDirectory: "/usr/share/kibana/certs"
 
@@ -84,7 +83,6 @@ kibana:
 
     # opendistro_security.cookie.secure: true
     # opendistro_security.cookie.password: ${COOKIE_PASS}
-
 
 
   ## Node labels for pod assignment

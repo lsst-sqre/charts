@@ -2,13 +2,13 @@ apiVersion: v1
 appVersion: "0.1.0"
 description: A Kafka aggregator based on the Faust Python Stream Processing library
 name: kafka-aggregator
-version: 0.1.1
+version: 0.1.2
 keywords:
   - Kafka, Faust, Python
 home: https://kafka-aggregator.lsst.io/
 sources:
   - https://github.com/lsst-sqre/kafka-aggregator
 maintainers:
-  - name: Angelo Fausti
+  - name: afausti
     email: afausti@lsst.org
     url: https://afausti.github.io/
