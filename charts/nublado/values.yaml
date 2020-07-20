@@ -247,6 +247,9 @@ jupyterhub_config: |
   c.ConfigurableHTTPProxy.should_start = False
   c.ConfigurableHTTPProxy.api_url = lc.proxy_api_url
 
+  # We want the Lab to be the default interface
+  c.Spawner.default_url = '/lab'
+
 base_passwd_file: |
   root:x:0:0:root:/root:/bin/bash
   bin:x:1:1:bin:/bin:/sbin/nologin
