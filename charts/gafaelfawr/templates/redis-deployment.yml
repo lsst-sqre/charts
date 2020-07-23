@@ -17,7 +17,8 @@ spec:
       containers:
       - name: redis
         image: redis
-        imagePullPolicy: Always
+        imagePullPolicy: "Always"
+        restartPolicy: "OnFailure"
         args:
           - "redis-server"
           - "--appendonly"
@@ -35,6 +36,14 @@ spec:
         resources:
           limits:
             cpu: "1"
+        livenessProbe:
+          exec:
+            command:
+              - "sh"
+              - "-c"
+              - "redis-cli -h $(hostname) incr health:counter"
+          initialDelaySeconds: 15
+          periodSeconds: 30
         volumeMounts:
           - name: redis-data
             mountPath: "/data"
