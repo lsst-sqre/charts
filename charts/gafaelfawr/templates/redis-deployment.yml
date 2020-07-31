@@ -19,8 +19,17 @@ spec:
         image: redis
         imagePullPolicy: Always
         args:
-          - redis-server
-          - --appendonly yes
+          - "redis-server"
+          - "--appendonly"
+          - "yes"
+          - "--requirepass"
+          - "$(REDIS_PASSWORD)"
+        env:
+          - name: "REDIS_PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "helpers.fullname" . }}-secret
+                key: "redis-password"
         ports:
           - containerPort: 6379
         resources:
