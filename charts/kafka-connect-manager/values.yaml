@@ -11,7 +11,7 @@ influxdbSink:
   ## Name of the connector to create
   name: influxdb-sink
   ## InfluxDB URL, can be internal to the cluster. Required.
-  connectInfluxUrl:  "http://localhost:8086"
+  connectInfluxUrl: "http://localhost:8086"
   ## InfluxDB database used by the connector to write to. Required.
   connectInfluxDb: ""
   ## InfluxDB credentials. Required.
