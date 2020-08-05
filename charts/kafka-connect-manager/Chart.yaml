@@ -1,9 +1,9 @@
 apiVersion: v1
 name: kafka-connect-manager
-version: 0.4.1
+version: 0.5.0
 description: A Helm chart to deploy the kafka connectors used by the EFD
 keywords:
-  - Kafka, InfluxDB, Confluent Replicator, EFD
+  - Kafka, InfluxDB, S3
 home: https://kafka-connect-manager.lsst.io/
 sources:
   - https://github.com/lsst-sqre/kafka-connect-manager
@@ -11,4 +11,4 @@ maintainers:
   - name: afausti
     email: afausti@lsst.org
     url: https://afausti.github.io/
-appVersion: 0.7.2
+appVersion: 0.8.0
