@@ -1,0 +1,79 @@
+{{- if .Values.s3Sink.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kafka-connect-manager.name" . }}
+  labels:
+    helm.sh/chart: {{ include "kafka-connect-manager.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "kafka-connect-manager.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "kafka-connect-manager.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+      - name:  {{ include "kafka-connect-manager.name" . }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy:  {{ .Values.image.pullPolicy }}
+        command:
+        - kafkaconnect
+        - create
+        - s3-sink
+        {{- if .Values.s3Sink.autoUpdate }}
+        - --auto-update
+        {{- end }}
+        env:
+          - name: KAFKA_CONNECT_NAME
+            value: {{ .Values.s3Sink.name | quote }}
+          - name: KAFKA_CONNECT_S3_BUCKET_NAME
+            value: {{ .Values.s3Sink.s3BucketName | quote }}
+          - name: KAFKA_CONNECT_S3_REGION
+            value: {{ .Values.s3Sink.s3Region | quote }}
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.s3Sink.awsSecret | quote }}
+                key: aws_access_key_id
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.s3Sink.awsSecret | quote }}
+                key: aws_secret_access_key
+          - name: KAFKA_CONNECT_S3_TOPICS_DIR
+            value: {{ .Values.s3Sink.topicsDir | quote }}
+          - name: KAFKA_CONNECT_S3_FLUSH_SIZE
+            value: {{ .Values.s3Sink.flushSize | quote }}
+          - name: KAFKA_CONNECT_S3_ROTATE_INTERVAL_MS
+            value: {{ .Values.s3Sink.rotateIntervalMs | quote }}
+          - name: KAFKA_CONNECT_S3_PARTITION_DURATION_MS
+            value: {{ .Values.s3Sink.partitionDurationMs | quote }}
+          - name: KAFKA_CONNECT_S3_PATH_FORMAT
+            value: {{ .Values.s3Sink.pathFormat | quote }}
+          - name: KAFKA_CONNECT_TASKS_MAX
+            value: {{ .Values.s3Sink.tasksMax | quote }}
+          - name: KAFKA_CONNECT_TOPIC_REGEX
+            value: {{ .Values.s3Sink.topicRegex | quote }}
+          - name: KAFKA_CONNECT_CHECK_INTERVAL
+            value: {{ .Values.s3Sink.checkInterval | quote  }}
+          - name: KAFKA_CONNECT_EXCLUDED_TOPICS
+            value: {{ .Values.s3Sink.excludedTopics | quote }}
+          - name: KAFKA_CONNECT_S3_LOCALE
+            value: {{ .Values.s3Sink.locale | quote }}
+          - name: KAFKA_CONNECT_S3_TIMEZONE
+            value: {{ .Values.s3Sink.timezone | quote }}
+          - name: KAFKA_CONNECT_TIMESTAMP_EXTRACTOR
+            value: {{ .Values.s3Sink.timestampExtractor | quote }}
+          - name: KAFKA_CONNECT_TIMESTAMP_FIELD
+            value: {{ .Values.s3Sink.timestampField | quote }}
+          - name: KAFKA_BROKER_URL
+            value: {{ .Values.env.kafkaBrokerUrl | quote }}
+          - name: KAFKA_CONNECT_URL
+            value: {{ .Values.env.kafkaConnectUrl | quote }}
+{{- end }}
