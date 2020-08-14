@@ -11,7 +11,7 @@ ingress:
 # Docker image to use.
 image:
   repository: "lsstsqre/gafaelfawr"
-  tag: "1.3.2"
+  tag: "1.4.0"
   pullPolicy: "IfNotPresent"
 
 # Existing PVC for redis claim
@@ -36,9 +36,19 @@ proxies:
   - "172.16.0.0/12"
   - "192.168.0.0/16"
 
-# Session length and token expiration (in minutes).
 issuer:
+  # Session length and token expiration (in minutes).
   exp_minutes: 1440  # 1 day
+
+  # Whether to issue tokens for InfluxDB.  If set to true, influxdb-secret
+  # must be set in the Gafaelfawr secret.
+  influxdb:
+    enabled: false
+
+# Whether to support OpenID Connect clients.  If set to true,
+# oidc-server-secrets must be set in the Gafaelfawr secret.
+oidc_server:
+  enabled: false
 
 # Names and descriptions of all scopes in use.  This is used to populate
 # the new token creation page.  Only scopes listed here will be options

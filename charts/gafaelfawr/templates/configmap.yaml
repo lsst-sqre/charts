@@ -25,6 +25,9 @@ data:
         internal: "https://{{ .Values.host }}/api"
       key_file: "/etc/gafaelfawr/secrets/signing-key"
       exp_minutes: {{ .Values.issuer.exp_minutes }}
+      {{- if .Values.issuer.influxdb.enabled }}
+      influxdb_secret_file: "/etc/gafaelfawr/secrets/influxdb-secret"
+      {{- end }}
 
     {{- if .Values.github }}
 
@@ -58,6 +61,10 @@ data:
       key_ids:
         - "244B235F6B28E34108D101EAC7362C4E"
 
+    {{- end }}
+
+    {{- if .Values.oidc_server.enabled }}
+    oidc_server_secrets_file: "/etc/gafaelfawr/secrets/oidc-server-secrets"
     {{- end }}
 
     known_scopes:
