@@ -14,39 +14,39 @@ spec:
       labels:
         app: {{ template "helpers.fullname" . }}-redis
     spec:
+      restartPolicy: "OnFailure"
       containers:
-      - name: redis
-        image: redis
-        imagePullPolicy: "Always"
-        restartPolicy: "OnFailure"
-        args:
-          - "redis-server"
-          - "--appendonly"
-          - "yes"
-          - "--requirepass"
-          - "$(REDIS_PASSWORD)"
-        env:
-          - name: "REDIS_PASSWORD"
-            valueFrom:
-              secretKeyRef:
-                name: {{ template "helpers.fullname" . }}-secret
-                key: "redis-password"
-        ports:
-          - containerPort: 6379
-        resources:
-          limits:
-            cpu: "1"
-        livenessProbe:
-          exec:
-            command:
-              - "sh"
-              - "-c"
-              - "redis-cli -h $(hostname) incr health:counter"
-          initialDelaySeconds: 15
-          periodSeconds: 30
-        volumeMounts:
-          - name: redis-data
-            mountPath: "/data"
+        - name: redis
+          image: redis
+          imagePullPolicy: "Always"
+          args:
+            - "redis-server"
+            - "--appendonly"
+            - "yes"
+            - "--requirepass"
+            - "$(REDIS_PASSWORD)"
+          env:
+            - name: "REDIS_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "helpers.fullname" . }}-secret
+                  key: "redis-password"
+          ports:
+            - containerPort: 6379
+          resources:
+            limits:
+              cpu: "1"
+          livenessProbe:
+            exec:
+              command:
+                - "sh"
+                - "-c"
+                - "redis-cli -h $(hostname) incr health:counter"
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          volumeMounts:
+            - name: redis-data
+              mountPath: "/data"
       volumes:
         - name: redis-data
           {{- if .Values.redis_claim }}
