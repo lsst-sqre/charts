@@ -17,7 +17,7 @@ spec:
           containers:
             - name: {{ template "nublado.fullname" . }}-prepuller
               imagePullPolicy: "Always"
-              image: "lsstsqre/prepuller"
+              image: "{{ .Values.prepuller.image }}"
               env:
               - name: DEBUG
                 value: "{{.Values.debug}}"
