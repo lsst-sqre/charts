@@ -126,6 +126,7 @@ routes:
     wf: ''
 
 prepuller:
+  image: 'lsstsqre/prepuller:latest'
   minute_to_run: 35
   uid: 769
   gid: 769
