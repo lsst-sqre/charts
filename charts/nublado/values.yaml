@@ -97,7 +97,9 @@ proxy:
   max_http_header_size: 16384
   ingress:
     host: ''
-    annotations: []
+    tls:
+      issuer: ''
+      secret_name: ''
 
 wf:
   image: 'lsstsqre/wfdispatcher:latest'
