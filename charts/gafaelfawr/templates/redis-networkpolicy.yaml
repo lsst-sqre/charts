@@ -13,7 +13,7 @@ spec:
     - from:
         - podSelector:
             matchLabels:
-              app: {{ template "helpers.fullname" . }}
+              name: {{ template "helpers.fullname" . }}
       ports:
         - protocol: TCP
           port: 6379
