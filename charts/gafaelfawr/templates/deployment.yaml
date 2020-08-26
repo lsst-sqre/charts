@@ -16,6 +16,7 @@ spec:
         name: {{ template "helpers.fullname" . }}
 {{ include "helpers.labels" . | indent 8 }}
     spec:
+      automountServiceAccountToken: false
       containers:
         - name: gafaelfawr
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -23,6 +24,12 @@ spec:
           ports:
             - containerPort: 8080
               name: app
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+            readOnlyRootFilesystem: true
           volumeMounts:
             - name: {{ template "helpers.fullname" . }}-config
               mountPath: "/etc/gafaelfawr"
@@ -30,6 +37,10 @@ spec:
             - name: {{ template "helpers.fullname" . }}-secret
               mountPath: "/etc/gafaelfawr/secrets"
               readOnly: true
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
       volumes:
         - name: {{ template "helpers.fullname" . }}-config
           configMap:

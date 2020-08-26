@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ template "helpers.fullname" . }}-redis-networkpolicy
+spec:
+  podSelector:
+    matchLabels:
+      app: {{ template "helpers.fullname" . }}-redis
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: {{ template "helpers.fullname" . }}
+      ports:
+        - protocol: TCP
+          port: 6379
