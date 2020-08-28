@@ -100,6 +100,7 @@ proxy:
     tls:
       issuer: ''
       secret_name: ''
+      tls_host: ''
 
 wf:
   image: 'lsstsqre/wfdispatcher:latest'
