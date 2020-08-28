@@ -7,10 +7,19 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "0m"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.routes.hub }}/$2
+{{- if .Values.proxy.ingress.tls.cluster_issuer }}
+    cert-manager.io/cluster-issuer: {{ .Values.proxy.ingress.tls.cluster_issuer }}
+{{- end }}
 {{ if .Values.proxy.ingress.annotations }}
 {{ toYaml .Values.proxy.ingress.annotations | indent 4 }}
 {{ end }}
 spec:
+{{- if and .Values.proxy.ingress.tls.secret_name .Values.proxy.ingress.tls.tls_host }}
+  tls:
+    - secretName: {{ .Values.proxy.ingress.tls.secret_name }}
+      hosts:
+        - {{ .Values.proxy.ingress.tls.tls_host }}
+{{- end }}
   rules:
 {{ if .Values.proxy.ingress.host }}
   - host: {{ .Values.proxy.ingress.host }}
