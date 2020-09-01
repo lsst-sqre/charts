@@ -518,6 +518,18 @@ entries:
   nublado:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-09-01T22:36:25.983959623Z"
+    description: A Helm chart for Kubernetes
+    digest: e1d53d023210591fe65d6c21dabf3b5d4f63fa3c0602e0f123b8d2eb35b624af
+    home: https://github.com/lsst-sqre/nublado
+    maintainers:
+    - name: athornton
+    name: nublado
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado-0.9.9/nublado-0.9.9.tgz
+    version: 0.9.9
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-08-28T17:21:31.49366932Z"
     description: A Helm chart for Kubernetes
     digest: ff92462c0a6cc06ddb10045dae839e66dff231c00a3c226764ef5d64bf349a59
