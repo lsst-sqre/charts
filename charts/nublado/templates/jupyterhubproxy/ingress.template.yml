@@ -14,9 +14,9 @@ metadata:
 {{ toYaml .Values.proxy.ingress.annotations | indent 4 }}
 {{ end }}
 spec:
-{{- if and .Values.proxy.ingress.tls.secret_name .Values.proxy.ingress.tls.tls_host }}
+{{- if and .Values.proxy.ingress.tls.secret .Values.proxy.ingress.tls.tls_host }}
   tls:
-    - secretName: {{ .Values.proxy.ingress.tls.secret_name }}
+    - secretName: {{ .Values.proxy.ingress.tls.secret }}
       hosts:
         - {{ .Values.proxy.ingress.tls.tls_host }}
 {{- end }}
