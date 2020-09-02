@@ -26,6 +26,13 @@ spec:
           ports:
             - name: "redis"
               containerPort: 6379
+          livenessProbe:
+            exec:
+              command:
+                - "sh"
+                - "-c"
+                - "redis-cli -h $(hostname) incr health:counter"
+            periodSeconds: 30
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
