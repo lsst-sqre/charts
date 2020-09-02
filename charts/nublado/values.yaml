@@ -98,8 +98,8 @@ proxy:
   ingress:
     host: ''
     tls:
-      issuer: ''
-      secret_name: ''
+      cluster_issuer: ''
+      secret: ''
       tls_host: ''
 
 wf:
