@@ -708,4 +708,23 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/postgres-0.0.23/postgres-0.0.23.tgz
     version: 0.0.23
+  squash-api:
+  - apiVersion: v1
+    appVersion: 0.5.0
+    created: "2020-09-03T19:24:22.861508119Z"
+    description: A Helm chart to deploy the SQuaSH API
+    digest: ed131715b8663c3814a4ca359293c400f77f12d03242147b6ace3d608b7ebb7d
+    home: https://squash.lsst.io/
+    keywords:
+    - SQuaSH, InfluxDB, S3
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: squash-api
+    sources:
+    - https://github.com/lsst-sqre/squash-api/
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
+    version: 0.1.0
 generated: "2020-06-30T23:01:40.637550211Z"
