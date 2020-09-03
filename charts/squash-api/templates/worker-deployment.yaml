@@ -1,0 +1,120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "squash-api.fullname" . }}-worker
+  labels:
+{{ include "squash-api.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "squash-api.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "squash-api.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        # Celery worker
+        - name: worker
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command:
+          - celery
+          - -A
+          - app.tasks
+          - -E
+          - -l
+          - INFO
+          - worker
+          env:
+          - name: SQUASH_DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.squashDBSecret | quote }}
+                key: username
+          - name: SQUASH_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.squashDBSecret | quote }}
+                key: password
+          - name: SQUASH_API_PROFILE
+            value: "app.config.Production"
+          - name: SQUASH_DEFAULT_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.squashSecret | quote }}
+                key: username
+          - name: SQUASH_DEFAULT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.squashSecret | quote }}
+                key: password
+          - name: SQUASH_ETL_MODE
+            value:  {{ .Values.squashETLMode | quote }}
+          - name: CELERY_BROKER_URL
+            value: {{ .Values.redisUrl | quote }}
+          - name: S3_BUCKET
+            value: {{ .Values.s3BucketName | quote }}
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.awsSecret | quote }}
+                key: "AWS_ACCESS_KEY_ID"
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.awsSecret | quote }}
+                key: "AWS_SECRET_ACCESS_KEY"
+          - name: INFLUXDB_API_URL
+            value: {{ .Values.influxUrl | quote }}
+          - name: INFLUXDB_DATABASE
+            value: {{ .Values.influxDb | quote }}
+          - name: INFLUXDB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.influxSecret | quote }}
+                key: influxdb-user
+          - name: INFLUXDB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.influxSecret | quote }}
+                key: influxdb-password
+
+        # https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine
+        - name: cloudsql-proxy
+          image: "{{ .Values.cloudSQLImage.repository }}:{{ .Values.cloudSQLImage.tag }}"
+          imagePullPolicy:  {{ .Values.cloudSQLImage.pullPolicy }}
+          command: ["/cloud_sql_proxy", "--dir=/cloudsql",
+                    "-instances=plasma-geode-127520:us-central1:{{ .Values.instanceConnectionName }}=tcp:3306",
+                    "-credential_file=/secrets/cloudsql/credentials.json"]
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
+            - name: cloudsql
+              mountPath: /cloudsql
+      volumes:
+        # https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: {{ .Values.cloudSQLInstanceSecret }}
+        - name: cloudsql
+          emptyDir:
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
