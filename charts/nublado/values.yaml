@@ -107,7 +107,7 @@ wf:
   api_addr: '0.0.0.0'
 
 js9:
-  image: 'ericmandel/js9server:latest'
+  image: 'ericmandel/js9server:v0.2'
 
 routes:
   hub: '/nb'
