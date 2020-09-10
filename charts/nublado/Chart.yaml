@@ -5,4 +5,4 @@ home: https://github.com/lsst-sqre/nublado
 maintainers:
   - name: athornton
 name: nublado
-version: 0.9.9
+version: 0.9.10
