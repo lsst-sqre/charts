@@ -11,7 +11,7 @@ ingress:
 # Docker image to use.
 image:
   repository: "lsstsqre/gafaelfawr"
-  tag: "1.4.0"
+  tag: "1.4.1"
   pullPolicy: "IfNotPresent"
 
 # Existing PVC for redis claim
