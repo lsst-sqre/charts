@@ -27,6 +27,9 @@ data:
       exp_minutes: {{ .Values.issuer.exp_minutes }}
       {{- if .Values.issuer.influxdb.enabled }}
       influxdb_secret_file: "/etc/gafaelfawr/secrets/influxdb-secret"
+      {{- if .Values.issuer.influxdb.username }}
+      influxdb_username: {{ .Values.issuer.influxdb.username | quote }}
+      {{- end }}
       {{- end }}
 
     {{- if .Values.github }}
