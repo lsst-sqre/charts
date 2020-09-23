@@ -55,7 +55,7 @@ spec:
               name: {{ include "firefly.fullname" . }}-secret
               key: ADMIN_PASSWORD
         - name: FIREFLY_OPTS
-          value: "-Dvisualize.fits.search.path=/datasets"
+          value: -Dvisualize.fits.search.path=/datasets\ -Dredis.host={{ include "firefly.fullname" . }}-redis
         - name: FIREFLY_SHARED_WORK_DIR
           value: /firefly/workarea
         - name: SERVER_CONFIG_DIR
