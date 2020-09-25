@@ -33,3 +33,9 @@ spec:
         backend:
           serviceName: {{ template "helpers.fullname" . }}-service
           servicePort: 8080
+      {{- if .Values.oidc_server.enabled }}
+      - path: /.well-known/openid-configuration
+        backend:
+          serviceName: {{ template "helpers.fullname" . }}-service
+          servicePort: 8080
+      {{- end }}
