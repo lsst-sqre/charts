@@ -105,6 +105,8 @@ proxy:
 wf:
   image: 'lsstsqre/wfdispatcher:latest'
   api_addr: '0.0.0.0'
+  ingress_ui:
+    annotations: {}
 
 js9:
   image: 'ericmandel/js9server:v0.2'
