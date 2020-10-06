@@ -8,4 +8,3 @@ sources:
   - https://github.com/lsst-sqre/nublado2
   - https://github.com/lsst-sqre/charts
 kubeVersion: '>=1.11.0-0'
-tillerVersion: '>=2.11.0-0'
