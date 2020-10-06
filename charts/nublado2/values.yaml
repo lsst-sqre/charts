@@ -48,7 +48,7 @@ hub:
   extraVolumeMounts: []
   image:
     name: jupyterhub/k8s-hub
-    tag: 'set-by-chartpress'
+    tag: '0.9.0-n298.h26f07eed'
     pullSecrets:
   resources:
     requests:
@@ -180,7 +180,7 @@ proxy:
   secretSync:
     image:
       name: jupyterhub/k8s-secret-sync
-      tag: 'set-by-chartpress'
+      tag: '0.9.0-n070.h9c5c0f5f'
     resources: {}
   labels: {}
   nodeSelector: {}
@@ -247,7 +247,7 @@ singleuser:
   networkTools:
     image:
       name: jupyterhub/k8s-network-tools
-      tag: 'set-by-chartpress'
+      tag: '0.9.0-n000.h5fd3f0d1'
   cloudMetadata:
     # block set to true will append a privileged initContainer using the
     # iptables to block the sensitive metadata server at the provided ip.
@@ -296,7 +296,7 @@ singleuser:
       storageAccessModes: [ReadWriteOnce]
   image:
     name: jupyterhub/k8s-singleuser-sample
-    tag: 'set-by-chartpress'
+    tag: '0.9.0-n056.hdb19e107'
     pullPolicy: IfNotPresent
     # pullSecrets:
     #   - secretName
@@ -372,7 +372,7 @@ prePuller:
     enabled: true
     image:
       name: jupyterhub/k8s-image-awaiter
-      tag: 'set-by-chartpress'
+      tag: '0.9.0-n185.h2c831129'
     podSchedulingWaitDuration: 10
   continuous:
     enabled: true
