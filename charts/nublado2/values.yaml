@@ -164,11 +164,11 @@ proxy:
   traefik:
     image:
       name: traefik
-      tag: v2.3 # ref: https://hub.docker.com/_/traefik?tab=tags
+      tag: v2.3  # ref: https://hub.docker.com/_/traefik?tab=tags
     hsts:
       includeSubdomains: false
       preload: false
-      maxAge: 15724800 # About 6 months
+      maxAge: 15724800  # About 6 months
     resources: {}
     extraEnv: {}
     extraVolumes: []
@@ -190,7 +190,7 @@ proxy:
   https:
     enabled: false
     type: letsencrypt
-    #type: letsencrypt, manual, offload, secret
+    # type: letsencrypt, manual, offload, secret
     letsencrypt:
       contactEmail: ''
       # Specify custom server here (https://acme-staging-v02.api.letsencrypt.org/directory) to hit staging LE
