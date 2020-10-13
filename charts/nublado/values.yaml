@@ -85,13 +85,15 @@ lab:
   repos: 'https://github.com/lsst-sqre/notebook-demo'
 
   # Set this to turn on the Multus CNI, necessary for bridging to the
-  #  physical network at the summit.
+  #  physical network in SAL environments.
 
   enable_multus: ''
 
   # This is used in SAL environments.  The value "nocontrol" means no SAL.
   dds_domain: 'nocontrol'
-
+  dds_partition_prefix: 'nocontrol'
+  # What interface talks to the instruments?
+  dds_interface: 'lo'
 
 proxy:
   max_http_header_size: 16384
