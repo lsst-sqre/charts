@@ -115,6 +115,10 @@ spec:
               value: '/opt/lsst/software/jupyterhub/config'
             - name: LSST_DDS_DOMAIN
               value: '{{.Values.lab.dds_domain}}'
+            - name: LSST_DDS_PARTITION_PREFIX
+              value: '{{.Values.lab.dds_partition_prefix}}'
+            - name: LSST_DDS_INTERFACE
+              value: '{{.Values.lab.dds_interface}}'
             - name: HUB_ROUTE
               value: '{{.Values.routes.hub}}'
             - name: FIREFLY_ROUTE
