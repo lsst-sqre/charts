@@ -6,4 +6,4 @@ metadata:
     {{- include "nublado2.labels" . | nindent 4 }}
 data:
   hub_config.yaml: |
-    {{- toYaml .Values.nublado_config | nindent 4 }}
+    {{- toYaml .Values.config | nindent 4 }}

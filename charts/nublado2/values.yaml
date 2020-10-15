@@ -20,4 +20,4 @@ jupyterhub:
         mountPath: /etc/jupyterhub/hub_config.yaml
         subPath: hub_config.yaml
 
-nublado_config: {}
+config: {}
