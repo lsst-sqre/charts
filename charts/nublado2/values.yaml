@@ -4,6 +4,11 @@
 
 jupyterhub:
   hub:
+    containerSecurityContext:
+      runAsUser: 768
+      runAsGroup: 768
+      fsGroup: 768
+      allowPrivilegeEscalation: false
     enableConfigMap: false
     baseUrl: '/n2'
     extraVolumes:
