@@ -1,0 +1,26 @@
+# Default values for nublado2.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+jupyterhub:
+  hub:
+    containerSecurityContext:
+      runAsUser: 768
+      runAsGroup: 768
+      fsGroup: 768
+      allowPrivilegeEscalation: false
+    baseUrl: '/n2'
+    extraConfig:
+      nublado.py: |
+        import nublado2.config
+        nublado2.config.setup_config(c)
+    extraVolumes:
+      - name: nublado-config
+        configMap:
+          name: nublado-config
+    extraVolumeMounts:
+      - name: nublado-config
+        mountPath: /etc/jupyterhub/hub_config.yaml
+        subPath: hub_config.yaml
+
+config: {}
