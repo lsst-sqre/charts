@@ -9,4 +9,4 @@ maintainers:
 sources:
   - https://github.com/lsst-sqre/nublado2
   - https://github.com/lsst-sqre/charts
-kubeVersion: '>=1.11.0-0'
+kubeVersion: '>=1.16.0-0'
