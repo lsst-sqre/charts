@@ -12,15 +12,15 @@ jupyterhub:
     baseUrl: '/n2'
     extraConfig:
       nublado.py: |
-        import nublado2.config
-        nublado2.config.setup_config(c)
+        import nublado2.hub_config
+        nublado2.hub_config.HubConfig().configure(c)
     extraVolumes:
       - name: nublado-config
         configMap:
           name: nublado-config
     extraVolumeMounts:
       - name: nublado-config
-        mountPath: /etc/jupyterhub/hub_config.yaml
-        subPath: hub_config.yaml
+        mountPath: /etc/jupyterhub/nublado_config.yaml
+        subPath: nublado_config.yaml
 
 config: {}
