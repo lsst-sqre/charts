@@ -23,4 +23,9 @@ jupyterhub:
         mountPath: /etc/jupyterhub/nublado_config.yaml
         subPath: nublado_config.yaml
 
+  auth:
+    type: custom
+    custom:
+      className: nublado2.auth.GafaelfawrAuthenticator
+
 config: {}
