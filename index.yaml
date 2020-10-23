@@ -340,6 +340,20 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/influxdb-3.0.3/influxdb-3.0.3.tgz
     version: 3.0.3
+  kafdrop:
+  - apiVersion: v1
+    appVersion: 3.x
+    created: "2020-10-23T18:50:26.389760505Z"
+    description: A Helm chart for Kafdrop
+    digest: 1f2b27f4c7922ee5552000b2d6c5c1c5b1cd079061f55f6979fee1d9c04e14d1
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: kafdrop
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kafdrop-0.1.0/kafdrop-0.1.0.tgz
+    version: 0.1.0
   kafka-aggregator:
   - apiVersion: v1
     appVersion: 0.1.0
