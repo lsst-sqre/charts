@@ -28,4 +28,18 @@ jupyterhub:
     custom:
       className: nublado2.auth.GafaelfawrAuthenticator
 
+  # Any instantiation of this chart must also set ingress.hosts and add
+  # the nginx.ingress.kubernetes.io/auth-signin and
+  # nginx.ingress.kubernetes.io/auth-url headers pointing to the
+  # appropriate fully-qualified URLs for the Gafaelfawr /login and /auth
+  # routes.
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/auth-method: GET
+      nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-User,X-Auth-Request-Groups,X-Auth-Request-Uid,X-Auth-Request-Token"
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        error_page 403 = "/auth/forbidden?scope=exec:notebook";
+
 config: {}
