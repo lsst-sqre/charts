@@ -26,6 +26,8 @@ jupyterhub:
     type: custom
     custom:
       className: nublado2.auth.GafaelfawrAuthenticator
+    state:
+      enabled: true
 
   # Any instantiation of this chart must also set ingress.hosts and add
   # the nginx.ingress.kubernetes.io/auth-signin and
