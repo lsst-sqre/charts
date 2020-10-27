@@ -7,7 +7,6 @@ jupyterhub:
     containerSecurityContext:
       runAsUser: 768
       runAsGroup: 768
-      fsGroup: 768
       allowPrivilegeEscalation: false
     baseUrl: '/n2'
     extraConfig:
@@ -22,5 +21,46 @@ jupyterhub:
       - name: nublado-config
         mountPath: /etc/jupyterhub/nublado_config.yaml
         subPath: nublado_config.yaml
+
+  auth:
+    type: custom
+    custom:
+      className: nublado2.auth.GafaelfawrAuthenticator
+    state:
+      enabled: true
+
+  # This is specific to the outdated 0.9.0-n409.hce116620 version of the
+  # chart.  When we upgrade to the current version, change this setting
+  # to:
+  #
+  # proxy:
+  #   chp:
+  #     networkPolicy:
+  #       interNamespaceAccessLabels: accept
+  proxy:
+    networkPolicy:
+      ingress:
+        - ports:
+            - port: http
+          from:
+            - podSelector:
+                matchLabels:
+                  hub.jupyter.org/network-access-proxy-http: "true"
+              namespaceSelector:
+                matchLabels: {}
+
+  # Any instantiation of this chart must also set ingress.hosts and add
+  # the nginx.ingress.kubernetes.io/auth-signin and
+  # nginx.ingress.kubernetes.io/auth-url headers pointing to the
+  # appropriate fully-qualified URLs for the Gafaelfawr /login and /auth
+  # routes.
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/auth-method: GET
+      nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-User,X-Auth-Request-Groups,X-Auth-Request-Uid,X-Auth-Request-Token"
+      nginx.ingress.kubernetes.io/configuration-snippet: |
+        error_page 403 = "/auth/forbidden?scope=exec:notebook";
 
 config: {}
