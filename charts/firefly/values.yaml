@@ -66,6 +66,15 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
+securityContext: {}
+  # You may need to set this if you are working with a shared filesystem
+  #  for replication and you do not have control over provisioning that
+  #  filesystem.
+  # The editing process is the same as for Minikube: remove the braces
+  #  and edit the values as appropriate.
+  # runAsUser: 101
+  # runAsGroup: 202
+
 nodeSelector: {}
 
 tolerations: []
