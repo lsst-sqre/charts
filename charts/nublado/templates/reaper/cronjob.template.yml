@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: {{ template "nublado.fullname" . }}-reaper
 spec:
-  schedule: "{{.Values.reaper.minute_to_run}} {{.Values.reaper.hour_to_run}} * * *"
+  schedule: "{{.Values.reaper.schedule}}"
   jobTemplate:
     spec:
       template:
