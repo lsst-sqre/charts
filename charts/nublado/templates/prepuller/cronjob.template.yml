@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: {{ template "nublado.fullname" . }}-prepuller
 spec:
-  schedule: "{{.Values.prepuller.minute_to_run}} * * * *"
+  schedule: "{{.Values.prepuller.schedule}}"
   jobTemplate:
     spec:
       template:
