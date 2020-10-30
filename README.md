@@ -15,11 +15,11 @@ Use the `helm install` command to install the charts:
 helm install lsstsqre/mychart --name myrelease
 ```
 
-See the [Helm Documentation](https://github.com/helm/helm/tree/master/docs) for more information.
+See the [Helm Documentation](https://helm.sh/docs/) for more information.
 
 # Adding a new chart to this repository
 
-This command will create  a [collection of files](https://github.com/helm/helm/blob/master/docs/charts.md#the-chart-file-structure) that defines your chart:
+This command will create  a [collection of files](https://helm.sh/docs/topics/charts/#the-chart-file-structure) that defines your chart:
 
 ```
 cd charts
