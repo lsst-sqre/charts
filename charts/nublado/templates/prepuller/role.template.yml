@@ -5,5 +5,8 @@ metadata:
   name: {{ template "nublado.fullname" . }}-prepuller
 rules:
 - apiGroups: [""]
-  resources: ["pods", "secrets"]
+  resources: ["pods"]
   verbs: ["get", "list", "create", "update", "delete"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["create"]
