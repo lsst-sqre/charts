@@ -54,6 +54,17 @@ spec:
                 name: postgres
                 key: lovelog_password
           {{- end }}
+          {{- with .Values.exposurelog_db }}
+          - name: VRO_DB_EXPOSURELOG_USER
+            value: {{ .user }}
+          - name: VRO_DB_EXPOSURELOG_DB
+            value: {{ .db }}
+          - name: VRO_DB_EXPOSURELOG_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres
+                key: exposurelog_password
+          {{- end }}
             
       volumes:
         - name: storage
