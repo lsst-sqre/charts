@@ -6,7 +6,10 @@ rules:
 rules:
 - apiGroups: [""]
   resources: ["nodes"]
-  verbs: ["get", "list"]
+  verbs: ["list"]
 - apiGroups: ["apps"]
   resources: ["daemonsets"]
-  verbs: ["create"]
+  verbs: ["create", "delete"]
+- apiGroups: ["apps"]
+  resources: ["daemonsets/status"]
+  verbs: ["get"]
