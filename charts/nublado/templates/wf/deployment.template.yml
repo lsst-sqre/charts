@@ -89,6 +89,22 @@ spec:
               value: '{{.Values.routes.external.soda}}'
             - name: EXTERNAL_HUB_URL
               value: '{{.Values.routes.external.hub}}'
+            # Set to customize what repo and what images to scan.
+            - name: LAB_REPO_HOST
+              value: '{{.Values.lab.image.repo_host}}'
+            - name: LAB_REPO_OWNER
+              value: '{{.Values.lab.image.repo_owner}}'
+            - name: LAB_REPO_NAME
+              value: '{{.Values.lab.image.repo_name}}'
+            {{ if .Values.lab.image.repo_username }}
+            - name: LAB_REPO_USERNAME
+              value: "{{.Values.lab.image.repo_username}}"
+            - name: LAB_REPO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: lab_repo_password
+                  name: {{ template "nublado.fullname" . }}-hub
+            {{ end }}
           # If you use sqlite, you want this to persist sessions across
           #  jupyterhub restarts.
           volumeMounts:
