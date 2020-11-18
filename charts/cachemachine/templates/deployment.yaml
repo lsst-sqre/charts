@@ -29,6 +29,11 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- if .Values.docker_secret_name }}
+            - name: DOCKER_SECRET_NAME
+              value: {{ .Values.docker_secret_name }}
+            {{- end }}
           ports:
             - name: http
               containerPort: 8080
@@ -43,6 +48,16 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.docker_secret_name }}
+          volumeMounts:
+          - name: docker-creds
+            mountPath: "/etc/secrets"
+            readOnly: true
+      volumes:
+      - name: docker-creds
+        secret:
+          secretName: {{ .Values.docker_secret_name }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

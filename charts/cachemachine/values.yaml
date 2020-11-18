@@ -64,3 +64,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+docker_secret_name: "docker-creds"
+
+vault_secrets:
+  name: "docker-creds"
+  enabled: false
+  path: ""
