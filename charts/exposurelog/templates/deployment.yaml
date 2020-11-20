@@ -56,7 +56,7 @@ spec:
           - name: EXPOSURELOG_DB_URL
             # format: postgresql://user:password@host:port/dbname
             # port is from postgres/templates/service.yml
-            value: "postgresql://exposurelog:$EXPOSURELOG_DB_PASSWORD@postgres.postgres.svc.cluster.local:5432/exposurelog"
+            value: "postgresql://exposurelog:$EXPOSURELOG_DB_PASSWORD@postgres.postgres:5432/exposurelog"
           - name: BUTLER_URI_1
             value: {{ .Values.butler_uri_1 | quote }}
           - name: BUTLER_URI_2
