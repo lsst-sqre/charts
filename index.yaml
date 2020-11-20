@@ -71,6 +71,17 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/chronograf-1.3.0/chronograf-1.3.0.tgz
     version: 1.3.0
+  exposurelog:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2020-11-20T21:08:03.446545651Z"
+    description: Exposure log service
+    digest: 4e4a1b5bcff40437ac575ec30a4602c8b86a2280c75f78f3d64593fc9e0e5f62
+    name: exposurelog
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/exposurelog-0.1.0/exposurelog-0.1.0.tgz
+    version: 0.1.0
   fileserver:
   - apiVersion: v1
     appVersion: "1.0"
