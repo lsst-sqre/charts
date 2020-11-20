@@ -74,6 +74,16 @@ entries:
   exposurelog:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2020-11-20T22:17:45.306831933Z"
+    description: Exposure log service
+    digest: 800bea44a4f5c162a4af70c2f0101995aff9662f398df2911bc05a5553ad082f
+    name: exposurelog
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/exposurelog-0.1.2/exposurelog-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2020-11-20T22:12:07.687620955Z"
     description: Exposure log service
     digest: 264fd568fe4986f5f5c28e209228a5ab54a9d5fbdf345a58e74beb8c379253e3
