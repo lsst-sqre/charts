@@ -47,19 +47,23 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-          - name: EXPOSURELOG_DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Values.exposurelog_db_secret | quote }}
-                key: exposurelog_password
-          - name: EXPOSURELOG_DB_URL
-            # format: postgresql://user:password@host:port/dbname
-            # port is from postgres/templates/service.yml
-            value: "postgresql://exposurelog:$EXPOSURELOG_DB_PASSWORD@postgres.postgres:5432/exposurelog"
           - name: BUTLER_URI_1
             value: {{ .Values.butler_uri_1 | quote }}
           - name: BUTLER_URI_2
             value: {{ .Values.butler_uri_2 | quote }}
+          - name: EXPOSURELOG_DB_USER
+            value: exposurelog
+          - name: EXPOSURELOG_DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres
+                key: exposurelog_password
+          - name: EXPOSURELOG_DB_HOST
+            value: postgres.postgres
+          - name: EXPOSURELOG_DB_PORT
+            value: "5432"
+          - name: EXPOSURELOG_DB_DATABSE
+            value: exposurelog
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
