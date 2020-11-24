@@ -38,11 +38,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /exposurelog?query=%7B__schema%7BqueryType%7Bname%7D%7D%7D
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /exposurelog?query=%7B__schema%7BqueryType%7Bname%7D%7D%7D
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
