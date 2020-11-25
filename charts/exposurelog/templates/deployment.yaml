@@ -64,6 +64,28 @@ spec:
               value: "5432"
             - name: EXPOSURELOG_DB_DATABSE
               value: exposurelog
+          volumeMounts:
+            {{- if .Values.hostpath_1 }}
+            - mountPath: /volume_1
+              name: volume_1
+            {{- end }}
+            {{- if .Values.hostpath_2 }}
+            - mountPath: /volume_2
+              name: volume_2
+            {{- end }}
+      volumes:
+        {{- if .Values.hostpath_1 }}
+        - name: volume_1
+          hostPath:
+            path: {{ .Values.hostpath_1 }}
+            type: Directory
+        {{- end }}
+        {{- if .Values.hostpath_2 }}
+        - name: volume_2
+          hostPath:
+            path: {{ .Values.hostpath_2 }}
+            type: Directory
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
