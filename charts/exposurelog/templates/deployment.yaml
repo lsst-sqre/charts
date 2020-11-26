@@ -67,21 +67,21 @@ spec:
           volumeMounts:
             {{- if .Values.hostpath_1 }}
             - mountPath: /volume_1
-              name: volume_1
+              name: volume1
             {{- end }}
             {{- if .Values.hostpath_2 }}
             - mountPath: /volume_2
-              name: volume_2
+              name: volume2
             {{- end }}
       volumes:
         {{- if .Values.hostpath_1 }}
-        - name: volume_1
+        - name: volume1
           hostPath:
             path: {{ .Values.hostpath_1 }}
             type: Directory
         {{- end }}
         {{- if .Values.hostpath_2 }}
-        - name: volume_2
+        - name: volume2
           hostPath:
             path: {{ .Values.hostpath_2 }}
             type: Directory
