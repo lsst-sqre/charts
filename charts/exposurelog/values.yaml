@@ -10,12 +10,15 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-# If not blank then mount the specified host path as internal volume /volume_1 or /volume_2.
-hostpath_1: ""
-hostpath_2: ""
+# If not blank then mount the specified NFS path as internal volume /volume_1 or /volume_2.
+nfs_path_1: ""
+nfs_path_2: ""
+
+# Name of the NFS server that exports nfs_path_1 or nfs_path_2
+nfs_server: ""
 
 # URIs for butler registry 1 (required) and 2 (optional). Format:
-# * For a volume mounted using `hostpath_1` or `hostpath_2` (see above):
+# * For a volume mounted using `nfs_path_1` or `nfs_path_2` (see above):
 #   An absolute path starting with `/volume_1/` or /volume_2/`.
 # * For a network URI: see the daf_butler documentation.
 # The default for butler_uri_1 is a local toy registry, because *some* value is necessary.
