@@ -66,4 +66,20 @@ jupyterhub:
       nginx.ingress.kubernetes.io/configuration-snippet: |
         error_page 403 = "/auth/forbidden?scope=exec:notebook";
 
-config: {}
+config:
+  options_form:
+    images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
+    sizes:
+      - name: Tiny
+        cpu: .5
+        ram: 1536M
+      - name: Small
+        cpu: 1
+        ram: 3072M
+      - name: Medium
+        cpu: 2
+        ram: 6144M
+      - name: Large
+        cpu: 4
+        ram: 12288M
+  user_resources: {}
