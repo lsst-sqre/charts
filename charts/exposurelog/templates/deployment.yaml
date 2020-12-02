@@ -65,26 +65,28 @@ spec:
             - name: EXPOSURELOG_DB_DATABSE
               value: exposurelog
           volumeMounts:
-            {{- if .Values.hostpath_1 }}
+            {{- if .Values.nfs_path_1 }}
             - mountPath: /volume_1
               name: volume1
             {{- end }}
-            {{- if .Values.hostpath_2 }}
+            {{- if .Values.nfs_path_2 }}
             - mountPath: /volume_2
               name: volume2
             {{- end }}
       volumes:
-        {{- if .Values.hostpath_1 }}
+        {{- if .Values.nfs_path_1 }}
         - name: volume1
-          hostPath:
-            path: {{ .Values.hostpath_1 }}
-            type: Directory
+          nfs:
+            path: {{ .Values.nfs_path_1 }}
+            readOnly: true
+            server: {{ .Values.nfs_server }} 
         {{- end }}
-        {{- if .Values.hostpath_2 }}
+        {{- if .Values.nfs_path_2 }}
         - name: volume2
-          hostPath:
-            path: {{ .Values.hostpath_2 }}
-            type: Directory
+          nfs:
+            path: {{ .Values.nfs_path_2 }}
+            readOnly: true
+            server: {{ .Values.nfs_server }}
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
