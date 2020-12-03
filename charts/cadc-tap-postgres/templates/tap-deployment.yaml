@@ -16,6 +16,10 @@ spec:
         app: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
 {{ include "cadc-tap-postgres.labels" . | indent 8 }}
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
       containers:
       - name: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
         image: lsstdax/tap-postgres-server:{{ .Values.tag }}

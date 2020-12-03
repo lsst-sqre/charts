@@ -17,6 +17,10 @@ spec:
         app: {{ template "cadc-tap.fullname" . }}-mock-qserv
 {{ include "cadc-tap.labels" . | indent 8 }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - name: mock-qserv
         image: lsstdax/mock-qserv:{{ .Values.tag }}

@@ -16,6 +16,10 @@ spec:
         app: {{ template "cadc-tap.fullname" . }}-tap-server
 {{ include "cadc-tap.labels" . | indent 8 }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - name: {{ template "cadc-tap.fullname" . }}-tap-server
         image: lsstdax/lsst-tap-service:{{ .Values.tag }}
