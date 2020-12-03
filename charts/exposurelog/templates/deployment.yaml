@@ -79,14 +79,14 @@ spec:
           nfs:
             path: {{ .Values.nfs_path_1 }}
             readOnly: true
-            server: {{ .Values.nfs_server }} 
+            server: {{ .Values.nfs_server_1 }} 
         {{- end }}
         {{- if .Values.nfs_path_2 }}
         - name: volume2
           nfs:
             path: {{ .Values.nfs_path_2 }}
             readOnly: true
-            server: {{ .Values.nfs_server }}
+            server: {{ .Values.nfs_server_2 }}
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
