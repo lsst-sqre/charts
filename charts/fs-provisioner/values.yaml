@@ -1,0 +1,13 @@
+# This identifies the host and top-level path for a Filestore-like
+#  external fileserver.  The provisoner pod only needs to be run once
+#  in the lifetime of the fileserver.  The exported top-level path will
+#  be mounted as /storage to the pod.
+
+nfs:
+  host: 127.0.0.1
+  path: /exports
+
+image:
+  repository: lsstsqre/fs-provisioner
+  tag: latest
+  pullPolicy: Always

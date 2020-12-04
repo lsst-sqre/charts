@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: 0.1.0
+description: Provisioner for Filestore-like external fileservers
+home: https://hub.docker.com/r/lsstsqre/fs-provisioner
+name: fs-provisioner
+maintainers:
+  - name: athornton
+version: 0.1.0
