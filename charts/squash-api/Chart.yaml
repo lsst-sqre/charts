@@ -3,7 +3,7 @@ name: squash-api
 version: 0.1.0
 description: A Helm chart to deploy the SQuaSH API
 keywords:
-  - SQuaSH, InfluxDB, S3
+  - SQuaSH, Metrics, InfluxDB, Chronograf, S3
 home: https://squash.lsst.io/
 sources:
   - https://github.com/lsst-sqre/squash-api/
