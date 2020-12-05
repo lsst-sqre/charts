@@ -36,27 +36,27 @@ spec:
           - name: SQUASH_DB_USER
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.squashDBSecret | quote }}
-                key: username
+                name: {{ .Values.squashAPISecret | quote }}
+                key: squash-db-user
           - name: SQUASH_DB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.squashDBSecret | quote }}
-                key: password
+                name: {{ .Values.squashAPISecret | quote }}
+                key: squash-db-password
           - name: SQUASH_API_PROFILE
             value: "app.config.Production"
           - name: SQUASH_DEFAULT_USER
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.squashSecret | quote }}
-                key: username
+                name: {{ .Values.squashAPISecret | quote }}
+                key: squash-default-user
           - name: SQUASH_DEFAULT_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.squashSecret | quote }}
-                key: password
+                name: {{ .Values.squashAPISecret | quote }}
+                key: squash-default-password
           - name: SQUASH_ETL_MODE
-            value:  {{ .Values.squashETLMode | quote }}
+            value: {{ .Values.squashETLMode | quote }}
           - name: CELERY_BROKER_URL
             value: {{ .Values.redisUrl | quote }}
           - name: S3_BUCKET
@@ -64,13 +64,13 @@ spec:
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.awsSecret | quote }}
-                key: "AWS_ACCESS_KEY_ID"
+                name: {{ .Values.squashAPISecret | quote }}
+                key: aws_access_key_id
           - name: AWS_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.awsSecret | quote }}
-                key: "AWS_SECRET_ACCESS_KEY"
+                name: {{ .Values.squashAPISecret | quote }}
+                key: aws_secret_access_key
           - name: INFLUXDB_API_URL
             value: {{ .Values.influxUrl | quote }}
           - name: INFLUXDB_DATABASE
