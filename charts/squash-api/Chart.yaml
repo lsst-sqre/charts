@@ -11,4 +11,4 @@ maintainers:
   - name: afausti
     email: afausti@lsst.org
     url: https://afausti.github.io/
-appVersion: 0.5.0
+appVersion: 0.5.1

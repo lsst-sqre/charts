@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: lsstsqre/squash-restful-api
-  tag: latest
+  tag: 0.5.1
   pullPolicy: IfNotPresent
 
 cloudSQLImage:
