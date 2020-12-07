@@ -27,7 +27,7 @@ spec:
           command:
           - celery
           - -A
-          - app.tasks
+          - squash.tasks
           - -E
           - -l
           - INFO
