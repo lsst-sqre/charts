@@ -9,6 +9,10 @@ jupyterhub:
       runAsGroup: 768
       allowPrivilegeEscalation: false
     baseUrl: '/n2'
+    # Note: this has to match up with the kubernetes secret created by the vault secret,
+    # and since you can't put templating in a values file, I'm just setting the name here,
+    # as well as in vault_secret_name, which should match.
+    existingSecret: "nublado2-secret"
     extraConfig:
       nublado.py: |
         import nublado2.hub_config
@@ -41,6 +45,8 @@ jupyterhub:
   #     networkPolicy:
   #       interNamespaceAccessLabels: accept
   proxy:
+    service:
+      type: ClusterIP
     networkPolicy:
       ingress:
         - ports:
@@ -66,4 +72,24 @@ jupyterhub:
       nginx.ingress.kubernetes.io/configuration-snippet: |
         error_page 403 = "/auth/forbidden?scope=exec:notebook";
 
-config: {}
+config:
+  options_form:
+    images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
+    sizes:
+      - name: Tiny
+        cpu: .5
+        ram: 1536M
+      - name: Small
+        cpu: 1
+        ram: 3072M
+      - name: Medium
+        cpu: 2
+        ram: 6144M
+      - name: Large
+        cpu: 4
+        ram: 12288M
+  user_resources: {}
+
+# Note: See note above about existingSecret.
+vault_secret_name: "nublado2-secret"
+vault_secret_path: ""
