@@ -26,6 +26,12 @@ jupyterhub:
         mountPath: /etc/jupyterhub/nublado_config.yaml
         subPath: nublado_config.yaml
 
+  prePuller:
+    continuous:
+      enabled: false
+    hook:
+      enabled: false
+
   singleuser:
     defaultUrl: "/lab"
 
