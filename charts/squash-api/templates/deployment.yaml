@@ -50,7 +50,7 @@ spec:
                 name: {{ .Values.squashAPISecret | quote }}
                 key: squash-db-password
           - name: SQUASH_API_PROFILE
-            value: "app.config.Production"
+            value: "squash.config.Production"
           - name: SQUASH_DEFAULT_USER
             valueFrom:
               secretKeyRef:
