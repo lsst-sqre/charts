@@ -1232,6 +1232,18 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/postgres-0.0.23/postgres-0.0.23.tgz
     version: 0.0.23
+  pull-secret:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-12-08T18:31:33.017364715Z"
+    description: A Helm chart for Kubernetes
+    digest: 6081db4fdd912e26a4d28b17ecc95899c3ce5ef743e6067a8b0a57ef8a3cb593
+    maintainers:
+    - name: athornton
+    name: pull-secret
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/pull-secret-0.1.0/pull-secret-0.1.0.tgz
+    version: 0.1.0
   squash-api:
   - apiVersion: v1
     appVersion: 0.5.1
