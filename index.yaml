@@ -1027,6 +1027,26 @@ entries:
   nublado2:
   - apiVersion: v1
     appVersion: 1.1.0
+    created: "2020-12-08T19:39:04.916964069Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 0.9.0-n409.hce116620
+    description: Nublado2 JupyterHub installation
+    digest: 806f3f5fe7516e5514b9f7bbf1cc1fae7686cb97854f0073900012e66dc35f1c
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.0.7/nublado2-0.0.7.tgz
+    version: 0.0.7
+  - apiVersion: v1
+    appVersion: 1.1.0
     created: "2020-12-07T18:28:46.887448925Z"
     dependencies:
     - name: jupyterhub
