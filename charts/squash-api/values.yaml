@@ -38,9 +38,6 @@ influxDb: "squash-sandbox"
 # InfluxDB credentials
 influxSecret: "influxdb-auth"
 
-# Redis URL
-redisUrl: "redis://squash-sandbox-squash-api-redis.squash-sandbox:6379"
-
 podSecurityContext:
   runAsNonRoot: true
   runAsUser: 1000
