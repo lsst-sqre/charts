@@ -65,12 +65,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.squashAPISecret | quote }}
-                key: aws_access_key_id
+                key: aws-access-key-id
           - name: AWS_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.squashAPISecret | quote }}
-                key: aws_secret_access_key
+                key: aws-secret-access-key
           - name: INFLUXDB_API_URL
             value: {{ .Values.influxUrl | quote }}
           - name: INFLUXDB_DATABASE
