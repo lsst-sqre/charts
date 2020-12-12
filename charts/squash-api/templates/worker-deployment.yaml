@@ -59,6 +59,8 @@ spec:
             value: {{ .Values.squashETLMode | quote }}
           - name: CELERY_BROKER_URL
             value: "redis://{{ include "squash-api.fullname" . }}-redis.{{ .Release.Namespace }}.svc.cluster.local:6379/0"
+          - name: SQUASH_API_URL
+            value: "{{ include "squash-api.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:8080"
           - name: S3_BUCKET
             value: {{ .Values.s3BucketName | quote }}
           - name: AWS_ACCESS_KEY_ID
