@@ -1255,6 +1255,17 @@ entries:
   pull-secret:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-12-14T19:56:30.168484582Z"
+    description: A Helm chart for Kubernetes
+    digest: a9c55c05ef9e601b5eb17486f20bea6dcfa181f9f7425a515aa8550e3e390342
+    maintainers:
+    - name: athornton
+    name: pull-secret
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/pull-secret-0.1.2/pull-secret-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-12-14T18:48:09.107613473Z"
     description: A Helm chart for Kubernetes
     digest: 3395d2fa2e229e8c7de993d7e1a1f4ce12682f740c503f5d6b7641329b3d2ed9
