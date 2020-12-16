@@ -1221,6 +1221,18 @@ entries:
   postgres:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-12-16T22:07:08.169366037Z"
+    description: Postgres RDBMS for LSP
+    digest: dee396516e87d73ed2302aa2bc2ef078cd7d271c04e7ee8e2b7f7d8746ff6c32
+    home: https://hub.docker.com/r/lsstsqre/lsp-postgres
+    maintainers:
+    - name: athornton
+    name: postgres
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/postgres-0.0.27/postgres-0.0.27.tgz
+    version: 0.0.27
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-12-16T21:49:08.641732512Z"
     description: Postgres RDBMS for LSP
     digest: b969a6d915d299e88f67181ad015c2543a683db6dfad9d0d77af59a720bf10db
