@@ -18,10 +18,6 @@ spec:
         - name: {{ template "postgres.fullname" . }}
           imagePullPolicy: "Always"
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-          {{- if .Values.pull_secret }}
-          imagePullSecrets:
-          - name: {{ .Values.pull_secret }}
-          {{- end }}
           ports:
           - name: postgres
             containerPort: 5432
@@ -69,8 +65,11 @@ spec:
                 name: postgres
                 key: exposurelog_password
           {{- end }}
-            
-      volumes:
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
+       volumes:
         - name: storage
           persistentVolumeClaim:
             claimName: {{ template "postgres.fullname" . }}-physpvc
