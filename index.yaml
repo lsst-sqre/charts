@@ -3,6 +3,17 @@ entries:
   cachemachine:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-12-16T23:38:58.252934537Z"
+    description: A Helm chart for Kubernetes
+    digest: 47ff48171fd88513344f4b04f15785d1446efbf99b0d83e3efc185a858760939
+    maintainers:
+    - name: cbanek
+    name: cachemachine
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cachemachine-0.1.1/cachemachine-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-12-02T23:24:30.165028928Z"
     description: A Helm chart for Kubernetes
     digest: 2504ae0a33f914c4e4c8d4b83f0c9ff8b6dad1ed1b5ccfbcc6fc0c4989667ffa
@@ -13,6 +24,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/cachemachine-0.1.0/cachemachine-0.1.0.tgz
     version: 0.1.0
   cadc-tap:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-12-16T23:38:58.337343951Z"
+    description: A Helm chart for the CADC TAP service
+    digest: b2c7b2ff98f4fbf1f396a3ee536709468bd0797e1af958fdf445e67da0a93c95
+    home: https://github.com/lsst-sqre/lsst-tap-service
+    maintainers:
+    - name: cbanek
+    name: cadc-tap
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-0.1.12/cadc-tap-0.1.12.tgz
+    version: 0.1.12
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-07-17T01:24:26.173871957Z"
@@ -44,6 +67,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-0.1.9/cadc-tap-0.1.9.tgz
     version: 0.1.9
   cadc-tap-postgres:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-12-16T23:38:58.425101661Z"
+    description: A Helm chart for the CADC TAP Postgres service
+    digest: c547cfea5bd39a15d8ceb3a214534fff3c70ff44b1dbab3d3a419307b9bc88b7
+    home: https://github.com/lsst-sqre/tap-postgres
+    maintainers:
+    - name: cbanek
+    name: cadc-tap-postgres
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-postgres-0.1.3/cadc-tap-postgres-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-07-17T01:24:26.268389224Z"
@@ -84,6 +119,16 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/chronograf-1.3.0/chronograf-1.3.0.tgz
     version: 1.3.0
   exposurelog:
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2020-12-16T23:38:58.50524338Z"
+    description: Exposure log service
+    digest: 146eb65bfa42444cb02812eaf01b4e9d177ff7f26b72017e0e46e5ef10a16494
+    name: exposurelog
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/exposurelog-0.1.17/exposurelog-0.1.17.tgz
+    version: 0.1.17
   - apiVersion: v2
     appVersion: 0.2.0
     created: "2020-12-03T01:24:14.951814453Z"
@@ -269,6 +314,18 @@ entries:
   firefly:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2020-12-16T23:38:58.59333439Z"
+    description: A Helm chart for Firefly
+    digest: b4aabcd992dba00843a86ec8907e88d4da9f6cce6495e14426a5563482ae8db9
+    home: https://github.com/Caltech-IPAC/firefly
+    maintainers:
+    - name: cbanek
+    name: firefly
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/firefly-0.1.6/firefly-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-10-28T16:50:47.735164777Z"
     description: A Helm chart for Firefly
     digest: f29147d3bc1c09e7989df376850aba519a204f7505d17e45af79527eb07966d5
@@ -313,6 +370,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/firefly-0.1.2/firefly-0.1.2.tgz
     version: 0.1.2
   gafaelfawr:
+  - apiVersion: v1
+    appVersion: 1.5.0
+    created: "2020-12-16T23:38:58.69154079Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 4a1500b14c97cf3db56b82dc41c04135a4a2c65eea13becb6c95da68a28380e0
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-1.5.3/gafaelfawr-1.5.3.tgz
+    version: 1.5.3
   - apiVersion: v1
     appVersion: 1.5.0
     created: "2020-12-04T16:56:36.796700237Z"
@@ -516,6 +585,27 @@ entries:
   influxdb:
   - apiVersion: v1
     appVersion: 1.8.3
+    created: "2020-12-16T23:38:58.778267701Z"
+    description: Scalable datastore for metrics, events, and real-time analytics.
+    digest: b3078affd036fa116ea2821386971e3532419940c29c6533438ad8fb3649e314
+    home: https://www.influxdata.com/time-series-platform/influxdb/
+    keywords:
+    - influxdb
+    - database
+    - timeseries
+    maintainers:
+    - email: jack@influxdb.com
+      name: jackzampolin
+    - email: urakiny@gmail.com
+      name: aisuko
+    name: influxdb
+    sources:
+    - https://github.com/influxdata/influxdb
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/influxdb-3.0.5/influxdb-3.0.5.tgz
+    version: 3.0.5
+  - apiVersion: v1
+    appVersion: 1.8.3
     created: "2020-11-12T18:44:42.690378529Z"
     description: Scalable datastore for metrics, events, and real-time analytics.
     digest: 36e1c7711d6025cd5f40494633b6e036793d42fb41601c06c68a7c62833aa785
@@ -683,6 +773,26 @@ entries:
   kapacitor:
   - apiVersion: v1
     appVersion: 1.5.2
+    created: "2020-12-16T23:38:58.876619201Z"
+    description: InfluxDB's native data processing engine. It can process both stream and batch data from InfluxDB.
+    digest: 6454d52151719b4ed0a6f7fae4798f12b077016cb02b83f1a4d8e05bb2ae8867
+    home: https://www.influxdata.com/time-series-platform/kapacitor/
+    keywords:
+    - kapacitor
+    - stream
+    - etl
+    - timeseries
+    maintainers:
+    - email: jack@influxdb.com
+      name: jackzampolin
+    name: kapacitor
+    sources:
+    - https://github.com/influxdata/kapacitor
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kapacitor-1.3.1/kapacitor-1.3.1.tgz
+    version: 1.3.1
+  - apiVersion: v1
+    appVersion: 1.5.2
     created: "2020-06-30T23:01:41.549715904Z"
     description: InfluxDB's native data processing engine. It can process both stream and batch data from InfluxDB.
     digest: bd25caf45960a26b0a0f80098aa8156f120ec120a111d9f9557e839f85b23fea
@@ -702,6 +812,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/kapacitor-1.3.0/kapacitor-1.3.0.tgz
     version: 1.3.0
   landing-page:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-12-16T23:38:58.976221799Z"
+    description: Simple landing page for linking to services, and showing MOTD.
+    digest: 605449742f62f7a203bfdda83e1ffc4b29a2dd0e667b174ff9b0f661c021b6b0
+    home: https://github.com/lsst-dm/lsp-landing-page
+    maintainers:
+    - name: cbanek
+    name: landing-page
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/landing-page-0.2.4/landing-page-0.2.4.tgz
+    version: 0.2.4
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-07-17T01:24:26.863526021Z"
@@ -725,6 +847,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/landing-page-0.2.2/landing-page-0.2.2.tgz
     version: 0.2.2
   mobu:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-12-16T23:38:59.06633411Z"
+    description: The mobu generates system load by pretending to be a random scientist
+    digest: 00a77f369de45052f2960b683f0a1e0fbb1137d6f9afbc126a03dd36f5181311
+    home: https://github.com/lsst-sqre/mobu
+    maintainers:
+    - name: cbanek
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.4/mobu-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-07-17T01:24:26.946831293Z"
@@ -823,6 +957,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/neophile-0.0.1/neophile-0.0.1.tgz
     version: 0.0.1
   nublado:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-12-16T23:38:59.161906619Z"
+    description: A Helm chart for Kubernetes
+    digest: 9766d2bb7f03a6a482e00cee97a68aef23ff5dac2d1cefe2bbafb1c8b03140b8
+    home: https://github.com/lsst-sqre/nublado
+    maintainers:
+    - name: athornton
+    name: nublado
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado-0.9.18/nublado-0.9.18.tgz
+    version: 0.9.18
   - apiVersion: v1
     appVersion: "1.0"
     created: "2020-11-17T19:30:13.609665114Z"
@@ -1025,6 +1171,26 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/nublado-0.8.10/nublado-0.8.10.tgz
     version: 0.8.10
   nublado2:
+  - apiVersion: v1
+    appVersion: 1.1.0
+    created: "2020-12-16T23:38:59.264439121Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 0.9.0-n409.hce116620
+    description: Nublado2 JupyterHub installation
+    digest: decb8d59fd8de10ec7c2ebfc11b27e9dac761d054c55398a0c0481d5b180439b
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.0.8/nublado2-0.0.8.tgz
+    version: 0.0.8
   - apiVersion: v1
     appVersion: 1.1.0
     created: "2020-12-08T19:39:04.916964069Z"
