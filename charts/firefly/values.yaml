@@ -19,6 +19,8 @@ vault_secrets:
   # Path to load secrets for in the vault.
   path: ""
 
+pull_secret: ""
+
 secrets:
   # Create a normal k8s secret using the values provided here.
   # Even if you don't have these secrets, you still need to have

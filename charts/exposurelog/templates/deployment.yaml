@@ -20,6 +20,11 @@ spec:
       labels:
         {{- include "exposurelog.selectorLabels" . | nindent 8 }}
     spec:
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
+      # Don't specify both of pull_secret and imagePullSecrets
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}

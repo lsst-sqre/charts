@@ -51,6 +51,10 @@ spec:
           mountPath: /var/lib/kapacitor
         resources:
 {{ toYaml .Values.resources | indent 12 }}
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
       volumes:
         - name: data
         {{- if .Values.persistence.enabled }}

@@ -29,6 +29,9 @@ user_scope: "exec:user"
 # Choose from the text form of Python logging levels.
 loglevel: INFO
 
+# Pull secret name
+pull_secret: ""
+
 # List of netblocks used for internal Kubernetes IP addresses, used to
 # determine the true client IP for logging.
 proxies:

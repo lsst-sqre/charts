@@ -27,6 +27,8 @@ serviceAccount:
 podSecurityContext: {}
   # fsGroup: 2000
 
+pull_secret: ""
+
 securityContext:
   capabilities:
     drop:

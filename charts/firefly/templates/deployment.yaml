@@ -66,6 +66,10 @@ spec:
           value: "{{ .Values.max_jvm_size }}"
         - name: DEBUG
           value: "{{ .Values.debug }}"
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
       volumes:
       - name: datasets
         {{- toYaml .Values.volumes.datasets | nindent 8 }}

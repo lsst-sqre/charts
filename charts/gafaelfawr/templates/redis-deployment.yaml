@@ -55,6 +55,10 @@ spec:
           volumeMounts:
             - name: redis-data
               mountPath: "/data"
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
       securityContext:
         fsGroup: 999
         runAsNonRoot: true

@@ -4,4 +4,4 @@ description: A Helm chart for Kubernetes
 name: cachemachine
 maintainers:
   - name: cbanek
-version: 0.1.0
+version: 0.1.1

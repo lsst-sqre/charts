@@ -99,3 +99,6 @@ config:
 # Note: See note above about existingSecret.
 vault_secret_name: "nublado2-secret"
 vault_secret_path: ""
+
+# Pull secret:
+pull_secret: ""

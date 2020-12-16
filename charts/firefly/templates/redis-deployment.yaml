@@ -44,3 +44,7 @@ spec:
               key: ADMIN_PASSWORD
         command: ["redis-server"]
         args: ["--requirepass", "$(REDIS_PASSWORD)"]
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}

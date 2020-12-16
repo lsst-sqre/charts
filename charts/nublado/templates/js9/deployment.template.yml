@@ -46,6 +46,10 @@ spec:
             - name: metadata
               mountPath: /etc/metadata
               readOnly: false
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
       volumes:
         - name: metadata
           downwardAPI:
