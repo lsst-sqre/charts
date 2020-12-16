@@ -69,7 +69,7 @@ spec:
       imagePullSecrets:
       - name: {{ .Values.pull_secret }}
       {{- end }}
-       volumes:
+      volumes:
         - name: storage
           persistentVolumeClaim:
             claimName: {{ template "postgres.fullname" . }}-physpvc
