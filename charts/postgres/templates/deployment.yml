@@ -18,9 +18,9 @@ spec:
         - name: {{ template "postgres.fullname" . }}
           imagePullPolicy: "Always"
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-          {{- with .Values.enabled }}
+          {{- with .Values.pull_secret }}
           imagePullSecrets:
-          - name: pull-secret
+          - name: {{ .Values.pull_secret }}
           {{- end }}
           ports:
           - name: postgres
