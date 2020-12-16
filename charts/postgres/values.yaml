@@ -15,4 +15,5 @@ image:
 
 postgres_volume_size: '1Gi'
 postgres_storage_class: 'fast'
+pull_secret: ''
 volume_name: ''

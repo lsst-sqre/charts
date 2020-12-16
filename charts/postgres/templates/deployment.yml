@@ -18,6 +18,10 @@ spec:
         - name: {{ template "postgres.fullname" . }}
           imagePullPolicy: "Always"
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          {{- if .Values.pull_secret }}
+          imagePullSecrets:
+          - name: {{ .Values.pull_secret }}
+          {{- end }}
           ports:
           - name: postgres
             containerPort: 5432
