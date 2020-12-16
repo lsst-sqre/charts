@@ -23,6 +23,11 @@ spec:
 {{ toYaml .Values.podAnnotations | indent 8 }}
       {{- end }}
     spec:
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
+      # Don't specify both pull_secret and image.PullSecrets
       {{- if .Values.image.pullSecrets }}
       imagePullSecrets:
       {{- range .Values.image.pullSecrets }}

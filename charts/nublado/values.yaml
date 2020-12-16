@@ -17,6 +17,8 @@ vault_secrets:
   # Path to load secrets for in the vault.
   path: ""
 
+pull_secret: ""
+
 hub:
   uid: 768
   gid: 768

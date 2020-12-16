@@ -23,6 +23,10 @@ startupProbe:
   # failureThreshold: 6
   # periodSeconds: 5
 
+## name of secret for pulling images
+##
+pull_secret: ""
+
 ## Specify a service type
 ## NodePort is default
 ## ref: http://kubernetes.io/docs/user-guide/services/

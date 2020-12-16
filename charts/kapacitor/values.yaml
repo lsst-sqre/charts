@@ -12,6 +12,10 @@ image:
 service:
   type: ClusterIP
 
+## Pull secret name
+##
+pull-secret: ""
+
 ## Persist data to a persistent volume
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##

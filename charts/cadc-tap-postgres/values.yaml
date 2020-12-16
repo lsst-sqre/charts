@@ -10,6 +10,8 @@ tag: "1.0"
 gcs_bucket: ""
 gcs_bucket_url: ""
 
+pull_secret: ""
+
 vault_secrets:
   # Use the vault-secrets-operator to load secrets from vault
   # instead of creating them from values here.

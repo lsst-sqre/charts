@@ -33,6 +33,10 @@ spec:
           value: "-Dtap.username=tap_schema -Dtap.password=pw-tapschema -Dtap.url=jdbc:postgresql://{{ template "cadc-tap-postgres.fullname" . }}-tap-db:5432/tap_schema -Dtap.maxActive=1 -Dca.nrc.cadc.reg.client.RegistryClient.local=true -Duws.username=postgres -Duws.maxActive=2 -Duws.jdbc.driverClassName=org.postgresql.Driver -Duws.url=jdbc:postgresql://{{ template "cadc-tap-postgres.fullname" . }}-uws-db/ -Dgcs_bucket={{ .Values.gcs_bucket }} -Dgcs_bucket_url={{ .Values.gcs_bucket_url }} -Dca.nrc.cadc.util.PropertiesReader.dir=/etc/creds/"
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: "/etc/creds/google_creds.json"
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
       volumes:
       - name: google-creds
         secret:

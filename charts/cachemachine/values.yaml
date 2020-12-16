@@ -10,6 +10,7 @@ image:
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
+pull_secret: ""
 nameOverride: ""
 fullnameOverride: ""
 

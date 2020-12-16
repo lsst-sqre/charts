@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+# pull secret name
+pull_secret: ""
+
 # Version tag of all images to use.
 tag: "1.0"
 

@@ -24,3 +24,7 @@ spec:
         env:
         - name: MOTD_URL
           value: {{ .Values.motd_url }}
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}

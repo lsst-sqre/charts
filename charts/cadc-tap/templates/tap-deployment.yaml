@@ -49,6 +49,10 @@ spec:
               -Xmx{{ .Values.jvm_max_heap_size }}
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: "/etc/creds/google_creds.json"
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
       volumes:
       - name: google-creds
         secret:
