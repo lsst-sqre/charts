@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: lsstsqre/squash-api
-  tag: 0.5.2
+  tag: 0.5.3
   pullPolicy: IfNotPresent
 
 cloudSQLImage:
