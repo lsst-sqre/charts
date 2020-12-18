@@ -1478,6 +1478,24 @@ entries:
     version: 0.1.0
   squash-api:
   - apiVersion: v1
+    appVersion: 0.5.3
+    created: "2020-12-18T22:45:09.423779672Z"
+    description: A Helm chart to deploy the SQuaSH API
+    digest: f9666e910034a0cb3370eaa38d1aeb4550e0485daac420b3c1836adb5ed3a932
+    home: https://squash.lsst.io/
+    keywords:
+    - SQuaSH, Metrics, InfluxDB, Chronograf, S3
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: squash-api
+    sources:
+    - https://github.com/lsst-sqre/squash-api/
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.4/squash-api-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v1
     appVersion: 0.5.1
     created: "2020-12-09T00:50:32.564371613Z"
     description: A Helm chart to deploy the SQuaSH API
