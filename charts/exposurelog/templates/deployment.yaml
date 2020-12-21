@@ -69,6 +69,8 @@ spec:
               value: "5432"
             - name: EXPOSURELOG_DB_DATABSE
               value: exposurelog
+            - name: SITE_ID
+              value: {{ .Values.site_id | quote }}
           volumeMounts:
             {{- if .Values.nfs_path_1 }}
             - mountPath: /volume_1

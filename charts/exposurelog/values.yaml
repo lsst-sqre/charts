@@ -27,6 +27,11 @@ nfs_server_2: ""
 butler_uri_1: /home/appuser/hsc_raw
 butler_uri_2: ""
 
+# Site ID; a non-empty string of up to 16 characters.
+# This must be different for each deployment, in order to support
+# synchronization of records from one message database to another.
+site_id: ""
+
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
