@@ -72,8 +72,26 @@ spec:
       {{- end }}
       volumes:
       - name: datasets
-        {{- toYaml .Values.volumes.datasets | nindent 8 }}
+        {{- if .Values.volumes.datasets_hostpath }}
+        hostPath:
+          path: {{ .Values.volumes.datasets_hostpath }}
+          type: Directory
+        {{- else }}
+        emptyDir: {}
+        {{- end }}
       - name: firefly-workarea
-        {{- toYaml .Values.volumes.firefly_workarea | nindent 8 }}
+        {{- if .Values.volumes.firefly_workarea_hostpath }}
+        hostPath:
+          path: {{ .Values.volumes.firefly_workarea_hostpath }}
+          type: Directory
+        {{- else }}
+        emptyDir: {}
+        {{- end }}
       - name: firefly-config
-        {{- toYaml .Values.volumes.firefly_config | nindent 8 }}
+        {{- if .Values.volumes.firefly_config_hostpath }}
+        hostPath:
+          path: {{ .Values.volumes.firefly_config_hostpath }}
+          type: Directory
+        {{- else }}
+        emptyDir: {}
+        {{- end }}
