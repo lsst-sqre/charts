@@ -32,12 +32,9 @@ secrets:
   admin_password: ""
 
 volumes:
-  datasets:
-    emptyDir: {}
-  firefly_workarea:
-    emptyDir: {}
-  firefly_config:
-    emptyDir: {}
+  datasets_hostpath: ""
+  firefly_workarea_hostpath: ""
+  firefly_config_hostpath: ""
 
 imagePullSecrets: []
 nameOverride: ""
