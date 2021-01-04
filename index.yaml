@@ -324,6 +324,18 @@ entries:
   firefly:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2021-01-04T23:17:34.499957807Z"
+    description: A Helm chart for Firefly
+    digest: 407cf7c5583a98140b44c3153ffebcfeba4ba9accdaf603cc25566ff0b078ced
+    home: https://github.com/Caltech-IPAC/firefly
+    maintainers:
+    - name: cbanek
+    name: firefly
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/firefly-0.2.0/firefly-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-12-16T23:38:58.59333439Z"
     description: A Helm chart for Firefly
     digest: b4aabcd992dba00843a86ec8907e88d4da9f6cce6495e14426a5563482ae8db9
