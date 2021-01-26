@@ -13,6 +13,7 @@ spec:
 {{ include "helpers.labels" . | indent 12 }}
         spec:
           restartPolicy: "Never"
+          automountServiceAccountToken: false
           containers:
             - name: {{ template "helpers.fullname" . }}
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -28,12 +29,21 @@ spec:
                     secretKeyRef:
                       name: {{ template "helpers.fullname" . }}-secret
                       key: "github_token"
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop:
+                    - all
               volumeMounts:
                 - name: {{ template "helpers.fullname" . }}-config
                   mountPath: "/etc/neophile"
                   readOnly: true
                 - name: {{ template "helpers.fullname" . }}-data
                   mountPath: "/data"
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
           volumes:
             - name: {{ template "helpers.fullname" . }}-config
               configMap:
