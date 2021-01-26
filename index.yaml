@@ -946,6 +946,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.1/mobu-0.1.1.tgz
     version: 0.1.1
   neophile:
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2021-01-26T02:04:13.863273326Z"
+    description: Periodically check for needed dependency updates
+    digest: f737528f86fc386534fcfd20afeb442cb997861448026a963dc90fb22bb3241a
+    home: https://neophile.lsst.io/
+    maintainers:
+    - name: rra
+    name: neophile
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/neophile-0.2.0/neophile-0.2.0.tgz
+    version: 0.2.0
   - apiVersion: v1
     appVersion: 0.1.0
     created: "2020-07-17T23:33:24.303738093Z"
