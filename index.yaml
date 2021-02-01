@@ -755,6 +755,24 @@ entries:
     version: 0.1.1
   kafka-connect-manager:
   - apiVersion: v1
+    appVersion: 0.8.2
+    created: "2021-02-01T17:10:46.674663013Z"
+    description: A Helm chart to deploy the kafka connectors used by the EFD
+    digest: f0c8f7d31ba8e9b8463b7f9843e76f7f3deb25387281da067e4220186adda5dc
+    home: https://kafka-connect-manager.lsst.io/
+    keywords:
+    - Kafka, InfluxDB, S3
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: kafka-connect-manager
+    sources:
+    - https://github.com/lsst-sqre/kafka-connect-manager
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kafka-connect-manager-0.8.2/kafka-connect-manager-0.8.2.tgz
+    version: 0.8.2
+  - apiVersion: v1
     appVersion: 0.8.1
     created: "2020-11-12T18:35:59.682086748Z"
     description: A Helm chart to deploy the kafka connectors used by the EFD
