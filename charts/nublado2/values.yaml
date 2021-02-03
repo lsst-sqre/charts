@@ -80,6 +80,7 @@ jupyterhub:
 
 config:
   options_form:
+    images: []
     images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
     sizes:
       - name: Tiny
