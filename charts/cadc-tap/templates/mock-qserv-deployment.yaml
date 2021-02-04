@@ -25,8 +25,8 @@ spec:
         - containerPort: 3306
         resources:
           {{toYaml .Values.aux_resources | nindent 10}}
-{{ end }}
       {{- if .Values.pull_secret }}
       imagePullSecrets:
       - name: {{ .Values.pull_secret }}
       {{- end }}
+{{ end }}
