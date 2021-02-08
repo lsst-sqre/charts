@@ -33,13 +33,6 @@ jupyterhub:
       enabled: false
 
   singleuser:
-    # The zero-to-jupyterhub charts normally set the command to
-    # jupyterlab-singleuser, and override what the command is for
-    # the docker container.  If you set cmd = , this means use
-    # the default command for the docker container entrypoint.
-    # This will allow the chart to configure the container command line,
-    # if needed.  Defaulting to the container default.
-    cmd:
     defaultUrl: "/lab"
 
   auth:
@@ -89,6 +82,12 @@ config:
   # the primary ingress.  It's used to construct API requests to the
   # authentication service (which should go through the ingress).
   base_url: ""
+
+  # What command should be run in the lab pod?  If none (the default),
+  # the default entrypoint for the container is used.
+  # Since the default in the jupyterhub chart isn't easy to override
+  # at an intermediate level values file, let's just make a new config.
+  pod_cmd:
 
   # What uid should the pod be started as?  If it is set, use that uid for
   # starting each pod.  If not set, use the uid provided from gafaelfawr in
