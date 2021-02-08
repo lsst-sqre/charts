@@ -33,6 +33,13 @@ jupyterhub:
       enabled: false
 
   singleuser:
+    # The zero-to-jupyterhub charts normally set the command to
+    # jupyterlab-singleuser, and override what the command is for
+    # the docker container.  If you set cmd = , this means use
+    # the default command for the docker container entrypoint.
+    # This will allow the chart to configure the container command line,
+    # if needed.  Defaulting to the container default.
+    cmd:
     defaultUrl: "/lab"
 
   auth:
