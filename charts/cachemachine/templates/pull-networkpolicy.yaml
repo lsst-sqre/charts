@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ template "helpers.fullname" . }}-pull-networkpolicy
+  name: {{ template "cachemachine.fullname" . }}-pull-networkpolicy
 spec:
   podSelector:
     matchLabels:
