@@ -33,6 +33,13 @@ jupyterhub:
       enabled: false
 
   singleuser:
+    # The zero-to-jupyterhub charts normally set the command to
+    # jupyterlab-singleuser, and override what the command is for
+    # the docker container.  If you set cmd = , this means use
+    # the default command for the docker container entrypoint.
+    # This will allow the chart to configure the container command line,
+    # if needed.  Defaulting to the container default.
+    cmd:
     defaultUrl: "/lab"
 
   auth:
@@ -83,6 +90,12 @@ config:
   # authentication service (which should go through the ingress).
   base_url: ""
 
+  # What uid should the pod be started as?  If it is set, use that uid for
+  # starting each pod.  If not set, use the uid provided from gafaelfawr in
+  # auth.
+  # Sometimes, we start the pod as the provisioning user (uid 769) which has
+  # the permission to sudo to do the work of changing to the user.
+  pod_uid: 769
   options_form:
     images: []
     images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
