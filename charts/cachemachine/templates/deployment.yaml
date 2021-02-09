@@ -48,16 +48,24 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- if .Values.docker_secret_name }}
           volumeMounts:
+          {{- if .Values.docker_secret_name }}
           - name: docker-creds
             mountPath: "/etc/secrets"
             readOnly: true
+          {{- end }}
+          - name: autostart
+            mountPath: "/etc/cachemachine"
+            readOnly: true
       volumes:
+      {{- if .Values.docker_secret_name }}
       - name: docker-creds
         secret:
           secretName: {{ .Values.docker_secret_name }}
       {{- end }}
+      - name: autostart
+        configMap:
+          name: {{ include "cachemachine.fullname" . }}-autostart
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

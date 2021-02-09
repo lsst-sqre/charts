@@ -73,3 +73,5 @@ vault_secrets:
   name: "docker-creds"
   enabled: false
   path: ""
+
+autostart: {}
