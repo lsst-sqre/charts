@@ -3,6 +3,17 @@ entries:
   cachemachine:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2021-02-10T02:02:21.522887431Z"
+    description: A Helm chart for Kubernetes
+    digest: 6911a3f32e10356d216a3fbd754cccbda2cf0a1aba73517b1401fbf61a5ebd4e
+    maintainers:
+    - name: cbanek
+    name: cachemachine
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cachemachine-0.1.4/cachemachine-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2021-02-08T20:21:28.437850699Z"
     description: A Helm chart for Kubernetes
     digest: 7a49e49611b3a639b92c0a1eeddff16355da08aa0010e143059271175d8d4702
