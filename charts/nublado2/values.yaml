@@ -25,6 +25,10 @@ jupyterhub:
       - name: nublado-config
         mountPath: /etc/jupyterhub/nublado_config.yaml
         subPath: nublado_config.yaml
+    networkPolicy:
+      # This is set to disabled but is basically re-implemented by
+      # the netpol.yaml in this chart.
+      enabled: false
 
   prePuller:
     continuous:
@@ -119,3 +123,6 @@ vault_secret_path: ""
 
 # Pull secret:
 pull_secret: ""
+
+network_policy:
+  enabled: true

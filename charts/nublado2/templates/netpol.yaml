@@ -1,0 +1,56 @@
+{{- if .Values.network_policy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: hub
+  labels:
+    {{- include "nublado2.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      app: jupyterhub
+      component: hub
+      release: {{ .Release.Name }}
+  policyTypes:
+    - Ingress
+    - Egress
+
+  ingress:
+    # allowed pods (hub.jupyter.org/network-access-hub) --> hub
+    - ports:
+        - port: http
+      from:
+        - podSelector:
+            matchLabels:
+              hub.jupyter.org/network-access-hub: "true"
+          namespaceSelector: {}
+
+  egress:
+    # hub --> proxy
+    - ports:
+        - port: 8001
+      to:
+        - podSelector:
+            matchLabels:
+              app: jupyterhub
+              component: proxy
+              release: {{ .Release.Name }}
+
+    # hub --> singleuser-server
+    - ports:
+        - port: 8888
+      to:
+        - podSelector:
+            matchLabels:
+              app: jupyterhub
+              component: singleuser-server
+              release: {{ .Release.Name }}
+          namespaceSelector: {}
+
+    # hub -> Kubernetes internal DNS
+    - ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+{{- end }}
