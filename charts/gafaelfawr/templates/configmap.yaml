@@ -43,7 +43,15 @@ data:
     oidc:
       client_id: {{ .Values.cilogon.client_id | quote }}
       client_secret_file: "/etc/gafaelfawr/secrets/cilogon-client-secret"
+      {{- if .Values.cilogon.test }}
+      login_url: "https://test.cilogon.org/authorize"
+      token_url: "https://test.cilogon.org/oauth2/token"
+      issuer: "https://test.cilogon.org"
+      {{- else }}
       login_url: "https://cilogon.org/authorize"
+      token_url: "https://cilogon.org/oauth2/token"
+      issuer: "https://cilogon.org"
+      {{- end }}
       {{- if .Values.cilogon.login_params }}
       login_params:
         {{- range $key, $value := .Values.cilogon.login_params }}
@@ -55,11 +63,9 @@ data:
       {{- else }}
       redirect_url: "https://{{ .Values.host }}/login"
       {{- end }}
-      token_url: "https://cilogon.org/oauth2/token"
       scopes:
         - "email"
         - "org.cilogon.userinfo"
-      issuer: "https://cilogon.org"
       audience: {{ .Values.cilogon.client_id | quote }}
       key_ids:
         - "244B235F6B28E34108D101EAC7362C4E"

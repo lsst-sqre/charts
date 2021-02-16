@@ -39,6 +39,24 @@ proxies:
   - "172.16.0.0/12"
   - "192.168.0.0/16"
 
+# Example configuration for using CILogon.
+# cilogon:
+#   client_id: "cilogon:/client_id/<some-id>"
+#
+#   # If the registered URL is different from /login (the default).
+#   redirect_url: "https://<hostname>/oauth2/callback"
+#
+#   # Whether to use the test instance.
+#   test: false
+#
+#   # Additional parameters to add.
+#   login_params:
+#     skin: "LSST"
+
+# Example configuration for using GitHub.
+# github:
+#   client_id: "<github-client-id>"
+
 issuer:
   # Session length and token expiration (in minutes).
   exp_minutes: 1440  # 1 day
