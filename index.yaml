@@ -449,6 +449,18 @@ entries:
   gafaelfawr:
   - apiVersion: v1
     appVersion: 1.5.0
+    created: "2021-02-18T19:19:26.521488114Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 9d3af0304c07130b40e930ca909f835c184e567d9af32371b064cf38ac23417b
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-1.5.6/gafaelfawr-1.5.6.tgz
+    version: 1.5.6
+  - apiVersion: v1
+    appVersion: 1.5.0
     created: "2021-01-25T17:26:56.367989564Z"
     description: The Gafaelfawr authentication and authorization system
     digest: 4853964f7d1b0788dd5ba32e79dbde256c295317dc5e4b6c8aee5869da76be9d
