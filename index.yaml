@@ -149,7 +149,9 @@ entries:
   - apiVersion: v1
     appVersion: 1.7.12
     created: "2020-06-30T23:01:40.969110493Z"
-    description: Open-source web application written in Go and React.js that provides the tools to visualize your monitoring data and easily create alerting and automation rules.
+    description: Open-source web application written in Go and React.js that provides
+      the tools to visualize your monitoring data and easily create alerting and automation
+      rules.
     digest: 23f5e4e1d80b97cf0f56aa401968b3fc2c398393fc800846b772eff1e13ba83f
     home: https://www.influxdata.com/time-series-platform/chronograf/
     keywords:
@@ -926,7 +928,8 @@ entries:
   - apiVersion: v1
     appVersion: 1.5.8
     created: "2021-01-27T23:23:38.48678759Z"
-    description: InfluxDB's native data processing engine. It can process both stream and batch data from InfluxDB.
+    description: InfluxDB's native data processing engine. It can process both stream
+      and batch data from InfluxDB.
     digest: 008ac0c1ae28b352a73d8d4ca6a47f098f021716607b3df382d32c8234dbd9ac
     home: https://www.influxdata.com/time-series-platform/kapacitor/
     keywords:
@@ -946,7 +949,8 @@ entries:
   - apiVersion: v1
     appVersion: 1.5.2
     created: "2020-12-16T23:38:58.876619201Z"
-    description: InfluxDB's native data processing engine. It can process both stream and batch data from InfluxDB.
+    description: InfluxDB's native data processing engine. It can process both stream
+      and batch data from InfluxDB.
     digest: 6454d52151719b4ed0a6f7fae4798f12b077016cb02b83f1a4d8e05bb2ae8867
     home: https://www.influxdata.com/time-series-platform/kapacitor/
     keywords:
@@ -966,7 +970,8 @@ entries:
   - apiVersion: v1
     appVersion: 1.5.2
     created: "2020-06-30T23:01:41.549715904Z"
-    description: InfluxDB's native data processing engine. It can process both stream and batch data from InfluxDB.
+    description: InfluxDB's native data processing engine. It can process both stream
+      and batch data from InfluxDB.
     digest: bd25caf45960a26b0a0f80098aa8156f120ec120a111d9f9557e839f85b23fea
     home: https://www.influxdata.com/time-series-platform/kapacitor/
     keywords:
@@ -1355,6 +1360,26 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/nublado-0.8.10/nublado-0.8.10.tgz
     version: 0.8.10
   nublado2:
+  - apiVersion: v1
+    appVersion: 1.1.0
+    created: "2021-03-01T23:12:19.463883479Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 0.9.0-n409.hce116620
+    description: Nublado2 JupyterHub installation
+    digest: e5880149dc0a7aca0498ee94d2bb4f2561fb39a971b7356b41af0216c3ef34f4
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.0.14/nublado2-0.0.14.tgz
+    version: 0.0.14
   - apiVersion: v1
     appVersion: 1.1.0
     created: "2021-02-11T23:11:22.903724579Z"
@@ -1851,4 +1876,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2020-06-30T23:01:40.637550211Z"
+generated: "2021-03-01T23:12:19.464633619Z"
