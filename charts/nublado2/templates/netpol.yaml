@@ -13,7 +13,6 @@ spec:
       release: {{ .Release.Name }}
   policyTypes:
     - Ingress
-    - Egress
 
   ingress:
     # allowed pods (hub.jupyter.org/network-access-hub) --> hub
@@ -24,33 +23,4 @@ spec:
             matchLabels:
               hub.jupyter.org/network-access-hub: "true"
           namespaceSelector: {}
-
-  egress:
-    # hub --> proxy
-    - ports:
-        - port: 8001
-      to:
-        - podSelector:
-            matchLabels:
-              app: jupyterhub
-              component: proxy
-              release: {{ .Release.Name }}
-
-    # hub --> singleuser-server
-    - ports:
-        - port: 8888
-      to:
-        - podSelector:
-            matchLabels:
-              app: jupyterhub
-              component: singleuser-server
-              release: {{ .Release.Name }}
-          namespaceSelector: {}
-
-    # hub -> Kubernetes internal DNS
-    - ports:
-        - protocol: UDP
-          port: 53
-        - protocol: TCP
-          port: 53
 {{- end }}
