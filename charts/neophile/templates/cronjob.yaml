@@ -34,6 +34,7 @@ spec:
                 capabilities:
                   drop:
                     - all
+                readOnlyRootFilesystem: true
               volumeMounts:
                 - name: {{ template "helpers.fullname" . }}-config
                   mountPath: "/etc/neophile"
