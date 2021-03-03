@@ -6,8 +6,8 @@ replicaCount: 1
 
 image:
   repository: lsstsqre/mobu
-  tag: master
-  pullPolicy: Always
+  tag: 1.0.6
+  pullPolicy: IfNotPresent
 
 mobu_secrets_path: ""
 gafaelfawr_secrets_path: ""
