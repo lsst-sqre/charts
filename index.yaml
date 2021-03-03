@@ -1101,6 +1101,18 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.1/mobu-0.1.1.tgz
     version: 0.1.1
+  moneypenny:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2021-03-03T23:03:48.079112671Z"
+    description: A Helm chart for Kubernetes
+    digest: 60495222d4f17f8d0fdb74556466566d97d19bef1a256c613d296a004a65ea48
+    maintainers:
+    - name: athornton
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.0.1/moneypenny-0.0.1.tgz
+    version: 0.0.1
   neophile:
   - apiVersion: v2
     appVersion: 0.2.1
@@ -1923,4 +1935,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-03T22:47:02.020750141Z"
+generated: "2021-03-03T23:03:48.080473137Z"
