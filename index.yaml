@@ -1036,6 +1036,18 @@ entries:
     version: 0.2.2
   mobu:
   - apiVersion: v1
+    appVersion: 1.0.6
+    created: "2021-03-03T22:23:24.085181302Z"
+    description: The mobu generates system load by pretending to be a random scientist
+    digest: 80f9204b562489ca43f2173ff8afb40659e977d5a8a9237f11d145ad34ccb0d4
+    home: https://github.com/lsst-sqre/mobu
+    maintainers:
+    - name: cbanek
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.5/mobu-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v1
     appVersion: "1.0"
     created: "2020-12-16T23:38:59.06633411Z"
     description: The mobu generates system load by pretending to be a random scientist
@@ -1899,4 +1911,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-03T21:18:15.737416909Z"
+generated: "2021-03-03T22:23:24.085636814Z"
