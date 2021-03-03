@@ -16,7 +16,7 @@ spec:
         app.kubernetes.io/name: {{ include "mobu.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-      serviceAccountName: {{ template "mobu.serviceAccountName" . }}
+      automountServiceAccountToken: false
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- if .Values.pull_secret }}
