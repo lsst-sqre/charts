@@ -221,10 +221,17 @@ spec:
               - path: "labels"
                 fieldRef:
                   fieldPath: metadata.labels
+        - name: fs-mounts
+          configMap:
+            defaultMode: 0444
+            items:
+            - key: mountpoints.json
+              path: mountpoints.json
+            name: {{ template "nublado.fullname" . }}-fs-mounts
 {{ if .Values.hub.persistent_home }}
         - name: home-jovyan
           persistentVolumeClaim:
-           claimName: {{ template "nublado.fullname" . }}-hub-physpvc
+            claimName: {{ template "nublado.fullname" . }}-hub-physpvc
 {{ end }}
 {{ if .Values.lab.enable_moneypenny }}
         - name: {{ template "nublado.fullname" . }}-gafaelfawr
