@@ -18,6 +18,8 @@ vault_secrets:
   path: ""
 
 pull_secret: ""
+gafaelfawr_secrets_path: "" # You should use vault_secrets and this...
+token_signing_key: "" # Rather than this, if you have vault/k8s_operator
 
 hub:
   uid: 768
@@ -38,7 +40,15 @@ dask:
   max_workers: 25
 
 lab:
+  # Don't use the semiprivileged 'provisionator' user.  If you don't
+  #  *also* use Moneypenny you will need some way to create user
+  #  homedirs ahead of time and out of band.
   no_sudo: ''
+
+  # Have moneypenny (rather than the Lab under sudo) do the
+  # provisioning.
+  enable_moneypenny: ''
+
   restrict_nodes: ''
 
   # If you don't want to use the prepuller to scan for images, put in a full
@@ -88,7 +98,6 @@ lab:
 
   # Set this to turn on the Multus CNI, necessary for bridging to the
   #  physical network in SAL environments.
-
   enable_multus: ''
 
   # This is used in SAL environments.  The value "nocontrol" means no SAL.
@@ -96,6 +105,7 @@ lab:
   dds_partition_prefix: 'nocontrol'
   # What interface talks to the instruments?
   dds_interface: 'lo'
+
 
 proxy:
   max_http_header_size: 16384
