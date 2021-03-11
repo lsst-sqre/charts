@@ -163,6 +163,8 @@ spec:
               value: '8081'
             - name: LAB_NO_SUDO
               value: '{{.Values.lab.no_sudo}}'
+            - name: TURN_ON_MONEYPENNY
+              value: '{{.Values.lab.enable_moneypenny}}'
             # This may contain credentials, so it should be a secret
             - name: SESSION_DB_URL
               valueFrom:
@@ -192,6 +194,11 @@ spec:
             - name: home-jovyan
               mountPath: /home/jovyan
 {{ end }}
+{{ if .Values.lab.enable_moneypenny }}
+            - name: {{ template "nublado.fullname" . }}-gafaelfawr
+              mountPath: /etc/keys/signing_key.pem
+              subPath: signing-key
+{{ end }}
             - name: fs-mounts
               mountPath: /opt/lsst/software/jupyterhub/mounts
             - name: resourcemap
@@ -219,13 +226,11 @@ spec:
           persistentVolumeClaim:
            claimName: {{ template "nublado.fullname" . }}-hub-physpvc
 {{ end }}
-        - name: fs-mounts
-          configMap:
-            defaultMode: 0444
-            items:
-            - key: mountpoints.json
-              path: mountpoints.json
-            name: {{ template "nublado.fullname" . }}-fs-mounts
+{{ if .Values.lab.enable_moneypenny }}
+        - name: {{ template "nublado.fullname" . }}-gafaelfawr
+          secret:
+            secretName: {{ template "nublado.fullname" . }}-gafaelfawr
+{{ end }}
         - name: resourcemap
           configMap:
             defaultMode: 0444
