@@ -5,5 +5,5 @@ metadata:
   labels:
 {{ include "moneypenny.labels" . | indent 4 }}
 data:
-  m.yaml::
+  m.yaml:
 {{- toYaml .Values.orders | indent 2 }}
