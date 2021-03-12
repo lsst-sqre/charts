@@ -1,4 +1,4 @@
-{{ if .Values.vault_secrets.enabled }}
+{{ if and .Values.vault_secrets.enabled .Values.lab.enable_moneypenny }}
 apiVersion: ricoberger.de/v1alpha1
 kind: VaultSecret
 metadata:
