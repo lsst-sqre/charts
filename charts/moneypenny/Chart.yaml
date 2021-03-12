@@ -4,4 +4,4 @@ description: A Helm chart for Kubernetes
 name: moneypenny
 maintainers:
   - name: athornton
-version: 0.0.2
+version: 0.0.3
