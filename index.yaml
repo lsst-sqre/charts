@@ -1104,6 +1104,17 @@ entries:
   moneypenny:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2021-03-12T16:56:31.312265993Z"
+    description: A Helm chart for Kubernetes
+    digest: 5429fe205195be1e946b903c2a3bdd1da0c2e74de81d88479159399b00454f99
+    maintainers:
+    - name: athornton
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.0.2/moneypenny-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2021-03-03T23:03:48.079112671Z"
     description: A Helm chart for Kubernetes
     digest: 60495222d4f17f8d0fdb74556466566d97d19bef1a256c613d296a004a65ea48
@@ -1217,6 +1228,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/neophile-0.0.1/neophile-0.0.1.tgz
     version: 0.0.1
   nublado:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2021-03-12T16:56:31.417862183Z"
+    description: A Helm chart for Kubernetes
+    digest: 7602af3f2523c2d0c27d7b3091c1a28679d62f6a3fda8654e7f9dc8cd5ea8708
+    home: https://github.com/lsst-sqre/nublado
+    maintainers:
+    - name: athornton
+    name: nublado
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado-0.9.21/nublado-0.9.21.tgz
+    version: 0.9.21
   - apiVersion: v1
     appVersion: "1.0"
     created: "2021-03-11T19:58:34.133947535Z"
@@ -1991,4 +2014,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-11T19:58:34.136035805Z"
+generated: "2021-03-12T16:56:31.418382688Z"
