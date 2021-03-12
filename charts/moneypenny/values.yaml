@@ -52,7 +52,7 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-  
+
 orders: |
   commission:
     - name: farthing
@@ -81,7 +81,7 @@ quips: |
   forget.
   Bond: Yes?
   Moneypenny: I... love... you. Repeat it please, to make sure you get it.
-  Bond: Don't worry, I get it. Sayonara. 
+  Bond: Don't worry, I get it. Sayonara.
   %
   My problem is, James, you never do anything with me.
   %
