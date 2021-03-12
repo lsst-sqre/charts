@@ -36,6 +36,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
       - name: Run chart-testing (lint)
         id: lint
         uses: helm/chart-testing-action@v2.0.1
