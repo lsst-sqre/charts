@@ -24,10 +24,16 @@ jupyterhub:
       - name: nublado-config
         configMap:
           name: nublado-config
+      - name: nublado-gafaelfawr
+        secret:
+          secretName: nublado-gafaelfawr
     extraVolumeMounts:
       - name: nublado-config
         mountPath: /etc/jupyterhub/nublado_config.yaml
         subPath: nublado_config.yaml
+      - name: nublado-gafaelfawr
+        mountPath: /etc/keys/signing_key.pem
+        subPath: signing-key
     networkPolicy:
       # This is set to disabled but is basically re-implemented by
       # the netpol.yaml in this chart.
@@ -326,3 +332,5 @@ pull_secret: ""
 
 network_policy:
   enabled: true
+
+gafaelfawr_secret_path: ""
