@@ -96,6 +96,7 @@ config:
   # the primary ingress.  It's used to construct API requests to the
   # authentication service (which should go through the ingress).
   base_url: ""
+  signing_key_path: "/etc/keys/signing_key.pem"
 
   # What uid should the pod be started as?  If it is set, use that uid for
   # starting each pod.  If not set, use the uid provided from gafaelfawr in
