@@ -12,6 +12,8 @@ spec:
       app.kubernetes.io/component: "frontend"
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
       labels:
         {{- include "gafaelfawr.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: "frontend"
