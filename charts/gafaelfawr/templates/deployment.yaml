@@ -21,7 +21,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: gafaelfawr
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           ports:
             - containerPort: 8080
