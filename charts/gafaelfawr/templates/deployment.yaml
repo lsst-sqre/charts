@@ -22,7 +22,7 @@ spec:
       containers:
         - name: gafaelfawr
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           ports:
             - containerPort: 8080
               name: "app"
@@ -33,10 +33,10 @@ spec:
                 - "all"
             readOnlyRootFilesystem: true
           volumeMounts:
-            - name: {{ template "gafaelfawr.fullname" . }}-config
+            - name: "config"
               mountPath: "/etc/gafaelfawr"
               readOnly: true
-            - name: {{ template "gafaelfawr.fullname" . }}-secret
+            - name: "secret"
               mountPath: "/etc/gafaelfawr/secrets"
               readOnly: true
       {{- if .Values.pullSecret }}
@@ -48,9 +48,9 @@ spec:
         runAsUser: 1000
         runAsGroup: 1000
       volumes:
-        - name: {{ template "gafaelfawr.fullname" . }}-config
+        - name: "config"
           configMap:
-            name: {{ template "gafaelfawr.fullname" . }}-configmap
-        - name: {{ template "gafaelfawr.fullname" . }}-secret
+            name: {{ template "gafaelfawr.fullname" . }}-config
+        - name: "secret"
           secret:
             secretName: {{ template "gafaelfawr.fullname" . }}-secret

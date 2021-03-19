@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "gafaelfawr.fullname" . }}-configmap
+  name: {{ template "gafaelfawr.fullname" . }}-config
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
 data:
@@ -9,7 +9,7 @@ data:
     realm: {{ required "config.host must be set" .Values.config.host | quote }}
     loglevel: {{ .Values.config.loglevel | quote }}
     session_secret_file: "/etc/gafaelfawr/secrets/session-secret"
-    redis_url: "redis://{{ template "gafaelfawr.fullname" . }}-redis-service.{{ .Release.Namespace }}:6379/0"
+    redis_url: "redis://{{ template "gafaelfawr.fullname" . }}-redis.{{ .Release.Namespace }}:6379/0"
     redis_password_file: "/etc/gafaelfawr/secrets/redis-password"
     {{- if .Values.config.proxies }}
     proxies:

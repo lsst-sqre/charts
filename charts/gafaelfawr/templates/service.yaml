@@ -1,6 +1,23 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: {{ template "gafaelfawr.fullname" . }}
+  labels:
+    {{- include "gafaelfawr.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort: "app"
+  selector:
+    {{- include "gafaelfawr.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: "frontend"
+  sessionAffinity: None
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: {{ template "gafaelfawr.fullname" . }}-service
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
