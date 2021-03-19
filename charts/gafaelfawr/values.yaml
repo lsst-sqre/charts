@@ -14,6 +14,13 @@ image:
   tag: "1.5.0"
   pullPolicy: "IfNotPresent"
 
+# redis configures the internal Redis service.
+redis:
+  image:
+    repository: "redis"
+    tag: "6.2.1"
+    pullPolicy: "IfNotPresent"
+
 # Existing PVC for redis claim
 # If empty, redis will use emptydir
 redis_claim: ""

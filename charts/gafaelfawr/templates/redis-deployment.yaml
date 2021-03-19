@@ -19,8 +19,8 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: "redis"
-          image: "redis"
-          imagePullPolicy: "Always"
+          image: "{{ .Values.redis.image.repository }}:{{ .Values.redis.image.tag }}"
+          imagePullPolicy: {{ .Values.redis.image.pullPolicy | quote }}
           args:
             - "redis-server"
             - "--appendonly"
