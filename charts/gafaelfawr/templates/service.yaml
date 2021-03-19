@@ -9,7 +9,7 @@ spec:
   ports:
     - protocol: "TCP"
       port: 8080
-      targetPort: "app"
+      targetPort: "http"
   selector:
     {{- include "gafaelfawr.selectorLabels" . | nindent 4 }}
     app.kubernetes.io/component: "frontend"
@@ -26,7 +26,7 @@ spec:
   ports:
     - protocol: "TCP"
       port: 8080
-      targetPort: "app"
+      targetPort: "http"
   selector:
     {{- include "gafaelfawr.selectorLabels" . | nindent 4 }}
     app.kubernetes.io/component: "frontend"

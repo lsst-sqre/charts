@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "gafaelfawr.selectorLabels" . | nindent 6 }}
@@ -14,24 +14,44 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       labels:
         {{- include "gafaelfawr.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: "frontend"
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
-        - name: gafaelfawr
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
-          ports:
-            - containerPort: 8080
-              name: "app"
+        - name: "gafaelfawr"
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
               drop:
                 - "all"
             readOnlyRootFilesystem: true
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+            - containerPort: 8080
+              name: "http"
+              protocol: "TCP"
+          readinessProbe:
+            httpGet:
+              path: "/"
+              port: "http"
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: "config"
               mountPath: "/etc/gafaelfawr"
@@ -39,14 +59,6 @@ spec:
             - name: "secret"
               mountPath: "/etc/gafaelfawr/secrets"
               readOnly: true
-      {{- if .Values.pullSecret }}
-      imagePullSecrets:
-        - name: {{ .Values.pullSecret | quote }}
-      {{- end }}
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
       volumes:
         - name: "config"
           configMap:
@@ -54,3 +66,15 @@ spec:
         - name: "secret"
           secret:
             secretName: {{ template "gafaelfawr.fullname" . }}-secret
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

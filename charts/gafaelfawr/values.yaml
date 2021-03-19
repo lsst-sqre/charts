@@ -1,7 +1,10 @@
-# ingress.host sets the hostname for the ingress.  This should normally be the
-# same as config.host.
-ingress:
-  host: null
+# Default values for Gafaelfawr.
+
+replicaCount: 1
+
+# nameOverride and fullnameOverride change the naming of chart resources
+nameOverride: ""
+fullnameOverride: ""
 
 # image configures the Docker image to use
 image:
@@ -9,42 +12,42 @@ image:
   pullPolicy: "IfNotPresent"
 
   # image.tag overrides the default, which is the chart appVersion
-  tag: null
+  tag: ""
 
-# redis configures the internal Redis service
-redis:
-  image:
-    repository: "redis"
-    tag: "6.2.1"
-    pullPolicy: "IfNotPresent"
+# imagePullSecrets list secret names to use for all Docker pulls
+imagePullSecrets: []
 
-  # By default, Redis will use dynamic provisioning of persistent storage and
-  # request 1Gi of storage (which should be more than enough) using the
-  # default storage class.
-  #
-  # To disable persistence entirely and use emptyDir, which will reset storage
-  # on every restart (suitable only for a test deployment), set
-  # redis.persistence.enabled to false.
-  persistence:
-    enabled: true
-    size: "1Gi"
-    storageClass: null
-    accessMode: "ReadWriteOnce"
+# ingress configures the ingress, which is enabled by default.
+ingress:
+  enabled: true
+  annotations: {}
 
-    # volumeClaimName says to use an existing PVC, not dynamic provisioning.
-    volumeClaimName: null
+  # ingress.host sets the hostname for the ingress.
+  # This should normally be the same as config.host.
+  host: ""
 
-# pullSecret defines a secret name to use for all Docker pulls
-pullSecret: null
+  # ingress.tls configures TLS for the ingress if needed.
+  # If multiple ingresses share the same hostname, only one of them needs a
+  # TLS configuration.
+  tls: []
 
-# vaultSecretsPath sets the path to the Vault secret for Gafaelfawr
+# resources defines resource limits and requests
+resources: {}
+
+# Additional optional configuration for how to deploy Gafaelfawr pods
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+# vaultSecretsPath sets the path to the Vault secret and must be set
 # secret/k8s_operator/<host>/gafaelfawr
-vaultSecretsPath: null
+vaultSecretsPath: ""
 
 # config specifies the Gafaelfawr configuration
 config:
   # config.host is used to construct issuers and URLs and must be set
-  host: null
+  host: ""
 
   # Choose from the text form of Python logging levels.
   loglevel: "INFO"
@@ -84,7 +87,7 @@ config:
     # identity of the user requesting a token.
     influxdb:
       enabled: false
-      username: null
+      username: ""
 
   # Whether to support OpenID Connect clients.  If set to true,
   # oidc-server-secrets must be set in the Gafaelfawr secret.
@@ -109,3 +112,32 @@ config:
   # include groups in an isMemberOf claim will be granted scopes based on this
   # mapping.
   groupMapping: {}
+
+# redis configures the internal Redis service
+redis:
+  image:
+    repository: "redis"
+    tag: "6.2.1"
+    pullPolicy: "IfNotPresent"
+
+  # By default, Redis will use dynamic provisioning of persistent storage and
+  # request 1Gi of storage (which should be more than enough) using the
+  # default storage class.
+  #
+  # To disable persistence entirely and use emptyDir, which will reset storage
+  # on every restart (suitable only for a test deployment), set
+  # redis.persistence.enabled to false.
+  persistence:
+    enabled: true
+    size: "1Gi"
+    storageClass: ""
+    accessMode: "ReadWriteOnce"
+
+    # volumeClaimName says to use an existing PVC, not dynamic provisioning.
+    volumeClaimName: ""
+
+  # Additional optional configuration for how to deploy the Redis pod
+  podAnnotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

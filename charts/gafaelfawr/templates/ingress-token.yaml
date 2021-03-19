@@ -9,6 +9,9 @@ metadata:
     nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr-service.{{ .Release.Namespace }}.svc.cluster.local:8080/auth?scope={{ .Values.config.userScope }}"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       error_page 403 = "/auth/forbidden?scope={{ .Values.config.userScope }}";
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   name: {{ template "gafaelfawr.fullname" . }}-token-ingress
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}

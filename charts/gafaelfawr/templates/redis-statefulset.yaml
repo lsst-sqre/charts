@@ -13,10 +13,23 @@ spec:
   serviceName: "redis"
   template:
     metadata:
+      {{- with .Values.redis.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "gafaelfawr.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: "redis"
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        fsGroup: 999
+        runAsNonRoot: true
+        runAsUser: 999
+        runAsGroup: 999
       automountServiceAccountToken: false
       containers:
         - name: "redis"
@@ -58,15 +71,6 @@ spec:
           volumeMounts:
             - name: {{ template "gafaelfawr.fullname" . }}-redis-data
               mountPath: "/data"
-      {{- if .Values.redis.pullSecret }}
-      imagePullSecrets:
-        - name: {{ .Values.redis.pullSecret | quote }}
-      {{- end }}
-      securityContext:
-        fsGroup: 999
-        runAsNonRoot: true
-        runAsUser: 999
-        runAsGroup: 999
       {{- if (not .Values.redis.persistence.enabled) }}
       volumes:
         - name: {{ template "gafaelfawr.fullname" . }}-redis-data
@@ -76,6 +80,18 @@ spec:
         - name: {{ template "gafaelfawr.fullname" . }}-redis-data
           persistentVolumeClaim:
             claimName: {{ .Values.redis.persistence.volumeClaimName | quote }}
+      {{- end }}
+      {{- with .Values.redis.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.redis.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.redis.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
       {{- end }}
   {{- if (and .Values.redis.persistence.enabled (not .Values.redis.persistence.volumeClaimName)) }}
   volumeClaimTemplates:
