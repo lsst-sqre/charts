@@ -6,46 +6,46 @@ metadata:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
 data:
   gafaelfawr.yaml: |
-    realm: {{ .Values.host | quote }}
-    loglevel: {{ .Values.loglevel | quote }}
+    realm: {{ required "config.host must be set" .Values.config.host | quote }}
+    loglevel: {{ .Values.config.loglevel | quote }}
     session_secret_file: "/etc/gafaelfawr/secrets/session-secret"
     redis_url: "redis://{{ template "gafaelfawr.fullname" . }}-redis-service.{{ .Release.Namespace }}:6379/0"
     redis_password_file: "/etc/gafaelfawr/secrets/redis-password"
-    {{- if .Values.proxies }}
+    {{- if .Values.config.proxies }}
     proxies:
-      {{- range $netblock := .Values.proxies }}
+      {{- range $netblock := .Values.config.proxies }}
       - {{ $netblock | quote }}
       {{- end }}
     {{- end }}
-    after_logout_url: "https://{{ .Values.host }}/"
+    after_logout_url: "https://{{ .Values.config.host }}/"
 
     issuer:
-      iss: "https://{{ .Values.host }}"
+      iss: "https://{{ .Values.config.host }}"
       key_id: "reissuer"
       aud:
-        default: "https://{{ .Values.host }}"
-        internal: "https://{{ .Values.host }}/api"
+        default: "https://{{ .Values.config.host }}"
+        internal: "https://{{ .Values.config.host }}/api"
       key_file: "/etc/gafaelfawr/secrets/signing-key"
-      exp_minutes: {{ .Values.issuer.exp_minutes }}
-      {{- if .Values.issuer.influxdb.enabled }}
+      exp_minutes: {{ .Values.config.issuer.expMinutes }}
+      {{- if .Values.config.issuer.influxdb.enabled }}
       influxdb_secret_file: "/etc/gafaelfawr/secrets/influxdb-secret"
-      {{- if .Values.issuer.influxdb.username }}
-      influxdb_username: {{ .Values.issuer.influxdb.username | quote }}
+      {{- if .Values.config.issuer.influxdb.username }}
+      influxdb_username: {{ .Values.config.issuer.influxdb.username | quote }}
       {{- end }}
       {{- end }}
 
-    {{- if .Values.github }}
+    {{- if .Values.config.github }}
 
     github:
-      client_id: {{ .Values.github.client_id | quote }}
+      client_id: {{ .Values.config.github.clientId | quote }}
       client_secret_file: "/etc/gafaelfawr/secrets/github-client-secret"
 
-    {{- else if .Values.cilogon }}
+    {{- else if .Values.config.cilogon }}
 
     oidc:
-      client_id: {{ .Values.cilogon.client_id | quote }}
+      client_id: {{ .Values.config.cilogon.clientId | quote }}
       client_secret_file: "/etc/gafaelfawr/secrets/cilogon-client-secret"
-      {{- if .Values.cilogon.test }}
+      {{- if .Values.config.cilogon.test }}
       login_url: "https://test.cilogon.org/authorize"
       token_url: "https://test.cilogon.org/oauth2/token"
       issuer: "https://test.cilogon.org"
@@ -54,37 +54,37 @@ data:
       token_url: "https://cilogon.org/oauth2/token"
       issuer: "https://cilogon.org"
       {{- end }}
-      {{- if .Values.cilogon.login_params }}
+      {{- if .Values.config.cilogon.loginParams }}
       login_params:
-        {{- range $key, $value := .Values.cilogon.login_params }}
+        {{- range $key, $value := .Values.config.cilogon.loginParams }}
         {{ $key }}: {{ $value | quote }}
         {{- end }}
       {{- end }}
-      {{- if .Values.cilogon.redirect_url }}
-      redirect_url: {{ .Values.cilogon.redirect_url | quote }}
+      {{- if .Values.config.cilogon.redirectUrl }}
+      redirect_url: {{ .Values.config.cilogon.redirectUrl | quote }}
       {{- else }}
       redirect_url: "https://{{ .Values.host }}/login"
       {{- end }}
       scopes:
         - "email"
         - "org.cilogon.userinfo"
-      audience: {{ .Values.cilogon.client_id | quote }}
+      audience: {{ .Values.config.cilogon.clientId | quote }}
       key_ids:
         - "244B235F6B28E34108D101EAC7362C4E"
 
     {{- end }}
 
-    {{- if .Values.oidc_server.enabled }}
+    {{- if .Values.config.oidcServer.enabled }}
     oidc_server_secrets_file: "/etc/gafaelfawr/secrets/oidc-server-secrets"
     {{- end }}
 
     known_scopes:
-      {{- range $key, $value := .Values.known_scopes }}
+      {{- range $key, $value := .Values.config.knownScopes }}
       {{ $key | quote }}: {{ $value | quote }}
       {{- end }}
 
     group_mapping:
-      {{- range $key, $value := .Values.group_mapping }}
+      {{- range $key, $value := .Values.config.groupMapping }}
       {{ $key | quote }}:
         {{- range $group := $value }}
         - {{ $group | quote }}

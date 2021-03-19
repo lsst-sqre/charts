@@ -39,9 +39,9 @@ spec:
             - name: {{ template "gafaelfawr.fullname" . }}-secret
               mountPath: "/etc/gafaelfawr/secrets"
               readOnly: true
-      {{- if .Values.pull_secret }}
+      {{- if .Values.pullSecret }}
       imagePullSecrets:
-        - name: {{ .Values.pull_secret }}
+        - name: {{ .Values.pullSecret | quote }}
       {{- end }}
       securityContext:
         runAsNonRoot: true

@@ -58,9 +58,9 @@ spec:
           volumeMounts:
             - name: {{ template "gafaelfawr.fullname" . }}-redis-data
               mountPath: "/data"
-      {{- if .Values.pull_secret }}
+      {{- if .Values.redis.pullSecret }}
       imagePullSecrets:
-        - name: {{ .Values.pull_secret }}
+        - name: {{ .Values.redis.pullSecret | quote }}
       {{- end }}
       securityContext:
         fsGroup: 999
