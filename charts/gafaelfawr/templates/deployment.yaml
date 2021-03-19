@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "helpers.fullname" . }}
+  name: {{ template "gafaelfawr.fullname" . }}
   labels:
-    app: {{ template "helpers.fullname" . }}
-{{ include "helpers.labels" . | indent 4 }}
+    {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: {{ template "helpers.fullname" . }}
+      {{- include "gafaelfawr.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "frontend"
   template:
     metadata:
       labels:
-        name: {{ template "helpers.fullname" . }}
-{{ include "helpers.labels" . | indent 8 }}
+        {{- include "gafaelfawr.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: "frontend"
     spec:
       automountServiceAccountToken: false
       containers:
@@ -23,32 +23,32 @@ spec:
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           ports:
             - containerPort: 8080
-              name: app
+              name: "app"
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
               drop:
-                - all
+                - "all"
             readOnlyRootFilesystem: true
           volumeMounts:
-            - name: {{ template "helpers.fullname" . }}-config
+            - name: {{ template "gafaelfawr.fullname" . }}-config
               mountPath: "/etc/gafaelfawr"
               readOnly: true
-            - name: {{ template "helpers.fullname" . }}-secret
+            - name: {{ template "gafaelfawr.fullname" . }}-secret
               mountPath: "/etc/gafaelfawr/secrets"
               readOnly: true
       {{- if .Values.pull_secret }}
       imagePullSecrets:
-      - name: {{ .Values.pull_secret }}
+        - name: {{ .Values.pull_secret }}
       {{- end }}
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
       volumes:
-        - name: {{ template "helpers.fullname" . }}-config
+        - name: {{ template "gafaelfawr.fullname" . }}-config
           configMap:
-            name: {{ template "helpers.fullname" . }}-configmap
-        - name: {{ template "helpers.fullname" . }}-secret
+            name: {{ template "gafaelfawr.fullname" . }}-configmap
+        - name: {{ template "gafaelfawr.fullname" . }}-secret
           secret:
-            secretName: {{ template "helpers.fullname" . }}-secret
+            secretName: {{ template "gafaelfawr.fullname" . }}-secret

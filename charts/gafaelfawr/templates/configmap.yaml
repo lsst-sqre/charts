@@ -1,13 +1,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "helpers.fullname" . }}-configmap
+  name: {{ template "gafaelfawr.fullname" . }}-configmap
+  labels:
+    {{- include "gafaelfawr.labels" . | nindent 4 }}
 data:
   gafaelfawr.yaml: |
     realm: {{ .Values.host | quote }}
     loglevel: {{ .Values.loglevel | quote }}
     session_secret_file: "/etc/gafaelfawr/secrets/session-secret"
-    redis_url: "redis://{{ template "helpers.fullname" . }}-redis-service.{{ .Release.Namespace }}:6379/0"
+    redis_url: "redis://{{ template "gafaelfawr.fullname" . }}-redis-service.{{ .Release.Namespace }}:6379/0"
     redis_password_file: "/etc/gafaelfawr/secrets/redis-password"
     {{- if .Values.proxies }}
     proxies:

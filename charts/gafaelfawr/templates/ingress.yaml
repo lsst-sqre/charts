@@ -2,8 +2,10 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: nginx
-  name: {{ template "helpers.fullname" . }}-ingress
+    kubernetes.io/ingress.class: "nginx"
+  name: {{ template "gafaelfawr.fullname" . }}-ingress
+  labels:
+    {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
   rules:
 {{ if .Values.ingress.host }}
@@ -13,29 +15,29 @@ spec:
   - http:
 {{ end }}
       paths:
-      - path: /auth
+      - path: "/auth"
         backend:
-          serviceName: {{ template "helpers.fullname" . }}-service
+          serviceName: {{ template "gafaelfawr.fullname" . }}-service
           servicePort: 8080
-      - path: /login
+      - path: "/login"
         backend:
-          serviceName: {{ template "helpers.fullname" . }}-service
+          serviceName: {{ template "gafaelfawr.fullname" . }}-service
           servicePort: 8080
-      - path: /logout
+      - path: "/logout"
         backend:
-          serviceName: {{ template "helpers.fullname" . }}-service
+          serviceName: {{ template "gafaelfawr.fullname" . }}-service
           servicePort: 8080
-      - path: /oauth2/callback
+      - path: "/oauth2/callback"
         backend:
-          serviceName: {{ template "helpers.fullname" . }}-service
+          serviceName: {{ template "gafaelfawr.fullname" . }}-service
           servicePort: 8080
-      - path: /.well-known/jwks.json
+      - path: "/.well-known/jwks.json"
         backend:
-          serviceName: {{ template "helpers.fullname" . }}-service
+          serviceName: {{ template "gafaelfawr.fullname" . }}-service
           servicePort: 8080
       {{- if .Values.oidc_server.enabled }}
-      - path: /.well-known/openid-configuration
+      - path: "/.well-known/openid-configuration"
         backend:
-          serviceName: {{ template "helpers.fullname" . }}-service
+          serviceName: {{ template "gafaelfawr.fullname" . }}-service
           servicePort: 8080
       {{- end }}

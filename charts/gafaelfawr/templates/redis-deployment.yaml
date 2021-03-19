@@ -1,23 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: {{ template "gafaelfawr.fullname" . }}-redis
   labels:
-    app: {{ template "helpers.fullname" . }}-redis
-  name: {{ template "helpers.fullname" . }}-redis
+    {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "helpers.fullname" . }}-redis
+      {{- include "gafaelfawr.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "redis"
   template:
     metadata:
       labels:
-        app: {{ template "helpers.fullname" . }}-redis
+        {{- include "gafaelfawr.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: "redis"
     spec:
       automountServiceAccountToken: false
       containers:
-        - name: redis
-          image: redis
+        - name: "redis"
+          image: "redis"
           imagePullPolicy: "Always"
           args:
             - "redis-server"
@@ -29,7 +31,7 @@ spec:
             - name: "REDIS_PASSWORD"
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "helpers.fullname" . }}-secret
+                  name: {{ template "gafaelfawr.fullname" . }}-secret
                   key: "redis-password"
           livenessProbe:
             exec:
@@ -50,14 +52,14 @@ spec:
             allowPrivilegeEscalation: false
             capabilities:
               drop:
-                - all
+                - "all"
             readOnlyRootFilesystem: true
           volumeMounts:
-            - name: redis-data
+            - name: "redis-data"
               mountPath: "/data"
       {{- if .Values.pull_secret }}
       imagePullSecrets:
-      - name: {{ .Values.pull_secret }}
+        - name: {{ .Values.pull_secret }}
       {{- end }}
       securityContext:
         fsGroup: 999
