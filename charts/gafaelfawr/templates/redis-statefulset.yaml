@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ template "gafaelfawr.fullname" . }}-redis
   labels:
@@ -10,6 +10,7 @@ spec:
     matchLabels:
       {{- include "gafaelfawr.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: "redis"
+  serviceName: "redis"
   template:
     metadata:
       labels:
@@ -55,7 +56,7 @@ spec:
                 - "all"
             readOnlyRootFilesystem: true
           volumeMounts:
-            - name: "redis-data"
+            - name: {{ template "gafaelfawr.fullname" . }}-redis-data
               mountPath: "/data"
       {{- if .Values.pull_secret }}
       imagePullSecrets:
@@ -66,11 +67,27 @@ spec:
         runAsNonRoot: true
         runAsUser: 999
         runAsGroup: 999
+      {{- if (not .Values.redis.persistence.enabled) }}
       volumes:
-        - name: redis-data
-          {{- if .Values.redis_claim }}
-          persistentVolumeClaim:
-            claimName: {{ .Values.redis_claim }}
-          {{- else }}
+        - name: {{ template "gafaelfawr.fullname" . }}-redis-data
           emptyDir: {}
-          {{- end }}
+      {{- else if .Values.redis.persistence.volumeClaimName }}
+      volumes:
+        - name: {{ template "gafaelfawr.fullname" . }}-redis-data
+          persistentVolumeClaim:
+            claimName: {{ .Values.redis.persistence.volumeClaimName | quote }}
+      {{- end }}
+  {{- if (and .Values.redis.persistence.enabled (not .Values.redis.persistence.volumeClaimName)) }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ template "gafaelfawr.fullname" . }}-redis-data
+      spec:
+        accessModes:
+          - {{ .Values.redis.persistence.accessMode | quote }}
+        resources:
+          requests:
+            storage: {{ .Values.redis.persistence.size | quote }}
+        {{- if .Values.redis.persistence.storageClass }}
+        storageClassName: {{ .Values.redis.persistence.storageClass | quote }}
+        {{- end }}
+  {{- end }}

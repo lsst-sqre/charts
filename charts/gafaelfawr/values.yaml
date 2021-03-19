@@ -2,9 +2,9 @@
 # e.g. lsst-lsp-<instance>.ncsa.illinois.edu
 host: ""
 
-# Controls the host for the ingress.  Normally set to the same value as
-# the realm, but leave blank for environments using the wildcard virtual
-# host (such as nublado.lsst.codes).
+# Controls the host for the ingress.  Normally set to the same value as the
+# realm, but leave blank for environments using the wildcard virtual host
+# (such as nublado.lsst.codes).
 ingress:
   host: ""
 
@@ -21,9 +21,21 @@ redis:
     tag: "6.2.1"
     pullPolicy: "IfNotPresent"
 
-# Existing PVC for redis claim
-# If empty, redis will use emptydir
-redis_claim: ""
+  # By default, Redis will use dynamic provisioning of persistent storage and
+  # request 1Gi of storage (which should be more than enough) using the
+  # default storage class.
+  #
+  # To disable persistence entirely and use emptyDir, which will reset storage
+  # on every restart (suitable only for a test deployment), set
+  # redis.persistence.enabled to false.
+  persistence:
+    enabled: true
+    size: "1Gi"
+    storageClass: null
+    accessMode: "ReadWriteOnce"
+
+    # volumeClaimName says to use an existing PVC, not dynamic provisioning.
+    volumeClaimName: null
 
 # Path to the Vault secret to use to generate Kubernetes secrets.
 # secret/k8s_operator/<host>/gafaelfawr
