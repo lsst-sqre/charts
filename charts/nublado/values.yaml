@@ -20,8 +20,8 @@ vault_secrets:
 pull_secret: ""
 
 # Neither of these are used unless lab.enable_moneypenny is true
-gafaelfawr_secrets_path: "" # You should use vault_secrets and this...
-token_signing_key: "" # Rather than this, if you have vault/k8s_operator
+gafaelfawr_secrets_path: ""  # You should use vault_secrets and this...
+token_signing_key: ""  # Rather than this, if you have vault/k8s_operator
 
 
 hub:
