@@ -103,7 +103,12 @@ config:
   # auth.
   # Sometimes, we start the pod as the provisioning user (uid 769) which has
   # the permission to sudo to do the work of changing to the user.
+  # This should be null if we are not using sudo.
   pod_uid: 769
+  # no_sudo is a string value; it is used in conjunction with pod_uid.
+  # If pod_uid is null the value should be "TRUE", otherwise it should
+  # be the empty string.
+  no_sudo: ""
   options_form:
     images: []
     images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
@@ -143,6 +148,7 @@ config:
         EXTERNAL_GROUPS: "{{ external_groups }}"
         EXTERNAL_UID: "{{ uid }}"
         ACCESS_TOKEN: "{{ token }}"
+        NO_SUDO: "{{ no_sudo }}"
     - apiVersion: v1
       kind: ConfigMap
       metadata:
