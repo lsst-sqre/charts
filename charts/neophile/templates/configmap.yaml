@@ -1,17 +1,20 @@
+{{- required "config.githubUser is required" .Values.config.githubUser -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "helpers.fullname" . }}-configmap
+  name: {{ template "neophile.fullname" . }}-config
+  labels:
+    {{- include "neophile.labels" . | nindent 4 }}
 data:
   neophile.yaml: |
     allow_expressions: true
     cache_enabled: false
-    {{- if .Values.github_email }}
-    github_email: {{ .Values.github_email | quote }}
+    {{- if .Values.config.githubEmail }}
+    github_email: {{ .Values.config.githubEmail | quote }}
     {{- end }}
-    github_user: {{ .Values.github_user | quote }}
+    github_user: {{ .Values.config.githubUser | quote }}
     repositories:
-      {{- range $repository := .Values.repositories }}
+      {{- range $repository := .Values.config.repositories }}
       - owner: {{ $repository.owner }}
         repo: {{ $repository.repo }}
       {{- end }}

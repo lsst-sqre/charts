@@ -1,25 +1,49 @@
-# Name of the GitHub user (must match the token in the secret).
-github_user: ""
+# Default values for neophile.
 
-# Email address to use for GitHub commits.  Leave blank to use the public
-# email address of the user.
-github_email: ""
+# Override the name of the chart if needed
+nameOverride: ""
+fullnameOverride: ""
 
-# Repositories to monitor.
-repositories: {}
-
-# Docker image to use.
+# image defines the Docker image to use.  tag defaults to appVersion.
 image:
   repository: "lsstsqre/neophile"
-  tag: "0.2.1"
   pullPolicy: "IfNotPresent"
 
-# Execution schedule (default is 4am on Monday).
+# imagePullSecrets defines secrets to use when pulling Docker images
+imagePullSecrets: []
+
+# persistence.volumeClaim configures an existing PVC to optimize checkouts.
+# If not set, neophile will use ephemeral emptyDir.
+persistence:
+  volumeClaim: ""
+
+# schedule sets the execution schedule (default is 4am on Monday).
 schedule: "0 4 * * 1"
 
-# Existing PVC for the work area.  If empty, neophile will use emptyDir.
-volume_claim: ""
-
-# Path to the Vault secret to use to generate Kubernetes secrets.
+# vaultSecretsPath is the Vault path used for the Kubernetes secret
 # secret/k8s_operator/<host>/neophile
-vault_secrets_path: ""
+vaultSecretsPath: ""
+
+# config provides the Neophile configuration
+config:
+  # config.githubUser is the name of the GitHub user (must match the token in
+  # the secret).  This must be set.
+  github_user: ""
+
+  # config.githubEmail is the email address to use for GitHub commits.  Leave
+  # blank to use the public email address of the user.
+  github_email: ""
+
+  # config.repositories lists the repositories to monitor.
+  repositories: {}
+
+# podAnnotations defines additional annotations to add to the pod
+podAnnotations: {}
+
+# resources defines resource requests and limits for the spawned pod
+resources: {}
+
+# Additional optional configuration of the spawned pods.
+nodeSelector: {}
+tolerations: []
+affinity: {}
