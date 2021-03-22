@@ -1,22 +1,41 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ template "helpers.fullname" . }}
+  name: {{ template "neophile.fullname" . }}
+  labels:
+    {{- include "neophile.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.schedule | quote }}
   jobTemplate:
     spec:
       template:
         metadata:
+          {{- with .Values.podAnnotations }}
+          annotations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           labels:
-            name: {{ template "helpers.fullname" . }}
-{{ include "helpers.labels" . | indent 12 }}
+            {{- include "neophile.selectorLabels" . | nindent 12 }}
         spec:
           restartPolicy: "Never"
+          {{- with .Values.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           automountServiceAccountToken: false
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
           containers:
-            - name: {{ template "helpers.fullname" . }}
-              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            - name: {{ template "neophile.fullname" . }}
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop:
+                    - all
+                readOnlyRootFilesystem: true
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
               imagePullPolicy: "{{ .Values.image.pullPolicy }}"
               args:
                 - "neophile"
@@ -27,32 +46,40 @@ spec:
                 - name: NEOPHILE_GITHUB_TOKEN
                   valueFrom:
                     secretKeyRef:
-                      name: {{ template "helpers.fullname" . }}-secret
+                      name: {{ template "neophile.fullname" . }}-secret
                       key: "github_token"
-              securityContext:
-                allowPrivilegeEscalation: false
-                capabilities:
-                  drop:
-                    - all
-                readOnlyRootFilesystem: true
+              resources:
+                {{- toYaml .Values.resources | nindent 16 }}
               volumeMounts:
-                - name: {{ template "helpers.fullname" . }}-config
+                - name: "tmp"
+                  mountPath: "/tmp"
+                - name: "config"
                   mountPath: "/etc/neophile"
                   readOnly: true
-                - name: {{ template "helpers.fullname" . }}-data
+                - name: "data"
                   mountPath: "/data"
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
           volumes:
-            - name: {{ template "helpers.fullname" . }}-config
+            - name: "tmp"
+              emptyDir: {}
+            - name: "config"
               configMap:
-                name: {{ template "helpers.fullname" . }}-configmap
-            - name: {{ template "helpers.fullname" . }}-data
-              {{- if .Values.volume_claim }}
+                name: {{ template "neophile.fullname" . }}-config
+            - name: "data"
+              {{- if .Values.persistence.volumeClaim }}
               persistentVolumeClaim:
-                claimName: {{ .Values.volume_claim }}
+                claimName: {{ .Values.persistence.volumeClaim }}
               {{- else }}
               emptyDir: {}
               {{- end }}
+          {{- with .Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
