@@ -36,6 +36,8 @@ spec:
                     - all
                 readOnlyRootFilesystem: true
               volumeMounts:
+                - name: "tmp"
+                  mountPath: "/tmp"
                 - name: {{ template "helpers.fullname" . }}-config
                   mountPath: "/etc/neophile"
                   readOnly: true
@@ -46,6 +48,8 @@ spec:
             runAsUser: 1000
             runAsGroup: 1000
           volumes:
+            - name: "tmp"
+              emptyDir: {}
             - name: {{ template "helpers.fullname" . }}-config
               configMap:
                 name: {{ template "helpers.fullname" . }}-configmap
