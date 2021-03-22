@@ -11,7 +11,7 @@ data:
     {{- if .Values.config.githubEmail }}
     github_email: {{ .Values.config.githubEmail | quote }}
     {{- end }}
-    github_user: {{- required "config.githubUser is required" .Values.config.githubUser | quote -}}
+    github_user: {{ required "config.githubUser is required" .Values.config.githubUser | quote }}
     repositories:
       {{- range $repository := .Values.config.repositories }}
       - owner: {{ $repository.owner }}
