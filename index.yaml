@@ -1161,6 +1161,18 @@ entries:
     version: 0.0.1
   neophile:
   - apiVersion: v2
+    appVersion: 0.2.2
+    created: "2021-03-22T23:17:40.356872575Z"
+    description: Periodically check for needed dependency updates
+    digest: 9a13ed4e6a2919fcc177e47f1be26bc17ab0641c032cabfbe2662a1d35140cd3
+    home: https://neophile.lsst.io/
+    maintainers:
+    - name: rra
+    name: neophile
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/neophile-0.2.6/neophile-0.2.6.tgz
+    version: 0.2.6
+  - apiVersion: v2
     appVersion: 0.2.1
     created: "2021-03-22T19:25:39.02598553Z"
     description: Periodically check for needed dependency updates
@@ -2209,4 +2221,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-22T19:25:39.026540778Z"
+generated: "2021-03-22T23:17:40.362691761Z"
