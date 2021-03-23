@@ -98,12 +98,6 @@ config:
   base_url: ""
   signing_key_path: "/etc/keys/signing_key.pem"
 
-  # What uid should the pod be started as?  If it is set, use that uid for
-  # starting each pod.  If not set, use the uid provided from gafaelfawr in
-  # auth.
-  # Sometimes, we start the pod as the provisioning user (uid 769) which has
-  # the permission to sudo to do the work of changing to the user.
-  pod_uid: 769
   options_form:
     images: []
     images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
@@ -143,6 +137,7 @@ config:
         EXTERNAL_GROUPS: "{{ external_groups }}"
         EXTERNAL_UID: "{{ uid }}"
         ACCESS_TOKEN: "{{ token }}"
+        NO_SUDO: "TRUE"
     - apiVersion: v1
       kind: ConfigMap
       metadata:
