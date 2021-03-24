@@ -27,8 +27,8 @@ spec:
     {{- else }}
     - http:
     {{- end }}
-      paths:
-        - path: "/auth/token"
-          backend:
-            serviceName: {{ template "gafaelfawr.fullname" . }}-service
-            servicePort: 8080
+        paths:
+          - path: "/auth/token"
+            backend:
+              serviceName: {{ template "gafaelfawr.fullname" . }}
+              servicePort: 8080
