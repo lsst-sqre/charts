@@ -1,106 +1,143 @@
-# Hostname used to construct issuers and URLs.
-# e.g. lsst-lsp-<instance>.ncsa.illinois.edu
-host: ""
+# Default values for Gafaelfawr.
 
-# Controls the host for the ingress.  Normally set to the same value as
-# the realm, but leave blank for environments using the wildcard virtual
-# host (such as nublado.lsst.codes).
-ingress:
-  host: ""
+replicaCount: 1
 
-# Docker image to use.
+# nameOverride and fullnameOverride change the naming of chart resources
+nameOverride: ""
+fullnameOverride: ""
+
+# image configures the Docker image to use
 image:
   repository: "lsstsqre/gafaelfawr"
-  tag: "1.5.0"
   pullPolicy: "IfNotPresent"
 
-# Existing PVC for redis claim
-# If empty, redis will use emptydir
-redis_claim: ""
+  # image.tag overrides the default, which is the chart appVersion
+  tag: ""
 
-# Path to the Vault secret to use to generate Kubernetes secrets.
+# imagePullSecrets list secret names to use for all Docker pulls
+imagePullSecrets: []
+
+# ingress configures the ingress, which is enabled by default.
+ingress:
+  enabled: true
+  annotations: {}
+
+  # ingress.host sets the hostname for the ingress.
+  # This should normally be the same as config.host.
+  host: ""
+
+  # ingress.tls configures TLS for the ingress if needed.
+  # If multiple ingresses share the same hostname, only one of them needs a
+  # TLS configuration.
+  tls: []
+
+# resources defines resource limits and requests
+resources: {}
+
+# Additional optional configuration for how to deploy Gafaelfawr pods
+podAnnotations: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+# vaultSecretsPath sets the path to the Vault secret and must be set
 # secret/k8s_operator/<host>/gafaelfawr
-vault_secrets_path: ""
+vaultSecretsPath: ""
 
-# Default scope required for user-based operations (like generating a
-# token), used to construct authorization URLs for the /tokens route.
-user_scope: "exec:user"
+# config specifies the Gafaelfawr configuration
+config:
+  # config.host is used to construct issuers and URLs and must be set
+  host: ""
 
-# Choose from the text form of Python logging levels.
-loglevel: INFO
+  # Choose from the text form of Python logging levels.
+  loglevel: "INFO"
 
-# Pull secret name
-pull_secret: ""
+  # List of netblocks used for internal Kubernetes IP addresses, used to
+  # determine the true client IP for logging.
+  proxies:
+    - "10.0.0.0/8"
+    - "172.16.0.0/12"
+    - "192.168.0.0/16"
 
-# List of netblocks used for internal Kubernetes IP addresses, used to
-# determine the true client IP for logging.
-proxies:
-  - "10.0.0.0/8"
-  - "172.16.0.0/12"
-  - "192.168.0.0/16"
+  # Example configuration for using CILogon.
+  # cilogon:
+  #   clientId: "cilogon:/client_id/<some-id>"
+  #
+  #   # If the registered URL is different from /login (the default).
+  #   redirectUrl: "https://<hostname>/oauth2/callback"
+  #
+  #   # Whether to use the test instance.
+  #   test: false
+  #
+  #   # Additional parameters to add.
+  #   loginParams:
+  #     skin: "LSST"
 
-# Example configuration for using CILogon.
-# cilogon:
-#   client_id: "cilogon:/client_id/<some-id>"
-#
-#   # If the registered URL is different from /login (the default).
-#   redirect_url: "https://<hostname>/oauth2/callback"
-#
-#   # Whether to use the test instance.
-#   test: false
-#
-#   # Additional parameters to add.
-#   login_params:
-#     skin: "LSST"
+  # Example configuration for using GitHub.
+  # github:
+  #   clientId: "<github-client-id>"
 
-# Example configuration for using GitHub.
-# github:
-#   client_id: "<github-client-id>"
+  issuer:
+    # Session length and token expiration (in minutes).
+    expMinutes: 43200  # 30 days
 
-issuer:
-  # Session length and token expiration (in minutes).
-  exp_minutes: 1440  # 1 day
+    # Whether to issue tokens for InfluxDB.  If set to true, influxdb-secret
+    # must be set in the Gafaelfawr secret.  If username is also set, force
+    # all InfluxDB tokens to have that username instead of the authenticated
+    # identity of the user requesting a token.
+    influxdb:
+      enabled: false
+      username: ""
 
-  # Whether to issue tokens for InfluxDB.  If set to true, influxdb-secret
-  # must be set in the Gafaelfawr secret.  If username is also set, force
-  # all InfluxDB tokens to have that username instead of the authenticated
-  # identity of the user requesting a token.
-  influxdb:
+  # Whether to support OpenID Connect clients.  If set to true,
+  # oidc-server-secrets must be set in the Gafaelfawr secret.
+  oidcServer:
     enabled: false
-    username: ""
 
-# Whether to support OpenID Connect clients.  If set to true,
-# oidc-server-secrets must be set in the Gafaelfawr secret.
-oidc_server:
-  enabled: false
+  # config.userScope sets the scope required to access the /auth/tokens route
+  userScope: "exec:user"
 
-# Names and descriptions of all scopes in use.  This is used to populate
-# the new token creation page.  Only scopes listed here will be options
-# when creating a new token.
-known_scopes:
-  "exec:admin": Administrative access to all APIs.
-  "exec:portal": Use the Portal to execute operations. Mostly used from notebook APIs.
-  "read:image": Read images from the SODA and other image retrieval interfaces
-  "read:image/metadata": Read image metadata from SIA and other image interfaces
-  "read:tap": Execute SELECT queries in the TAP interface on project datasets
-  "read:tap/efd": Execute SELECT queries in the TAP interface on EFD datasets
-  "read:tap/user": Execute SELECT queries in the TAP interface on your data
-  "write:tap/user": Upload tables to your database workspace
-  "read:tap/history": Read the history of your TAP queries.
-  "read:workspace": Read project datasets from the file workspace
-  "read:workspace/user": Read the data in your file workspace
-  "write:workspace/user": Write data to your file workspace
+  # config.knownScopes defines the names and descriptions of all scopes in
+  # use.  This is used to populate the new token creation page.  Only scopes
+  # listed here will be options when creating a new token.
+  knownScopes:
+    "exec:admin": Administrative access to all APIs
+    "exec:notebook": Use the Notebook Aspect
+    "exec:portal": Use the Portal Aspect
+    "exec:user": Create and manage user tokens for your user
+    "read:tap": Execute SELECT queries in the TAP interface on project datasets
 
-# Mapping of scopes to groups that provide that scope.  Tokens from an
-# OpenID Connect provider such as CILogon that include groups in an
-# isMemberOf claim will be granted scopes based on this mapping.
-group_mapping:
-  "exec:admin": ["lsst_int_lsp_admin"]
-  "exec:user": ["lsst_int_lspdev"]
-  "read:workspace": ["lsst_int_lspdev"]
-  "read:workspace/user": ["lsst_int_lspdev"]
-  "write:workspace/user": ["lsst_int_lspdev"]
-  "exec:portal": ["lsst_int_lspdev"]
-  "exec:notebook": ["lsst_int_lspdev"]
-  "read:tap": ["lsst_int_lspdev"]
-  "read:image": ["lsst_int_lspdev"]
+  # config.groupMapping defines a mapping of scopes to groups that provide
+  # that scope.  Tokens from an OpenID Connect provider such as CILogon that
+  # include groups in an isMemberOf claim will be granted scopes based on this
+  # mapping.
+  groupMapping: {}
+
+# redis configures the internal Redis service
+redis:
+  image:
+    repository: "redis"
+    tag: "6.2.1"
+    pullPolicy: "IfNotPresent"
+
+  # By default, Redis will use dynamic provisioning of persistent storage and
+  # request 1Gi of storage (which should be more than enough) using the
+  # default storage class.
+  #
+  # To disable persistence entirely and use emptyDir, which will reset storage
+  # on every restart (suitable only for a test deployment), set
+  # redis.persistence.enabled to false.
+  persistence:
+    enabled: true
+    size: "1Gi"
+    storageClass: ""
+    accessMode: "ReadWriteOnce"
+
+    # volumeClaimName says to use an existing PVC, not dynamic provisioning.
+    volumeClaimName: ""
+
+  # Additional optional configuration for how to deploy the Redis pod
+  podAnnotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

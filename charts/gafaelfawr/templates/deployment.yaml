@@ -1,54 +1,80 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "helpers.fullname" . }}
+  name: {{ template "gafaelfawr.fullname" . }}
   labels:
-    app: {{ template "helpers.fullname" . }}
-{{ include "helpers.labels" . | indent 4 }}
+    {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      name: {{ template "helpers.fullname" . }}
+      {{- include "gafaelfawr.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "frontend"
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       labels:
-        name: {{ template "helpers.fullname" . }}
-{{ include "helpers.labels" . | indent 8 }}
+        {{- include "gafaelfawr.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: "frontend"
     spec:
-      automountServiceAccountToken: false
-      containers:
-        - name: gafaelfawr
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-          ports:
-            - containerPort: 8080
-              name: app
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - all
-            readOnlyRootFilesystem: true
-          volumeMounts:
-            - name: {{ template "helpers.fullname" . }}-config
-              mountPath: "/etc/gafaelfawr"
-              readOnly: true
-            - name: {{ template "helpers.fullname" . }}-secret
-              mountPath: "/etc/gafaelfawr/secrets"
-              readOnly: true
-      {{- if .Values.pull_secret }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-      - name: {{ .Values.pull_secret }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
+      automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
+      containers:
+        - name: "gafaelfawr"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "all"
+            readOnlyRootFilesystem: true
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+            - containerPort: 8080
+              name: "http"
+              protocol: "TCP"
+          readinessProbe:
+            httpGet:
+              path: "/"
+              port: "http"
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: "config"
+              mountPath: "/etc/gafaelfawr"
+              readOnly: true
+            - name: "secret"
+              mountPath: "/etc/gafaelfawr/secrets"
+              readOnly: true
       volumes:
-        - name: {{ template "helpers.fullname" . }}-config
+        - name: "config"
           configMap:
-            name: {{ template "helpers.fullname" . }}-configmap
-        - name: {{ template "helpers.fullname" . }}-secret
+            name: {{ template "gafaelfawr.fullname" . }}-config
+        - name: "secret"
           secret:
-            secretName: {{ template "helpers.fullname" . }}-secret
+            secretName: {{ template "gafaelfawr.fullname" . }}-secret
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

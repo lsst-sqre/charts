@@ -1,11 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ template "helpers.fullname" . }}-redis-networkpolicy
+  name: {{ template "gafaelfawr.fullname" . }}-redis
+  labels:
+    {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
   podSelector:
     matchLabels:
-      app: {{ template "helpers.fullname" . }}-redis
+      {{- include "gafaelfawr.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "redis"
   policyTypes:
     - Ingress
     - Egress
@@ -13,7 +16,8 @@ spec:
     - from:
         - podSelector:
             matchLabels:
-              name: {{ template "helpers.fullname" . }}
+              {{- include "gafaelfawr.selectorLabels" . | nindent 14 }}
+              app.kubernetes.io/component: "frontend"
       ports:
-        - protocol: TCP
+        - protocol: "TCP"
           port: 6379
