@@ -21,33 +21,33 @@ spec:
     {{- else }}
     - http:
     {{- end }}
-      paths:
-        - path: "/auth"
-          backend:
-            serviceName: {{ template "gafaelfawr.fullname" . }}
-            servicePort: 8080
-        - path: "/login"
-          backend:
-            serviceName: {{ template "gafaelfawr.fullname" . }}
-            servicePort: 8080
-        - path: "/logout"
-          backend:
-            serviceName: {{ template "gafaelfawr.fullname" . }}
-            servicePort: 8080
-        - path: "/oauth2/callback"
-          backend:
-            serviceName: {{ template "gafaelfawr.fullname" . }}
-            servicePort: 8080
-        - path: "/.well-known/jwks.json"
-          backend:
-            serviceName: {{ template "gafaelfawr.fullname" . }}
-            servicePort: 8080
-        {{- if .Values.config.oidcServer.enabled }}
-        - path: "/.well-known/openid-configuration"
-          backend:
-            serviceName: {{ template "gafaelfawr.fullname" . }}
-            servicePort: 8080
-        {{- end }}
+        paths:
+          - path: "/auth"
+            backend:
+              serviceName: {{ template "gafaelfawr.fullname" . }}
+              servicePort: 8080
+          - path: "/login"
+            backend:
+              serviceName: {{ template "gafaelfawr.fullname" . }}
+              servicePort: 8080
+          - path: "/logout"
+            backend:
+              serviceName: {{ template "gafaelfawr.fullname" . }}
+              servicePort: 8080
+          - path: "/oauth2/callback"
+            backend:
+              serviceName: {{ template "gafaelfawr.fullname" . }}
+              servicePort: 8080
+          - path: "/.well-known/jwks.json"
+            backend:
+              serviceName: {{ template "gafaelfawr.fullname" . }}
+              servicePort: 8080
+          {{- if .Values.config.oidcServer.enabled }}
+          - path: "/.well-known/openid-configuration"
+            backend:
+              serviceName: {{ template "gafaelfawr.fullname" . }}
+              servicePort: 8080
+          {{- end }}
   {{- if .Values.ingress.tls }}
   tls:
     {{- range .Values.ingress.tls }}
