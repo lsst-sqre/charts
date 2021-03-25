@@ -31,6 +31,11 @@ ingress:
   # TLS configuration.
   tls: []
 
+  # Temporary to allow values files to request use of the external hostname
+  # for the auth-url annotation on the token ingress because the internal
+  # hostname doesn't resolve at NCSA for some reason.
+  externalAuthUrl: false
+
 # resources defines resource limits and requests
 resources: {}
 

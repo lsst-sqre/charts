@@ -10,7 +10,11 @@ metadata:
     nginx.ingress.kubernetes.io/auth-request-redirect: "$request_uri"
     nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-Token"
     nginx.ingress.kubernetes.io/auth-signin: "https://{{ .Values.config.host }}/login"
+    {{- if .Values.ingress.externalAuthUrl }}
+    nginx.ingress.kubernetes.io/auth-url: "https://{{ .Values.config.host }}/auth?scope={{ .Values.config.userScope }}"
+    {{- else }}
     nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.{{ .Release.Namespace }}.svc.cluster.local:8080/auth?scope={{ .Values.config.userScope }}"
+    {{- end }}
     nginx.ingress.kubernetes.io/configuration-snippet: |
       error_page 403 = "/auth/forbidden?scope={{ .Values.config.userScope }}";
     {{- with .Values.ingress.annotations }}
