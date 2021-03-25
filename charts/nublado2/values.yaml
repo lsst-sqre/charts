@@ -291,6 +291,17 @@ config:
         dask_worker.yml: |
           {{ dask_yaml | indent(4) }}
     - apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: nb_details
+        namespace: "{{ user_namespace }}"
+      data:
+        nb_details:
+          base_url: "{{ base_url }}"
+          image_name: "{{ image_name }}"
+          image_tag: "{{ image_tag }}"
+          image_hash: "{{ image_hash }}"
+    - apiVersion: v1
       kind: ServiceAccount
       metadata:
         name: "{{ user }}-serviceaccount"
