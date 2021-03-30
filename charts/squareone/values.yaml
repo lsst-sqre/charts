@@ -10,7 +10,9 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# imagePullSecrets list secret names to use for all Docker pulls
 imagePullSecrets: []
+
 nameOverride: ""
 fullnameOverride: ""
 
