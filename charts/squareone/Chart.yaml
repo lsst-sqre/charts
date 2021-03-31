@@ -2,6 +2,12 @@ apiVersion: v2
 type: application
 name: squareone
 description: Squareone is the homepage for the Rubin Science Platform.
+home: https://squareone.lsst.io/
+sources:
+  - https://github.com/lsst-sqre/squareone
+maintainers:
+  - name: jonathansick
+    url: https://github.com/jonathansick
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
