@@ -79,3 +79,11 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# Squareone app configuration
+config:
+  # Name of the site, used in the title and meta tags.
+  siteName: "Rubin Science Platform"
+  # Site description, used in meta tags
+  siteDescription: |
+    Access Rubin Observatory Legacy Survey of Space and Time data.

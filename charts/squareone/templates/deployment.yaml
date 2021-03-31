@@ -47,6 +47,12 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: "SQUAREONE_CONFIG_PATH"
+              value: "/etc/squareone/squareone.config.yaml"
+          volumeMounts:
+            - name: "squareone.config"
+              mountPath: "/etc/squareone"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -59,3 +65,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        - name: "squareone.config"
+          configMap:
+            name: "squareone.config.yaml"
