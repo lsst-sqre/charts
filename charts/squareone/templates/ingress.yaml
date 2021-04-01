@@ -33,7 +33,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ template "gafaelfawr.fullname" . }}
-              servicePort: 3000
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
     {{- end }}
   {{- end }}
