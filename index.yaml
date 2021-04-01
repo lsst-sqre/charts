@@ -2274,6 +2274,23 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/pull-secret-0.1.0/pull-secret-0.1.0.tgz
     version: 0.1.0
+  squareone:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-04-01T19:35:43.397761263Z"
+    description: Squareone is the homepage for the Rubin Science Platform.
+    digest: c4ad633fd81cb72255244b9913f5053b148ab56cf220574532e6a127fdd870fd
+    home: https://squareone.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: squareone
+    sources:
+    - https://github.com/lsst-sqre/squareone
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/squareone-0.1.0/squareone-0.1.0.tgz
+    version: 0.1.0
   squash-api:
   - apiVersion: v1
     appVersion: 0.5.3
@@ -2365,4 +2382,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-26T23:15:45.58436926Z"
+generated: "2021-04-01T19:35:43.398167065Z"
