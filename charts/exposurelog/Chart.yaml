@@ -1,7 +1,8 @@
 apiVersion: v2
 name: exposurelog
 description: Exposure log service
-
+maintainers:
+  - name: r-owen
 type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
