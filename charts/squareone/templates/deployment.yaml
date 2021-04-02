@@ -52,7 +52,7 @@ spec:
             - name: "SQUAREONE_CONFIG_PATH"
               value: "/etc/squareone/squareone.config.yaml"
           volumeMounts:
-            - name: "squareone.config"
+            - name: "config"
               mountPath: "/etc/squareone"
       {{- with .Values.nodeSelector }}
       nodeSelector:
@@ -67,6 +67,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: "squareone.config"
+        - name: "config"
           configMap:
-            name: "squareone.config.yaml"
+            name: {{ include "squareone.fullname" . }}
