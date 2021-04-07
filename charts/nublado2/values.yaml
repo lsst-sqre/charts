@@ -138,6 +138,10 @@ config:
         EXTERNAL_UID: "{{ uid }}"
         ACCESS_TOKEN: "{{ token }}"
         NO_SUDO: "TRUE"
+        IMAGE_DIGEST: "{{ options.image_info.digest }}"
+        IMAGE_DESCRIPTION: "{{ options.image_info.display_name }}"
+        CLEAR_DOTLOCAL: "{{ options.clear_dotlocal }}"
+        DEBUG: "{{ options.debug }}"
     - apiVersion: v1
       kind: ConfigMap
       metadata:
