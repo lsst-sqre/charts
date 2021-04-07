@@ -1693,6 +1693,26 @@ entries:
     version: 0.8.10
   nublado2:
   - apiVersion: v1
+    appVersion: 1.0.4
+    created: "2021-04-07T21:38:50.94056292Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 0.9.0-n409.hce116620
+    description: Nublado2 JupyterHub installation
+    digest: da0ae9aff120e27641a562abe44479ba5016557847091bd9c318d7192aa77c1a
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.0.24/nublado2-0.0.24.tgz
+    version: 0.0.24
+  - apiVersion: v1
     appVersion: 1.0.3
     created: "2021-03-25T23:57:18.313339078Z"
     dependencies:
@@ -2437,4 +2457,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-04-07T21:31:29.842149315Z"
+generated: "2021-04-07T21:38:50.941272932Z"
