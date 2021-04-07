@@ -63,7 +63,7 @@ data:
       {{- if .Values.config.cilogon.redirectUrl }}
       redirect_url: {{ .Values.config.cilogon.redirectUrl | quote }}
       {{- else }}
-      redirect_url: "https://{{ .Values.host }}/login"
+      redirect_url: "https://{{ .Values.config.host }}/login"
       {{- end }}
       scopes:
         - "email"
