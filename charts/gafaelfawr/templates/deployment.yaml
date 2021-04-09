@@ -48,6 +48,17 @@ spec:
             - containerPort: 8080
               name: "http"
               protocol: "TCP"
+          env:
+            - name: "GAFAELFAWR_BOOTSTRAP_TOKEN"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "gafaelfawr.fullname" . }}-secret
+                  key: "bootstrap-token"
+            - name: "GAFAELFAWR_DATABASE_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "gafaelfawr.fullname" . }}-secret
+                  key: "database-password"
           readinessProbe:
             httpGet:
               path: "/"
