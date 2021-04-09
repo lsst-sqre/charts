@@ -136,6 +136,17 @@ config:
   # mapping.
   groupMapping: {}
 
+  # config.kubernetes.serviceSecrets defines a list of Kubernetes secrets that
+  # Gafaelfawr manages. Example configuration:
+  # kubernetes:
+  #   serviceSecrets:
+  #     - secretName: mobu-gafaelfawr
+  #       secretNamespace: mobu
+  #       service: mobu
+  #       scopes: ["admin:token"]
+  kubernetes:
+    serviceSecrets: []
+
 # cloudsql configures the Cloud SQL Auth Proxy sidecar, used with CloudSQL
 # databases on Google Cloud
 cloudsql:
@@ -149,8 +160,8 @@ cloudsql:
   instanceConnectionName: ""
 
   # serviceAccount is the Google service account that has an IAM binding to
-  # the gafaelfawr Kubernetes service account and has the cloudsql.client
-  # role.
+  # the gafaelfawr and gafaelfawr-secrets Kubernetes service accounts and has
+  # the cloudsql.client role.
   serviceAccount: ""
 
 # redis configures the internal Redis service

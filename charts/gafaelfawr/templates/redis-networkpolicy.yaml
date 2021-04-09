@@ -18,6 +18,10 @@ spec:
             matchLabels:
               {{- include "gafaelfawr.selectorLabels" . | nindent 14 }}
               app.kubernetes.io/component: "frontend"
+        - podSelector:
+            matchLabels:
+              {{- include "gafaelfawr.selectorLabels" . | nindent 14 }}
+              app.kubernetes.io/component: "secrets"
       ports:
         - protocol: "TCP"
           port: 6379

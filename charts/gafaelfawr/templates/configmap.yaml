@@ -90,3 +90,18 @@ data:
         - {{ $group | quote }}
         {{- end }}
       {{- end }}
+
+    {{- if .Values.config.kubernetes.serviceSecrets }}
+    kubernetes:
+      service_secrets:
+        {{- range $secret := .Values.config.kubernetes.serviceSecrets }}
+        - secret_name: {{ $secret.secretName | quote }}
+          secret_namespace: {{ $secret.secretNamespace | quote }}
+          service: {{ $secret.service | quote }}
+          {{- if $secret.scopes }}
+            {{- range $scope := $secret.scopes }}
+            - {{ $scope | quote }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+    {{- end }}
