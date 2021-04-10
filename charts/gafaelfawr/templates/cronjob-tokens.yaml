@@ -1,8 +1,8 @@
-{{- if .Values.config.kubernetes.serviceSecrets -}}
+{{- if .Values.tokens.secrets -}}
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: {{ template "gafaelfawr.fullname" . }}-secrets
+  name: {{ template "gafaelfawr.fullname" . }}-tokens
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
@@ -11,20 +11,20 @@ spec:
     spec:
       template:
         metadata:
-          {{- with .Values.podAnnotations }}
+          {{- with .Values.tokens.podAnnotations }}
           annotations:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           labels:
             {{- include "gafaelfawr.selectorLabels" . | nindent 12 }}
-            app.kubernetes.io/component: "secrets"
+            app.kubernetes.io/component: "tokens"
         spec:
           restartPolicy: "Never"
           {{- with .Values.imagePullSecrets }}
           imagePullSecrets:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          serviceAccountName: {{ template "gafaelfawr.fullname" . }}-secrets
+          serviceAccountName: {{ include "gafaelfawr.tokensServiceAccountName" . }}
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000

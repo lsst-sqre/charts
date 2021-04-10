@@ -91,10 +91,10 @@ data:
         {{- end }}
       {{- end }}
 
-    {{- if .Values.config.kubernetes.serviceSecrets }}
+    {{- if .Values.tokens.secrets }}
     kubernetes:
       service_secrets:
-        {{- range $secret := .Values.config.kubernetes.serviceSecrets }}
+        {{- range $secret := .Values.tokens.secrets }}
         - secret_name: {{ $secret.secretName | quote }}
           secret_namespace: {{ $secret.secretNamespace | quote }}
           service: {{ $secret.service | quote }}

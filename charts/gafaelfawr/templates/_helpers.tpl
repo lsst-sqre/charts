@@ -61,3 +61,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Create the name of the service account to use for token management
+*/}}
+{{- define "gafaelfawr.tokensServiceAccountName" -}}
+{{- default (printf "%s-tokens" (include "gafaelfawr.fullname" .)) .Values.tokens.serviceAccount.name }}
+{{- end }}
