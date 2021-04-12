@@ -48,6 +48,12 @@ jupyterhub:
   singleuser:
     cmd: "/opt/lsst/software/jupyterlab/provisionator.bash"
     defaultUrl: "/lab"
+    extraAnnotations:
+      argocd.argoproj.io/compare-options: 'IgnoreExtraneous'
+      argocd.argoproj.io/sync-options: 'Prune=false'
+    extraLabels:
+      hub.jupyter.org/network-access-hub: 'true'
+      argocd.argoproj.io/instance: 'nublado-users'
     storage:
       extraVolumes:
         - name: dask
