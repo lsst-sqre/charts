@@ -133,11 +133,12 @@ config:
   # creating a new token.
   # @default -- See the `values.yaml` file
   knownScopes:
-    "exec:admin": Administrative access to all APIs
-    "exec:notebook": Use the Notebook Aspect
-    "exec:portal": Use the Portal Aspect
-    "exec:user": Create and manage user tokens for your user
-    "read:tap": Execute SELECT queries in the TAP interface on project datasets
+    "admin:token": "Can create and modify tokens for any user"
+    "exec:admin": "Administrative access to all APIs"
+    "exec:notebook": "Use the Notebook Aspect"
+    "exec:portal": "Use the Portal Aspect"
+    "read:tap": "Execute SELECT queries in the TAP interface on project datasets"
+    "user:token": "Can create and modify user tokens"
 
   # -- Defines a mapping of scopes to groups that provide that scope. Tokens
   # from an OpenID Connect provider such as CILogon that include groups in an
