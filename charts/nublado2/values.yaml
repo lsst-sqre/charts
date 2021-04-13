@@ -6,7 +6,7 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.0.6"
+      tag: "1.0.7"
     containerSecurityContext:
       runAsUser: 768
       runAsGroup: 768
@@ -48,6 +48,62 @@ jupyterhub:
   singleuser:
     cmd: "/opt/lsst/software/jupyterlab/provisionator.bash"
     defaultUrl: "/lab"
+    extraAnnotations:
+      argocd.argoproj.io/compare-options: 'IgnoreExtraneous'
+      argocd.argoproj.io/sync-options: 'Prune=false'
+    extraLabels:
+      hub.jupyter.org/network-access-hub: 'true'
+      argocd.argoproj.io/instance: 'nublado-users'
+    storage:
+      extraVolumes:
+        - name: dask
+          configMap:
+            name: dask
+        - name: tmp
+          emptyDir: {}
+        - name: lab-environment
+          configMap:
+            defaultMode: 420
+            name: lab-environment
+        - name: passwd
+          configMap:
+            defaultMode: 420
+            name: passwd
+        - name: group
+          configMap:
+            defaultMode: 420
+            name: group
+        - name: shadow
+          configMap:
+            defaultMode: 384
+            name: shadow
+        - name: gshadow
+          configMap:
+            defaultMode: 384
+            name: gshadow
+      extraVolumeMounts:
+        - name: dask
+          mountPath: /etc/dask
+        - name: tmp
+          mountPath: /tmp
+        - name: lab-environment
+          mountPath: /opt/lsst/software/jupyterlab/environment
+        - name: passwd
+          mountPath: /etc/passwd
+          readOnly: true
+          subPath: passwd
+        - name: group
+          mountPath: /etc/group
+          readOnly: true
+          subPath: group
+        - name: shadow
+          mountPath: /etc/shadow
+          readOnly: true
+          subPath: shadow
+        - name: gshadow
+          mountPath: /etc/gshadow
+          readOnly: true
+          subPath: gshadow
 
   auth:
     type: custom
@@ -112,16 +168,30 @@ config:
     - name: Large
       cpu: 4
       ram: 12288M
-  user_resources:
+  volumes: []
+  volume_mounts: []
+  user_resources_template: |
     - apiVersion: v1
       kind: Namespace
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
     - apiVersion: v1
       kind: ConfigMap
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: lab-environment
         namespace: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
       data:
         EXTERNAL_INSTANCE_URL: "{{ base_url }}"
         FIREFLY_ROUTE: /portal/app
@@ -143,8 +213,14 @@ config:
     - apiVersion: v1
       kind: ConfigMap
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: group
         namespace: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
       data:
         group: |
           root:x:0:
@@ -189,8 +265,14 @@ config:
     - apiVersion: v1
       kind: ConfigMap
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: gshadow
         namespace: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
       data:
         gshadow: |
           root:!::
@@ -235,8 +317,14 @@ config:
     - apiVersion: v1
       kind: ConfigMap
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: passwd
         namespace: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
       data:
         passwd: |
           root:x:0:0:root:/root:/bin/bash
@@ -261,8 +349,14 @@ config:
     - apiVersion: v1
       kind: ConfigMap
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: shadow
         namespace: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
       data:
         shadow: |
           root:*:18000:0:99999:7:::
@@ -287,21 +381,39 @@ config:
     - apiVersion: v1
       kind: ConfigMap
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: dask
         namespace: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
       data:
         dask_worker.yml: |
-          {{ dask_yaml | indent(4) }}
+          {{ dask_yaml | indent(6) }}
     - apiVersion: v1
       kind: ServiceAccount
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: "{{ user }}-serviceaccount"
         namespace: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
     - apiVersion: rbac.authorization.k8s.io/v1
       kind: Role
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: "{{ user }}-role"
         namespace: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
       rules:
       - apiGroups: [""]
         resources: ["pods"]
@@ -309,8 +421,14 @@ config:
     - apiVersion: rbac.authorization.k8s.io/v1
       kind: RoleBinding
       metadata:
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
         name: "{{ user }}-rolebinding"
         namespace: "{{ user_namespace }}"
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
       roleRef:
         apiGroup: rbac.authorization.k8s.io
         kind: Role
