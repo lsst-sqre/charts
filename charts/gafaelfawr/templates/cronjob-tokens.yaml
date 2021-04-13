@@ -7,6 +7,7 @@ metadata:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.tokens.schedule | quote }}
+  concurrencyPolicy: Forbid
   jobTemplate:
     spec:
       template:
