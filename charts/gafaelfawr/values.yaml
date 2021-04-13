@@ -176,6 +176,10 @@ tokens:
   # is empty, the cron job will not be created.
   secrets: []
 
+  # -- CronJob schedule for updating Kubernetes secrets
+  # @default -- `"*/15 * * * *"` (every 15 minutes)
+  schedule: "*/15 * * * *"
+
   serviceAccount:
     # -- Create a Kubernetes service account to use for token management with
     # a cluster role that allows it to list, get, patch, and delete secrets in

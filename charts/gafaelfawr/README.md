@@ -69,6 +69,7 @@ The Gafaelfawr authentication and authorization system
 | tokens.affinity | object | `{}` | Affinity rules for the token management pod |
 | tokens.nodeSelector | object | `{}` | Node selection rules for the token management pod |
 | tokens.podAnnotations | object | `{}` | Annotations for the token management pod |
+| tokens.schedule | string | `"*/15 * * * *"` (every 15 minutes) | CronJob schedule for updating Kubernetes secrets |
 | tokens.secrets | list | `[]` | List of Kubernetes secrets to maintain. Each will contain a Gafaelfawr service tokens, which can be used by other applications to make API calls that are protected by Gafaelfawr. Set `secretName`, `secretNamespace`, `service` (all strings), and `scopes` (a list) for each secret. If this is empty, the cron job will not be created. |
 | tokens.serviceAccount.annotations | object | `{}` | Annotations to add to the service account. If CloudSQL is in use, the annotation specifying the Google service account will also be added. |
 | tokens.serviceAccount.create | bool | `true` | Create a Kubernetes service account to use for token management with a cluster role that allows it to list, get, patch, and delete secrets in any namespace. Even if true, it is only created if tokens.secrets is non-empty. |

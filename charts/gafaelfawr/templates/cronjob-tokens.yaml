@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.config.kubernetes.schedule | quote }}
+  schedule: {{ .Values.tokens.schedule | quote }}
   jobTemplate:
     spec:
       template:
