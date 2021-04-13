@@ -67,6 +67,9 @@ jupyterhub:
             name: dask
         - name: tmp
           emptyDir: {}
+        - name: butler-secret
+          secret:
+            secretName: butler-secret
         - name: lab-environment
           configMap:
             defaultMode: 420
@@ -92,6 +95,8 @@ jupyterhub:
           mountPath: /etc/dask
         - name: tmp
           mountPath: /tmp
+        - name: butler-secret
+          mountPath: /opt/lsst/software/jupyterlab/butler-secret
         - name: lab-environment
           mountPath: /opt/lsst/software/jupyterlab/environment
         - name: passwd
@@ -159,6 +164,9 @@ config:
   # the primary ingress.  It's used to construct API requests to the
   # authentication service (which should go through the ingress).
   base_url: ""
+  # butler_secret_path must be set here, because it's passed through to
+  # the lab rather than being part of the Hub configuration
+  butler_secret_path: ""
   signing_key_path: "/etc/keys/signing_key.pem"
   pinned_images: []
   images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
@@ -444,6 +452,22 @@ config:
       - kind: ServiceAccount
         name: "{{ user }}-serviceaccount"
         namespace: "{{ user_namespace }}"
+  # CRDs must be created with a separate API, so they need to
+  #  be in their own section.
+  custom_resources_template: |
+    - apiVersion: ricoberger.de/v1alpha1
+      kind: VaultSecret
+      metadata:
+        name: butler-secret
+        namespace: "{{ user_namespace }}"
+        annotations:
+          {% for k, v in annotations.items() %}{{ k }}: {{ v }}
+          {% endfor %}
+        labels:
+          {% for k, v in labels.items() %}{{ k }}: {{ v }}
+          {% endfor %}
+      spec:
+        path: "{{ butler_secret_path }}"
 
 
 # Note: See note above about existingSecret.
