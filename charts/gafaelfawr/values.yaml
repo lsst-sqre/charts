@@ -145,6 +145,10 @@ config:
   # `isMemberOf` claim will be granted scopes based on this mapping.
   groupMapping: {}
 
+  # -- Usernames to add as administrators when initializing a new database.
+  # Used only if there are no administrators.
+  initialAdmins: []
+
 cloudsql:
   # -- Enable the Cloud SQL Auth Proxy sidecar, used with CloudSQL databases
   # on Google Cloud

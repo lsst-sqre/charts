@@ -91,6 +91,13 @@ data:
         {{- end }}
       {{- end }}
 
+    {{- if .Values.config.initialAdmins }}
+    initial_admins:
+      {{- range $admin := .Values.config.initialAdmins }}
+      - {{ $admin | quote }}
+      {{- end }}
+    {{- end }}
+
     {{- if .Values.tokens.secrets }}
     kubernetes:
       service_secrets:

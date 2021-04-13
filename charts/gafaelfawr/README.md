@@ -30,6 +30,7 @@ The Gafaelfawr authentication and authorization system
 | config.github.clientId | string | `""` | GitHub client ID. One and only one of this or config.cilogon.clientId must be set. |
 | config.groupMapping | object | `{}` | Defines a mapping of scopes to groups that provide that scope. Tokens from an OpenID Connect provider such as CILogon that include groups in an `isMemberOf` claim will be granted scopes based on this mapping. |
 | config.host | string | None, must be set | Used to construct issuers and URLs. |
+| config.initialAdmins | list | `[]` | Usernames to add as administrators when initializing a new database. Used only if there are no administrators. |
 | config.issuer.expMinutes | int | `43200` (30 days) | Session length and token expiration (in minutes) |
 | config.issuer.influxdb.enabled | bool | `false` | Whether to issue tokens for InfluxDB. If set to true, `influxdb-secret` must be set in the Gafaelfawr secret. |
 | config.issuer.influxdb.username | string | `""` | If set, force all InfluxDB tokens to have that username instead of the authenticated identity of the user requesting a token |
