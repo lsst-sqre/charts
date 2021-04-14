@@ -9,6 +9,7 @@ data:
     realm: {{ required "config.host must be set" .Values.config.host | quote }}
     loglevel: {{ .Values.config.loglevel | quote }}
     session_secret_file: "/etc/gafaelfawr/secrets/session-secret"
+    database_url: {{ required "config.databaseUrl must be set" .Values.config.databaseUrl | quote }}
     redis_url: "redis://{{ template "gafaelfawr.fullname" . }}-redis.{{ .Release.Namespace }}:6379/0"
     redis_password_file: "/etc/gafaelfawr/secrets/redis-password"
     {{- if .Values.config.proxies }}

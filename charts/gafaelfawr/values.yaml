@@ -77,6 +77,10 @@ config:
   # @default -- None, must be set
   host: ""
 
+  # -- URL for the PostgreSQL database
+  # @default -- None, must be set
+  databaseUrl: ""
+
   # -- Choose from the text form of Python logging levels
   loglevel: "INFO"
 
