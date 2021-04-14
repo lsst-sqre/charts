@@ -21,6 +21,53 @@ spec:
     {{- else }}
     - http:
     {{- end }}
+        {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+        paths:
+          - path: "/auth"
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
+          - path: "/login"
+            pathType: Exact
+            backend:
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
+          - path: "/logout"
+            pathType: Exact
+            backend:
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
+          - path: "/oauth2/callback"
+            pathType: Exact
+            backend:
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
+          - path: "/.well-known/jwks.json"
+            pathType: Exact
+            backend:
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
+          {{- if .Values.config.oidcServer.enabled }}
+          - path: "/.well-known/openid-configuration"
+            pathType: Exact
+            backend:
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
+          {{- end }}
+        {{- else }}
         paths:
           - path: "/auth"
             backend:
@@ -48,6 +95,7 @@ spec:
               serviceName: {{ template "gafaelfawr.fullname" . }}
               servicePort: 8080
           {{- end }}
+        {{- end }}
   {{- if .Values.ingress.tls }}
   tls:
     {{- range .Values.ingress.tls }}
