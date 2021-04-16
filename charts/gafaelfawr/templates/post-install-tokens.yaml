@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ template "gafaelfawr.fullname" . }}-postinstall
+  name: {{ template "gafaelfawr.fullname" . }}-postinstall-tokens
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
   annotations:
@@ -11,10 +11,10 @@ metadata:
 spec:
   template:
     metadata:
-      name: {{ template "gafaelfawr.fullname" . }}-postinstall
+      name: {{ template "gafaelfawr.fullname" . }}-postinstall-tokens
       labels:
         {{- include "gafaelfawr.selectorLabels" . | nindent 8 }}
-        app.kubernetes.io/component: "postinstall"
+        app.kubernetes.io/component: "postinstall-tokens"
     spec:
       restartPolicy: OnFailure
       {{- with .Values.imagePullSecrets }}
