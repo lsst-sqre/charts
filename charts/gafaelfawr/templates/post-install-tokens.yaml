@@ -1,35 +1,27 @@
-apiVersion: apps/v1
-kind: Deployment
+{{- if .Values.tokens.secrets -}}
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: {{ template "gafaelfawr.fullname" . }}
+  name: {{ template "gafaelfawr.fullname" . }}-postinstall-tokens
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
+  annotations:
+    helm.sh/hook: "post-install,post-upgrade"
+    helm.sh/hook-delete-policy: "before-hook-creation,hook-succeeded"
 spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      {{- include "gafaelfawr.selectorLabels" . | nindent 6 }}
-      app.kubernetes.io/component: "frontend"
   template:
     metadata:
-      annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
-        {{- with .Values.podAnnotations }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
+      name: {{ template "gafaelfawr.fullname" . }}-postinstall-tokens
       labels:
         {{- include "gafaelfawr.selectorLabels" . | nindent 8 }}
-        app.kubernetes.io/component: "frontend"
+        app.kubernetes.io/component: "postinstall-tokens"
     spec:
+      restartPolicy: OnFailure
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if or .Values.serviceAccount.create .Values.cloudsql.enabled }}
-      serviceAccountName: {{ include "gafaelfawr.serviceAccountName" . }}
-      {{- else }}
-      automountServiceAccountToken: false
-      {{- end }}
+      serviceAccountName: {{ include "gafaelfawr.tokensServiceAccountName" . }}
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -44,28 +36,18 @@ spec:
             readOnlyRootFilesystem: true
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
-          ports:
-            - containerPort: 8080
-              name: "http"
-              protocol: "TCP"
+          args:
+            - "gafaelfawr"
+            - "update-service-tokens"
           env:
-            - name: "GAFAELFAWR_BOOTSTRAP_TOKEN"
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "gafaelfawr.fullname" . }}-secret
-                  key: "bootstrap-token"
             - name: "GAFAELFAWR_DATABASE_PASSWORD"
               valueFrom:
                 secretKeyRef:
                   name: {{ template "gafaelfawr.fullname" . }}-secret
                   key: "database-password"
-          readinessProbe:
-            httpGet:
-              path: "/"
-              port: "http"
           {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.resources | nindent 16 }}
           {{- end }}
           volumeMounts:
             - name: "config"
@@ -100,15 +82,4 @@ spec:
         - name: "secret"
           secret:
             secretName: {{ template "gafaelfawr.fullname" . }}-secret
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+{{- end }}

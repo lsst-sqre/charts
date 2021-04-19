@@ -50,3 +50,21 @@ Selector labels
 app.kubernetes.io/name: {{ include "gafaelfawr.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "gafaelfawr.serviceAccountName" -}}
+{{- if or .Values.serviceAccount.create .Values.cloudsql.enabled }}
+{{- default (include "gafaelfawr.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
+
+{{/*
+Create the name of the service account to use for token management
+*/}}
+{{- define "gafaelfawr.tokensServiceAccountName" -}}
+{{- default (printf "%s-tokens" (include "gafaelfawr.fullname" .)) .Values.tokens.serviceAccount.name }}
+{{- end }}

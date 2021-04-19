@@ -9,6 +9,7 @@ data:
     realm: {{ required "config.host must be set" .Values.config.host | quote }}
     loglevel: {{ .Values.config.loglevel | quote }}
     session_secret_file: "/etc/gafaelfawr/secrets/session-secret"
+    database_url: {{ required "config.databaseUrl must be set" .Values.config.databaseUrl | quote }}
     redis_url: "redis://{{ template "gafaelfawr.fullname" . }}-redis.{{ .Release.Namespace }}:6379/0"
     redis_password_file: "/etc/gafaelfawr/secrets/redis-password"
     {{- if .Values.config.proxies }}
@@ -90,3 +91,25 @@ data:
         - {{ $group | quote }}
         {{- end }}
       {{- end }}
+
+    {{- if .Values.config.initialAdmins }}
+    initial_admins:
+      {{- range $admin := .Values.config.initialAdmins }}
+      - {{ $admin | quote }}
+      {{- end }}
+    {{- end }}
+
+    {{- if .Values.tokens.secrets }}
+    kubernetes:
+      service_secrets:
+        {{- range $secret := .Values.tokens.secrets }}
+        - secret_name: {{ $secret.secretName | quote }}
+          secret_namespace: {{ $secret.secretNamespace | quote }}
+          service: {{ $secret.service | quote }}
+          {{- if $secret.scopes }}
+            {{- range $scope := $secret.scopes }}
+            - {{ $scope | quote }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+    {{- end }}

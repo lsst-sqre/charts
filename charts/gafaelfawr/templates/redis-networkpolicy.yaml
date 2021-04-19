@@ -6,18 +6,33 @@ metadata:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
   podSelector:
+    # This policy controls inbound and outbound access to the Redis component.
     matchLabels:
       {{- include "gafaelfawr.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: "redis"
   policyTypes:
     - Ingress
+    # Deny all outbound access; Redis doesn't need to talk to anything.
     - Egress
   ingress:
+    # Allow inbound access to Redis from all other components.
     - from:
         - podSelector:
             matchLabels:
               {{- include "gafaelfawr.selectorLabels" . | nindent 14 }}
               app.kubernetes.io/component: "frontend"
+        - podSelector:
+            matchLabels:
+              {{- include "gafaelfawr.selectorLabels" . | nindent 14 }}
+              app.kubernetes.io/component: "postinstall-init"
+        - podSelector:
+            matchLabels:
+              {{- include "gafaelfawr.selectorLabels" . | nindent 14 }}
+              app.kubernetes.io/component: "postinstall-tokens"
+        - podSelector:
+            matchLabels:
+              {{- include "gafaelfawr.selectorLabels" . | nindent 14 }}
+              app.kubernetes.io/component: "secrets"
       ports:
         - protocol: "TCP"
           port: 6379
