@@ -107,6 +107,7 @@ data:
           secret_namespace: {{ $secret.secretNamespace | quote }}
           service: {{ $secret.service | quote }}
           {{- if $secret.scopes }}
+          scopes:
             {{- range $scope := $secret.scopes }}
             - {{ $scope | quote }}
             {{- end }}
