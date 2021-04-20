@@ -1314,6 +1314,17 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.1/mobu-0.1.1.tgz
     version: 0.1.1
   moneypenny:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2021-04-20T00:18:04.24438386Z"
+    description: A Helm chart for Kubernetes
+    digest: 2c46cde33e4bcd01b1e5993f828a42f2af0ad97bc2ace1b5e1f37504d5a8f535
+    maintainers:
+    - name: athornton
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.0.3/moneypenny-0.0.3.tgz
+    version: 0.0.3
   - apiVersion: v1
     appVersion: "1.0"
     created: "2021-03-12T16:56:31.312265993Z"
@@ -1762,6 +1773,26 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/nublado-0.8.10/nublado-0.8.10.tgz
     version: 0.8.10
   nublado2:
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2021-04-20T00:18:04.511649835Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 0.9.0-n409.hce116620
+    description: Nublado2 JupyterHub installation
+    digest: c70ac818fd5aa2969daf3093882b110f3f0f4f6b81178b3be9beba9e43c55c37
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.1.0/nublado2-0.1.0.tgz
+    version: 0.1.0
   - apiVersion: v1
     appVersion: 1.0.7
     created: "2021-04-13T21:39:52.349612234Z"
@@ -2607,4 +2638,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-04-19T22:33:51.111045015Z"
+generated: "2021-04-20T00:18:04.513097257Z"
