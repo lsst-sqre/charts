@@ -6,7 +6,7 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.1.0"
+      tag: "1.1.1"
     containerSecurityContext:
       runAsUser: 768
       runAsGroup: 768
@@ -201,7 +201,7 @@ config:
       data:
         EXTERNAL_INSTANCE_URL: "{{ base_url }}"
         FIREFLY_ROUTE: /portal/app
-        HUB_ROUTE: /n2
+        HUB_ROUTE: "{{ nublado_base_url }}"
         JS9_ROUTE: /js9
         API_ROUTE: /api
         TAP_ROUTE: /api/tap
