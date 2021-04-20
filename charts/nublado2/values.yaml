@@ -27,7 +27,7 @@ jupyterhub:
       - name: nublado-gafaelfawr
         secret:
           secretName: gafaelfawr-token
-      - name: nublado-gafealfawr-key
+      - name: nublado-gafaelfawr-key
         secret:
           secretName: nublado-gafaelfawr
     extraVolumeMounts:
