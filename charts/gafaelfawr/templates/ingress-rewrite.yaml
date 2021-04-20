@@ -12,7 +12,7 @@ metadata:
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
-  name: {{ template "gafaelfawr.fullname" . }}
+  name: {{ template "gafaelfawr.fullname" . }}-rewrite
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
 spec:
