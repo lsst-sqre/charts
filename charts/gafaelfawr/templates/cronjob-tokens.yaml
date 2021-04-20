@@ -39,16 +39,26 @@ spec:
                   drop:
                     - "all"
                 readOnlyRootFilesystem: true
-              image: "{{ .Values.cloudsql.image.repository }}:{{ .Values.cloudsql.image.tag }}"
-              imagePullPolicy: {{ .Values.cloudsql.image.pullPolicy | quote }}
-              command:
-                - "/cloud_sql_proxy"
-                - "-ip_address_types=PRIVATE"
-                - "-instances={{ required "cloudsql.instanceConnectionName must be specified" .Values.cloudsql.instanceConnectionName }}=tcp:5432"
-              securityContext:
-                runAsNonRoot: true
                 runAsUser: 65532
                 runAsGroup: 65532
+              image: "{{ .Values.cloudsql.image.repository }}:{{ .Values.cloudsql.image.tag }}"
+              imagePullPolicy: {{ .Values.cloudsql.image.pullPolicy | quote }}
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                    set -e
+                    /cloud_sql_proxy -ip_address_types=PRIVATE -instances={{ required "cloudsql.instanceConnectionName must be specified" .Values.cloudsql.instanceConnectionName }}=tcp:5432 &
+                    PID=$!
+                    while true; do
+                        if [ -f "/lifecycle/main-terminated" ]; then
+                            kill $PID
+                            exit 0
+                        fi
+                        sleep 1
+                    done
+              volumeMounts:
+                - name: "lifecycle"
+                  mountPath: "/lifecycle"
             {{- end }}
             - name: "gafaelfawr"
               securityContext:
@@ -59,9 +69,12 @@ spec:
                 readOnlyRootFilesystem: true
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
               imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+              command: ["/bin/sh", "-c"]
               args:
-                - "gafaelfawr"
-                - "update-service-tokens"
+                - |
+                    set -e
+                    gafaelfawr update-service-tokens
+                    touch /lifecycle/main-terminated
               env:
                 - name: "GAFAELFAWR_DATABASE_PASSWORD"
                   valueFrom:
@@ -79,6 +92,8 @@ spec:
                 - name: "secret"
                   mountPath: "/etc/gafaelfawr/secrets"
                   readOnly: true
+                - name: "lifecycle"
+                  mountPath: "/lifecycle"
           volumes:
             - name: "config"
               configMap:
@@ -86,6 +101,8 @@ spec:
             - name: "secret"
               secret:
                 secretName: {{ template "gafaelfawr.fullname" . }}-secret
+            - name: "lifecycle"
+              emptyDir: {}
           {{- with .Values.nodeSelector }}
           nodeSelector:
             {{- toYaml . | nindent 12 }}
