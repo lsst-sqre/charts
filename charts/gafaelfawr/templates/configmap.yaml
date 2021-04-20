@@ -23,9 +23,7 @@ data:
     issuer:
       iss: "https://{{ .Values.config.host }}"
       key_id: "reissuer"
-      aud:
-        default: "https://{{ .Values.config.host }}"
-        internal: "https://{{ .Values.config.host }}/api"
+      aud: "https://{{ .Values.config.host }}"
       key_file: "/etc/gafaelfawr/secrets/signing-key"
       exp_minutes: {{ .Values.config.issuer.expMinutes }}
       {{- if .Values.config.issuer.influxdb.enabled }}
