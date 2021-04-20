@@ -7,7 +7,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/rewrite-target: "/auth/tokens"
+    nginx.ingress.kubernetes.io/rewrite-target: "/auth/tokens/"
     nginx.ingress.kubernetes.io/use-regex: "true"
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
