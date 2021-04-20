@@ -6,7 +6,7 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.0.7"
+      tag: "1.1.0"
     containerSecurityContext:
       runAsUser: 768
       runAsGroup: 768
@@ -26,12 +26,18 @@ jupyterhub:
           name: nublado-config
       - name: nublado-gafaelfawr
         secret:
+          secretName: gafaelfawr-token
+      - name: nublado-gafealfawr-key
+        secret:
           secretName: nublado-gafaelfawr
     extraVolumeMounts:
       - name: nublado-config
         mountPath: /etc/jupyterhub/nublado_config.yaml
         subPath: nublado_config.yaml
       - name: nublado-gafaelfawr
+        mountPath: /etc/keys/gafaelfawr-token
+        subPath: token
+      - name: nublado-gafaelfawr-key
         mountPath: /etc/keys/signing_key.pem
         subPath: signing-key
     networkPolicy:

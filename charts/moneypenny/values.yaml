@@ -44,7 +44,7 @@ ingress:
   enabled: false
   annotations:
     nginx.ingress.kubernetes.io/auth-method: GET
-    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr-service.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:admin"
+    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr-service.gafaelfawr.svc.cluster.local:8080/auth?scope=admin:provision"
   hosts:
     - host: chart-example.local
       paths: ["/moneypenny"]
@@ -52,7 +52,7 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-  
+
 orders: |
   commission:
     - name: farthing
@@ -81,7 +81,7 @@ quips: |
   forget.
   Bond: Yes?
   Moneypenny: I... love... you. Repeat it please, to make sure you get it.
-  Bond: Don't worry, I get it. Sayonara. 
+  Bond: Don't worry, I get it. Sayonara.
   %
   My problem is, James, you never do anything with me.
   %
