@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ template "gafaelfawr.fullname" . }}-postinstall-init
+  name: {{ template "gafaelfawr.fullname" . }}-post-install
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
   annotations:
