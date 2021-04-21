@@ -65,6 +65,17 @@ spec:
                 name: postgres
                 key: exposurelog_password
           {{- end }}
+          {{- with .Values.gafaelfawr_db }}
+          - name: VRO_DB_GAFAELFAWR_USER
+            value: {{ .user }}
+          - name: VRO_DB_GAFAELFAWR_DB
+            value: {{ .db }}
+          - name: VRO_DB_GAFAELFAWR_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres
+                key: gafaelfawr_password
+          {{- end }}
       {{- if .Values.pull_secret }}
       imagePullSecrets:
       - name: {{ .Values.pull_secret }}
