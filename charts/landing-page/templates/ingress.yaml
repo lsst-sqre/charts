@@ -1,11 +1,25 @@
 kind: Ingress
 apiVersion: networking.k8s.io/v1beta1
 metadata:
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   name: {{ template "landing-page.fullname" . }}
   labels:
     app: {{ template "landing-page.fullname" . }}
     chart: {{ template "landing-page.chart" . }}
 spec:
+  {{- if .Values.ingress.tls }}
+  tls:
+    {{- range .Values.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
   rules:
 {{ if .Values.host }}
   - host: {{ .Values.host }}

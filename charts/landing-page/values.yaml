@@ -4,6 +4,14 @@
 
 replicaCount: 1
 
+ingress:
+  # -- Additional annotations to add to the ingress
+  annotations: {}
+
+  # -- Configures TLS for the ingress if needed. If multiple ingresses share
+  # the same hostname, only one of them needs a TLS configuration.
+  tls: []
+
 # This is a link to a markdown file containing the message of the day.
 # Point this at a URL containing messages you want to show to the users.
 motd_url: https://raw.githubusercontent.com/lsst-dm/lsp-landing-page/master/motd/Readme.md
