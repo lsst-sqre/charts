@@ -33,13 +33,13 @@ data:
       {{- end }}
       {{- end }}
 
-    {{- if .Values.config.github }}
+    {{- if .Values.config.github.clientId }}
 
     github:
       client_id: {{ .Values.config.github.clientId | quote }}
       client_secret_file: "/etc/gafaelfawr/secrets/github-client-secret"
 
-    {{- else if .Values.config.cilogon }}
+    {{- else if .Values.config.cilogon.clientId }}
 
     oidc:
       client_id: {{ .Values.config.cilogon.clientId | quote }}
