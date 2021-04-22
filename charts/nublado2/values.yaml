@@ -110,6 +110,7 @@ jupyterhub:
           mountPath: /etc/gshadow
           readOnly: true
           subPath: gshadow
+      type: none
 
   auth:
     type: custom
