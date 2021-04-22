@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: lsstsqre/mobu
-  tag: 1.1.2
+  tag: 1.1.3
   pullPolicy: IfNotPresent
 
 mobu_secrets_path: ""
