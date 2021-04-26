@@ -530,6 +530,18 @@ entries:
   gafaelfawr:
   - apiVersion: v2
     appVersion: 2.0.0
+    created: "2021-04-26T18:21:06.738189122Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 736264e98b6542ac13a09f18ecec25f2bc79f1c6f4d7be0bccb63ceb8b648994
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-3.0.13/gafaelfawr-3.0.13.tgz
+    version: 3.0.13
+  - apiVersion: v2
+    appVersion: 2.0.0
     created: "2021-04-21T22:32:53.932702404Z"
     description: The Gafaelfawr authentication and authorization system
     digest: 0361c5d4568e698a475ff24be27a04cd018fe1afaed2f68ebcf2d86f87a77234
@@ -2982,4 +2994,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-04-22T23:01:22.653431785Z"
+generated: "2021-04-26T18:21:06.739375697Z"
