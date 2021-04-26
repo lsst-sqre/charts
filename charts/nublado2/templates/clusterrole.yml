@@ -21,3 +21,6 @@ rules:
 - apiGroups: ["argoproj.io"]
   resources: ["workflowtemplates", "workflowtemplates/finalizers"]
   verbs: ["get", "list", "watch"]
+- apiGroups: ["ricoberger.de"]
+  resources: ["vaultsecrets"]
+  verbs: ["get", "create", "delete", "list"]
