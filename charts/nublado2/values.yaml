@@ -468,7 +468,7 @@ config:
           {% endfor %}
       spec:
         path: "{{ butler_secret_path }}"
-
+        type: Opaque
 
 # Note: See note above about existingSecret.
 vault_secret_name: "nublado2-secret"
