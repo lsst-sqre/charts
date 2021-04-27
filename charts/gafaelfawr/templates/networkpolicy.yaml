@@ -14,10 +14,11 @@ spec:
   policyTypes:
     - Ingress
   ingress:
-    # Allow inbound access to Redis from any pods in a namespace tagged with
+    # Allow inbound access to Redis from pods (in any namespace) labeled
     # gafaelfawr.lsst.io/ingress: true.
     - from:
-        - namespaceSelector:
+        - namespaceSelector: {}
+          podSelector:
             matchLabels:
               gafaelfawr.lsst.io/ingress: "true"
       ports:
