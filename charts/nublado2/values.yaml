@@ -6,7 +6,7 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.1.3"
+      tag: "1.1.4"
     containerSecurityContext:
       runAsUser: 768
       runAsGroup: 768
@@ -216,11 +216,14 @@ config:
         TAP_ROUTE: /api/tap
         SODA_ROUTE: /api/image/soda
         WORKFLOW_ROUTE: /wf
-        AUTO_REPO_URLS: "https://github.com/lsst-sqre/notebook-demo"
+        AUTO_REPO_URLS: https://github.com/lsst-sqre/notebook-demo
+        PGPASSFILE: /opt/lsst/software/jupyterlab/butler-secret/postgres-credentials.txt
+        AWS_SHARED_CREDENTIALS_FILE: /opt/lsst/software/jupyterlab/butler-secret/aws-credentials.ini
+        S3_ENDPOINT_URL: https://storage.googleapis.com
+        NO_SUDO: "TRUE"
         EXTERNAL_GROUPS: "{{ external_groups }}"
         EXTERNAL_UID: "{{ uid }}"
         ACCESS_TOKEN: "{{ token }}"
-        NO_SUDO: "TRUE"
         IMAGE_DIGEST: "{{ options.image_info.digest }}"
         IMAGE_DESCRIPTION: "{{ options.image_info.display_name }}"
         CLEAR_DOTLOCAL: "{{ options.clear_dotlocal }}"
