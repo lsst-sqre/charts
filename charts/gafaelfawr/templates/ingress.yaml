@@ -1,5 +1,5 @@
 {{- /*
-  Revert c8641fd03f71762b252bab10aacd932acfb5298a when Argo CD has been
+  Revert 3d0f5a89831d5c05f8d384031df6074fb6287e67 when Argo CD has been
   fixed to pass in cluster capabilities, or when all clusters are running
   Kubernetes 1.19 or later.
 */ -}}
