@@ -1,6 +1,6 @@
 # gafaelfawr
 
-![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![AppVersion: 1.5.0](https://img.shields.io/badge/AppVersion-1.5.0-informational?style=flat-square)
+![Version: 3.0.16](https://img.shields.io/badge/Version-3.0.16-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
 
 The Gafaelfawr authentication and authorization system
 
@@ -20,13 +20,14 @@ The Gafaelfawr authentication and authorization system
 | cloudsql.enabled | bool | `false` | Enable the Cloud SQL Auth Proxy sidecar, used with CloudSQL databases on Google Cloud |
 | cloudsql.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for Cloud SQL Auth Proxy images |
 | cloudsql.image.repository | string | `"gcr.io/cloudsql-docker/gce-proxy"` | Cloud SQL Auth Proxy image to use |
-| cloudsql.image.tag | string | `"1.21.0"` | Cloud SQL Auth Proxy tag to use |
+| cloudsql.image.tag | string | `"1.22.0-buster"` | Cloud SQL Auth Proxy tag to use |
 | cloudsql.instanceConnectionName | string | `""` | Instance connection name for a CloudSQL PostgreSQL instance |
 | cloudsql.serviceAccount | string | `""` | The Google service account that has an IAM binding to the `gafaelfawr` and `gafaelfawr-tokens` Kubernetes service accounts and has the `cloudsql.client` role |
 | config.cilogon.clientId | string | `""` | CILogon client ID. One and only one of this or config.github.clientId must be set. |
 | config.cilogon.loginParams | object | `{"skin":"LSST"}` | Additional parameters to add |
 | config.cilogon.redirectUrl | string | `/login` at the value of config.host | Return URL given to CILogon (must match the CILogon configuration) |
 | config.cilogon.test | bool | `false` | Whether to use the test instance of CILogon |
+| config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
 | config.github.clientId | string | `""` | GitHub client ID. One and only one of this or config.cilogon.clientId must be set. |
 | config.groupMapping | object | `{}` | Defines a mapping of scopes to groups that provide that scope. Tokens from an OpenID Connect provider such as CILogon that include groups in an `isMemberOf` claim will be granted scopes based on this mapping. |
 | config.host | string | None, must be set | Used to construct issuers and URLs. |
@@ -48,6 +49,7 @@ The Gafaelfawr authentication and authorization system
 | ingress.host | string | `""` | Hostname for the ingress. This should normally be the same as config.host. |
 | ingress.tls | list | `[]` | Configures TLS for the ingress if needed. If multiple ingresses share the same hostname, only one of them needs a TLS configuration. |
 | nameOverride | string | `""` | Override the base name for resources |
+| networkPolicy.enabled | bool | `false` | Whether to restrict access to the Gafaelfawr service. Only enable if the ingress controller namespace is tagged with `gafaelfawr.lsst.io/ingress: "true"`. |
 | nodeSelector | object | `{}` | Node selector rules for the Gafaelfawr frontend pod |
 | podAnnotations | object | `{}` | Annotations for the Gafaelfawr frontend pod |
 | redis.affinity | object | `{}` | Affinity rules for the Redis pod |
