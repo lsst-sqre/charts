@@ -1,3 +1,8 @@
+{{- /*
+  Revert c8641fd03f71762b252bab10aacd932acfb5298a when Argo CD has been
+  fixed to pass in cluster capabilities, or when all clusters are running
+  Kubernetes 1.19 or later.
+*/ -}}
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
