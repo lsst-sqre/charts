@@ -1,7 +1,7 @@
 apiVersion: v1
 name: influxdb
-version: 3.0.6
-appVersion: 1.8.4
+version: 3.0.7
+appVersion: 1.8.5
 description: Scalable datastore for metrics, events, and real-time analytics.
 keywords:
 - influxdb
