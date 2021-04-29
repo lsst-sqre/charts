@@ -28,7 +28,7 @@ spec:
         - name: MYSQL_ROOT_HOST
           value: "%"
         image: lsstdax/tap-schema-db:{{ .Values.tag }}
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
         ports:
         - containerPort: 3306
         resources:
