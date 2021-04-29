@@ -20,7 +20,7 @@ spec:
       containers:
       - name: mock-qserv
         image: lsstdax/mock-qserv:{{ .Values.tag }}
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
         ports:
         - containerPort: 3306
         resources:
