@@ -4,8 +4,7 @@
 
 image:
   repository: ipac/suit
-  tag: lsst-stable
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 max_jvm_size: "2G"
 replicaCount: 1
