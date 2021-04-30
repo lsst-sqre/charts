@@ -1,0 +1,29 @@
+# Default values for cert-issuer.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Override the base name for resources
+nameOverride: ""
+
+# -- Override the full name for resources (includes the release name)
+fullnameOverride: ""
+
+config:
+  # -- Contact email address registered with Let's Encrypt
+  # @default -- None, must be set
+  email: ""
+
+  # Currently, DNS with Route 53 is the only supported solver mechanism
+  route53:
+    # -- AWS access key ID for Route 53 (must match `aws-secret-access-key` in
+    # Vault secret referenced by `config.vaultSecretPath`)
+    # @default -- None, must be set
+    awsAccessKeyId: ""
+
+    # -- Route 53 hosted zone in which to create challenge records
+    # @default -- None, must be set
+    hostedZone: ""
+
+  # -- Path in Vault to the AWS credentials
+  # @default -- None, must be set
+  vaultSecretPath: ""

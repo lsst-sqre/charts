@@ -1,0 +1,7 @@
+apiVersion: v2
+name: cert-issuer
+version: 0.1.0
+description: Certificate issuer for Rubin Science Platform
+type: application
+maintainers:
+  - name: rra
