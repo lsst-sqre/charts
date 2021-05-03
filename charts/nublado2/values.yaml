@@ -6,7 +6,7 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.1.4"
+      tag: "1.1.5"
     containerSecurityContext:
       runAsUser: 768
       runAsGroup: 768
@@ -221,6 +221,7 @@ config:
         AWS_SHARED_CREDENTIALS_FILE: /opt/lsst/software/jupyterlab/butler-secret/aws-credentials.ini
         S3_ENDPOINT_URL: https://storage.googleapis.com
         NO_SUDO: "TRUE"
+        DATA_REPO: "{{ data_repo_bucket }}"
         EXTERNAL_GROUPS: "{{ external_groups }}"
         EXTERNAL_UID: "{{ uid }}"
         ACCESS_TOKEN: "{{ token }}"
