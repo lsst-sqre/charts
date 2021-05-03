@@ -96,19 +96,3 @@ data:
       - {{ $admin | quote }}
       {{- end }}
     {{- end }}
-
-    {{- if .Values.tokens.secrets }}
-    kubernetes:
-      service_secrets:
-        {{- range $secret := .Values.tokens.secrets }}
-        - secret_name: {{ $secret.secretName | quote }}
-          secret_namespace: {{ $secret.secretNamespace | quote }}
-          service: {{ $secret.service | quote }}
-          {{- if $secret.scopes }}
-          scopes:
-            {{- range $scope := $secret.scopes }}
-            - {{ $scope | quote }}
-            {{- end }}
-          {{- end }}
-        {{- end }}
-    {{- end }}

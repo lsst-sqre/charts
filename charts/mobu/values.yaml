@@ -10,11 +10,6 @@ image:
   pullPolicy: IfNotPresent
 
 mobu_secrets_path: ""
-gafaelfawr_secrets_path: ""
-
-# -- Name of the secret holding a Gafaelfawr token. Either this or
-# gafaelfawr_secrets_path must be set.
-gafaelfawrSecret: ""
 
 environment_url: ""
 

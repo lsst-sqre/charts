@@ -35,19 +35,13 @@ spec:
                 secretKeyRef:
                   name: {{ template "mobu.fullname" . }}-mobu-secret
                   key: ALERT_HOOK
-            {{- if not .Values.gafaelfawrSecret }}
-            - name: PRIVATE_KEY_PATH
-              value: "/etc/secrets/signing-key"
-            {{- end }}
             - name: ENVIRONMENT_URL
               value: {{ .Values.environment_url }}
-            {{- if .Values.gafaelfawrSecret }}
             - name: GAFAELFAWR_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.gafaelfawrSecret | quote }}
+                  name: {{ template "mobu.fullname" . }}-gafaelfawr-token
                   key: "token"
-            {{- end }}
           ports:
             - name: http
               containerPort: 8080
@@ -63,11 +57,6 @@ spec:
           volumeMounts:
             - name: tmp
               mountPath: "/tmp"
-            {{- if not .Values.gafaelfawrSecret }}
-            - name: {{ template "mobu.fullname" . }}-gafaelfawr-secret
-              mountPath: "/etc/secrets"
-              readOnly: true
-            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -85,8 +74,3 @@ spec:
       volumes:
         - name: tmp
           emptyDir: {}
-        {{- if not .Values.gafaelfawrSecret }}
-        - name: {{ template "mobu.fullname" . }}-gafaelfawr-secret
-          secret:
-            secretName: {{ template "mobu.fullname" . }}-gafaelfawr-secret
-        {{- end }}

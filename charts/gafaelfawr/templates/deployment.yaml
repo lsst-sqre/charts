@@ -43,16 +43,15 @@ spec:
               drop:
                 - "all"
             readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65532
+            runAsGroup: 65532
           image: "{{ .Values.cloudsql.image.repository }}:{{ .Values.cloudsql.image.tag }}"
           imagePullPolicy: {{ .Values.cloudsql.image.pullPolicy | quote }}
           command:
             - "/cloud_sql_proxy"
             - "-ip_address_types=PRIVATE"
             - "-instances={{ required "cloudsql.instanceConnectionName must be specified" .Values.cloudsql.instanceConnectionName }}=tcp:5432"
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 65532
-            runAsGroup: 65532
         {{- end }}
         - name: "gafaelfawr"
           securityContext:

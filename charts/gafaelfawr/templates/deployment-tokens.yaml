@@ -1,23 +1,26 @@
-{{- if .Values.tokens.secrets -}}
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: {{ template "gafaelfawr.fullname" . }}-post-install
+  name: {{ template "gafaelfawr.fullname" . }}-tokens
   labels:
     {{- include "gafaelfawr.labels" . | nindent 4 }}
-  annotations:
-    helm.sh/hook: "post-install,post-upgrade"
-    helm.sh/hook-weight: "-1"
-    helm.sh/hook-delete-policy: "before-hook-creation,hook-succeeded"
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "gafaelfawr.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "tokens"
   template:
     metadata:
-      name: {{ template "gafaelfawr.fullname" . }}-postinstall-init
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- with .Values.tokens.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       labels:
         {{- include "gafaelfawr.selectorLabels" . | nindent 8 }}
-        app.kubernetes.io/component: "postinstall"
+        app.kubernetes.io/component: "tokens"
     spec:
-      restartPolicy: OnFailure
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -40,24 +43,11 @@ spec:
             runAsGroup: 65532
           image: "{{ .Values.cloudsql.image.repository }}:{{ .Values.cloudsql.image.tag }}"
           imagePullPolicy: {{ .Values.cloudsql.image.pullPolicy | quote }}
-          command: ["/bin/sh", "-c"]
-          args:
-            - |
-                set -e
-                /cloud_sql_proxy -ip_address_types=PRIVATE -instances={{ required "cloudsql.instanceConnectionName must be specified" .Values.cloudsql.instanceConnectionName }}=tcp:5432 &
-                PID=$!
-                while true; do
-                    if [ -f "/lifecycle/main-terminated" ]; then
-                        kill $PID
-                        exit 0
-                    fi
-                    sleep 1
-                done
-          volumeMounts:
-            - name: "lifecycle"
-              mountPath: "/lifecycle"
+            - "/cloud_sql_proxy"
+            - "-ip_address_types=PRIVATE"
+            - "-instances={{ required "cloudsql.instanceConnectionName must be specified" .Values.cloudsql.instanceConnectionName }}=tcp:5432"
         {{- end }}
-        - name: "gafaelfawr"
+        - name: "gafaelfawr-tokens"
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -66,13 +56,9 @@ spec:
             readOnlyRootFilesystem: true
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
-          command: ["/bin/sh", "-c"]
-          args:
-            - |
-                set -e
-                gafaelfawr init
-                gafaelfawr update-service-tokens
-                touch /lifecycle/main-terminated
+          command:
+            - "gafaelfawr"
+            - "kubernetes-controller"
           env:
             - name: "GAFAELFAWR_DATABASE_PASSWORD"
               valueFrom:
@@ -81,7 +67,7 @@ spec:
                   key: "database-password"
           {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 16 }}
+            {{- toYaml .Values.tokens.resources | nindent 12 }}
           {{- end }}
           volumeMounts:
             - name: "config"
@@ -90,8 +76,6 @@ spec:
             - name: "secret"
               mountPath: "/etc/gafaelfawr/secrets"
               readOnly: true
-            - name: "lifecycle"
-              mountPath: "/lifecycle"
       volumes:
         - name: "config"
           configMap:
@@ -99,6 +83,15 @@ spec:
         - name: "secret"
           secret:
             secretName: {{ template "gafaelfawr.fullname" . }}-secret
-        - name: "lifecycle"
-          emptyDir: {}
-{{- end }}
+      {{- with .Values.tokens.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tokens.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tokens.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

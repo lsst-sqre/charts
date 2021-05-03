@@ -1,8 +1,8 @@
 apiVersion: v2
 name: gafaelfawr
-version: 3.1.1
+version: 4.0.0
 description: The Gafaelfawr authentication and authorization system
 home: https://gafaelfawr.lsst.io/
 maintainers:
   - name: rra
-appVersion: 2.0.1
+appVersion: 3.0.0

@@ -24,10 +24,6 @@ spec:
         - podSelector:
             matchLabels:
               {{- include "gafaelfawr.selectorLabels" . | nindent 14 }}
-              app.kubernetes.io/component: "postinstall"
-        - podSelector:
-            matchLabels:
-              {{- include "gafaelfawr.selectorLabels" . | nindent 14 }}
               app.kubernetes.io/component: "tokens"
       ports:
         - protocol: "TCP"
