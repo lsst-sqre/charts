@@ -43,6 +43,7 @@ spec:
               -Duws.jdbc.driverClassName=org.postgresql.Driver
               -Duws.jdbc.url=jdbc:postgresql://{{ template "cadc-tap.fullname" . }}-uws-db/
               -Dca.nrc.cadc.auth.Authenticator=org.opencadc.tap.impl.AuthenticatorImpl
+              -Dgafaelfawr_url=https://{{ .Values.host }}/auth/api/v1/user-info
               -Dgcs_bucket={{ .Values.gcs_bucket }}
               -Dgcs_bucket_url={{ .Values.gcs_bucket_url }}
               -Dca.nrc.cadc.util.PropertiesReader.dir=/etc/creds/
