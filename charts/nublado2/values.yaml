@@ -170,6 +170,7 @@ config:
   signing_key_path: "/etc/keys/signing_key.pem"
   pinned_images: []
   images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
+  lab_environment: {}
   sizes:
     - name: Tiny
       cpu: 0.5
@@ -228,6 +229,8 @@ config:
         IMAGE_DESCRIPTION: "{{ options.image_info.display_name }}"
         CLEAR_DOTLOCAL: "{{ options.clear_dotlocal }}"
         DEBUG: "{{ options.debug }}"
+        {% for k, v in lab_environment.items() %}{{ k }}: {{ v }}
+        {% endfor %}
     - apiVersion: v1
       kind: ConfigMap
       metadata:
