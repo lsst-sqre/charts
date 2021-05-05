@@ -186,6 +186,31 @@ config:
   volumes: []
   volume_mounts: []
 
+  # -- Environment variables to set in spanwed lab containers. Each value will
+  # be expanded using Jinja 2 templating.
+  # @default -- See `values.yaml`
+  lab_environment:
+    EXTERNAL_INSTANCE_URL: "{{ base_url }}"
+    FIREFLY_ROUTE: /portal/app
+    HUB_ROUTE: "{{ nublado_base_url }}"
+    JS9_ROUTE: /js9
+    API_ROUTE: /api
+    TAP_ROUTE: /api/tap
+    SODA_ROUTE: /api/image/soda
+    WORKFLOW_ROUTE: /wf
+    AUTO_REPO_URLS: https://github.com/lsst-sqre/notebook-demo
+    PGPASSFILE: /opt/lsst/software/jupyterlab/butler-secret/postgres-credentials.txt
+    AWS_SHARED_CREDENTIALS_FILE: /opt/lsst/software/jupyterlab/butler-secret/aws-credentials.ini
+    S3_ENDPOINT_URL: https://storage.googleapis.com
+    NO_SUDO: "TRUE"
+    EXTERNAL_GROUPS: "{{ external_groups }}"
+    EXTERNAL_UID: "{{ uid }}"
+    ACCESS_TOKEN: "{{ token }}"
+    IMAGE_DIGEST: "{{ options.image_info.digest }}"
+    IMAGE_DESCRIPTION: "{{ options.image_info.display_name }}"
+    CLEAR_DOTLOCAL: "{{ options.clear_dotlocal }}"
+    DEBUG: "{{ options.debug }}"
+
   # -- Templates for the user resources to create for each lab spawn. This is
   # a string that can be templated and then loaded as YAML to generate a list
   # of Kubernetes objects to create.
@@ -195,32 +220,6 @@ config:
       kind: Namespace
       metadata:
         name: "{{ user_namespace }}"
-    - apiVersion: v1
-      kind: ConfigMap
-      metadata:
-        name: lab-environment
-        namespace: "{{ user_namespace }}"
-      data:
-        EXTERNAL_INSTANCE_URL: "{{ base_url }}"
-        FIREFLY_ROUTE: /portal/app
-        HUB_ROUTE: "{{ nublado_base_url }}"
-        JS9_ROUTE: /js9
-        API_ROUTE: /api
-        TAP_ROUTE: /api/tap
-        SODA_ROUTE: /api/image/soda
-        WORKFLOW_ROUTE: /wf
-        AUTO_REPO_URLS: https://github.com/lsst-sqre/notebook-demo
-        PGPASSFILE: /opt/lsst/software/jupyterlab/butler-secret/postgres-credentials.txt
-        AWS_SHARED_CREDENTIALS_FILE: /opt/lsst/software/jupyterlab/butler-secret/aws-credentials.ini
-        S3_ENDPOINT_URL: https://storage.googleapis.com
-        NO_SUDO: "TRUE"
-        EXTERNAL_GROUPS: "{{ external_groups }}"
-        EXTERNAL_UID: "{{ uid }}"
-        ACCESS_TOKEN: "{{ token }}"
-        IMAGE_DIGEST: "{{ options.image_info.digest }}"
-        IMAGE_DESCRIPTION: "{{ options.image_info.display_name }}"
-        CLEAR_DOTLOCAL: "{{ options.clear_dotlocal }}"
-        DEBUG: "{{ options.debug }}"
     - apiVersion: v1
       kind: ConfigMap
       metadata:
