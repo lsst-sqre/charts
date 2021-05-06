@@ -54,6 +54,8 @@ spec:
           volumeMounts:
             - name: "config"
               mountPath: "/etc/squareone"
+            - name: "next-image-cache"
+              mountPath: "/app/.next/cache/images"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -70,3 +72,5 @@ spec:
         - name: "config"
           configMap:
             name: {{ include "squareone.fullname" . }}
+        - name: "next-image-cache"
+          emptyDir: {}
