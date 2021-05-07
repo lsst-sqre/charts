@@ -1,88 +1,139 @@
-# Default values for kafka-connect-manager Helm chart
+# Default values for kafka-connect-manager Helm chart.
 # See https://kafka-connect-manager.lsst.io
 
 image:
   repository: lsstsqre/kafkaconnect
-  tag: 0.8.2
+  tag: 0.9.0
   pullPolicy: Always
 
 influxdbSink:
+  # -- Whether the InfluxDB Sink connector is deployed.
   enabled: false
-  ## Name of the connector to create
+  # -- Name of the connector to create.
   name: influxdb-sink
-  ## InfluxDB URL, can be internal to the cluster. Required.
+  # -- InfluxDB URL, can be internal to the cluster.
   connectInfluxUrl: "http://localhost:8086"
-  ## InfluxDB database used by the connector to write to. Required.
+  # -- InfluxDB database to write to.
   connectInfluxDb: ""
-  ## InfluxDB credentials. Required.
+  # -- InfluxDB credentials.
   influxSecret: ""
-  ## Number of Kafka Connect tasks.
+  # -- Number of Kafka Connect tasks.
   tasksMax: 1
-  ## Regex to filer topic names, for the EFD application SAL topics in kafka
-  ## have the lsst.sal prefix. Required.
+  # -- Regex to filer topic names.
   topicRegex: ".*"
-  ## If autoUpdate is enabled, check for new kafka topics and add them to the connector
-  ## dynamically
+  # -- If autoUpdate is enabled, check for new kafka topics and add them to the connector dynamically.
   autoUpdate: true
-  ## The interval, in milliseconds, to check for new topics and update
-  ## the connector.
+  # -- The interval, in milliseconds, to check for new topics and update the connector.
   checkInterval: "15000"
-  ## Comma separated list of topics to exclude from selection.
+  # -- Comma separated list of topics to exclude from selection.
   excludedTopics: ""
-  ## Timestamp to be used as the InfluxDB time, if not specified sys_time() is used.
+  # -- Timestamp to be used as the InfluxDB time, if not specified `sys_time()` is used.
   timestamp: "sys_time()"
-  ## Error policy
+  # -- Error policy.
   connectInfluxErrorPolicy: THROW
-  ## The maximum number of times a message is retried.
+  # -- The maximum number of times a message is retried.
   connectInfluxMaxRetries: "10"
-  ## The interval, in milliseconds, between retries. Only valid when the
-  ## connectInfluxErrorPolicy is set to RETRY.
+  # -- The interval, in milliseconds, between retries. Only valid when the connectInfluxErrorPolicy is set to `RETRY`.
   connectInfluxRetryInterval: "60000"
-  ## Enables the output for how many records have been processed.
+  # -- Enables the output for how many records have been processed.
   connectProgressEnabled: false
 
 s3Sink:
+  # -- Whether the Amazon S3 Sink connector is deployed.
   enabled: false
-  ## Name of the connector to create
+  # -- Name of the connector to create.
   name: s3-sink
-  ## s3 bucket name. Must exist already.
+  # -- s3 bucket name. Must exist already.
   s3BucketName: ""
-  ## s3 region
+  # -- s3 region
   s3Region: "us-east-1"
-  ## Top level directory to store the data ingested from Kafka.
+  # -- Top level directory to store the data ingested from Kafka.
   topicsDir: "topics"
-  ## aws_access_key_id and aws_secret_access_key secrets
+  # -- Kubernetes secret with the `aws_access_key_id` and `aws_secret_access_key` secret keys.
   awsSecret: ""
-  ## Number of records written to store before invoking file commits
+  # -- Number of records written to store before invoking file commits.
   flushSize: "1000"
-  ## The time interval in milliseconds to invoke file commits.
+  # -- The time interval in milliseconds to invoke file commits.
   rotateIntervalMs: "60000"
-  ## The duration of a partition in milliseconds, used by TimeBasedPartitioner.
-  ## Default is 1h for an hourly based partitioner.
+  # -- The duration of a partition in milliseconds, used by TimeBasedPartitioner. Default is 1h for an hourly based partitioner.
   partitionDurationMs: "3600000"
-  ## Pattern used to format the path in the S3 object name.
+  # -- Pattern used to format the path in the S3 object name.
   pathFormat: "'year'=YYYY/'month'=MM/'day'=dd/'hour'=HH"
-  ## Number of Kafka Connect tasks.
+  # -- Number of Kafka Connect tasks.
   tasksMax: 1
-  ## Regex for selecting topics.
+  # -- Regex for selecting topics.
   topicRegex: ".*"
-  ## Check for new topics and update the connector.
+  # -- Check for new topics and update the connector.
   autoUpdate: true
-  ## The interval, in milliseconds, to check for new topics and update
-  ## the connector.
+  # -- The interval, in milliseconds, to check for new topics and update the connector.
   checkInterval: "15000"
-  ## Comma separated list of topics to exclude from selection.
+  # -- Comma separated list of topics to exclude from selection.
   excludedTopics: ""
-  ## The locale to use when partitioning with TimeBasedPartitioner.
+  # -- The locale to use when partitioning with TimeBasedPartitioner.
   locale: "en-US"
-  ## The timezone to use when partitioning with TimeBasedPartitioner.
+  # -- The timezone to use when partitioning with TimeBasedPartitioner.
   timezone: "UTC"
-  ## The extractor determines how to obtain a timestamp from each record.
+  # -- The extractor determines how to obtain a timestamp from each record.
   timestampExtractor: "Record"
-  ## The record field to be used as timestamp by the timestamp extractor.
-  ## Only applies if timestampExtractor is set to RecordField.
+  # -- The record field to be used as timestamp by the timestamp extractor. Only applies if timestampExtractor is set to RecordField.
   timestampField: "time"
 
+mirrorMaker2:
+  # -- Whether the MirrorMaker 2 connectors (heartbeat, checkpoint and mirror-source) are deployed.
+  enabled: false
+  # -- Name od the connector to create.
+  name: "replicator"
+  # -- Source Kafka cluster.
+  sourceClusterBootstrapServers: "localhost:31090"
+  # -- Alias for the source cluster. The remote topic name is prefixed by this value. Use an empty string to preserve the name of the source topic in the destination cluster.
+  sourceClusterAlias: "src"
+  # -- Separator used to format the remote topic name. Use an empty string if sourceClusterAlias is empty.
+  replicationPolicySeparator: "."
+  # -- Destination Kafka cluster.
+  targetClusterBootstrapServers: "localhost:31090"
+  # -- Name of the destination cluster.
+  targetClusterAlias: "destn"
+  # -- Regex for selecting topics. Comma-separated lists are also supported.
+  topicRegex: ".*"
+  # -- Number of Kafka Connect tasks.
+  tasksMax: 1
+  # -- Whether to monitor source cluster ACLs for changes.
+  syncTopicAclsEnabled: false
+
+jdbcSink:
+  # -- Whether the JDBC Sink connector is deployed.
+  enabled: false
+  # -- Name of the connector to create.
+  name: "postgres-sink"
+  # -- Database connection URL.
+  connectionUrl: "jdbc:postgresql://localhost:5432/mydb"
+  # -- Database connection username.
+  connectionUser: ""
+  # -- Database connection password.
+  connectionPassword: ""
+  # -- Regex for selecting topics.
+  topicRegex: ".*"
+  # -- Number of Kafka Connect tasks.
+  tasksMax: "10"
+  # -- A format string for the destination table name.
+  tableNameFormat: "${topic}"
+  # -- Whether to automatically create the destination table.
+  autoCreate: "true"
+  # -- Whether to automatically add columns in the table schema.
+  autoEvolve: "false"
+  # -- Specifies how many records to attempt to batch together for insertion into the destination table.
+  batchSize: "3000"
+  # -- The insertion mode to use. Supported modes are: `insert`, `upsert` and `update`.
+  insertMode: "insert"
+  # -- The maximum number of times to retry on errors before failing the task.
+  maxRetries: "10"
+  # -- The time in milliseconds to wait following an error before a retry attempt is made.
+  retryBackoffMs: "3000"
+  # -- Name of the JDBC timezone that should be used in the connector when inserting time-based values.
+  dbTimezone: "UTC"
+
 env:
+  # -- Kafka broker URL.
   kafkaBrokerUrl: "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"
+  # -- Kafka connnect URL.
   kafkaConnectUrl: "http://cp-helm-charts-cp-kafka-connect.cp-helm-charts:8083"
