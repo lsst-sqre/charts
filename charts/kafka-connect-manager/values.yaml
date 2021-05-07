@@ -100,6 +100,38 @@ mirrorMaker2:
   # -- Whether to monitor source cluster ACLs for changes.
   syncTopicAclsEnabled: false
 
+jdbcSink:
+  # -- Whether the JDBC Sink connector is deployed.
+  enabled: false
+  # -- Name of the connector to create.
+  name: "postgres-sink"
+  # -- Database connection URL.
+  connectionUrl: "jdbc:postgresql://localhost:5432/mydb"
+  # -- Database connection username.
+  connectionUser: ""
+  # -- Database connection password.
+  connectionPassword: ""
+  # -- Regex for selecting topics.
+  topicRegex: ".*"
+  # -- Number of Kafka Connect tasks.
+  tasksMax: "10"
+  # -- A format string for the destination table name.
+  tableNameFormat: "${topic}"
+  # -- Whether to automatically create the destination table.
+  autoCreate: "true"
+  # -- Whether to automatically add columns in the table schema.
+  autoEvolve: "false"
+  # -- Specifies how many records to attempt to batch together for insertion into the destination table.
+  batchSize: "3000"
+  # -- The insertion mode to use. Supported modes are: `insert`, `upsert` and `update`.
+  insertMode: "insert"
+  # -- The maximum number of times to retry on errors before failing the task.
+  maxRetries: "10"
+  # -- The time in milliseconds to wait following an error before a retry attempt is made.
+  retryBackoffMs: "3000"
+  # -- Name of the JDBC timezone that should be used in the connector when inserting time-based values.
+  dbTimezone: "UTC"
+
 env:
   # -- Kafka broker URL.
   kafkaBrokerUrl: "cp-helm-charts-cp-kafka-headless.cp-helm-charts:9092"
