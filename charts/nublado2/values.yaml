@@ -199,9 +199,6 @@ config:
     SODA_ROUTE: /api/image/soda
     WORKFLOW_ROUTE: /wf
     AUTO_REPO_URLS: https://github.com/lsst-sqre/notebook-demo
-    PGPASSFILE: /opt/lsst/software/jupyterlab/butler-secret/postgres-credentials.txt
-    AWS_SHARED_CREDENTIALS_FILE: /opt/lsst/software/jupyterlab/butler-secret/aws-credentials.ini
-    S3_ENDPOINT_URL: https://storage.googleapis.com
     NO_SUDO: "TRUE"
     EXTERNAL_GROUPS: "{{ external_groups }}"
     EXTERNAL_UID: "{{ uid }}"
