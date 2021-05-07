@@ -6,7 +6,7 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.1.4"
+      tag: "1.2.0"
     containerSecurityContext:
       runAsUser: 768
       runAsGroup: 768
