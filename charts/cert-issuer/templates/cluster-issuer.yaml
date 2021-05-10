@@ -15,7 +15,7 @@ spec:
           cnameStrategy: Follow
           route53:
             region: us-east-1
-            accessKeyId: {{ required "config.route53.awsAccessKeyId must be set" .Values.config.route53.awsAccessKeyId | quote }}
+            accessKeyID: {{ required "config.route53.awsAccessKeyId must be set" .Values.config.route53.awsAccessKeyId | quote }}
             hostedZoneID: {{ required "config.route53.hostedZone must be set" .Values.config.route53.hostedZone | quote }}
             secretAccessKeySecretRef:
               name: {{ include "cert-issuer.fullname" . }}

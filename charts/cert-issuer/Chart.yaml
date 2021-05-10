@@ -1,6 +1,6 @@
 apiVersion: v2
 name: cert-issuer
-version: 0.1.0
+version: 0.1.1
 description: Certificate issuer for Rubin Science Platform
 type: application
 maintainers:
