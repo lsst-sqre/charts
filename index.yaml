@@ -250,6 +250,17 @@ entries:
     version: 0.1.1
   cert-issuer:
   - apiVersion: v2
+    created: "2021-05-10T23:02:33.166882914Z"
+    description: Certificate issuer for Rubin Science Platform
+    digest: f02dc1ad99eca310e76ce4ae96ce0b841d9b55bf3e6c719b299333c54e018df5
+    maintainers:
+    - name: rra
+    name: cert-issuer
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cert-issuer-0.1.1/cert-issuer-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     created: "2021-05-10T22:18:49.64986548Z"
     description: Certificate issuer for Rubin Science Platform
     digest: 7d67300abcdb30f6c3f69f77ed0e4e7098b7b780a3d3d73fdfc01ceb0cc22e68
@@ -3428,4 +3439,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-10T22:18:49.651200266Z"
+generated: "2021-05-10T23:02:33.168112014Z"
