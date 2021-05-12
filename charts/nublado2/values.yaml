@@ -6,7 +6,12 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.2.1"
+      tag: "1.2.2"
+    db:
+      # Password comes from the nublado2-secret.
+      type: "postgres"
+      password: "true"
+      url: "postgresql://jovyan@postgres.postgres/jupyterhub"
     containerSecurityContext:
       runAsUser: 768
       runAsGroup: 768
