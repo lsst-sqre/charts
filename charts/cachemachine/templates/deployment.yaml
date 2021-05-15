@@ -57,6 +57,8 @@ spec:
           - name: autostart
             mountPath: "/etc/cachemachine"
             readOnly: true
+          - name: podinfo
+            mountPath: /etc/podinfo
       volumes:
       {{- if .Values.docker_secret_name }}
       - name: docker-creds
@@ -66,6 +68,15 @@ spec:
       - name: autostart
         configMap:
           name: {{ include "cachemachine.fullname" . }}-autostart
+      - name: podinfo
+        downwardAPI:
+          items:
+            - path: "labels"
+              fieldRef:
+                fieldPath: metadata.labels
+            - path: "annotations"
+              fieldRef:
+                fieldPath: metadata.annotations
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
