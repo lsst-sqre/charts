@@ -294,6 +294,18 @@ entries:
   exposurelog:
   - apiVersion: v2
     appVersion: 0.5.2
+    created: "2021-05-15T14:14:27.738535491Z"
+    description: Exposure log service
+    digest: 53e49ef9340d56385cacec3582c873dac1234b031bc6cd496becf1fa0f8c7e40
+    maintainers:
+    - name: r-owen
+    name: exposurelog
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/exposurelog-0.1.22/exposurelog-0.1.22.tgz
+    version: 0.1.22
+  - apiVersion: v2
+    appVersion: 0.5.2
     created: "2021-05-12T22:25:38.900122373Z"
     description: Exposure log service
     digest: 4ad248728eaae97ce1851c1dcc6fe4acb8873942f1d294f23c3a94c443d088f9
@@ -3491,4 +3503,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-12T22:25:38.901686812Z"
+generated: "2021-05-15T14:14:27.740821723Z"
