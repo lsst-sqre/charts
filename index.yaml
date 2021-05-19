@@ -731,6 +731,18 @@ entries:
     version: 0.1.2
   gafaelfawr:
   - apiVersion: v2
+    appVersion: 3.0.0
+    created: "2021-05-19T15:53:19.797043503Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: c054ada29979b2e56a97bd6c22e4188b6a9faaadbcc68f2e590a276fd5dae8d4
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.0.0/gafaelfawr-4.0.0.tgz
+    version: 4.0.0
+  - apiVersion: v2
     appVersion: 2.0.1
     created: "2021-05-10T15:38:52.295464624Z"
     description: The Gafaelfawr authentication and authorization system
@@ -1691,6 +1703,18 @@ entries:
   mobu:
   - apiVersion: v2
     appVersion: 1.1.5
+    created: "2021-05-19T15:53:20.06565962Z"
+    description: The mobu generates system load by pretending to be a random scientist
+    digest: 781864099afc8fcb9d9e8999020decf83b7ffd367dc93dcbb70a3f3cbff85511
+    home: https://github.com/lsst-sqre/mobu
+    maintainers:
+    - name: cbanek
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-0.3.0/mobu-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: 1.1.5
     created: "2021-04-26T23:06:09.953827269Z"
     description: The mobu generates system load by pretending to be a random scientist
     digest: c9ce572cb6fecedfdc8974615679bbc2d4404a6e97805945dcb9e34d9a3623b8
@@ -2347,6 +2371,26 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/nublado-0.8.10/nublado-0.8.10.tgz
     version: 0.8.10
   nublado2:
+  - apiVersion: v2
+    appVersion: 1.2.3
+    created: "2021-05-19T15:53:20.340161637Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 0.9.0-n409.hce116620
+    description: Nublado2 JupyterHub installation
+    digest: c08c34647bb5b1c75d9c82bcfdd6e8ef94551de69abd9ae7f1595edf8248ae0b
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.3.0/nublado2-0.3.0.tgz
+    version: 0.3.0
   - apiVersion: v2
     appVersion: 1.2.3
     created: "2021-05-18T01:44:03.191343707Z"
@@ -3606,4 +3650,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-18T21:31:01.914696351Z"
+generated: "2021-05-19T15:53:20.34171779Z"
