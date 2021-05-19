@@ -184,17 +184,6 @@ cloudsql:
   serviceAccount: ""
 
 tokens:
-  # -- List of Kubernetes secrets to maintain. Each will contain a Gafaelfawr
-  # service tokens, which can be used by other applications to make API calls
-  # that are protected by Gafaelfawr. Set `secretName`, `secretNamespace`,
-  # `service` (all strings), and `scopes` (a list) for each secret. If this
-  # is empty, the cron job will not be created.
-  secrets: []
-
-  # -- CronJob schedule for updating Kubernetes secrets
-  # @default -- `"*/15 * * * *"` (every 15 minutes)
-  schedule: "*/15 * * * *"
-
   serviceAccount:
     # -- Create a Kubernetes service account to use for token management with
     # a cluster role that allows it to list, get, patch, and delete secrets in
@@ -209,6 +198,9 @@ tokens:
     # -- Name of the service account to use
     # @default -- Formed by appending `-tokens` to the fullname template
     name: ""
+
+  # -- Resource limits and requests for the Gafaelfawr token management pod
+  resources: {}
 
   # -- Annotations for the token management pod
   podAnnotations: {}

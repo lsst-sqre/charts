@@ -1,6 +1,6 @@
 # gafaelfawr
 
-![Version: 3.0.16](https://img.shields.io/badge/Version-3.0.16-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
+![Version: 4.0.0](https://img.shields.io/badge/Version-4.0.0-informational?style=flat-square) ![AppVersion: 3.0.0](https://img.shields.io/badge/AppVersion-3.0.0-informational?style=flat-square)
 
 The Gafaelfawr authentication and authorization system
 
@@ -55,7 +55,7 @@ The Gafaelfawr authentication and authorization system
 | redis.affinity | object | `{}` | Affinity rules for the Redis pod |
 | redis.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the Redis image |
 | redis.image.repository | string | `"redis"` | Redis image to use |
-| redis.image.tag | string | `"6.2.1"` | Redis image tag to use |
+| redis.image.tag | string | `"6.2.3"` | Redis image tag to use |
 | redis.nodeSelector | object | `{}` | Node selection rules for the Redis pod |
 | redis.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode of storage to request |
 | redis.persistence.enabled | bool | `true` | Whether to persist Redis storage and thus tokens. Setting this to false will use `emptyDir` and reset all tokens on every restart. Only use this for a test deployment. |
@@ -72,8 +72,7 @@ The Gafaelfawr authentication and authorization system
 | tokens.affinity | object | `{}` | Affinity rules for the token management pod |
 | tokens.nodeSelector | object | `{}` | Node selection rules for the token management pod |
 | tokens.podAnnotations | object | `{}` | Annotations for the token management pod |
-| tokens.schedule | string | `"*/15 * * * *"` (every 15 minutes) | CronJob schedule for updating Kubernetes secrets |
-| tokens.secrets | list | `[]` | List of Kubernetes secrets to maintain. Each will contain a Gafaelfawr service tokens, which can be used by other applications to make API calls that are protected by Gafaelfawr. Set `secretName`, `secretNamespace`, `service` (all strings), and `scopes` (a list) for each secret. If this is empty, the cron job will not be created. |
+| tokens.resources | object | `{}` | Resource limits and requests for the Gafaelfawr token management pod |
 | tokens.serviceAccount.annotations | object | `{}` | Annotations to add to the service account. If CloudSQL is in use, the annotation specifying the Google service account will also be added. |
 | tokens.serviceAccount.create | bool | `true` | Create a Kubernetes service account to use for token management with a cluster role that allows it to list, get, patch, and delete secrets in any namespace. Even if true, it is only created if tokens.secrets is non-empty. |
 | tokens.serviceAccount.name | string | Formed by appending `-tokens` to the fullname template | Name of the service account to use |

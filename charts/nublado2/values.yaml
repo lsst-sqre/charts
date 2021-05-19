@@ -32,9 +32,6 @@ jupyterhub:
       - name: nublado-gafaelfawr
         secret:
           secretName: gafaelfawr-token
-      - name: nublado-gafaelfawr-key
-        secret:
-          secretName: nublado-gafaelfawr
     extraVolumeMounts:
       - name: nublado-config
         mountPath: /etc/jupyterhub/nublado_config.yaml
@@ -42,9 +39,6 @@ jupyterhub:
       - name: nublado-gafaelfawr
         mountPath: /etc/keys/gafaelfawr-token
         subPath: token
-      - name: nublado-gafaelfawr-key
-        mountPath: /etc/keys/signing_key.pem
-        subPath: signing-key
     networkPolicy:
       # This is set to disabled but is basically re-implemented by
       # the netpol.yaml in this chart.
@@ -172,7 +166,6 @@ config:
   # butler_secret_path must be set here, because it's passed through to
   # the lab rather than being part of the Hub configuration
   butler_secret_path: ""
-  signing_key_path: "/etc/keys/signing_key.pem"
   pinned_images: []
   images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
   sizes:
@@ -419,5 +412,3 @@ pull_secret: ""
 
 network_policy:
   enabled: true
-
-gafaelfawr_secret_path: ""
