@@ -16,7 +16,7 @@ jupyterhub:
       runAsUser: 768
       runAsGroup: 768
       allowPrivilegeEscalation: false
-    baseUrl: '/n2'
+    baseUrl: "/nb"
     # Note: this has to match up with the kubernetes secret created by the vault secret,
     # and since you can't put templating in a values file, I'm just setting the name here,
     # as well as in vault_secret_name, which should match.
