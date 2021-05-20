@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ template "nublado.fullname" . }}-resourcemap
-data:
-  resourcemap.json: |
-{{ .Values.resourcemap | indent 4 }}

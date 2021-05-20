@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ template "nublado.fullname" . }}-base-passwd
-data:
-  passwd: |
-{{ .Values.base_passwd_file | indent 4}}

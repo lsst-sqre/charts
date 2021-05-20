@@ -1,9 +1,0 @@
-{{ if and .Values.vault_secrets.enabled .Values.lab.enable_moneypenny }}
-apiVersion: ricoberger.de/v1alpha1
-kind: VaultSecret
-metadata:
-  name: {{ template "nublado.fullname" . }}-gafaelfawr
-spec:
-  path: {{ .Values.gafaelfawr_secrets_path }}
-  type: Opaque
-{{ end }}
