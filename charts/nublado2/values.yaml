@@ -158,6 +158,11 @@ jupyterhub:
       nginx.ingress.kubernetes.io/configuration-snippet: |
         error_page 403 = "/auth/forbidden?scope=exec:notebook";
 
+  # The default culler setting is enabled, with 3600s idle.  This is way
+  #  too short for our purposes.  First cut: just disable it.
+  cull:
+    enabled: false
+
 config:
   # base_url must be set in each instantiation of this chart to the URL of
   # the primary ingress.  It's used to construct API requests to the
