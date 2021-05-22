@@ -174,9 +174,6 @@ config:
   pinned_images: []
   images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
   sizes:
-    - name: Tiny
-      cpu: 0.5
-      ram: 1536M
     - name: Small
       cpu: 1
       ram: 3072M
