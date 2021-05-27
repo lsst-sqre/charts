@@ -16,7 +16,7 @@ jupyterhub:
       runAsUser: 768
       runAsGroup: 768
       allowPrivilegeEscalation: false
-    baseUrl: '/n2'
+    baseUrl: "/nb"
     # Note: this has to match up with the kubernetes secret created by the vault secret,
     # and since you can't put templating in a values file, I'm just setting the name here,
     # as well as in vault_secret_name, which should match.
@@ -154,7 +154,7 @@ jupyterhub:
       kubernetes.io/ingress.class: nginx
       nginx.ingress.kubernetes.io/auth-method: GET
       nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-Token"
-      nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr-service.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:notebook"
+      nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr-service.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:notebook&notebook=true"
       nginx.ingress.kubernetes.io/configuration-snippet: |
         error_page 403 = "/auth/forbidden?scope=exec:notebook";
 

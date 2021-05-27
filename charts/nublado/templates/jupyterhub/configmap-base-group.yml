@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ template "nublado.fullname" . }}-base-group
-data:
-  group: |
-{{ .Values.base_group_file | indent 4}}
