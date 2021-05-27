@@ -1,7 +1,7 @@
 apiVersion: v2
 name: nublado2
-version: 0.3.3
-appVersion: 1.2.3
+version: 0.3.4
+appVersion: "1.2.3"
 description: Nublado2 JupyterHub installation
 home: https://github.com/lsst-sqre/nublado2
 maintainers:
@@ -9,7 +9,7 @@ maintainers:
 sources:
   - https://github.com/lsst-sqre/nublado2
   - https://github.com/lsst-sqre/charts
-kubeVersion: '>=1.16.0-0'
+kubeVersion: ">=1.16.0-0"
 dependencies:
   - name: jupyterhub
     version: "0.9.0-n409.hce116620"
