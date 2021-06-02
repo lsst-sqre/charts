@@ -51,7 +51,7 @@ jupyterhub:
       enabled: false
 
   singleuser:
-    cmd: "/opt/lsst/software/jupyterlab/provisionator.bash"
+    cmd: "/opt/lsst/software/jupyterlab/runlab.sh"
     defaultUrl: "/lab"
     extraAnnotations:
       argocd.argoproj.io/compare-options: 'IgnoreExtraneous'
