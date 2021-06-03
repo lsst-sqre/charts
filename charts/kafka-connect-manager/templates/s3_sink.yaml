@@ -62,8 +62,8 @@ spec:
             value: {{ .Values.s3Sink.topicRegex | quote }}
           - name: KAFKA_CONNECT_CHECK_INTERVAL
             value: {{ .Values.s3Sink.checkInterval | quote  }}
-          - name: KAFKA_CONNECT_EXCLUDED_TOPICS
-            value: {{ .Values.s3Sink.excludedTopics | quote }}
+          - name: KAFKA_CONNECT_EXCLUDED_TOPIC_REGEX
+            value: {{ .Values.s3Sink.excludedTopicRegex | quote }}
           - name: KAFKA_CONNECT_S3_LOCALE
             value: {{ .Values.s3Sink.locale | quote }}
           - name: KAFKA_CONNECT_S3_TIMEZONE

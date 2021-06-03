@@ -19,14 +19,14 @@ influxdbSink:
   influxSecret: ""
   # -- Number of Kafka Connect tasks.
   tasksMax: 1
-  # -- Regex to filer topic names.
+  # -- Regex to select topics from Kafka.
   topicRegex: ".*"
-  # -- If autoUpdate is enabled, check for new kafka topics and add them to the connector dynamically.
+  # -- If autoUpdate is enabled, check for new kafka topics. If they match topicRegex and excludedTopicRegex add them to the connector dynamically.
   autoUpdate: true
   # -- The interval, in milliseconds, to check for new topics and update the connector.
   checkInterval: "15000"
-  # -- Comma separated list of topics to exclude from selection.
-  excludedTopics: ""
+  # -- Regex to exclude topics from the list of selected topics from Kafka.
+  excludedTopicRegex: ""
   # -- Timestamp to be used as the InfluxDB time, if not specified `sys_time()` is used.
   timestamp: "sys_time()"
   # -- Error policy.
@@ -61,14 +61,14 @@ s3Sink:
   pathFormat: "'year'=YYYY/'month'=MM/'day'=dd/'hour'=HH"
   # -- Number of Kafka Connect tasks.
   tasksMax: 1
-  # -- Regex for selecting topics.
+  # -- Regex to select topics from Kafka.
   topicRegex: ".*"
-  # -- Check for new topics and update the connector.
+  # -- If autoUpdate is enabled, check for new kafka topics. If they match topicRegex and excludedTopicRegex add them to the connector dynamically.
   autoUpdate: true
   # -- The interval, in milliseconds, to check for new topics and update the connector.
   checkInterval: "15000"
-  # -- Comma separated list of topics to exclude from selection.
-  excludedTopics: ""
+  # -- Regex to exclude topics from the list of selected topics from Kafka.
+  excludedTopicRegex: ""
   # -- The locale to use when partitioning with TimeBasedPartitioner.
   locale: "en-US"
   # -- The timezone to use when partitioning with TimeBasedPartitioner.
