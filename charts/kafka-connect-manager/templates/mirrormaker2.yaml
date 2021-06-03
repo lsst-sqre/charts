@@ -45,7 +45,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "kafka-connect-manager.name" . }}
+  name: {{ .Values.mirrorMaker2.name }}
   labels:
     helm.sh/chart: {{ include "kafka-connect-manager.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
@@ -85,7 +85,7 @@ spec:
         - name: mirrormaker2
           mountPath: /etc/mirrormaker2
       volumes:
-      - name: mirrormaker2 
+      - name: mirrormaker2
         configMap:
           name: mirrormaker2
 ---
