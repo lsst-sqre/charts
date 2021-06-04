@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "kafka-connect-manager.name" . }}
+  name:  {{ .Values.s3Sink.name }}
   labels:
     helm.sh/chart: {{ include "kafka-connect-manager.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
@@ -62,8 +62,8 @@ spec:
             value: {{ .Values.s3Sink.topicRegex | quote }}
           - name: KAFKA_CONNECT_CHECK_INTERVAL
             value: {{ .Values.s3Sink.checkInterval | quote  }}
-          - name: KAFKA_CONNECT_EXCLUDED_TOPICS
-            value: {{ .Values.s3Sink.excludedTopics | quote }}
+          - name: KAFKA_CONNECT_EXCLUDED_TOPIC_REGEX
+            value: {{ .Values.s3Sink.excludedTopicRegex | quote }}
           - name: KAFKA_CONNECT_S3_LOCALE
             value: {{ .Values.s3Sink.locale | quote }}
           - name: KAFKA_CONNECT_S3_TIMEZONE

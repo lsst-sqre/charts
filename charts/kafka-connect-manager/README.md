@@ -1,6 +1,6 @@
 # kafka-connect-manager
 
-![Version: 0.9.0](https://img.shields.io/badge/Version-0.9.0-informational?style=flat-square) ![AppVersion: 0.9.0](https://img.shields.io/badge/AppVersion-0.9.0-informational?style=flat-square)
+![Version: 0.9.1](https://img.shields.io/badge/Version-0.9.1-informational?style=flat-square) ![AppVersion: 0.9.0](https://img.shields.io/badge/AppVersion-0.9.0-informational?style=flat-square)
 
 A Helm chart to deploy kafka connectors
 
@@ -25,21 +25,22 @@ A Helm chart to deploy kafka connectors
 | image.pullPolicy | string | `"Always"` |  |
 | image.repository | string | `"lsstsqre/kafkaconnect"` |  |
 | image.tag | string | `"0.9.0"` |  |
-| influxdbSink.autoUpdate | bool | `true` | If autoUpdate is enabled, check for new kafka topics and add them to the connector dynamically. |
-| influxdbSink.checkInterval | string | `"15000"` | The interval, in milliseconds, to check for new topics and update the connector. |
-| influxdbSink.connectInfluxDb | string | `""` | InfluxDB database to write to. |
-| influxdbSink.connectInfluxErrorPolicy | string | `"THROW"` | Error policy. |
-| influxdbSink.connectInfluxMaxRetries | string | `"10"` | The maximum number of times a message is retried. |
-| influxdbSink.connectInfluxRetryInterval | string | `"60000"` | The interval, in milliseconds, between retries. Only valid when the connectInfluxErrorPolicy is set to `RETRY`. |
-| influxdbSink.connectInfluxUrl | string | `"http://localhost:8086"` | InfluxDB URL, can be internal to the cluster. |
-| influxdbSink.connectProgressEnabled | bool | `false` | Enables the output for how many records have been processed. |
-| influxdbSink.enabled | bool | `false` | Whether the InfluxDB Sink connector is deployed. |
-| influxdbSink.excludedTopics | string | `""` | Comma separated list of topics to exclude from selection. |
-| influxdbSink.influxSecret | string | `""` | InfluxDB credentials. |
-| influxdbSink.name | string | `"influxdb-sink"` | Name of the connector to create. |
-| influxdbSink.tasksMax | int | `1` | Number of Kafka Connect tasks. |
-| influxdbSink.timestamp | string | `"sys_time()"` | Timestamp to be used as the InfluxDB time, if not specified `sys_time()` is used. |
-| influxdbSink.topicRegex | string | `".*"` | Regex to filer topic names. |
+| influxdbSink.influxdb-sink | object | `{"autoUpdate":true,"checkInterval":"15000","connectInfluxDb":"","connectInfluxErrorPolicy":"THROW","connectInfluxMaxRetries":"10","connectInfluxRetryInterval":"60000","connectInfluxUrl":"http://localhost:8086","connectProgressEnabled":false,"enabled":false,"excludedTopicRegex":"","influxSecret":"","name":"influxdb-sink","tasksMax":1,"timestamp":"sys_time()","topicRegex":".*"}` | To create multiple instances of this connector repeat this block. The name of the instance, "influxdb-sink" in this case, is used as scope for the template variables. |
+| influxdbSink.influxdb-sink.autoUpdate | bool | `true` | If autoUpdate is enabled, check for new kafka topics. If they match topicRegex and excludedTopicRegex add them to the connector dynamically. |
+| influxdbSink.influxdb-sink.checkInterval | string | `"15000"` | The interval, in milliseconds, to check for new topics and update the connector. |
+| influxdbSink.influxdb-sink.connectInfluxDb | string | `""` | InfluxDB database to write to. |
+| influxdbSink.influxdb-sink.connectInfluxErrorPolicy | string | `"THROW"` | Error policy. |
+| influxdbSink.influxdb-sink.connectInfluxMaxRetries | string | `"10"` | The maximum number of times a message is retried. |
+| influxdbSink.influxdb-sink.connectInfluxRetryInterval | string | `"60000"` | The interval, in milliseconds, between retries. Only valid when the connectInfluxErrorPolicy is set to `RETRY`. |
+| influxdbSink.influxdb-sink.connectInfluxUrl | string | `"http://localhost:8086"` | InfluxDB URL, can be internal to the cluster. |
+| influxdbSink.influxdb-sink.connectProgressEnabled | bool | `false` | Enables the output for how many records have been processed. |
+| influxdbSink.influxdb-sink.enabled | bool | `false` | Whether this connector instance is deployed. |
+| influxdbSink.influxdb-sink.excludedTopicRegex | string | `""` | Regex to exclude topics from the list of selected topics from Kafka. |
+| influxdbSink.influxdb-sink.influxSecret | string | `""` | InfluxDB credentials. |
+| influxdbSink.influxdb-sink.name | string | `"influxdb-sink"` | Name of the connector instance to create. |
+| influxdbSink.influxdb-sink.tasksMax | int | `1` | Number of Kafka Connect tasks. |
+| influxdbSink.influxdb-sink.timestamp | string | `"sys_time()"` | Timestamp to be used as the InfluxDB time, if not specified `sys_time()` is used. |
+| influxdbSink.influxdb-sink.topicRegex | string | `".*"` | Regex to select topics from Kafka. |
 | jdbcSink.autoCreate | string | `"true"` | Whether to automatically create the destination table. |
 | jdbcSink.autoEvolve | string | `"false"` | Whether to automatically add columns in the table schema. |
 | jdbcSink.batchSize | string | `"3000"` | Specifies how many records to attempt to batch together for insertion into the destination table. |
@@ -65,11 +66,11 @@ A Helm chart to deploy kafka connectors
 | mirrorMaker2.targetClusterBootstrapServers | string | `"localhost:31090"` | Destination Kafka cluster. |
 | mirrorMaker2.tasksMax | int | `1` | Number of Kafka Connect tasks. |
 | mirrorMaker2.topicRegex | string | `".*"` | Regex for selecting topics. Comma-separated lists are also supported. |
-| s3Sink.autoUpdate | bool | `true` | Check for new topics and update the connector. |
+| s3Sink.autoUpdate | bool | `true` | If autoUpdate is enabled, check for new kafka topics. If they match topicRegex and excludedTopicRegex add them to the connector dynamically. |
 | s3Sink.awsSecret | string | `""` | Kubernetes secret with the `aws_access_key_id` and `aws_secret_access_key` secret keys. |
 | s3Sink.checkInterval | string | `"15000"` | The interval, in milliseconds, to check for new topics and update the connector. |
 | s3Sink.enabled | bool | `false` | Whether the Amazon S3 Sink connector is deployed. |
-| s3Sink.excludedTopics | string | `""` | Comma separated list of topics to exclude from selection. |
+| s3Sink.excludedTopicRegex | string | `""` | Regex to exclude topics from the list of selected topics from Kafka. |
 | s3Sink.flushSize | string | `"1000"` | Number of records written to store before invoking file commits. |
 | s3Sink.locale | string | `"en-US"` | The locale to use when partitioning with TimeBasedPartitioner. |
 | s3Sink.name | string | `"s3-sink"` | Name of the connector to create. |
@@ -82,7 +83,7 @@ A Helm chart to deploy kafka connectors
 | s3Sink.timestampExtractor | string | `"Record"` | The extractor determines how to obtain a timestamp from each record. |
 | s3Sink.timestampField | string | `"time"` | The record field to be used as timestamp by the timestamp extractor. Only applies if timestampExtractor is set to RecordField. |
 | s3Sink.timezone | string | `"UTC"` | The timezone to use when partitioning with TimeBasedPartitioner. |
-| s3Sink.topicRegex | string | `".*"` | Regex for selecting topics. |
+| s3Sink.topicRegex | string | `".*"` | Regex to select topics from Kafka. |
 | s3Sink.topicsDir | string | `"topics"` | Top level directory to store the data ingested from Kafka. |
 
 ----------------------------------------------
