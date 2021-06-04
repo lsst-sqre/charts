@@ -27,7 +27,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "kafka-connect-manager.name" . }}
+  name: {{ .Values.jdbcSink.name }}
   labels:
     helm.sh/chart: {{ include "kafka-connect-manager.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
