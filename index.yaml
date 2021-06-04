@@ -1340,6 +1340,27 @@ entries:
     version: 1.3.3
   influxdb:
   - apiVersion: v1
+    appVersion: 1.8.6
+    created: "2021-06-04T00:23:03.117798656Z"
+    description: Scalable datastore for metrics, events, and real-time analytics.
+    digest: 8b63ac5f1382df3c6410bfa95e79f6ec2c954d14a6b4402c31b04427a9b97117
+    home: https://www.influxdata.com/time-series-platform/influxdb/
+    keywords:
+    - influxdb
+    - database
+    - timeseries
+    maintainers:
+    - email: jack@influxdb.com
+      name: jackzampolin
+    - email: urakiny@gmail.com
+      name: aisuko
+    name: influxdb
+    sources:
+    - https://github.com/influxdata/influxdb
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/influxdb-3.0.8/influxdb-3.0.8.tgz
+    version: 3.0.8
+  - apiVersion: v1
     appVersion: 1.8.5
     created: "2021-04-28T00:35:14.599804188Z"
     description: Scalable datastore for metrics, events, and real-time analytics.
@@ -3804,4 +3825,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-03T23:50:58.84985579Z"
+generated: "2021-06-04T00:23:03.119375174Z"
