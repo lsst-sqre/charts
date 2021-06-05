@@ -1518,6 +1518,24 @@ entries:
     version: 0.1.1
   kafka-connect-manager:
   - apiVersion: v1
+    appVersion: 0.9.1
+    created: "2021-06-05T00:10:17.472553587Z"
+    description: A Helm chart to deploy kafka connectors
+    digest: 5a7c6a85386b7d48f5452a11937ed0450414cc97204ccdc1ab99f95bfa25d350
+    home: https://kafka-connect-manager.lsst.io/
+    keywords:
+    - Kafka, InfluxDB, S3, JDBC Sink, MirrorMaker 2
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: kafka-connect-manager
+    sources:
+    - https://github.com/lsst-sqre/kafka-connect-manager
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kafka-connect-manager-0.9.2/kafka-connect-manager-0.9.2.tgz
+    version: 0.9.2
+  - apiVersion: v1
     appVersion: 0.9.0
     created: "2021-06-03T23:50:58.848622777Z"
     description: A Helm chart to deploy kafka connectors
@@ -3825,4 +3843,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-04T00:23:03.119375174Z"
+generated: "2021-06-05T00:10:17.475372541Z"
