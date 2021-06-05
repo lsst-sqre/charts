@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: jdbc-sink
+  name: {{ .Values.jdbcSink.name }}
 data:
   jdbc-sink-config.json: |+
     {
@@ -64,6 +64,6 @@ spec:
       volumes:
       - name: jdbc-sink
         configMap:
-          name: jdbc-sink
+          name: {{ .Values.jdbcSink.name }}
 ---
 {{ end }}
