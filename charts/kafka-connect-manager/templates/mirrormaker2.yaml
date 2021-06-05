@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mirrormaker2
+  name: {{ .Values.mirrorMaker2.name }}
 data:
   heartbeat-config.json: |+
     {
@@ -87,6 +87,6 @@ spec:
       volumes:
       - name: mirrormaker2
         configMap:
-          name: mirrormaker2
+          name: {{ .Values.mirrorMaker2.name }}
 ---
 {{ end }}
