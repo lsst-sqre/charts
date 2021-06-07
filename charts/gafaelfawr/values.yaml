@@ -220,7 +220,7 @@ redis:
     repository: "redis"
 
     # -- Redis image tag to use
-    tag: "6.2.3"
+    tag: "6.2.4"
 
     # -- Pull policy for the Redis image
     pullPolicy: "IfNotPresent"
