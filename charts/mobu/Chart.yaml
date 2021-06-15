@@ -4,5 +4,5 @@ home: https://github.com/lsst-sqre/mobu
 maintainers:
   - name: cbanek
 name: mobu
-version: 0.3.1
+version: 0.3.2
 appVersion: 1.1.6
