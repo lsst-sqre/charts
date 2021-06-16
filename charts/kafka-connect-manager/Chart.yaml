@@ -1,6 +1,6 @@
 apiVersion: v1
 name: kafka-connect-manager
-version: 0.9.2
+version: 0.9.3
 description: A Helm chart to deploy kafka connectors
 keywords:
   - Kafka, InfluxDB, S3, JDBC Sink, MirrorMaker 2
