@@ -3796,6 +3796,24 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/pull-secret-0.1.0/pull-secret-0.1.0.tgz
     version: 0.1.0
+  semaphore:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-06-21T19:32:01.050734997Z"
+    description: Semaphore is the user notification and messaging service for the
+      Rubin Science Platform.
+    digest: 450649a527f72e9eefd065f404efb4363a41334330f8dde2798a2df488e9254d
+    home: https://semaphore.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: semaphore
+    sources:
+    - https://github.com/lsst-sqre/semaphore
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/semaphore-0.1.0/semaphore-0.1.0.tgz
+    version: 0.1.0
   squareone:
   - apiVersion: v2
     appVersion: 0.1.5
@@ -4018,4 +4036,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-17T17:47:40.439695924Z"
+generated: "2021-06-21T19:32:01.051841119Z"
