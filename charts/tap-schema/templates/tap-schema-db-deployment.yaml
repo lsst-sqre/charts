@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "tap-schema.fullname" . }}-db
+  labels:
+    app: {{ template "tap-schema.fullname" . }}-db
+{{ include "tap-schema.labels" . | indent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "tap-schema.fullname" . }}-db
+  template:
+    metadata:
+      labels:
+        app: {{ template "tap-schema.fullname" . }}-db
+{{ include "tap-schema.labels" . | indent 8 }}
+    spec:
+      containers:
+      - name: {{ template "tap-schema.fullname" . }}-db
+        env:
+        - name: MYSQL_DATABASE
+          value: "TAP_SCHEMA"
+        - name: MYSQL_USER
+          value: "TAP_SCHEMA"
+        - name: MYSQL_PASSWORD
+          value: "TAP_SCHEMA"
+        - name: MYSQL_ROOT_HOST
+          value: "%"
+        image: {{ .Values.image }}:{{ .Values.tag | default .Chart.AppVersion}}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        ports:
+        - containerPort: 3306
+        resources:
+          {{toYaml .Values.resources | nindent 10}}
+      {{- if .Values.pull_secret }}
+      imagePullSecrets:
+      - name: {{ .Values.pull_secret }}
+      {{- end }}
