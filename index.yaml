@@ -3816,6 +3816,22 @@ entries:
     version: 0.1.0
   squareone:
   - apiVersion: v2
+    appVersion: 0.2.1
+    created: "2021-06-24T20:41:43.503662245Z"
+    description: Squareone is the homepage for the Rubin Science Platform.
+    digest: aab9ea1d94d9c6110b3d037b513861470e44f50e3f7a43f7b08f6fcc72e6ee4d
+    home: https://squareone.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: squareone
+    sources:
+    - https://github.com/lsst-sqre/squareone
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/squareone-0.2.1/squareone-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     appVersion: 0.2.0
     created: "2021-06-24T17:19:09.916804201Z"
     description: Squareone is the homepage for the Rubin Science Platform.
@@ -4052,4 +4068,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.0/squash-api-0.1.0.tgz
     version: 0.1.0
-generated: "2021-06-24T17:19:09.918433715Z"
+generated: "2021-06-24T20:41:43.504745036Z"
