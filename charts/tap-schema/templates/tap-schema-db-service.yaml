@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "tap-schema.fullname" . }}-db
+  labels:
+    app: {{ template "tap-schema.fullname" . }}-db
+{{ include "tap-schema.labels" . | indent 4 }}
+spec:
+  selector:
+    app: {{ template "tap-schema.fullname" . }}-db
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
