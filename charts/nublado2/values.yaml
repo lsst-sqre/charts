@@ -6,7 +6,7 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.2.3"
+      tag: "1.2.5"
     db:
       # Password comes from the nublado2-secret.
       type: "postgres"
