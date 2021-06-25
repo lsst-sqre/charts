@@ -369,6 +369,18 @@ entries:
     version: 1.3.0
   exposurelog:
   - apiVersion: v2
+    appVersion: 0.6.0
+    created: "2021-06-25T18:32:38.639821739Z"
+    description: Exposure log service
+    digest: 7908af8a8f46fa0cdbf81340ba18e41d3130b3a365b0d5be9313c596f4a10a1f
+    maintainers:
+    - name: r-owen
+    name: exposurelog
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/exposurelog-0.1.31/exposurelog-0.1.31.tgz
+    version: 0.1.31
+  - apiVersion: v2
     appVersion: 0.5.1
     created: "2021-06-08T17:51:42.571018179Z"
     description: Exposure log service
@@ -4121,4 +4133,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-25T14:13:20.434461484Z"
+generated: "2021-06-25T18:32:38.641391569Z"
