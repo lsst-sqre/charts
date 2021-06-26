@@ -175,6 +175,7 @@ config:
     max_values_per_tag: 100000
     index_version: inmem
     trace_logging_enabled: false
+    wal_fsync_delay: 0s
   coordinator:
     write_timeout: 10s
     max_concurrent_queries: 0
