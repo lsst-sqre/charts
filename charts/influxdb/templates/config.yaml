@@ -30,6 +30,7 @@ data:
       max-values-per-tag = {{ .Values.config.data.max_values_per_tag | int64 }}
       index-version = "{{ .Values.config.data.index_version }}"
       trace-logging-enabled = {{ .Values.config.data.trace_logging_enabled }}
+      wal-fsync-delay = {{ .Values.config.data.wal_fsync_delay | quote }}
 
     [coordinator]
       write-timeout = "{{ .Values.config.coordinator.write_timeout }}"
@@ -85,9 +86,9 @@ data:
       realm = "{{ .Values.config.http.realm }}"
       unix-socket-enabled = {{ .Values.config.http.unix_socket_enabled }}
       bind-socket = "{{ .Values.config.http.bind_socket }}"
-    
+
     # TODO: allow multiple graphite listeners
-    
+
     [[graphite]]
       enabled = {{ .Values.config.graphite.enabled }}
       bind-address = ":{{ .Values.config.graphite.bind_address }}"
@@ -107,7 +108,7 @@ data:
         {{- end }}
       ]
       {{- end }}
-    
+
     # TODO: allow multiple collectd listeners with templates
 
     [[collectd]]
@@ -122,7 +123,7 @@ data:
       typesdb = "{{ .Values.config.collectd.typesdb }}"
       security-level = "{{ .Values.config.collectd.security_level }}"
       auth-file = "{{ .Values.config.collectd.auth_file }}"
-    
+
     # TODO: allow multiple opentsdb listeners with templates
 
     [[opentsdb]]
@@ -137,7 +138,7 @@ data:
       batch-pending = {{ .Values.config.opentsdb.batch_pending | int64 }}
       batch-timeout = "{{ .Values.config.opentsdb.batch_timeout }}"
       log-point-errors = {{ .Values.config.opentsdb.log_point_errors }}
-    
+
     # TODO: allow multiple udp listeners with templates
 
     [[udp]]
