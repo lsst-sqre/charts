@@ -1478,6 +1478,27 @@ entries:
   influxdb:
   - apiVersion: v1
     appVersion: 1.8.6
+    created: "2021-06-26T00:15:35.010759626Z"
+    description: Scalable datastore for metrics, events, and real-time analytics.
+    digest: c74c8018fd48e698754cc3baa147c0109515b6c1a3cf32510a9804e308486c28
+    home: https://www.influxdata.com/time-series-platform/influxdb/
+    keywords:
+    - influxdb
+    - database
+    - timeseries
+    maintainers:
+    - email: jack@influxdb.com
+      name: jackzampolin
+    - email: urakiny@gmail.com
+      name: aisuko
+    name: influxdb
+    sources:
+    - https://github.com/influxdata/influxdb
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/influxdb-3.0.9/influxdb-3.0.9.tgz
+    version: 3.0.9
+  - apiVersion: v1
+    appVersion: 1.8.6
     created: "2021-06-04T00:23:03.117798656Z"
     description: Scalable datastore for metrics, events, and real-time analytics.
     digest: 8b63ac5f1382df3c6410bfa95e79f6ec2c954d14a6b4402c31b04427a9b97117
@@ -4173,4 +4194,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-25T19:00:02.807828634Z"
+generated: "2021-06-26T00:15:35.012144765Z"
