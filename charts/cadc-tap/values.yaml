@@ -10,7 +10,7 @@ imagePullPolicy: "Always"
 pull_secret: ""
 
 # Version tag of all images to use.
-tag: "1.0.21"
+tag: "1.0.22"
 
 # QServ hostname:port to connect to.
 # If you're using mock_qserv, this value should be fine.
