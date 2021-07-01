@@ -3,6 +3,17 @@ entries:
   cachemachine:
   - apiVersion: v1
     appVersion: 1.0.12
+    created: "2021-07-01T22:04:19.846468577Z"
+    description: A Helm chart for Kubernetes
+    digest: 4b8594605f7e76303b819cf3cf4ba2b38c261102eae8a0d9978dc93879e0b426
+    maintainers:
+    - name: cbanek
+    name: cachemachine
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cachemachine-0.1.13/cachemachine-0.1.13.tgz
+    version: 0.1.13
+  - apiVersion: v1
+    appVersion: 1.0.12
     created: "2021-06-16T00:09:25.40144862Z"
     description: A Helm chart for Kubernetes
     digest: 7e96632d70ff06d7b607ec3f6fe9a894123aa9dbdc650afe47570bf9c181b922
@@ -2243,6 +2254,17 @@ entries:
   moneypenny:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2021-07-01T22:04:19.942507964Z"
+    description: A Helm chart for Kubernetes
+    digest: bb5ef963b764abe772c0568ee064cc6d9069dc54fc052c6835e13aca2cce1f8e
+    maintainers:
+    - name: athornton
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.0.4/moneypenny-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2021-04-20T00:18:04.24438386Z"
     description: A Helm chart for Kubernetes
     digest: 2c46cde33e4bcd01b1e5993f828a42f2af0ad97bc2ace1b5e1f37504d5a8f535
@@ -3938,6 +3960,22 @@ entries:
   squareone:
   - apiVersion: v2
     appVersion: 0.2.2
+    created: "2021-07-01T22:04:20.050967826Z"
+    description: Squareone is the homepage for the Rubin Science Platform.
+    digest: dfef92520c5d5b5ba6a8db098df8b630fe1a0a85d459637643a484900638fe71
+    home: https://squareone.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: squareone
+    sources:
+    - https://github.com/lsst-sqre/squareone
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/squareone-0.2.3/squareone-0.2.3.tgz
+    version: 0.2.3
+  - apiVersion: v2
+    appVersion: 0.2.2
     created: "2021-06-25T14:13:20.433039964Z"
     description: Squareone is the homepage for the Rubin Science Platform.
     digest: 8688b206db340910a4db31619db6de340a7beaf5806b2601d35187587ed5907a
@@ -4230,4 +4268,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-06-30T20:30:12.137942373Z"
+generated: "2021-07-01T22:04:20.053558042Z"
