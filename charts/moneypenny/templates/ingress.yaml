@@ -13,6 +13,7 @@ metadata:
 {{ include "moneypenny.labels" . | indent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
+    kubernetes.io/ingress.class: nginx
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
