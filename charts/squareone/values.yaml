@@ -85,3 +85,7 @@ config:
   # Site description, used in meta tags
   siteDescription: |
     Access Rubin Observatory Legacy Survey of Space and Time data.
+  # An optional broadcast notification for the banner. Format as
+  # GitHub-Flavored Markdown.
+  # broadcastMarkdown: |
+  #   Broadcast message.
