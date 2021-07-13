@@ -160,6 +160,9 @@ config:
   # Used only if there are no administrators.
   initialAdmins: []
 
+  # -- HTML footer to add to any login error page (inside a <p> tag).
+  errorFooter: ""
+
 cloudsql:
   # -- Enable the Cloud SQL Auth Proxy sidecar, used with CloudSQL databases
   # on Google Cloud

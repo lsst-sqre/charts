@@ -1,6 +1,6 @@
 # gafaelfawr
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![AppVersion: 3.1.0](https://img.shields.io/badge/AppVersion-3.1.0-informational?style=flat-square)
+![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![AppVersion: 3.2.0](https://img.shields.io/badge/AppVersion-3.2.0-informational?style=flat-square)
 
 The Gafaelfawr authentication and authorization system
 
@@ -28,6 +28,7 @@ The Gafaelfawr authentication and authorization system
 | config.cilogon.redirectUrl | string | `/login` at the value of config.host | Return URL given to CILogon (must match the CILogon configuration) |
 | config.cilogon.test | bool | `false` | Whether to use the test instance of CILogon |
 | config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
+| config.errorFooter | string | `""` | HTML footer to add to any login error page (inside a <p> tag). |
 | config.github.clientId | string | `""` | GitHub client ID. One and only one of this or config.cilogon.clientId must be set. |
 | config.groupMapping | object | `{}` | Defines a mapping of scopes to groups that provide that scope. Tokens from an OpenID Connect provider such as CILogon that include groups in an `isMemberOf` claim will be granted scopes based on this mapping. |
 | config.host | string | None, must be set | Used to construct issuers and URLs. |
