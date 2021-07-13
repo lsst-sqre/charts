@@ -2018,6 +2018,18 @@ entries:
     version: 0.2.2
   mobu:
   - apiVersion: v2
+    appVersion: 1.1.8
+    created: "2021-07-13T21:27:57.594473394Z"
+    description: The mobu generates system load by pretending to be a random scientist
+    digest: c6ab3c709dd6e8de30102aeaa021a5d661e6c3a2bbadb284b4b85375bd77fb61
+    home: https://github.com/lsst-sqre/mobu
+    maintainers:
+    - name: cbanek
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-0.3.4/mobu-0.3.4.tgz
+    version: 0.3.4
+  - apiVersion: v2
     appVersion: 1.1.7
     created: "2021-06-30T00:18:15.954049815Z"
     description: The mobu generates system load by pretending to be a random scientist
@@ -4296,4 +4308,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-12T21:29:04.771684689Z"
+generated: "2021-07-13T21:27:57.596069621Z"
