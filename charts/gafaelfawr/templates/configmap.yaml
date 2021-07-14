@@ -96,3 +96,7 @@ data:
       - {{ $admin | quote }}
       {{- end }}
     {{- end }}
+
+    {{- if .Values.config.errorFooter }}
+    error_footer: {{ .Values.config.errorFooter | quote }}
+    {{- end }}
