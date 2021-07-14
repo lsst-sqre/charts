@@ -879,6 +879,18 @@ entries:
   gafaelfawr:
   - apiVersion: v2
     appVersion: 3.2.0
+    created: "2021-07-14T23:57:43.331237726Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: cb236007235b8fc5ffa67e5689077c01d739601cd28074267875bd247d89744d
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.2.1/gafaelfawr-4.2.1.tgz
+    version: 4.2.1
+  - apiVersion: v2
+    appVersion: 3.2.0
     created: "2021-07-14T22:47:32.920800203Z"
     description: The Gafaelfawr authentication and authorization system
     digest: 9433042b6b96c83f84d288e5af56e62cdb1e3feff5d82e1c3740cf8386a638dd
@@ -4331,4 +4343,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-14T22:47:32.922825772Z"
+generated: "2021-07-14T23:57:43.333964146Z"
