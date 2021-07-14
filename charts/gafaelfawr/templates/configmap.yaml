@@ -19,6 +19,9 @@ data:
       {{- end }}
     {{- end }}
     after_logout_url: "https://{{ .Values.config.host }}/"
+    {{- if .Values.config.errorFooter }}
+    error_footer: {{ .Values.config.errorFooter | quote }}
+    {{- end }}
 
     issuer:
       iss: "https://{{ .Values.config.host }}"
@@ -95,8 +98,4 @@ data:
       {{- range $admin := .Values.config.initialAdmins }}
       - {{ $admin | quote }}
       {{- end }}
-    {{- end }}
-
-    {{- if .Values.config.errorFooter }}
-    error_footer: {{ .Values.config.errorFooter | quote }}
     {{- end }}
