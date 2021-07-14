@@ -3,95 +3,96 @@ kind: Deployment
 metadata:
   name: {{ include "cachemachine.fullname" . }}
   labels:
-{{ include "cachemachine.labels" . | indent 4 }}
+    {{- include "cachemachine.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "cachemachine.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "cachemachine.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       labels:
-        app.kubernetes.io/name: {{ include "cachemachine.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        {{- include "cachemachine.selectorLabels" . | nindent 8 }}
     spec:
-    {{- with .Values.imagePullSecrets }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
       serviceAccountName: {{ template "cachemachine.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "all"
+            readOnlyRootFilesystem: true
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           env:
-            {{- if .Values.docker_secret_name }}
             - name: DOCKER_SECRET_NAME
-              value: {{ .Values.docker_secret_name }}
-            {{- end }}
+              value: {{ template "cachemachine.fullname" . }}-secret
           ports:
-            - name: http
+            - name: "http"
               containerPort: 8080
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
+              protocol: "TCP"
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path: "/"
+              port: "http"
+          {{- with .Values.resources }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-          {{- if .Values.docker_secret_name }}
-          - name: docker-creds
-            mountPath: "/etc/secrets"
-            readOnly: true
           {{- end }}
-          - name: autostart
-            mountPath: "/etc/cachemachine"
-            readOnly: true
-          - name: podinfo
-            mountPath: /etc/podinfo
+          volumeMounts:
+            - name: "docker-creds"
+              mountPath: "/etc/secrets"
+              readOnly: true
+            - name: autostart
+              mountPath: "/etc/cachemachine"
+              readOnly: true
+            - name: podinfo
+              mountPath: /etc/podinfo
       volumes:
-      {{- if .Values.docker_secret_name }}
-      - name: docker-creds
-        secret:
-          secretName: {{ .Values.docker_secret_name }}
-      {{- end }}
-      - name: autostart
-        configMap:
-          name: {{ include "cachemachine.fullname" . }}-autostart
-      - name: podinfo
-        downwardAPI:
-          items:
-            - path: "annotations"
-              fieldRef:
-                fieldPath: metadata.annotations
-            - path: "labels"
-              fieldRef:
-                fieldPath: metadata.labels
-            - path: "name"
-              fieldRef:
-                fieldPath: metadata.name
-            - path: "uid"
-              fieldRef:
-                fieldPath: metadata.uid
+        - name: docker-creds
+          secret:
+            secretName: {{ template "cachemachine.fullname" . }}-secret
+        - name: autostart
+          configMap:
+            name: {{ include "cachemachine.fullname" . }}-autostart
+        - name: podinfo
+          downwardAPI:
+            items:
+              - path: "annotations"
+                fieldRef:
+                  fieldPath: metadata.annotations
+              - path: "labels"
+                fieldRef:
+                  fieldPath: metadata.labels
+              - path: "name"
+                fieldRef:
+                  fieldPath: metadata.name
+              - path: "uid"
+                fieldRef:
+                  fieldPath: metadata.uid
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- with .Values.affinity }}
+      {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}

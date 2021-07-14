@@ -1,78 +1,70 @@
 # Default values for cachemachine.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
-replicaCount: 1
-
-image:
-  repository: lsstsqre/cachemachine
-  pullPolicy: IfNotPresent
-  # image.tag overrides the default, which is the chart appVersion
-  tag: ""
-
-imagePullSecrets: []
-pull_secret: ""
+# -- Override the base name for resources
 nameOverride: ""
+
+# -- Override the full name for resources (includes the release name)
 fullnameOverride: ""
 
+image:
+  # -- cachemachine image to use
+  repository: lsstsqre/cachemachine
+
+  # -- Pull policy for the cachemachine image
+  pullPolicy: IfNotPresent
+
+  # -- Tag of cachemachine image to use
+  # @default -- The appVersion of the chart
+  tag: ""
+
+# -- Secret names to use for all Docker pulls
+imagePullSecrets: []
+
 serviceAccount:
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- Name of the service account to use
+  # @default -- Name based on the fullname template
   name: ""
 
-podSecurityContext:
-  runAsNonRoot: true
-  runAsUser: 1000
-  runAsGroup: 1000
-
-securityContext:
-  allowPrivilegeEscalation: false
-  capabilities:
-    drop:
-      - ALL
-  readOnlyRootFilesystem: true
-
-service:
-  type: ClusterIP
-  port: 80
+  # -- Annotations to add to the service account
+  annotations: {}
 
 ingress:
+  # -- Whether to create an ingress
   enabled: false
+
+  # -- Additional annotations to add to the ingress.
   annotations:
-    nginx.ingress.kubernetes.io/auth-method: GET
-    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr-service.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:admin"
-  hosts:
-    - host: chart-example.local
-      paths: ["/cachemachine"]
+    nginx.ingress.kubernetes.io/auth-method: "GET"
+    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:admin"
 
+  # -- Hostname for the ingress
+  # @default -- None, must be set if the ingress is enabled
+  host: ""
+
+  # -- Configures TLS for the ingress if needed. If multiple ingresses share
+  # the same hostname, only one of them needs a TLS configuration.
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
+# -- Resource limits and requests for the cachemachine frontend pod
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
 
+# -- Annotations for the cachemachine frontend pod
+podAnnotations: {}
+
+# -- Node selector rules for the cachemachine frontend pod
 nodeSelector: {}
 
+# -- Tolerations for the cachemachine frontend pod
 tolerations: []
 
+# -- Affinity rules for the cachemachine frontend pod
 affinity: {}
 
-docker_secret_name: "docker-creds"
+# -- Path to the Vault secret containing the Docker credentials
+# @default -- None, must be set
+vaultSecretsPath: ""
 
-vault_secrets:
-  name: "docker-creds"
-  enabled: false
-  path: ""
-
+# -- Autostart configuration. Each key is the name of a class of images to
+# pull, and the value is the JSON specification for which and how many images
+# to pull.
 autostart: {}

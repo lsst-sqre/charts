@@ -45,8 +45,16 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
+Selector labels
+*/}}
+{{- define "cachemachine.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "cachemachine.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "cachemachine.serviceAccountName" -}}
-    {{ default (include "cachemachine.fullname" .) .Values.serviceAccount.name }}
+{{ default (include "cachemachine.fullname" .) .Values.serviceAccount.name }}
 {{- end -}}

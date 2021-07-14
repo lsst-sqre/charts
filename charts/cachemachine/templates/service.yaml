@@ -3,14 +3,12 @@ kind: Service
 metadata:
   name: {{ include "cachemachine.fullname" . }}
   labels:
-{{ include "cachemachine.labels" . | indent 4 }}
+    {{- include "cachemachine.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+    - port: 8080
+      targetPort: "http"
+      protocol: "TCP"
   selector:
-    app.kubernetes.io/name: {{ include "cachemachine.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "cachemachine.selectorLabels" . | nindent 4 }}
