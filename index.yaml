@@ -4355,6 +4355,18 @@ entries:
     version: 0.1.0
   tap-schema:
   - apiVersion: v1
+    appVersion: 1.1.0
+    created: "2021-07-15T21:18:33.102619437Z"
+    description: A Helm chart for the TAP_SCHEMA database
+    digest: 84b177b02bf1ae00a4976c0f118ec657c8c21e487c03a71c0c412c7aeec338d9
+    home: https://github.com/lsst-sqre/lsst-tap-service
+    maintainers:
+    - name: cbanek
+    name: tap-schema
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.1.0/tap-schema-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v1
     appVersion: 1.0.1
     created: "2021-06-24T22:35:56.841335937Z"
     description: A Helm chart for the TAP_SCHEMA database
@@ -4378,4 +4390,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-15T19:12:26.10091817Z"
+generated: "2021-07-15T21:18:33.105630769Z"
