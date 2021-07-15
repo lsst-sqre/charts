@@ -3,6 +3,17 @@ entries:
   cachemachine:
   - apiVersion: v2
     appVersion: 1.0.12
+    created: "2021-07-15T17:29:39.875771309Z"
+    description: Service to prepull Docker images for the Science Platform
+    digest: afdf7b156b87ae4b6f11f10a19f6d1504de18d6df53083f3e6d23e520e89b324
+    maintainers:
+    - name: cbanek
+    name: cachemachine
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cachemachine-1.0.1/cachemachine-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.12
     created: "2021-07-14T22:23:34.160770637Z"
     description: Service to prepull Docker images for the Science Platform
     digest: 513d239e619cf101b8c349815246f5875926ec97783604c4ba8888f05ec9e82b
@@ -4343,4 +4354,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-07-14T23:57:43.333964146Z"
+generated: "2021-07-15T17:29:39.880074023Z"
