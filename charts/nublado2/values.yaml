@@ -418,7 +418,7 @@ config:
         namespace: "{{ user_namespace }}"
       spec:
         path: "{{ pull_secret_path }}"
-        type: Opaque
+        type: kubernetes.io/dockerconfigjson
 
 # Note: See note above about existingSecret.
 vault_secret_name: "nublado2-secret"
