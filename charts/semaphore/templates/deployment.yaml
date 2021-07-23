@@ -51,6 +51,16 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "semaphore.fullname" . }}
+            - name: SEMAPHORE_GITHUB_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "semaphore.fullname" . }}
+                  key: SEMAPHORE_GITHUB_WEBHOOK_SECRET
+            - name: SEMAPHORE_GITHUB_APP_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "semaphore.fullname" . }}
+                  key: SEMAPHORE_GITHUB_APP_PRIVATE_KEY
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

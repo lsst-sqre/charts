@@ -81,6 +81,11 @@ tolerations: []
 
 affinity: {}
 
+# -- Path to the Vault secret (`secret/k8s_operator/<host>/semaphore`, for
+# example)
+# @default -- None, must be set
+vaultSecretsPath: ""
+
 # Configurations for the Semaphore application.
 config:
   # Name of the service, and path where the external API is exposed.
