@@ -1,6 +1,6 @@
 # gafaelfawr
 
-![Version: 4.2.2](https://img.shields.io/badge/Version-4.2.2-informational?style=flat-square) ![AppVersion: 3.2.0](https://img.shields.io/badge/AppVersion-3.2.0-informational?style=flat-square)
+![Version: 4.2.3](https://img.shields.io/badge/Version-4.2.3-informational?style=flat-square) ![AppVersion: 3.2.0](https://img.shields.io/badge/AppVersion-3.2.0-informational?style=flat-square)
 
 The Gafaelfawr authentication and authorization system
 
@@ -56,7 +56,7 @@ The Gafaelfawr authentication and authorization system
 | redis.affinity | object | `{}` | Affinity rules for the Redis pod |
 | redis.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the Redis image |
 | redis.image.repository | string | `"redis"` | Redis image to use |
-| redis.image.tag | string | `"6.2.4"` | Redis image tag to use |
+| redis.image.tag | string | `"6.2.5"` | Redis image tag to use |
 | redis.nodeSelector | object | `{}` | Node selection rules for the Redis pod |
 | redis.persistence.accessMode | string | `"ReadWriteOnce"` | Access mode of storage to request |
 | redis.persistence.enabled | bool | `true` | Whether to persist Redis storage and thus tokens. Setting this to false will use `emptyDir` and reset all tokens on every restart. Only use this for a test deployment. |
