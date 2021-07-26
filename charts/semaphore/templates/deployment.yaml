@@ -51,6 +51,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "semaphore.fullname" . }}
+          env:
             - name: SEMAPHORE_GITHUB_WEBHOOK_SECRET
               valueFrom:
                 secretKeyRef:

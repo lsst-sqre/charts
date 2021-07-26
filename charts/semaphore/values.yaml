@@ -96,3 +96,7 @@ config:
   log_level: "INFO"
   # Logger name
   logger_name: "semaphore"
+  # GitHub application ID
+  github_app_id: ""
+  # Toggle to enable the GitHub App functionality
+  enable_github_app: "False"

@@ -9,3 +9,5 @@ data:
   SAFIR_PROFILE: {{ .Values.config.profile | quote }}
   SAFIR_LOG_LEVEL: {{ .Values.config.log_level | quote }}
   SAFIR_LOGGER: {{ .Values.config.logger_name | quote }}
+  SEMAPHORE_GITHUB_APP_ID: {{ .Values.config.github_app_id | quote }}
+  SEMAPHORE_ENABLE_GITHUB_APP: {{ .Values.config.enable_github_app | quote }}
