@@ -40,7 +40,7 @@ ingress:
   # Additional annotations to add to the ingress
   annotations:
     nginx.ingress.kubernetes.io/auth-method: "GET"
-    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:admin"
+    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:admin&auth_type=basic"
 
   # -- Hostname for the ingress
   # @default -- None, must be set if the ingress is enabled
