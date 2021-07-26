@@ -1,5 +1,9 @@
 # Default values for mobu.
 
+# -- Autostart specification. Must be a list of mobu flock specifications.
+# Each flock listed will be automatically started when mobu is started.
+autostart: []
+
 # -- Base URL used to find other services in the environment such as Nublado
 # and TAP
 # @default -- None, must be set

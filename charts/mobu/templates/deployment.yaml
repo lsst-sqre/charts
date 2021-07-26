@@ -43,6 +43,10 @@ spec:
                 secretKeyRef:
                   name: {{ template "mobu.fullname" . }}-secret
                   key: "ALERT_HOOK"
+            {{- if .Values.autostart }}
+            - name: "AUTOSTART"
+              value: "/etc/mobu/autostart.yaml"
+            {{- end }}
             - name: "ENVIRONMENT_URL"
               value: {{ .Values.environmentUrl }}
             - name: "GAFAELFAWR_TOKEN"
@@ -61,9 +65,19 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+            {{- if .Values.autostart }}
+            - name: "autostart"
+              mountPath: "/etc/mobu"
+              readOnly: true
+            {{- end }}
             - name: "tmp"
               mountPath: "/tmp"
       volumes:
+        {{- if .Values.autostart }}
+        - name: "autostart"
+          configMap:
+            name: {{ include "mobu.fullname" . }}-autostart
+        {{- end }}
         - name: "tmp"
           emptyDir: {}
       {{- with .Values.nodeSelector }}

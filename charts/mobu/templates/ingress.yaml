@@ -18,7 +18,7 @@ spec:
           - path: "/mobu"
             backend:
               serviceName: {{ template "mobu.fullname" . }}
-              servicePort: 8080
+              servicePort: 80
   {{- if .Values.ingress.tls }}
   tls:
     {{- range .Values.ingress.tls }}
