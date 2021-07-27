@@ -3,74 +3,92 @@ kind: Deployment
 metadata:
   name: {{ include "mobu.fullname" . }}
   labels:
-{{ include "mobu.labels" . | indent 4 }}
+    {{- include "mobu.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "mobu.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "mobu.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
-        app.kubernetes.io/name: {{ include "mobu.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        {{- include "mobu.selectorLabels" . | nindent 8 }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       automountServiceAccountToken: false
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      {{- if .Values.pull_secret }}
-      imagePullSecrets:
-      - name: {{ .Values.pull_secret }}
-      {{- end }}
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           env:
-            - name: ALERT_HOOK
+            - name: "ALERT_HOOK"
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "mobu.fullname" . }}-mobu-secret
-                  key: ALERT_HOOK
-            - name: ENVIRONMENT_URL
-              value: {{ .Values.environment_url }}
-            - name: GAFAELFAWR_TOKEN
+                  name: {{ template "mobu.fullname" . }}-secret
+                  key: "ALERT_HOOK"
+            {{- if .Values.autostart }}
+            - name: "AUTOSTART"
+              value: "/etc/mobu/autostart.yaml"
+            {{- end }}
+            - name: "ENVIRONMENT_URL"
+              value: {{ .Values.environmentUrl }}
+            - name: "GAFAELFAWR_TOKEN"
               valueFrom:
                 secretKeyRef:
                   name: {{ template "mobu.fullname" . }}-gafaelfawr-token
                   key: "token"
           ports:
-            - name: http
+            - name: "http"
               containerPort: 8080
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /mobu/user
-              port: http
+              protocol: "TCP"
           readinessProbe:
             httpGet:
-              path: /mobu/user
-              port: http
-          volumeMounts:
-            - name: tmp
-              mountPath: "/tmp"
+              path: "/mobu/flocks"
+              port: "http"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            {{- if .Values.autostart }}
+            - name: "autostart"
+              mountPath: "/etc/mobu"
+              readOnly: true
+            {{- end }}
+            - name: "tmp"
+              mountPath: "/tmp"
+      volumes:
+        {{- if .Values.autostart }}
+        - name: "autostart"
+          configMap:
+            name: {{ include "mobu.fullname" . }}-autostart
+        {{- end }}
+        - name: "tmp"
+          emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- with .Values.affinity }}
+      {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
-      volumes:
-        - name: tmp
-          emptyDir: {}
+      {{- end }}

@@ -1,8 +1,8 @@
 apiVersion: v2
-description: The mobu generates system load by pretending to be a random scientist
+description: Generate system load by pretending to be a random scientist
 home: https://github.com/lsst-sqre/mobu
 maintainers:
   - name: cbanek
 name: mobu
-version: 0.3.5
-appVersion: 1.1.9
+version: 1.0.0
+appVersion: 2.0.0

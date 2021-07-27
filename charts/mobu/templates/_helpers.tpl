@@ -45,12 +45,9 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
-Create the name of the service account to use
+Selector labels
 */}}
-{{- define "mobu.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create -}}
-    {{ default (include "mobu.fullname" .) .Values.serviceAccount.name }}
-{{- else -}}
-    {{ default "default" .Values.serviceAccount.name }}
-{{- end -}}
-{{- end -}}
+{{- define "mobu.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "mobu.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

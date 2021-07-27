@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: {{ include "mobu.fullname" . }}
   labels:
-{{ include "mobu.labels" . | indent 4 }}
+    {{- include "mobu.labels" . | nindent 4 }}
 spec:
+  type: ClusterIP
   ports:
     - port: 80
-      targetPort: 8080
-      protocol: TCP
+      targetPort: "http"
+      protocol: "TCP"
   selector:
-    app.kubernetes.io/name: {{ include "mobu.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "mobu.selectorLabels" . | nindent 4 }}
