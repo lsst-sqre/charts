@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "mobu.fullname" . }}
   labels:
@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       {{- include "mobu.selectorLabels" . | nindent 6 }}
+  serviceName: "mobu"
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -22,11 +23,11 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
+      automountServiceAccountToken: false
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
