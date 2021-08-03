@@ -90,6 +90,8 @@ vaultSecretsPath: ""
 config:
   # Name of the service, and path where the external API is exposed.
   name: "semaphore"
+  # Name of the Phalanx environment where the application is installed
+  phalanx_env: ""
   # Run profile: "production" or "development"
   profile: "production"
   # Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"
