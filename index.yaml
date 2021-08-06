@@ -4158,6 +4158,23 @@ entries:
     version: 0.1.0
   semaphore:
   - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2021-08-06T22:18:02.923884601Z"
+    description: Semaphore is the user notification and messaging service for the
+      Rubin Science Platform.
+    digest: e00ffe690d7cf0cf2e383d23bebab59792165f566d47fa0ab361c45b913d8b9d
+    home: https://semaphore.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: semaphore
+    sources:
+    - https://github.com/lsst-sqre/semaphore
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/semaphore-0.2.0/semaphore-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: tickets-DM-30931
     created: "2021-08-03T15:53:51.862935938Z"
     description: Semaphore is the user notification and messaging service for the
@@ -4580,4 +4597,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-05T15:44:46.024649052Z"
+generated: "2021-08-06T22:18:02.927109514Z"
