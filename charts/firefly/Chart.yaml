@@ -5,4 +5,4 @@ name: firefly
 home: "https://github.com/lsst/suit"
 maintainers:
   - name: cbanek
-version: 0.3.3
+version: 0.3.4
