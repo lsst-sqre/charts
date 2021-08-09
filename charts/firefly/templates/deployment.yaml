@@ -39,10 +39,11 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
-        - mountPath: /firefly/workarea
-          name: firefly-workarea
+        - mountPath: /firefly/shared-workarea
+          name: firefly-shared-workarea
         - mountPath: /firefly/config
           name: firefly-config
+          readOnly: true
         env:
         - name: MANAGER
           value: "TRUE"
@@ -58,8 +59,6 @@ spec:
               key: ADMIN_PASSWORD
         - name: FIREFLY_OPTS
           value: "-Dvisualize.fits.search.path=/datasets -Dredis.host={{ include "firefly.fullname" . }}-redis"
-        - name: FIREFLY_SHARED_WORK_DIR
-          value: /firefly/workarea
         - name: SERVER_CONFIG_DIR
           value: /firefly/config
         - name: MAX_JVM_SIZE
@@ -83,15 +82,15 @@ spec:
         {{- else }}
         emptyDir: {}
         {{- end }}
-      - name: firefly-workarea
-        {{- if .Values.volumes.firefly_workarea_hostpath }}
+      - name: firefly-shared-workarea
+        {{- if .Values.volumes.firefly_shared_workarea_hostpath }}
         hostPath:
-          path: {{ .Values.volumes.firefly_workarea_hostpath }}
+          path: {{ .Values.volumes.firefly_shared_workarea_hostpath }}
           type: Directory
-        {{- else if.Values.volumes.firefly_workarea_nfs }}
+        {{- else if.Values.volumes.firefly_shared_workarea_nfs }}
         nfs:
-          path: {{ .Values.volumes.firefly_workarea_nfs.path }}
-          server: {{ .Values.volumes.firefly_workarea_nfs.server }}
+          path: {{ .Values.volumes.firefly_shared_workarea_nfs.path }}
+          server: {{ .Values.volumes.firefly_shared_workarea_nfs.server }}
         {{- else }}
         emptyDir: {}
         {{- end }}
