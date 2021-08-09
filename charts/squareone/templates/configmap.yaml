@@ -10,7 +10,7 @@ data:
     baseUrl: https://{{ .Values.ingress.host | default "example.com" }}
     siteDescription: |
       {{ .Values.config.siteDescription }}
-    {{- if .Values.config.broadcastMarkdown }}
-    broadcastMarkdown: |
-      {{ .Values.config.broadcastMarkdown }}
+    {{- if .Values.config.semaphoreUrl }}
+    semaphoreUrl: |
+      {{ .Values.config.semaphoreUrl }}
     {{- end}}
