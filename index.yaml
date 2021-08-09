@@ -2024,6 +2024,27 @@ entries:
   kapacitor:
   - apiVersion: v1
     appVersion: 1.5.9
+    created: "2021-08-09T23:14:07.868720254Z"
+    description: InfluxDB's native data processing engine. It can process both stream
+      and batch data from InfluxDB.
+    digest: ae8f8a078e65ae751e6d95cc5d0ae5a317a2a6f0ccf057607835a85788d577f7
+    home: https://www.influxdata.com/time-series-platform/kapacitor/
+    keywords:
+    - kapacitor
+    - stream
+    - etl
+    - timeseries
+    maintainers:
+    - email: jack@influxdb.com
+      name: jackzampolin
+    name: kapacitor
+    sources:
+    - https://github.com/influxdata/kapacitor
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kapacitor-1.3.4/kapacitor-1.3.4.tgz
+    version: 1.3.4
+  - apiVersion: v1
+    appVersion: 1.5.9
     created: "2021-04-28T00:31:55.76907504Z"
     description: InfluxDB's native data processing engine. It can process both stream
       and batch data from InfluxDB.
@@ -4649,4 +4670,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-09T20:13:11.1351991Z"
+generated: "2021-08-09T23:14:07.876813216Z"
