@@ -76,6 +76,10 @@ spec:
         hostPath:
           path: {{ .Values.volumes.datasets_hostpath }}
           type: Directory
+        {{- else if.Values.volumes.datasets_nfs }}
+        nfs:
+          path: {{ .Values.volumes.datasets_nfs.path }}
+          server: {{ .Values.volumes.datasets_nfs.server }}
         {{- else }}
         emptyDir: {}
         {{- end }}
@@ -84,6 +88,10 @@ spec:
         hostPath:
           path: {{ .Values.volumes.firefly_workarea_hostpath }}
           type: Directory
+        {{- else if.Values.volumes.firefly_workarea_nfs }}
+        nfs:
+          path: {{ .Values.volumes.firefly_workarea_nfs.path }}
+          server: {{ .Values.volumes.firefly_workarea_nfs.server }}
         {{- else }}
         emptyDir: {}
         {{- end }}
@@ -92,6 +100,10 @@ spec:
         hostPath:
           path: {{ .Values.volumes.firefly_config_hostpath }}
           type: Directory
+        {{- else if.Values.volumes.firefly_config_nfs }}
+        nfs:
+          path: {{ .Values.volumes.firefly_config_nfs.path}}
+          server: {{ .Values.volumes.firefly_config_nfs.server}}
         {{- else }}
         emptyDir: {}
         {{- end }}
