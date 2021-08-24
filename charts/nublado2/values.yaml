@@ -6,7 +6,7 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.3.0"
+      tag: "1.3.1"
     db:
       # Password comes from the nublado2-secret.
       type: "postgres"
@@ -17,9 +17,10 @@ jupyterhub:
       runAsGroup: 768
       allowPrivilegeEscalation: false
     baseUrl: "/nb"
-    # Note: this has to match up with the kubernetes secret created by the vault secret,
-    # and since you can't put templating in a values file, I'm just setting the name here,
-    # as well as in vault_secret_name, which should match.
+    # Note: this has to match up with the kubernetes secret created by the
+    # vault secret, and since you can't put templating in a values file, I'm
+    # just setting the name here, as well as in vault_secret_name, which
+    # should match.
     existingSecret: "nublado2-secret"
     extraConfig:
       nublado.py: |
