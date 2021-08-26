@@ -44,19 +44,6 @@ secrets:
   # on the command line, to allow not checking it in.
   google_creds: ""
 
-  # Slack webhook URL, base64 encoded.
-  # This is the URL that the querymonkey should use to post issues about
-  # running queries on.  Since this is a secret, unauthenticated randomly
-  # generated URL, you can pass it in using either
-  # --set-file secrets.slack_webhook_url=webhook_file or
-  # --set-string secrets.slack_webhook_url=https://slack.com/url .
-  slack_webhook_url: ""
-
-# Number of querymonkey instances.  0 by default (which is off).
-# This is because the querymonkey doesn't work with the mock_qserv
-# (due to the lack of scisql function support).
-querymonkey_replicas: 0
-
 # Settings for the ingress rules.
 ingress:
   # Force SSL, which is used in annotations and rewriting redirects.
