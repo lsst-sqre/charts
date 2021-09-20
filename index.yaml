@@ -826,6 +826,18 @@ entries:
   firefly:
   - apiVersion: v2
     appVersion: suit-233-7-dev
+    created: "2021-09-20T20:09:48.951029624Z"
+    description: 'SUIT: the Rubin Science Platform portal aspect'
+    digest: cad26dc7ae1c30614cdc08b95750eac87e1edfa07beed4097a7b7e73234ba312
+    home: https://github.com/lsst/suit
+    maintainers:
+    - name: cbanek
+    name: firefly
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/firefly-0.3.5/firefly-0.3.5.tgz
+    version: 0.3.5
+  - apiVersion: v2
+    appVersion: suit-233-7-dev
     created: "2021-08-09T20:13:11.133490364Z"
     description: 'SUIT: the Rubin Science Platform portal aspect'
     digest: af6a95faafaf3613dbd30c31400fa0c815e6f292903365fac00e7af8eb04ad78
@@ -4931,4 +4943,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-16T18:32:51.095886402Z"
+generated: "2021-09-20T20:09:48.952874382Z"
