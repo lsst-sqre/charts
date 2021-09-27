@@ -65,6 +65,9 @@ jupyterhub:
         - name: dask
           configMap:
             name: dask
+        - name: idds-config
+          configMap:
+            name: idds-config
         - name: tmp
           emptyDir: {}
         - name: butler-secret
@@ -93,6 +96,8 @@ jupyterhub:
       extraVolumeMounts:
         - name: dask
           mountPath: /etc/dask
+        - name: idds-config
+          mountPath: /opt/lsst/software/jupyterlab/panda
         - name: tmp
           mountPath: /tmp
         - name: butler-secret
@@ -380,7 +385,7 @@ config:
     - apiVersion: v1
       kind: ConfigMap
       metadata:
-        name: idds_config
+        name: idds-config
         namespace: "{{ user_namespace }}"
       data:
         idds_cfg.client.template: |
