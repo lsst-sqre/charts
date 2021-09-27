@@ -3117,6 +3117,22 @@ entries:
     version: 0.8.10
   nublado2:
   - apiVersion: v2
+    appVersion: 1.4.0
+    created: "2021-09-27T21:58:27.837294596Z"
+    description: Nublado2 JupyterHub installation
+    digest: 42590e8494a8eb4ac1099b999bc31e06258532119d0d650b326a8112fb06c349
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.4.6/nublado2-0.4.6.tgz
+    version: 0.4.6
+  - apiVersion: v2
     appVersion: 1.3.2
     created: "2021-09-16T18:32:51.091751534Z"
     dependencies:
@@ -4943,4 +4959,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-20T20:09:48.952874382Z"
+generated: "2021-09-27T21:58:27.83982834Z"
