@@ -127,13 +127,6 @@ jupyterhub:
           subPath: gshadow
       type: none
 
-  auth:
-    type: custom
-    custom:
-      className: nublado2.auth.GafaelfawrAuthenticator
-    state:
-      enabled: true
-
   proxy:
     chp:
       networkPolicy:
