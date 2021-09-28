@@ -3118,6 +3118,26 @@ entries:
   nublado2:
   - apiVersion: v2
     appVersion: 1.4.0
+    created: "2021-09-28T15:44:35.616433389Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.1.3
+    description: Nublado2 JupyterHub installation
+    digest: 21f221fa729cac76bb1fd2a4bc9d5809638c7e573c52e1043253579509745abb
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.4.8/nublado2-0.4.8.tgz
+    version: 0.4.8
+  - apiVersion: v2
+    appVersion: 1.4.0
     created: "2021-09-28T15:24:36.280735304Z"
     dependencies:
     - name: jupyterhub
@@ -4979,4 +4999,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-28T15:24:36.28250998Z"
+generated: "2021-09-28T15:44:35.618425799Z"
