@@ -138,7 +138,7 @@ jupyterhub:
     chp:
       networkPolicy:
         interNamespaceAccessLabels: accept
-  
+
   # Any instantiation of this chart must also set ingress.hosts and add
   # the nginx.ingress.kubernetes.io/auth-signin annotation pointing to the
   # appropriate fully-qualified URLs for the Gafaelfawr /login route.
