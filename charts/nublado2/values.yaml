@@ -6,7 +6,7 @@ jupyterhub:
   hub:
     image:
       name: lsstsqre/nublado2
-      tag: "1.4.0"
+      tag: "1.4.1"
     config:
       Authenticator:
         enable_auth_state: true
@@ -126,13 +126,6 @@ jupyterhub:
           readOnly: true
           subPath: gshadow
       type: none
-
-  auth:
-    type: custom
-    custom:
-      className: nublado2.auth.GafaelfawrAuthenticator
-    state:
-      enabled: true
 
   proxy:
     chp:
