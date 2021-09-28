@@ -134,28 +134,11 @@ jupyterhub:
     state:
       enabled: true
 
-  # This is specific to the outdated 0.9.0-n409.hce116620 version of the
-  # chart.  When we upgrade to the current version, change this setting
-  # to:
-  #
-  # proxy:
-  #   chp:
-  #     networkPolicy:
-  #       interNamespaceAccessLabels: accept
   proxy:
-    service:
-      type: ClusterIP
-    networkPolicy:
-      ingress:
-        - ports:
-            - port: http
-          from:
-            - podSelector:
-                matchLabels:
-                  hub.jupyter.org/network-access-proxy-http: "true"
-              namespaceSelector:
-                matchLabels: {}
-
+    chp:
+      networkPolicy:
+        interNamespaceAccessLabels: accept
+  
   # Any instantiation of this chart must also set ingress.hosts and add
   # the nginx.ingress.kubernetes.io/auth-signin annotation pointing to the
   # appropriate fully-qualified URLs for the Gafaelfawr /login route.
