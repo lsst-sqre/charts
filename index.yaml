@@ -2841,6 +2841,23 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/neophile-0.0.1/neophile-0.0.1.tgz
     version: 0.0.1
+  noteburst:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-09-29T18:56:23.002739582Z"
+    description: Noteburst is a notebook execution service for the Rubin Science Platform.
+    digest: 834ae64275785b7854b3516c7887c0dcc8904d8d2e50baf50f0cbbd2eb347409
+    home: https://noteburst.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: noteburst
+    sources:
+    - https://github.com/lsst-sqre/noteburst
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/noteburst-0.1.0/noteburst-0.1.0.tgz
+    version: 0.1.0
   nublado:
   - apiVersion: v1
     appVersion: "1.0"
@@ -5079,4 +5096,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-29T00:19:14.314891642Z"
+generated: "2021-09-29T18:56:23.005763018Z"
