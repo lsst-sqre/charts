@@ -153,6 +153,10 @@ jupyterhub:
   imagePullSecrets:
     - name: pull-secret
 
+  scheduling:
+    userScheduler:
+      enabled: false
+
 config:
   # base_url must be set in each instantiation of this chart to the URL of
   # the primary ingress.  It's used to construct API requests to the
