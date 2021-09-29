@@ -57,6 +57,8 @@ jupyterhub:
       enabled: false
 
   singleuser:
+    cloudMetadata:
+      blockWithIptables: false
     cmd: "/opt/lsst/software/jupyterlab/runlab.sh"
     defaultUrl: "/lab"
     extraAnnotations:
@@ -144,6 +146,7 @@ jupyterhub:
       nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:notebook&notebook=true"
       nginx.ingress.kubernetes.io/configuration-snippet: |
         error_page 403 = "/auth/forbidden?scope=exec:notebook";
+    pathSuffix: "*"
 
   # The default culler setting is enabled, with 3600s idle.  This is way
   #  too short for our purposes.  First cut: just disable it.
