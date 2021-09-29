@@ -156,6 +156,8 @@ jupyterhub:
   scheduling:
     userScheduler:
       enabled: false
+    userPlaceholder:
+      enabled: false
 
 config:
   # base_url must be set in each instantiation of this chart to the URL of
