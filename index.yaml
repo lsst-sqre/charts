@@ -2648,6 +2648,17 @@ entries:
   moneypenny:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2021-10-04T23:41:56.174200771Z"
+    description: A Helm chart for Kubernetes
+    digest: df313b479074759199ab5804e381b2b1ffe985be2e99b50068b4c7c82e564bf9
+    maintainers:
+    - name: athornton
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.1.1/moneypenny-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2021-07-01T22:04:19.942507964Z"
     description: A Helm chart for Kubernetes
     digest: bb5ef963b764abe772c0568ee064cc6d9069dc54fc052c6835e13aca2cce1f8e
@@ -5116,4 +5127,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-30T19:04:25.668210797Z"
+generated: "2021-10-04T23:41:56.176036686Z"
