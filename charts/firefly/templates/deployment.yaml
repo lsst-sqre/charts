@@ -59,14 +59,16 @@ spec:
               key: ADMIN_PASSWORD
         - name: FIREFLY_OPTS
           {{- if .Values.ingress.host }}
-          value: "-Dvisualize.fits.search.path=/datasets -Dredis.host={{ include "firefly.fullname" . }}-redis -Dsso.req.auth.hosts={{ .Values.ingress.host }}"
+          value: "-Dredis.host={{ include "firefly.fullname" . }}-redis -Dsso.req.auth.hosts={{ .Values.ingress.host }}"
           {{- else }}
-          value: "-Dvisualize.fits.search.path=/datasets -Dredis.host={{ include "firefly.fullname" . }}-redis"
+          value: "-Dredis.host={{ include "firefly.fullname" . }}-redis"
           {{- end }}
         - name: SERVER_CONFIG_DIR
           value: /firefly/config
-        - name: MAX_JVM_SIZE
-          value: "{{ .Values.max_jvm_size }}"
+        - name: CLEANUP_INTERVAL
+          value: "{{ .Values.cleanup_interval }}"
+        - name: VISUALIZE_FITS_SEARCH_PATH
+          value: "{{ .Values.visualize_fits_search_path }}"
         - name: DEBUG
           value: "{{ .Values.debug }}"
       {{- if .Values.pull_secret }}
