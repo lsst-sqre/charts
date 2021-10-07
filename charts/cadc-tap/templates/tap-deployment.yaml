@@ -46,10 +46,13 @@ spec:
               -Dgafaelfawr_url=https://{{ .Values.host }}/auth/api/v1/user-info
               -Dgcs_bucket={{ .Values.gcs_bucket }}
               -Dgcs_bucket_url={{ .Values.gcs_bucket_url }}
+              -Dbase_url=https://{{ .Values.host }}
               -Dca.nrc.cadc.util.PropertiesReader.dir=/etc/creds/
               -Xmx{{ .Values.jvm_max_heap_size }}
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: "/etc/creds/google_creds.json"
+        - name: DATALINK_PAYLOAD_URL
+          value: "{{ .Values.datalink_payload_url }}"
       {{- if .Values.pull_secret }}
       imagePullSecrets:
       - name: {{ .Values.pull_secret }}

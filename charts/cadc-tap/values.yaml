@@ -19,6 +19,9 @@ qserv_host: "qserv-master01:4040"
 # Address to a mysql database containing TAP schema data.
 tap_schema_address: "tap-schema-db.tap-schema.svc.cluster.local:3306"
 
+# Datalink payload URL
+datalink_payload_url: ""
+
 # Spin up a container to pretend to be QServ.
 use_mock_qserv: true
 
