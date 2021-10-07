@@ -10,7 +10,7 @@ imagePullPolicy: "Always"
 pull_secret: ""
 
 # Version tag of all images to use.
-tag: "1.0.22"
+tag: "1.1.0"
 
 # QServ hostname:port to connect to.
 # If you're using mock_qserv, this value should be fine.
@@ -20,7 +20,7 @@ qserv_host: "qserv-master01:4040"
 tap_schema_address: "tap-schema-db.tap-schema.svc.cluster.local:3306"
 
 # Datalink payload URL
-datalink_payload_url: ""
+datalink_payload_url: "https://github.com/lsst/sdm_schemas/releases/download/1.1.1/datalink-snippets.zip"
 
 # Spin up a container to pretend to be QServ.
 use_mock_qserv: true
