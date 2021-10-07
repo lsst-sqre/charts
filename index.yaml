@@ -190,6 +190,18 @@ entries:
     version: 0.1.0
   cadc-tap:
   - apiVersion: v1
+    appVersion: 1.1.0
+    created: "2021-10-07T21:27:28.792530145Z"
+    description: A Helm chart for the CADC TAP service
+    digest: 4e6bef7a31ebaa87393cf8a3cd1ac5ecdfd523c62b6d6b1febc91a3bc3fdbafe
+    home: https://github.com/lsst-sqre/lsst-tap-service
+    maintainers:
+    - name: cbanek
+    name: cadc-tap
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-0.3.2/cadc-tap-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v1
     appVersion: 1.0.23
     created: "2021-10-07T03:36:57.24907111Z"
     description: A Helm chart for the CADC TAP service
@@ -5151,4 +5163,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-07T03:36:57.252535829Z"
+generated: "2021-10-07T21:27:28.79560098Z"
