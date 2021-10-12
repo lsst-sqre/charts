@@ -458,6 +458,25 @@ entries:
     version: 0.1.0
   chronograf:
   - apiVersion: v1
+    appVersion: 1.9.1
+    created: "2021-10-12T17:41:18.254004554Z"
+    description: Open-source web application written in Go and React.js that provides
+      the tools to visualize your monitoring data and easily create alerting and automation
+      rules.
+    digest: 2da3815aab21d162e75792b85137dde763a9a2938ce08dd920a1f2e6bd11ed51
+    home: https://www.influxdata.com/time-series-platform/chronograf/
+    keywords:
+    - chronograf
+    - visualizaion
+    - timeseries
+    maintainers:
+    - email: jack@influxdb.com
+      name: jackzampolin
+    name: chronograf
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/chronograf-1.3.3/chronograf-1.3.3.tgz
+    version: 1.3.3
+  - apiVersion: v1
     appVersion: 1.9.0
     created: "2021-07-26T16:45:59.090677328Z"
     description: Open-source web application written in Go and React.js that provides
@@ -5199,4 +5218,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/tap-schema-1.0.0/tap-schema-1.0.0.tgz
     version: 1.0.0
-generated: "2021-10-11T21:44:50.118741088Z"
+generated: "2021-10-12T17:41:18.25656187Z"
