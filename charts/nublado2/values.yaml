@@ -45,9 +45,10 @@ jupyterhub:
       - name: nublado-gafaelfawr
         mountPath: /etc/keys/gafaelfawr-token
         subPath: token
+    # We still have to use our own, enabled at the top level, which is
+    #  similar but not identical.  This one still doesn't work, even if
+    #  you explicitly enable port 8081 so the labs can talk to the Hub.
     networkPolicy:
-      # This is set to disabled but is basically re-implemented by
-      # the netpol.yaml in this chart.
       enabled: false
 
   prePuller:
@@ -130,9 +131,14 @@ jupyterhub:
       type: none
 
   proxy:
+    service:
+      type: ClusterIP
     chp:
       networkPolicy:
         interNamespaceAccessLabels: accept
+      pdb:
+        enabled: true
+        minAvailable: 1
 
   # Any instantiation of this chart must also set ingress.hosts and add
   # the nginx.ingress.kubernetes.io/auth-signin annotation pointing to the
@@ -453,5 +459,7 @@ config:
 vault_secret_name: "nublado2-secret"
 vault_secret_path: ""
 
+# Built-in network policy doesn't quite work (Labs can't talk to Hub,
+# even with port 8081 explicitly enabled), so let's use our own for now.
 network_policy:
   enabled: true

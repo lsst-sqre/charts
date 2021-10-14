@@ -18,6 +18,7 @@ spec:
     # allowed pods (hub.jupyter.org/network-access-hub) --> hub
     - ports:
         - port: http
+        - port: 8081
       from:
         - podSelector:
             matchLabels:
