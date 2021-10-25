@@ -2988,6 +2988,22 @@ entries:
   noteburst:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2021-10-25T20:00:17.816637422Z"
+    description: Noteburst is a notebook execution service for the Rubin Science Platform.
+    digest: 2de5c44ee428e87c1c671a4e398436ddcd7a4e3ac11dbf5b4278a931c0b314d3
+    home: https://noteburst.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: noteburst
+    sources:
+    - https://github.com/lsst-sqre/noteburst
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/noteburst-0.1.1/noteburst-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2021-09-29T18:56:23.002739582Z"
     description: Noteburst is a notebook execution service for the Rubin Science Platform.
     digest: 834ae64275785b7854b3516c7887c0dcc8904d8d2e50baf50f0cbbd2eb347409
@@ -5326,4 +5342,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/telegraf-ds-1.0.23/telegraf-ds-1.0.23.tgz
     version: 1.0.23
-generated: "2021-10-25T19:03:22.857540332Z"
+generated: "2021-10-25T20:00:17.81853975Z"
