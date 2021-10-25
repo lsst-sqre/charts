@@ -25,7 +25,7 @@ Noteburst is a notebook execution service for the Rubin Science Platform.
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| config | object | `{"log_level":"INFO","logger_name":"noteburst","name":"noteburst","profile":"production"}` | Configurations for the Noteburst application. |
+| config.environment_url | string | None, must be set | Base URL used to find other services in the environment such as Nublado and TAP |
 | config.log_level | string | `"INFO"` | Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" |
 | config.logger_name | string | `"noteburst"` | Logger name |
 | config.name | string | `"noteburst"` | Name of the service, and path where the external API is exposed. |

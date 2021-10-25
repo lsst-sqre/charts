@@ -95,3 +95,7 @@ config:
   log_level: "INFO"
   # -- Logger name
   logger_name: "noteburst"
+  # -- Base URL used to find other services in the environment such as Nublado
+  # and TAP
+  # @default -- None, must be set
+  environment_url: ""
