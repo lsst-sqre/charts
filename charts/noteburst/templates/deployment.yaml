@@ -51,6 +51,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "noteburst.fullname" . }}
+          env:
             - name: "NOTEBURST_GAFAELFAWR_TOKEN"
               valueFrom:
                 secretKeyRef:
