@@ -51,6 +51,11 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "noteburst.fullname" . }}
+            - name: "NOTEBURST_GAFAELFAWR_TOKEN"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "noteburst.fullname" . }}-gafaelfawr-token
+                  key: "token"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

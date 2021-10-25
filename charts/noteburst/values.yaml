@@ -41,11 +41,12 @@ service:
   port: 80
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  # Additional annotations to add to the ingress
+  annotations:
+    nginx.ingress.kubernetes.io/auth-method: "GET"
+    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:admin&auth_type=basic"
   hosts:
     - host: chart-example.local
       paths:
@@ -95,3 +96,7 @@ config:
   log_level: "INFO"
   # -- Logger name
   logger_name: "noteburst"
+  # -- Base URL used to find other services in the environment such as Nublado
+  # and TAP
+  # @default -- None, must be set
+  environment_url: ""

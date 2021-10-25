@@ -9,3 +9,4 @@ data:
   SAFIR_PROFILE: {{ .Values.config.profile | quote }}
   SAFIR_LOG_LEVEL: {{ .Values.config.log_level | quote }}
   SAFIR_LOGGER: {{ .Values.config.logger_name | quote }}
+  NOTEBURST_ENVIRONMENT_URL: {{ .Values.config.environment_url | quote }}

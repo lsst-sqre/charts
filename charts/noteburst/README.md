@@ -1,6 +1,6 @@
 # noteburst
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 Noteburst is a notebook execution service for the Rubin Science Platform.
 
@@ -25,7 +25,7 @@ Noteburst is a notebook execution service for the Rubin Science Platform.
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| config | object | `{"log_level":"INFO","logger_name":"noteburst","name":"noteburst","profile":"production"}` | Configurations for the Noteburst application. |
+| config.environment_url | string | None, must be set | Base URL used to find other services in the environment such as Nublado and TAP |
 | config.log_level | string | `"INFO"` | Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" |
 | config.logger_name | string | `"noteburst"` | Logger name |
 | config.name | string | `"noteburst"` | Name of the service, and path where the external API is exposed. |
@@ -35,9 +35,10 @@ Noteburst is a notebook execution service for the Rubin Science Platform.
 | image.repository | string | `"lsstsqre/noteburst"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
-| ingress.annotations | object | `{}` |  |
+| ingress.annotations."nginx.ingress.kubernetes.io/auth-method" | string | `"GET"` |  |
+| ingress.annotations."nginx.ingress.kubernetes.io/auth-url" | string | `"http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:admin&auth_type=basic"` |  |
 | ingress.className | string | `""` |  |
-| ingress.enabled | bool | `false` |  |
+| ingress.enabled | bool | `true` |  |
 | ingress.hosts[0].host | string | `"chart-example.local"` |  |
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
