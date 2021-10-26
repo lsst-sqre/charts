@@ -1,0 +1,7 @@
+apiVersion: v2
+name: strimzi-registry-operator
+version: 1.0.0
+description: Operator to create and manage Schema Registry on Strimzi
+maintainers:
+  - name: swnelson
+appVersion: 1.0.0
