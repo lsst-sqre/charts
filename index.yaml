@@ -2836,6 +2836,18 @@ entries:
     version: 0.0.1
   neophile:
   - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2021-10-26T01:16:16.417780033Z"
+    description: Periodically check for needed dependency updates
+    digest: 08d4fdd226655658892dd4a55b59f2426e3612f1e16a0b56975574fc5f189b88
+    home: https://neophile.lsst.io/
+    maintainers:
+    - name: rra
+    name: neophile
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/neophile-0.3.0/neophile-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: 0.2.2
     created: "2021-03-22T23:17:40.356872575Z"
     description: Periodically check for needed dependency updates
@@ -5358,4 +5370,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/telegraf-ds-1.0.23/telegraf-ds-1.0.23.tgz
     version: 1.0.23
-generated: "2021-10-25T21:23:50.713077256Z"
+generated: "2021-10-26T01:16:16.421111459Z"
