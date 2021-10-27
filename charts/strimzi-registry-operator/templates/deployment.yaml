@@ -19,3 +19,10 @@ spec:
         - name: operator
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: Always
+          env:
+          - name: SSR_CLUSTER_NAME
+            value: "{{ .Values.clusterName }}"
+          - name: SSR_NAMESPACE
+            value: "{{ .Values.watchNamespace }}"
+          command: ["kopf"]
+          args: ["run",  "--standalone",  "-m",  "strimziregistryoperator.handlers",  "--namespace",  "{{ .Values.watchNamespace }}",  "--verbose"]

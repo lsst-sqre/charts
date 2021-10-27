@@ -3,3 +3,7 @@ image:
   repository: lsstsqre/strimzi-registry-operator
   # -- The tag of the operator container to deploy
   tag: 0.2.0
+
+clusterName: alert-broker
+
+watchNamespace: strimzi
