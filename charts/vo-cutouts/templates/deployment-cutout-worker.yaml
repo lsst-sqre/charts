@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "vo-cutouts.fullname" . }}-worker
+  labels:
+    {{- include "vo-cutouts.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.databaseWorker.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "vo-cutouts.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "cutout-worker"
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- with .Values.databaseWorker.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "vo-cutouts.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: "cutout-worker"
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: "cutout-worker"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "all"
+            readOnlyRootFilesystem: true
+          image: "{{ .Values.cutoutWorker.image.repository }}:{{ .Values.cutoutWorker.image.tag }}"
+          imagePullPolicy: {{ .Values.cutoutWorker.image.pullPolicy | quote }}
+          command:
+            - "/bin/bash"
+            - "-c"
+            - |
+              source /opt/lsst/software/stack/loadLSST.bash
+              setup lsst_distrib
+              python3 -m venv /tmp/worker-venv
+              cd /tmp/worker-venv
+              pip install 'dramatiq[redis]'
+              git clone --depth 1 -b '{{ .Values.image.tag | default .Chart.AppVersion }}' https://github.com/lsst-sqre/vo-cutouts
+              dramatiq vo-cutouts/src/vocutouts/workers.py -Q cutout
+          env:
+            - name: "CUTOUT_DATABASE_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "vo-cutouts.fullname" . }}-secret
+                  key: "database-password"
+            - name: "CUTOUT_REDIS_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "vo-cutouts.fullname" . }}-secret
+                  key: "redis-password"
+          envFrom:
+            - configMapRef:
+                name: {{ template "vo-cutouts.fullname" . }}-config
+          {{- with .Values.cutoutWorker.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: "tmp"
+              mountPath: "/tmp"
+      volumes:
+        - name: "tmp"
+          emptyDir: {}
+      {{- with .Values.cutoutWorker.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.cutoutWorker.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.cutoutWorker.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
