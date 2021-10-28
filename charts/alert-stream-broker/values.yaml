@@ -20,8 +20,8 @@ kafka:
   # -- Number of Kafka broker replicas to run.
   replicas: 3
 
-  # -- Size of the backing storage disk for the Kafka brokers.
-  storage: 300Gi
+  # -- Size of the backing storage disk for each of the Kafka brokers.
+  storage: 1000Gi
 
 # -- A list of usernames for users who should have global admin permissions.
 # These users will be created, along with their credentials.
@@ -31,5 +31,5 @@ superusers:
 zookeeper:
   # -- Number of Zookeeper replicas to run.
   replicas: 3
-  # -- Size of the backing storage disk for the Zookeeper instances.
-  storage: 50Gi
+  # -- Size of the backing storage disk for each of the Zookeeper instances.
+  storage: 200Gi
