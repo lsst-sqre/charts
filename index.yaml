@@ -550,6 +550,18 @@ entries:
   datalinker:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-10-28T23:43:58.836950482Z"
+    description: A Helm chart for Kubernetes
+    digest: c1f9f2d7058e75c8cc581ac97adb89f8fbaafb12b05da3d2f43e594c9529b24c
+    maintainers:
+    - name: cbanek
+    name: datalinker
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/datalinker-0.1.1/datalinker-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-10-28T23:06:55.427132952Z"
     description: A Helm chart for Kubernetes
     digest: 8b07983d59a868720074363f7a55dc50ee1e985ccdaaee6ecf6342513674f076
@@ -5409,4 +5421,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/telegraf-ds-1.0.23/telegraf-ds-1.0.23.tgz
     version: 1.0.23
-generated: "2021-10-28T23:06:55.429792669Z"
+generated: "2021-10-28T23:43:58.840755731Z"
