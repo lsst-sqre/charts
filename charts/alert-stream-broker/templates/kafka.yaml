@@ -41,6 +41,10 @@ spec:
     storage:
       type: jbod
       volumes:
+        # Note that storage is configured per replica. If there are 3 replicas,
+        # and 2 volumes in this array, each replica will get 2
+        # PersistentVolumeClaims for the configured size, for a total of 6
+        # volumes.
       - id: 0
         type: persistent-claim
         size: {{ .Values.kafka.storage }}
@@ -48,6 +52,8 @@ spec:
   zookeeper:
     replicas: {{ .Values.zookeeper.replicas }}
     storage:
+      # Note that storage is configured per replica. If there are 3 replicas,
+      # each will get its own PersistentVolumeClaim for the configured size.
       type: persistent-claim
       size: {{ .Values.zookeeper.storage }}
       deleteClaim: false
