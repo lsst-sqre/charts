@@ -1,17 +1,6 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "datalinker.fullname" . -}}
-{{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
-  {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
-  {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
-  {{- end }}
-{{- end }}
-{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1
-{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -19,11 +8,12 @@ metadata:
     {{- include "datalinker.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
+    kubernetes.io/ingress.class: "nginx"
     {{- if .Values.ingress.gafaelfawrAuthQuery -}}
     nginx.ingress.kubernetes.io/auth-method: GET
     nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Token
     nginx.ingress.kubernetes.io/auth-signin: "https://{{ .Values.ingress.host }}/login"
-    nginx.ingress.kubernetes.io/auth-url: "https://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?{{ .Values.gafaelfawr_auth_query }}"
+    nginx.ingress.kubernetes.io/auth-url: "https://{{ .Values.ingress.host }}/auth?{{ .Values.gafaelfawrAuthQuery }}"
     {{- end }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
@@ -40,13 +30,6 @@ spec:
             pathType: {{ .Values.ingress.pathType }}
             {{- end }}
             backend:
-              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
-              service:
-                name: {{ $fullName }}
-                port:
-                  number: {{ .Values.service.port }}
-              {{- else }}
               serviceName: {{ $fullName }}
               servicePort: {{ .Values.service.port }}
-              {{- end }}
 {{- end }}
