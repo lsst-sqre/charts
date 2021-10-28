@@ -19,11 +19,11 @@ metadata:
     {{- include "datalinker.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
-    {{- if .Values.ingress.gafaelfawr_auth_query -}}
+    {{- if .Values.ingress.gafaelfawrAuthQuery -}}
     nginx.ingress.kubernetes.io/auth-method: GET
     nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Token
     nginx.ingress.kubernetes.io/auth-signin: "https://{{ .Values.ingress.host }}/login"
-    nginx.ingress.kubernetes.io/auth-url: "https://{{ .Values.ingress.host }}/auth?{{ .Values.gafaelfawr_auth_query }}"
+    nginx.ingress.kubernetes.io/auth-url: "https://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?{{ .Values.gafaelfawr_auth_query }}"
     {{- end }}
     {{- toYaml . | nindent 4 }}
   {{- end }}
