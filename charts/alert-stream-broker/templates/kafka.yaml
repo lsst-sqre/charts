@@ -47,7 +47,8 @@ spec:
         # volumes.
       - id: 0
         type: persistent-claim
-        size: {{ .Values.kafka.storage }}
+        size: {{ .Values.kafka.storage.size }}
+        storageClassName: {{ .Values.kafka.storage.storageClassName }}
         deleteClaim: false
   zookeeper:
     replicas: {{ .Values.zookeeper.replicas }}
@@ -55,7 +56,8 @@ spec:
       # Note that storage is configured per replica. If there are 3 replicas,
       # each will get its own PersistentVolumeClaim for the configured size.
       type: persistent-claim
-      size: {{ .Values.zookeeper.storage }}
+      size: {{ .Values.zookeeper.storage.size }}
+      storageClassName: {{ .Values.zookeeper.storage.storageClassName }}
       deleteClaim: false
   entityOperator:
     topicOperator: {}

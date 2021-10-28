@@ -20,8 +20,11 @@ kafka:
   # -- Number of Kafka broker replicas to run.
   replicas: 3
 
-  # -- Size of the backing storage disk for each of the Kafka brokers.
-  storage: 1000Gi
+  storage:
+    # -- Size of the backing storage disk for each of the Kafka brokers.
+    size: 1000Gi
+    # -- Name of a StorageClass to use when requesting persistent volumes.
+    storageClassName: standard
 
   # -- Configuration overrides for the Kafka server.
   config:
@@ -42,5 +45,9 @@ superusers:
 zookeeper:
   # -- Number of Zookeeper replicas to run.
   replicas: 3
-  # -- Size of the backing storage disk for each of the Zookeeper instances.
-  storage: 200Gi
+
+  storage:
+    # -- Size of the backing storage disk for each of the Zookeeper instances.
+    size: 1000Gi
+    # -- Name of a StorageClass to use when requesting persistent volumes.
+    storageClassName: standard
