@@ -35,6 +35,9 @@ spec:
       log.message.format.version: {{ .Values.kafka.logMessageFormatVersion }}
       inter.broker.protocol.version: {{ .Values.kafka.interBrokerProtocolVersion }}
       ssl.client.auth: required
+      {{- range $key, $value := .Values.kafka.config }}
+      {{ $key }}: {{ $value }}
+      {{- end }}
     storage:
       type: jbod
       volumes:
