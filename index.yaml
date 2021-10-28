@@ -1,5 +1,19 @@
 apiVersion: v1
 entries:
+  alert-stream-broker:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-10-28T17:50:56.38369345Z"
+    description: Kafka broker cluster for distributing alerts
+    digest: 8f66513fb5acb2e107057a089c89f99d47141a0ac36f747b05635cc2c8b16a1a
+    maintainers:
+    - email: swnelson@uw.edu
+      name: swnelson
+    name: alert-stream-broker
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/alert-stream-broker-1.0.0/alert-stream-broker-1.0.0.tgz
+    version: 1.0.0
   cachemachine:
   - apiVersion: v2
     appVersion: 1.1.0
@@ -5382,4 +5396,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/telegraf-ds-1.0.23/telegraf-ds-1.0.23.tgz
     version: 1.0.23
-generated: "2021-10-27T23:20:19.697798743Z"
+generated: "2021-10-28T17:50:56.38585968Z"
