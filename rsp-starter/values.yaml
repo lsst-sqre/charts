@@ -42,7 +42,7 @@ ingress:
   host: ""
 
   # -- Gafaelfawr Auth Query string (default, unauthenticated)
-  #gafaelfawrAuthQuery: "scope=exec:portal&delegate_to=portal&delegate_scope=read:tap"
+  # gafaelfawrAuthQuery: "scope=exec:portal&delegate_to=portal&delegate_scope=read:tap"
   gafaelfawrAuthQuery: ""
 
   # -- Additional annotations for the ingress rule
