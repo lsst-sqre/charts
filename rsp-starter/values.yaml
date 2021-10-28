@@ -2,63 +2,80 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- Number of web deployment pods to start
 replicaCount: 1
 
 image:
+  # -- Image to use in the <CHARTNAME> deployment
   repository: lsstsqre/<CHARTNAME>
+
+  # -- Pull policy for the <CHARTNAME> image
   pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
+
+  # -- Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# -- Secret names to use for all Docker pulls
 imagePullSecrets: []
+
+# -- Override the base name for resources
 nameOverride: ""
+
+# -- Override the full name for resources (includes the release name)
 fullnameOverride: ""
 
+# -- Annotations for the <CHARTNAME> deployment pod
 podAnnotations: {}
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
-
 service:
+  # -- Type of service to create
   type: ClusterIP
+
+  # -- Port of the service to create and map to the ingress
   port: 8080
 
 ingress:
-  host: ""
+  # -- Create an ingress resource
   enabled: true
-  # Everything after passed into the auth query string for gafaelfawr (default, unauthenticated)
+
+  # -- Hostname of the deployment to run behind
+  host: ""
+
+  # -- Gafaelfawr Auth Query string (default, unauthenticated)
   #gafaelfawrAuthQuery: "scope=exec:portal&delegate_to=portal&delegate_scope=read:tap"
   gafaelfawrAuthQuery: ""
+
+  # -- Additional annotations for the ingress rule
   annotations: {}
+
+  # -- Path type for the ingress rule
   pathType: ImplementationSpecific
+
+  # -- URL path to dispatch to the <CHARTNAME> deployment pod
   path: "/api/<CHARTNAME>"
 
+# -- Resource limits and requests for the <CHARTNAME> deployment pod
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
 
 autoscaling:
+  # -- Enable autoscaling of <CHARTNAME> deployment
   enabled: false
+
+  # -- Minimum number of <CHARTNAME> deployment pods
   minReplicas: 1
+
+  # -- Maximum number of <CHARTNAME> deployment pods
   maxReplicas: 100
+
+  # -- Target CPU utilization of <CHARTNAME> deployment pods
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# -- Node selection rules for the <CHARTNAME> deployment pod
 nodeSelector: {}
 
+# -- Tolerations for the <CHARTNAME> deployment pod
 tolerations: []
 
+# -- Affinity rules for the <CHARTNAME> deployment pod
 affinity: {}
