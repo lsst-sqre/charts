@@ -9,13 +9,4 @@ spec:
       {{- include "datalinker.selectorLabels" . | nindent 6 }}
   policyTypes:
     - Ingress
-    - Egress
-  ingress:
-    - from:
-        - podSelector:
-            matchLabels:
-              {{- include "datalinker.selectorLabels" . | nindent 14 }}
-      ports:
-        - protocol: TCP
-          port: {{ .Values.service.port }}
 {{- end }}
