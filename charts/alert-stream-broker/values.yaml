@@ -1,0 +1,53 @@
+# -- Version of the Strimzi Custom Resource API. The correct value depends on
+# the deployed version of Strimzi. See [this blog
+# post](https://strimzi.io/blog/2021/04/29/api-conversion/) for more.
+strimziAPIVersion: v1beta2
+
+cluster:
+  # -- Name used for the Kafka broker, and used by Strimzi for many annotations.
+  name: alert-broker
+
+kafka:
+  # -- Version of Kafka to deploy.
+  version: 2.8.1
+  # -- Encoding version for messages, see
+  # https://strimzi.io/docs/operators/latest/deploying.html#ref-kafka-versions-str.
+  logMessageFormatVersion: 2.8
+  # -- Version of the protocol for inter-broker communication, see
+  # https://strimzi.io/docs/operators/latest/deploying.html#ref-kafka-versions-str.
+  interBrokerProtocolVersion: 2.8
+
+  # -- Number of Kafka broker replicas to run.
+  replicas: 3
+
+  storage:
+    # -- Size of the backing storage disk for each of the Kafka brokers.
+    size: 1000Gi
+    # -- Name of a StorageClass to use when requesting persistent volumes.
+    storageClassName: standard
+
+  # -- Configuration overrides for the Kafka server.
+  config:
+    # -- Number of minutes for a consumer group's offsets to be retained.
+    offsets.retention.minutes: 10080
+    # -- Number of days for a topic's data to be retained.
+    log.retention.hours: 168
+    # -- Maximum retained number of bytes for a topic's data. This is a string
+    # -- to avoid YAML type conversion issues for large numbers.
+    log.retention.bytes: "644245094400"
+
+
+# -- A list of usernames for users who should have global admin permissions.
+# These users will be created, along with their credentials.
+superusers:
+  - kafka-admin
+
+zookeeper:
+  # -- Number of Zookeeper replicas to run.
+  replicas: 3
+
+  storage:
+    # -- Size of the backing storage disk for each of the Zookeeper instances.
+    size: 1000Gi
+    # -- Name of a StorageClass to use when requesting persistent volumes.
+    storageClassName: standard
