@@ -17,8 +17,8 @@ influxdbSink:
     connectInfluxUrl: "http://localhost:8086"
     # -- InfluxDB database to write to.
     connectInfluxDb: ""
-    # -- InfluxDB credentials.
-    influxSecret: ""
+    # -- Name of the kubernetes secret with InfluxDB credentials.
+    influxSecret: "influxdb-auth"
     # -- Number of Kafka Connect tasks.
     tasksMax: 1
     # -- Regex to select topics from Kafka.
@@ -41,7 +41,7 @@ influxdbSink:
     connectProgressEnabled: false
 
 s3Sink:
-  # -- Whether the Amazon S3 Sink connector is deployed.
+  # -- Whether the Amazon S3 Sink connector is deployed. It is configured to use the Parquet format class with Snappy compression and a time based partitioner.
   enabled: false
   # -- Name of the connector to create.
   name: s3-sink
@@ -49,10 +49,12 @@ s3Sink:
   s3BucketName: ""
   # -- s3 region
   s3Region: "us-east-1"
+  # -- s3 schema compatibility
+  s3SchemaCompatibility: "NONE"
   # -- Top level directory to store the data ingested from Kafka.
   topicsDir: "topics"
-  # -- Kubernetes secret with the `aws_access_key_id` and `aws_secret_access_key` secret keys.
-  awsSecret: ""
+  # -- Name of the Kubernetes secret with the `aws_access_key_id` and `aws_secret_access_key` keys.
+  awsSecret: "aws-secret"
   # -- Number of records written to store before invoking file commits.
   flushSize: "1000"
   # -- The time interval in milliseconds to invoke file commits.
@@ -64,9 +66,7 @@ s3Sink:
   # -- Number of Kafka Connect tasks.
   tasksMax: 1
   # -- Regex to select topics from Kafka.
-  topicRegex: ".*"
-  # -- If autoUpdate is enabled, check for new kafka topics. If they match topicRegex and excludedTopicRegex add them to the connector dynamically.
-  autoUpdate: true
+  topicsRegex: ".*"
   # -- The interval, in milliseconds, to check for new topics and update the connector.
   checkInterval: "15000"
   # -- Regex to exclude topics from the list of selected topics from Kafka.
