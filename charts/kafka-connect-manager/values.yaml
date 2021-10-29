@@ -17,8 +17,8 @@ influxdbSink:
     connectInfluxUrl: "http://localhost:8086"
     # -- InfluxDB database to write to.
     connectInfluxDb: ""
-    # -- InfluxDB credentials.
-    influxSecret: ""
+    # -- Name of the kubernetes secret with InfluxDB credentials.
+    influxSecret: "influxdb-auth"
     # -- Number of Kafka Connect tasks.
     tasksMax: 1
     # -- Regex to select topics from Kafka.
