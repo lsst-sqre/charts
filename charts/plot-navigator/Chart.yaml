@@ -1,0 +1,7 @@
+apiVersion: v2
+name: plot-navigator
+description: Panel-based plot viewer.
+maintainers:
+  - name: ctslater
+version: 1.0.0
+appVersion: 0.5.1

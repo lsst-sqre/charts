@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plot-navigator
+spec:
+  selector:
+    app: plot-navigator
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: {{ .Values.port | default 8080 }}
