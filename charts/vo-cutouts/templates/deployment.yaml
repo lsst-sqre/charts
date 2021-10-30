@@ -67,6 +67,8 @@ spec:
               name: "http"
               protocol: "TCP"
           env:
+            - name: "AWS_SHARED_CREDENTIALS_FILE"
+              value: "/etc/vo-cutouts/secrets/aws-credentials"
             - name: "CUTOUT_DATABASE_PASSWORD"
               valueFrom:
                 secretKeyRef:
@@ -77,6 +79,8 @@ spec:
                 secretKeyRef:
                   name: {{ template "vo-cutouts.fullname" . }}-secret
                   key: "redis-password"
+            - name: "PGPASSFILE"
+              value: "/etc/vo-cutouts/secrets/postgres-credentials"
           envFrom:
             - configMapRef:
                 name: {{ template "vo-cutouts.fullname" . }}-config
@@ -88,6 +92,14 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          volumeMounts:
+            - name: "secrets"
+              mountPath: "/etc/vo-cutouts/secrets"
+              readOnly: true
+      volumes:
+        - name: "secrets"
+          secret:
+            secretName: {{ template "vo-cutouts.fullname" . }}-secret
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

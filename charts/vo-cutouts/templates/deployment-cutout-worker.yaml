@@ -52,6 +52,8 @@ spec:
               git clone --depth 1 -b '{{ .Values.image.tag | default .Chart.AppVersion }}' https://github.com/lsst-sqre/vo-cutouts
               dramatiq vo-cutouts/src/vocutouts/workers.py -Q cutout
           env:
+            - name: "AWS_SHARED_CREDENTIALS_FILE"
+              value: "/etc/vo-cutouts/secrets/aws-credentials"
             - name: "CUTOUT_DATABASE_PASSWORD"
               valueFrom:
                 secretKeyRef:
@@ -62,6 +64,8 @@ spec:
                 secretKeyRef:
                   name: {{ template "vo-cutouts.fullname" . }}-secret
                   key: "redis-password"
+            - name: "PGPASSFILE"
+              value: "/etc/vo-cutouts/secrets/postgres-credentials"
           envFrom:
             - configMapRef:
                 name: {{ template "vo-cutouts.fullname" . }}-config
@@ -70,9 +74,15 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           volumeMounts:
+            - name: "secrets"
+              mountPath: "/etc/vo-cutouts/secrets"
+              readOnly: true
             - name: "tmp"
               mountPath: "/tmp"
       volumes:
+        - name: "secrets"
+          secret:
+            secretName: {{ template "vo-cutouts.fullname" . }}-secret
         - name: "tmp"
           emptyDir: {}
       {{- with .Values.cutoutWorker.nodeSelector }}
