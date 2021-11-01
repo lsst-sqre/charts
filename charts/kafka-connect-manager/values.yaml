@@ -3,7 +3,7 @@
 
 image:
   repository: lsstsqre/kafkaconnect
-  tag: 0.9.1
+  tag: 0.9.3
   pullPolicy: Always
 
 influxdbSink:
