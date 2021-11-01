@@ -461,6 +461,17 @@ entries:
     version: 0.1.1
   cert-issuer:
   - apiVersion: v2
+    created: "2021-11-01T21:04:11.044800329Z"
+    description: Certificate issuer for Rubin Science Platform
+    digest: 20bbf4d3e65265ddb8176faced2025b82c38098ea36fdfee51791bf73fa6c681
+    maintainers:
+    - name: rra
+    name: cert-issuer
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cert-issuer-1.0.0/cert-issuer-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
     created: "2021-05-10T23:02:33.166882914Z"
     description: Certificate issuer for Rubin Science Platform
     digest: f02dc1ad99eca310e76ce4ae96ce0b841d9b55bf3e6c719b299333c54e018df5
@@ -5495,4 +5506,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/telegraf-ds-1.0.23/telegraf-ds-1.0.23.tgz
     version: 1.0.23
-generated: "2021-11-01T19:49:13.376262205Z"
+generated: "2021-11-01T21:04:11.049762734Z"
