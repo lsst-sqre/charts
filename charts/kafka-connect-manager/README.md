@@ -1,6 +1,6 @@
 # kafka-connect-manager
 
-![Version: 0.9.4](https://img.shields.io/badge/Version-0.9.4-informational?style=flat-square) ![AppVersion: 0.9.3](https://img.shields.io/badge/AppVersion-0.9.3-informational?style=flat-square)
+![Version: 0.9.5](https://img.shields.io/badge/Version-0.9.5-informational?style=flat-square) ![AppVersion: 0.9.3](https://img.shields.io/badge/AppVersion-0.9.3-informational?style=flat-square)
 
 A Helm chart to deploy kafka connectors
 
@@ -24,7 +24,7 @@ A Helm chart to deploy kafka connectors
 | env.kafkaConnectUrl | string | `"http://cp-helm-charts-cp-kafka-connect.cp-helm-charts:8083"` | Kafka connnect URL. |
 | image.pullPolicy | string | `"Always"` |  |
 | image.repository | string | `"lsstsqre/kafkaconnect"` |  |
-| image.tag | string | `"0.9.1"` |  |
+| image.tag | string | `"0.9.3"` |  |
 | influxdbSink.influxdb-sink | object | `{"autoUpdate":true,"checkInterval":"15000","connectInfluxDb":"","connectInfluxErrorPolicy":"THROW","connectInfluxMaxRetries":"10","connectInfluxRetryInterval":"60000","connectInfluxUrl":"http://localhost:8086","connectProgressEnabled":false,"enabled":false,"excludedTopicRegex":"","influxSecret":"influxdb-auth","name":"influxdb-sink","tasksMax":1,"timestamp":"sys_time()","topicRegex":".*"}` | To create multiple instances of this connector repeat this block. The name of the instance, "influxdb-sink" in this case, is used as scope for the template variables. |
 | influxdbSink.influxdb-sink.autoUpdate | bool | `true` | If autoUpdate is enabled, check for new kafka topics. If they match topicRegex and excludedTopicRegex add them to the connector dynamically. |
 | influxdbSink.influxdb-sink.checkInterval | string | `"15000"` | The interval, in milliseconds, to check for new topics and update the connector. |
