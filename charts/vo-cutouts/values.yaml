@@ -85,6 +85,10 @@ config:
   # @default -- None, must be set
   butlerRepository: ""
 
+  # -- Collection of source data from which cutouts will be taken
+  # @default -- None, must be set
+  butlerCollection: ""
+
   # -- URL for the PostgreSQL database
   # @default -- None, must be set
   databaseUrl: ""

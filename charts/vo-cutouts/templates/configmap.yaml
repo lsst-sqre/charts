@@ -6,6 +6,7 @@ metadata:
     {{- include "vo-cutouts.labels" . | nindent 4 }}
 data:
   CUTOUT_BUTLER_REPOSITORY: {{ required "config.butlerRepository must be set" .Values.config.butlerRepository | quote }}
+  CUTOUT_BUTLER_COLLECTION: {{ required "config.butlerCollection must be set" .Values.config.butlerCollection | quote }}
   CUTOUT_DATABASE_URL: {{ required "config.databaseUrl must be set" .Values.config.databaseUrl | quote }}
   CUTOUT_TIMEOUT: {{ .Values.config.timeout | quote }}
   CUTOUT_LIFETIME: {{ .Values.config.lifetime | quote }}

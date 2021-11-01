@@ -23,6 +23,7 @@ Image cutout service complying with IVOA SODA
 | cloudsql.image.tag | string | `"1.26.0-buster"` | Cloud SQL Auth Proxy tag to use |
 | cloudsql.instanceConnectionName | string | `""` | Instance connection name for a CloudSQL PostgreSQL instance |
 | cloudsql.serviceAccount | string | `""` | The Google service account that has an IAM binding to the `vo-cutouts` Kubernetes service accounts and has the `cloudsql.client` role |
+| config.butlerCollection | string | None, must be set | Collection of source data from which cutouts will be taken |
 | config.butlerRepository | string | None, must be set | Configuration for the Butler repository to use |
 | config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
 | config.lifetime | int | 604800 (1 week) | Lifetime of job results in seconds |
