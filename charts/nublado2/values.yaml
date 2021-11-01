@@ -50,6 +50,12 @@ jupyterhub:
     #  you explicitly enable port 8081 so the labs can talk to the Hub.
     networkPolicy:
       enabled: false
+    # Make probe timeouts less aggressive
+    livenessProbe:
+      timeoutSeconds: 10
+    readinessProbe:
+      periodSeconds: 30
+      timeoutSeconds: 10
 
   prePuller:
     continuous:
