@@ -1,49 +1,62 @@
 # Default values for neophile.
 
-# Override the name of the chart if needed
+# -- Override the base name for resources
 nameOverride: ""
+
+# -- Override the full name for resources (includes the release name)
 fullnameOverride: ""
 
-# image defines the Docker image to use.  tag defaults to appVersion.
 image:
+  # -- neophile image to use
   repository: "lsstsqre/neophile"
+
+  # -- Pull policy for the neophile image
   pullPolicy: "IfNotPresent"
 
-# imagePullSecrets defines secrets to use when pulling Docker images
+  # -- Tag of neophile image to use
+  # @default -- The appVersion of the chart
+  tag: ""
+
+# -- Secret names to use for all Docker pulls
 imagePullSecrets: []
 
-# persistence.volumeClaim configures an existing PVC to optimize checkouts.
-# If not set, neophile will use ephemeral emptyDir.
 persistence:
+  # -- Name of an existing PVC to use for checkouts
+  # @default -- Use an ephemeral `emptyDir`
   volumeClaim: ""
 
-# schedule sets the execution schedule (default is 4am on Monday).
+# -- Execution schedule as a cron string
+# @default -- `0 4 * * 1` (4am on Monday)
 schedule: "0 4 * * 1"
 
-# vaultSecretsPath is the Vault path used for the Kubernetes secret
-# secret/k8s_operator/<host>/neophile
+# -- Path to the Vault secret (`secret/k8s_operator/<host>/neophile`, for
+# example)
+# @default -- None, must be set
 vaultSecretsPath: ""
 
-# config provides the Neophile configuration
-config:
-  # config.githubUser is the name of the GitHub user (must match the token in
-  # the secret).  This must be set.
-  github_user: ""
-
-  # config.githubEmail is the email address to use for GitHub commits.  Leave
-  # blank to use the public email address of the user.
-  github_email: ""
-
-  # config.repositories lists the repositories to monitor.
-  repositories: {}
-
-# podAnnotations defines additional annotations to add to the pod
-podAnnotations: {}
-
-# resources defines resource requests and limits for the spawned pod
+# -- Resource limits and requests for the Gafaelfawr frontend pod
 resources: {}
 
-# Additional optional configuration of the spawned pods.
+# -- Annotations for the Gafaelfawr frontend pod
+podAnnotations: {}
+
+# -- Node selector rules for the Gafaelfawr frontend pod
 nodeSelector: {}
+
+# -- Tolerations for the Gafaelfawr frontend pod
 tolerations: []
+
+# -- Affinity rules for the Gafaelfawr frontend pod
 affinity: {}
+
+config:
+  # -- Name of the GitHub user (must match the token in the secret)
+  # @default -- None, must be set
+  githubUser: ""
+
+  # -- Email address to use for GitHub commits
+  # @default -- Public email address of the user
+  githubEmail: ""
+
+  # -- Repositories to monitor as a list of dicts with `owner` and `repo` keys
+  repositories: []
