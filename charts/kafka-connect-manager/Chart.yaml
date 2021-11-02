@@ -1,9 +1,9 @@
 apiVersion: v1
 name: kafka-connect-manager
-version: 0.9.5
+version: 0.9.6
 description: A Helm chart to deploy kafka connectors
 keywords:
-  - Kafka, InfluxDB, S3, JDBC Sink, MirrorMaker 2
+  - Kafka, InfluxDB Sink, S3 Sink, JDBC Sink, MirrorMaker 2
 home: https://kafka-connect-manager.lsst.io/
 sources:
   - https://github.com/lsst-sqre/kafka-connect-manager
