@@ -51,14 +51,22 @@ s3Sink:
   s3Region: "us-east-1"
   # -- s3 schema compatibility
   s3SchemaCompatibility: "NONE"
+  # -- Maximum number of retry attempts for failed requests. Zero means no retries.
+  s3PartRetries: 3
+  # -- How long to wait in milliseconds before attempting the first retry of a failed S3 request.
+  s3RetryBackoffMs: 200
+  # -- The size of the schema cache used in the Avro converter.
+  schemaCacheConfig: 5000
+  # -- How to handle records with a null value (for example, Kafka tombstone records). Valid options are ignore and fail.
+  behaviorOnNullValues: "fail"
   # -- Top level directory to store the data ingested from Kafka.
   topicsDir: "topics"
   # -- Name of the Kubernetes secret with the `aws_access_key_id` and `aws_secret_access_key` keys.
   awsSecret: "aws-secret"
   # -- Number of records written to store before invoking file commits.
   flushSize: "1000"
-  # -- The time interval in milliseconds to invoke file commits.
-  rotateIntervalMs: "60000"
+  # -- The time interval in milliseconds to invoke file commits. Set to 10 minutes by default.
+  rotateIntervalMs: "600000"
   # -- The duration of a partition in milliseconds, used by TimeBasedPartitioner. Default is 1h for an hourly based partitioner.
   partitionDurationMs: "3600000"
   # -- Pattern used to format the path in the S3 object name.
@@ -78,7 +86,7 @@ s3Sink:
   # -- The extractor determines how to obtain a timestamp from each record.
   timestampExtractor: "Record"
   # -- The record field to be used as timestamp by the timestamp extractor. Only applies if timestampExtractor is set to RecordField.
-  timestampField: "time"
+  timestampField: ""
 
 mirrorMaker2:
   # -- Whether the MirrorMaker 2 connectors (heartbeat, checkpoint and mirror-source) are deployed.
