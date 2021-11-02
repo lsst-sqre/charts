@@ -1,6 +1,6 @@
 # kafka-connect-manager
 
-![Version: 0.9.5](https://img.shields.io/badge/Version-0.9.5-informational?style=flat-square) ![AppVersion: 0.9.3](https://img.shields.io/badge/AppVersion-0.9.3-informational?style=flat-square)
+![Version: 0.9.6](https://img.shields.io/badge/Version-0.9.6-informational?style=flat-square) ![AppVersion: 0.9.3](https://img.shields.io/badge/AppVersion-0.9.3-informational?style=flat-square)
 
 A Helm chart to deploy kafka connectors
 
@@ -67,6 +67,7 @@ A Helm chart to deploy kafka connectors
 | mirrorMaker2.tasksMax | int | `1` | Number of Kafka Connect tasks. |
 | mirrorMaker2.topicRegex | string | `".*"` | Regex for selecting topics. Comma-separated lists are also supported. |
 | s3Sink.awsSecret | string | `"aws-secret"` | Name of the Kubernetes secret with the `aws_access_key_id` and `aws_secret_access_key` keys. |
+| s3Sink.behaviorOnNullValues | string | `"fail"` | How to handle records with a null value (for example, Kafka tombstone records). Valid options are ignore and fail. |
 | s3Sink.checkInterval | string | `"15000"` | The interval, in milliseconds, to check for new topics and update the connector. |
 | s3Sink.enabled | bool | `false` | Whether the Amazon S3 Sink connector is deployed. It is configured to use the Parquet format class with Snappy compression and a time based partitioner. |
 | s3Sink.excludedTopicRegex | string | `""` | Regex to exclude topics from the list of selected topics from Kafka. |
@@ -75,13 +76,16 @@ A Helm chart to deploy kafka connectors
 | s3Sink.name | string | `"s3-sink"` | Name of the connector to create. |
 | s3Sink.partitionDurationMs | string | `"3600000"` | The duration of a partition in milliseconds, used by TimeBasedPartitioner. Default is 1h for an hourly based partitioner. |
 | s3Sink.pathFormat | string | `"'year'=YYYY/'month'=MM/'day'=dd/'hour'=HH"` | Pattern used to format the path in the S3 object name. |
-| s3Sink.rotateIntervalMs | string | `"60000"` | The time interval in milliseconds to invoke file commits. |
+| s3Sink.rotateIntervalMs | string | `"600000"` | The time interval in milliseconds to invoke file commits. Set to 10 minutes by default. |
 | s3Sink.s3BucketName | string | `""` | s3 bucket name. Must exist already. |
+| s3Sink.s3PartRetries | int | `3` | Maximum number of retry attempts for failed requests. Zero means no retries. |
 | s3Sink.s3Region | string | `"us-east-1"` | s3 region |
+| s3Sink.s3RetryBackoffMs | int | `200` | How long to wait in milliseconds before attempting the first retry of a failed S3 request. |
 | s3Sink.s3SchemaCompatibility | string | `"NONE"` | s3 schema compatibility |
+| s3Sink.schemaCacheConfig | int | `5000` | The size of the schema cache used in the Avro converter. |
 | s3Sink.tasksMax | int | `1` | Number of Kafka Connect tasks. |
 | s3Sink.timestampExtractor | string | `"Record"` | The extractor determines how to obtain a timestamp from each record. |
-| s3Sink.timestampField | string | `"time"` | The record field to be used as timestamp by the timestamp extractor. Only applies if timestampExtractor is set to RecordField. |
+| s3Sink.timestampField | string | `""` | The record field to be used as timestamp by the timestamp extractor. Only applies if timestampExtractor is set to RecordField. |
 | s3Sink.timezone | string | `"UTC"` | The timezone to use when partitioning with TimeBasedPartitioner. |
 | s3Sink.topicsDir | string | `"topics"` | Top level directory to store the data ingested from Kafka. |
 | s3Sink.topicsRegex | string | `".*"` | Regex to select topics from Kafka. |
