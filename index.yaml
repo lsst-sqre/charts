@@ -2127,6 +2127,24 @@ entries:
   kafka-connect-manager:
   - apiVersion: v1
     appVersion: 0.9.3
+    created: "2021-11-02T23:17:40.610566741Z"
+    description: A Helm chart to deploy kafka connectors
+    digest: 99ecab4fd4f84769cd0c01140e6f180b7c49c003f70d2b7649e200af847a25b5
+    home: https://kafka-connect-manager.lsst.io/
+    keywords:
+    - Kafka, InfluxDB Sink, S3 Sink, JDBC Sink, MirrorMaker 2
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: kafka-connect-manager
+    sources:
+    - https://github.com/lsst-sqre/kafka-connect-manager
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kafka-connect-manager-0.9.6/kafka-connect-manager-0.9.6.tgz
+    version: 0.9.6
+  - apiVersion: v1
+    appVersion: 0.9.3
     created: "2021-11-01T22:38:36.652172526Z"
     description: A Helm chart to deploy kafka connectors
     digest: c155286a94f4aa9515bd1c30b1911805268cc7c4d6d4d3d1616817a89867484d
@@ -5524,4 +5542,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/telegraf-ds-1.0.23/telegraf-ds-1.0.23.tgz
     version: 1.0.23
-generated: "2021-11-01T22:38:36.655906943Z"
+generated: "2021-11-02T23:17:40.615019891Z"
