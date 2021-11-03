@@ -4,3 +4,4 @@ metadata:
   name: {{ .Values.name }}
 spec:
   strimzi-version: {{ .Values.strimziAPIVersion }}
+  listener: internal
