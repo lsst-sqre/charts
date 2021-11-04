@@ -10,6 +10,6 @@ data:
   CUTOUT_DATABASE_URL: {{ required "config.databaseUrl must be set" .Values.config.databaseUrl | quote }}
   CUTOUT_TIMEOUT: {{ .Values.config.timeout | quote }}
   CUTOUT_LIFETIME: {{ .Values.config.lifetime | quote }}
-  CUTOUT_REDIS_HOST: "redis://{{ template "vo-cutouts.fullname" . }}-redis.{{ .Release.namespace }}"
+  CUTOUT_REDIS_HOST: "redis://{{ template "vo-cutouts.fullname" . }}-redis.{{ .Release.Namespace }}"
   CUTOUT_SYNC_TIMEOUT: {{ .Values.config.syncTimeout | quote }}
-  SAFIR_LOG_LEVEL: {{ .Values.config.logLevel | quote }}
+  SAFIR_LOG_LEVEL: {{ .Values.config.loglevel | quote }}
