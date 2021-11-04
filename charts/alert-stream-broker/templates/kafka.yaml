@@ -13,6 +13,12 @@ spec:
         tls: true
         authentication:
           type: tls
+      - name: tls  # Used by the schema registry; it has a fixed name it expects
+        port: 9093
+        type: internal
+        tls: true
+        authentication:
+          type: tls
       - name: external
         port: 9094
         type: loadbalancer
