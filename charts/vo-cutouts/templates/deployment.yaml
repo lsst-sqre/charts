@@ -79,6 +79,8 @@ spec:
                 secretKeyRef:
                   name: {{ template "vo-cutouts.fullname" . }}-secret
                   key: "redis-password"
+            - name: "GOOGLE_APPLICATION_CREDENTIALS"
+              value: "/etc/vo-cutouts/secrets/google-credentials"
             - name: "PGPASSFILE"
               value: "/etc/vo-cutouts/secrets/postgres-credentials"
           envFrom:
