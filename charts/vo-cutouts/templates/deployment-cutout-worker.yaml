@@ -46,9 +46,12 @@ spec:
             - |
               source /opt/lsst/software/stack/loadLSST.bash
               setup lsst_distrib
+              set -x
               python3 -m venv /tmp/worker-venv
-              cd /tmp/worker-venv
-              pip install 'dramatiq[redis]'
+              export PATH="/tmp/worker-venv/bin:$PATH"
+              cd /tmp
+              pip install --quiet --no-cache-dir 'dramatiq[redis]'
+              rm -r vo-cutouts
               git clone --depth 1 -b '{{ .Values.image.tag | default .Chart.AppVersion }}' https://github.com/lsst-sqre/vo-cutouts
               dramatiq vo-cutouts/src/vocutouts/workers.py -Q cutout
           env:
