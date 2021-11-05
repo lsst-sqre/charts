@@ -44,6 +44,7 @@ ingress:
   # -- Additional annotations to add to the ingress
   annotations:
     nginx.ingress.kubernetes.io/auth-method: "GET"
+    nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-User
     nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=read:image"
 
   # -- Hostname for the ingress. This should normally be the same as
