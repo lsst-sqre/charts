@@ -34,6 +34,13 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
+
+      # Butler uses a pgpass file to authenticate to its database, and
+      # PostgreSQL unfortunately requires its pgpass file be owned by the
+      # current user and mode 0600, but Kubernetes has no way of controlling
+      # the ownership of a mounted secret.  We therefore use a privileged init
+      # container to copy the secrets into a shared emptyDir and change their
+      # ownership and permissions.
       initContainers:
         - name: "fix-secret-permissions"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -42,7 +49,6 @@ spec:
             - "/bin/bash"
             - "-c"
             - |
-              # The Butler PostgreSQL secret must be owned by the appuser
               cp -RL /etc/vo-cutouts/secrets-raw/* /etc/vo-cutouts/secrets
               chown appuser:appuser /etc/vo-cutouts/secrets/*
               chmod 0400 /etc/vo-cutouts/secrets/*
@@ -56,6 +62,7 @@ spec:
             - name: "secrets-raw"
               mountPath: "/etc/vo-cutouts/secrets-raw"
               readOnly: true
+
       containers:
         {{- if .Values.cloudsql.enabled }}
         - name: "cloud-sql-proxy"
@@ -89,8 +96,20 @@ spec:
               name: "http"
               protocol: "TCP"
           env:
+            # The following are used by Butler to retrieve its configuration
+            # and authenticate to its database.
             - name: "AWS_SHARED_CREDENTIALS_FILE"
               value: "/etc/vo-cutouts/secrets/aws-credentials"
+            - name: "PGPASSFILE"
+              value: "/etc/vo-cutouts/secrets/postgres-credentials"
+            - name: "S3_ENDPOINT_URL"
+              value: "https://storage.googleapis.com"
+
+            # Used to generate signed URLs into Butler collections.
+            - name: "GOOGLE_APPLICATION_CREDENTIALS"
+              value: "/etc/vo-cutouts/secrets/google-credentials"
+
+            # Authentication to the UWS queuing system and job database.
             - name: "CUTOUT_DATABASE_PASSWORD"
               valueFrom:
                 secretKeyRef:
@@ -101,12 +120,6 @@ spec:
                 secretKeyRef:
                   name: {{ template "vo-cutouts.fullname" . }}-secret
                   key: "redis-password"
-            - name: "GOOGLE_APPLICATION_CREDENTIALS"
-              value: "/etc/vo-cutouts/secrets/google-credentials"
-            - name: "PGPASSFILE"
-              value: "/etc/vo-cutouts/secrets/postgres-credentials"
-            - name: "S3_ENDPOINT_URL"
-              value: "https://storage.googleapis.com"
           envFrom:
             - configMapRef:
                 name: {{ template "vo-cutouts.fullname" . }}-config
@@ -130,6 +143,8 @@ spec:
           secret:
             secretName: {{ template "vo-cutouts.fullname" . }}-secret
             defaultMode: 0400
+        # Dramatiq enables its Prometheus middleware by default, which
+        # requires writable /tmp.
         - name: "tmp"
           emptyDir: {}
       {{- with .Values.nodeSelector }}

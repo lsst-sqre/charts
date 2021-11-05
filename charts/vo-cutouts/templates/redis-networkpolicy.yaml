@@ -24,7 +24,7 @@ spec:
         - podSelector:
             matchLabels:
               {{- include "vo-cutouts.selectorLabels" . | nindent 14 }}
-              app.kubernetes.io/component: "cutout-worker"
+              app.kubernetes.io/component: "worker"
         - podSelector:
             matchLabels:
               {{- include "vo-cutouts.selectorLabels" . | nindent 14 }}

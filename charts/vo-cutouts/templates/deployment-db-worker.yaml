@@ -89,6 +89,8 @@ spec:
             - name: "tmp"
               mountPath: "/tmp"
       volumes:
+        # Dramatiq enables its Prometheus middleware by default, which
+        # requires writable /tmp.
         - name: "tmp"
           emptyDir: {}
       {{- with .Values.databaseWorker.nodeSelector }}
