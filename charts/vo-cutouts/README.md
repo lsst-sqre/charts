@@ -50,9 +50,10 @@ Image cutout service complying with IVOA SODA
 | image.repository | string | `"lsstsqre/vo-cutouts"` | vo-cutouts image to use |
 | image.tag | string | The appVersion of the chart | Tag of vo-cutouts image to use |
 | imagePullSecrets | list | `[]` | Secret names to use for all Docker pulls |
-| ingress.annotations | object | `{"nginx.ingress.kubernetes.io/auth-method":"GET","nginx.ingress.kubernetes.io/auth-url":"http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=read:image"}` | Additional annotations to add to the ingress |
+| ingress.annotations | object | `{}` | Additional annotations to add to the ingress |
 | ingress.enabled | bool | `true` | Whether to create an ingress |
-| ingress.host | string | `""` | Hostname for the ingress. This should normally be the same as config.host. |
+| ingress.gafaelfawrAuthQuery | string | `"scope=read:image"` | Gafaelfawr auth query string |
+| ingress.host | string | `""` | Hostname for the ingress |
 | ingress.tls | list | `[]` | Configures TLS for the ingress if needed. If multiple ingresses share the same hostname, only one of them needs a TLS configuration. |
 | nameOverride | string | `""` | Override the base name for resources |
 | networkPolicy.enabled | bool | `false` | Whether to restrict access to the image cutout service. Only enable if the ingress controller namespace is tagged with `gafaelfawr.lsst.io/ingress: "true"`. |
