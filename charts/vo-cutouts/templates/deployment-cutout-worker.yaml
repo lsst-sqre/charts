@@ -30,6 +30,28 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
+      initContainers:
+        - name: "fix-secret-permissions"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          command:
+            - "/bin/bash"
+            - "-c"
+            - |
+              # The Butler PostgreSQL secret must be owned by the appuser
+              cp -RL /etc/vo-cutouts/secrets-raw/* /etc/vo-cutouts/secrets
+              chown appuser:appuser /etc/vo-cutouts/secrets/*
+              chmod 0400 /etc/vo-cutouts/secrets/*
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
+          volumeMounts:
+            - name: "secrets"
+              mountPath: "/etc/vo-cutouts/secrets"
+            - name: "secrets-raw"
+              mountPath: "/etc/vo-cutouts/secrets-raw"
+              readOnly: true
       containers:
         - name: "cutout-worker"
           securityContext:
@@ -75,13 +97,15 @@ spec:
           volumeMounts:
             - name: "secrets"
               mountPath: "/etc/vo-cutouts/secrets"
-              readOnly: true
             - name: "tmp"
               mountPath: "/tmp"
       volumes:
         - name: "secrets"
+          emptyDir: {}
+        - name: "secrets-raw"
           secret:
             secretName: {{ template "vo-cutouts.fullname" . }}-secret
+            defaultMode: 0400
         - name: "tmp"
           emptyDir: {}
       {{- with .Values.cutoutWorker.nodeSelector }}
