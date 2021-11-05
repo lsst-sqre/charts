@@ -105,6 +105,8 @@ spec:
               value: "/etc/vo-cutouts/secrets/google-credentials"
             - name: "PGPASSFILE"
               value: "/etc/vo-cutouts/secrets/postgres-credentials"
+            - name: "S3_ENDPOINT_URL"
+              value: "https://storage.googleapis.com"
           envFrom:
             - configMapRef:
                 name: {{ template "vo-cutouts.fullname" . }}-config
