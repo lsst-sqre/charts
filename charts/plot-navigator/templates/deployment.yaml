@@ -27,9 +27,7 @@ spec:
         volumeMounts:
           - name: butler-secret
             mountPath: "/home/worker/.lsst/"
-            # Or mount this somewhere else and copy the file to .lsst
-            # mountPath: "/opt/lsst/software/jupyterlab/butler-secret"
         command:
           - /bin/bash
           - -c
-          - panel serve dashboard_gen3.py --port {{ .Values.port | default 8080 }} --prefix {{ .Values.basePath }} --allow-websocket-origin {{ .Values.hostname }}
+          - panel serve dashboard_gen3.py --port 8080 --prefix {{ .Values.basePath }} --allow-websocket-origin {{ .Values.hostname }}

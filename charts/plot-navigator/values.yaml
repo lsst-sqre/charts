@@ -13,7 +13,4 @@ butler_uri: ""
 butler_secret_path: ""
 
 ingress:
-  enabled: true
-  host: ""
-  path: "/plot-navigator"
-  pathType: ImplementationSpecific
+  annotations: {}
