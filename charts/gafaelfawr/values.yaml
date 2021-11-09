@@ -148,6 +148,7 @@ config:
     "exec:admin": "Administrative access to all APIs"
     "exec:notebook": "Use the Notebook Aspect"
     "exec:portal": "Use the Portal Aspect"
+    "read:image": "Retrieve images from project datasets"
     "read:tap": "Execute SELECT queries in the TAP interface on project datasets"
     "user:token": "Can create and modify user tokens"
 
@@ -173,7 +174,7 @@ cloudsql:
     repository: "gcr.io/cloudsql-docker/gce-proxy"
 
     # -- Cloud SQL Auth Proxy tag to use
-    tag: "1.26.0-buster"
+    tag: "1.27.0-buster"
 
     # -- Pull policy for Cloud SQL Auth Proxy images
     pullPolicy: "IfNotPresent"

@@ -1,0 +1,155 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "vo-cutouts.fullname" . }}-worker
+  labels:
+    {{- include "vo-cutouts.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.databaseWorker.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "vo-cutouts.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "worker"
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- with .Values.databaseWorker.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "vo-cutouts.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: "worker"
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+
+      # Butler uses a pgpass file to authenticate to its database, and
+      # PostgreSQL unfortunately requires its pgpass file be owned by the
+      # current user and mode 0600, but Kubernetes has no way of controlling
+      # the ownership of a mounted secret.  We therefore use a privileged init
+      # container to copy the secrets into a shared emptyDir and change their
+      # ownership and permissions.
+      initContainers:
+        - name: "fix-secret-permissions"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          command:
+            - "/bin/bash"
+            - "-c"
+            - |
+              cp -RL /etc/vo-cutouts/secrets-raw/* /etc/vo-cutouts/secrets
+              chown appuser:appuser /etc/vo-cutouts/secrets/*
+              chmod 0400 /etc/vo-cutouts/secrets/*
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
+          volumeMounts:
+            - name: "secrets"
+              mountPath: "/etc/vo-cutouts/secrets"
+            - name: "secrets-raw"
+              mountPath: "/etc/vo-cutouts/secrets-raw"
+              readOnly: true
+      containers:
+        - name: "worker"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "all"
+            readOnlyRootFilesystem: true
+          image: "{{ .Values.cutoutWorker.image.repository }}:{{ .Values.cutoutWorker.image.tag }}"
+          imagePullPolicy: {{ .Values.cutoutWorker.image.pullPolicy | quote }}
+
+          # This tricky command bootstraps the worker on every container
+          # restart.  It requires there exist a branch in the vo-cutouts
+          # GitHub repository that matches the tag (changing "tickets-" to
+          # "tickets/") of the Docker image to use, and retrieves the worker
+          # Python file from there.  It then installs Dramatiq and runs it
+          # with the stack Python.
+          #
+          # The path in the user home directory uesd by pip install run as a
+          # non-root user is in the Python path by default, so packages
+          # installed that way will be picked up by the stack Python.
+          # However, ~/.local/bin is not in PATH and we want to force the
+          # stack Python (which should be first in PATH), so invoke Dramatiq
+          # with an explicit execution of python.
+          #
+          # This approach is probably temporary and will be replaced with a
+          # more reproducible way of getting the worker source.
+          command:
+            - "/bin/bash"
+            - "-c"
+            - |
+              source /opt/lsst/software/stack/loadLSST.bash
+              setup lsst_distrib
+              set -x
+              pip install --quiet --no-cache-dir 'dramatiq[redis]'
+              cd /tmp
+              rm -r vo-cutouts
+              git clone --depth 1 -b "$(echo '{{ .Values.image.tag | default .Chart.AppVersion }}' | sed 's,tickets-,tickets/,')" https://github.com/lsst-sqre/vo-cutouts
+              cd vo-cutouts/src/vocutouts
+              python /home/lsst/.local/bin/dramatiq workers -Q cutout
+
+          env:
+            # The following are used by Butler to retrieve its configuration
+            # and authenticate to its database.
+            - name: "AWS_SHARED_CREDENTIALS_FILE"
+              value: "/etc/vo-cutouts/secrets/aws-credentials"
+            - name: "PGPASSFILE"
+              value: "/etc/vo-cutouts/secrets/postgres-credentials"
+            - name: "S3_ENDPOINT_URL"
+              value: "https://storage.googleapis.com"
+
+            # Authentication to the Redis queue for Dramatiq.
+            - name: "CUTOUT_REDIS_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "vo-cutouts.fullname" . }}-secret
+                  key: "redis-password"
+          envFrom:
+            - configMapRef:
+                name: {{ template "vo-cutouts.fullname" . }}-config
+          {{- with .Values.cutoutWorker.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: "local"
+              mountPath: "/home/lsst"
+            - name: "secrets"
+              mountPath: "/etc/vo-cutouts/secrets"
+            - name: "tmp"
+              mountPath: "/tmp"
+      volumes:
+        # The /home/lsst home directory, which is used by pip install.
+        - name: "local"
+          emptyDir: {}
+        - name: "secrets"
+          emptyDir: {}
+        - name: "secrets-raw"
+          secret:
+            secretName: {{ template "vo-cutouts.fullname" . }}-secret
+            defaultMode: 0400
+        - name: "tmp"
+          emptyDir: {}
+      {{- with .Values.cutoutWorker.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.cutoutWorker.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.cutoutWorker.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
