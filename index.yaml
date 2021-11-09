@@ -3,6 +3,19 @@ entries:
   alert-stream-broker:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-11-09T21:11:58.616403342Z"
+    description: Kafka broker cluster for distributing alerts
+    digest: 94352ed7716fb1b5dff26a93cfbeb1d59e8b4ad4128c041175bb3938f09adbd0
+    maintainers:
+    - email: swnelson@uw.edu
+      name: swnelson
+    name: alert-stream-broker
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/alert-stream-broker-1.1.0/alert-stream-broker-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-11-03T21:58:58.41359695Z"
     description: Kafka broker cluster for distributing alerts
     digest: 2318da4784b579267066ef6f89d682de4a966ab06c47b0e4570f7f0a3523a958
@@ -26,6 +39,21 @@ entries:
     type: application
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/alert-stream-broker-1.0.0/alert-stream-broker-1.0.0.tgz
+    version: 1.0.0
+  alert-stream-schema-registry:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2021-11-09T21:11:58.728631839Z"
+    description: Confluent Schema Registry for managing schema versions for the Alert
+      Stream
+    digest: b43f898d4fb7df77eafc570ff69a21638d9175653b6156a77020ae44a0359630
+    maintainers:
+    - email: swnelson@uw.edu
+      name: swnelson
+    name: alert-stream-schema-registry
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/alert-stream-schema-registry-1.0.0/alert-stream-schema-registry-1.0.0.tgz
     version: 1.0.0
   cachemachine:
   - apiVersion: v2
@@ -5640,4 +5668,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-09T16:00:08.891493332Z"
+generated: "2021-11-09T21:11:58.730758575Z"
