@@ -1,0 +1,16 @@
+# -- Name used by the registry, and by its users.
+name: alert-schema-registry
+
+# -- Version of the Strimzi Custom Resource API. The correct value depends on
+# the deployed version of Strimzi. See [this blog
+# post](https://strimzi.io/blog/2021/04/29/api-conversion/) for more.
+strimziAPIVersion: v1beta2
+
+# -- Strimzi "cluster name" of the broker to use as a backend.
+clusterName: alert-broker
+
+# -- Name of the topic used by the Schema Registry to store data.
+schemaTopic: registry-schemas
+
+# -- Hostname for an ingress which sends traffic to the Schema Registry.
+hostname: alert-schemas-int.lsst.cloud
