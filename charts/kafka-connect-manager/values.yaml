@@ -87,6 +87,8 @@ s3Sink:
   timestampExtractor: "Record"
   # -- The record field to be used as timestamp by the timestamp extractor. Only applies if timestampExtractor is set to RecordField.
   timestampField: ""
+  # -- The object storage connection URL, for non-AWS s3 providers.
+  storeUrl: ""
 
 mirrorMaker2:
   # -- Whether the MirrorMaker 2 connectors (heartbeat, checkpoint and mirror-source) are deployed.

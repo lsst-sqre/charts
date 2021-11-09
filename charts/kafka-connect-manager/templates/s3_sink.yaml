@@ -25,6 +25,7 @@ data:
       "behavior.on.null.values": {{ .Values.s3Sink.behaviorOnNullValues | quote }},
       "schema.cache.config": {{ .Values.s3Sink.schemaCacheConfig }},
       "storage.class": "io.confluent.connect.s3.storage.S3Storage",
+      "store.url": {{ .Values.s3Sink.storeUrl | quote }},
       "tasks.max": {{ .Values.s3Sink.tasksMax }},
       "timestamp.extractor": {{ .Values.s3Sink.timestampExtractor | quote }},
       "timestamp.field": {{ .Values.s3Sink.timestampField | quote }},
