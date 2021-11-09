@@ -1170,6 +1170,18 @@ entries:
   gafaelfawr:
   - apiVersion: v2
     appVersion: 3.2.1
+    created: "2021-11-09T15:56:14.581605096Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 1daef59ff1c8f07fb914fa4c6a55527147de3c9181c9893829e9b177c46dcb50
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.2.8/gafaelfawr-4.2.8.tgz
+    version: 4.2.8
+  - apiVersion: v2
+    appVersion: 3.2.1
     created: "2021-10-11T16:00:03.213717346Z"
     description: The Gafaelfawr authentication and authorization system
     digest: 4bb24fb90dfad50cb7d5e5757c0ecfec4e91f50778e9881c7345adef3f60f379
@@ -5591,4 +5603,17 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/telegraf-ds-1.0.23/telegraf-ds-1.0.23.tgz
     version: 1.0.23
-generated: "2021-11-09T02:21:36.510724746Z"
+  vo-cutouts:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-11-09T15:56:14.68456589Z"
+    description: Image cutout service complying with IVOA SODA
+    digest: 5ea59ffde7dee73a7e4e353b87c4df6fda42ec689f7fcdd9336ab2be0a92a95b
+    home: https://github.com/lsst-sqre/vo-cutouts
+    maintainers:
+    - name: rra
+    name: vo-cutouts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-11-09T15:56:14.686755115Z"
