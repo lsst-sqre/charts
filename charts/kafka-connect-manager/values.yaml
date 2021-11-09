@@ -7,7 +7,7 @@ image:
   pullPolicy: Always
 
 influxdbSink:
-  # -- To create multiple instances of this connector repeat this block. The name of the instance, "influxdb-sink" in this case, is used as scope for the template variables.
+  # -- To create multiple instances of this connector, repeat this block under the connector instance name. The connector instance name, "influxdb-sink" in this case, is used as scope for the template variables.
   influxdb-sink:
     # -- Name of the connector instance to create.
     name: influxdb-sink
@@ -45,7 +45,7 @@ s3Sink:
   enabled: false
   # -- Name of the connector to create.
   name: s3-sink
-  # -- s3 bucket name. Must exist already.
+  # -- s3 bucket name. The bucket must already exist at the s3 provider.
   s3BucketName: ""
   # -- s3 region
   s3Region: "us-east-1"
@@ -87,6 +87,8 @@ s3Sink:
   timestampExtractor: "Record"
   # -- The record field to be used as timestamp by the timestamp extractor. Only applies if timestampExtractor is set to RecordField.
   timestampField: ""
+  # -- The object storage connection URL, for non-AWS s3 providers.
+  storeUrl: ""
 
 mirrorMaker2:
   # -- Whether the MirrorMaker 2 connectors (heartbeat, checkpoint and mirror-source) are deployed.
