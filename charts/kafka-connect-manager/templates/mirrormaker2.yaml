@@ -39,7 +39,8 @@ data:
       "topics": {{ .Values.mirrorMaker2.topicRegex | quote }},
       "sync.topic.acls.enabled": {{ .Values.mirrorMaker2.syncTopicAclsEnabled | quote }},
       "key.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
-      "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter"
+      "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+      "max.request.size": {{ .Values.mirrorMaker2.maxRequestSize }}
     }
 ---
 apiVersion: apps/v1
