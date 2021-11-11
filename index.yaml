@@ -5067,6 +5067,18 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/opendistro-es-1.1.0/opendistro-es-1.1.0.tgz
     version: 1.1.0
+  plot-navigator:
+  - apiVersion: v2
+    appVersion: 0.5.2
+    created: "2021-11-11T22:59:54.199952037Z"
+    description: Panel-based plot viewer.
+    digest: 6bd9e6c24f6db99d4cd39e476f5f756d3dc1a1802ffbbd4d246b4383f7d84ce0
+    maintainers:
+    - name: ctslater
+    name: plot-navigator
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/plot-navigator-1.0.0/plot-navigator-1.0.0.tgz
+    version: 1.0.0
   postgres:
   - apiVersion: v2
     appVersion: "1.0"
@@ -5735,4 +5747,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-11T22:52:30.39568322Z"
+generated: "2021-11-11T22:59:54.202330567Z"
