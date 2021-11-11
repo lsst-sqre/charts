@@ -1,0 +1,16 @@
+hostname: ""
+# Include leading forward slash in basePath
+basePath: "/plot-navigator"
+image:
+  repository: lsstdm/pipetask-plot-navigator
+  tag: ""
+
+# This is the path to a butler.yaml file.
+# e.g. s3://butler-us-central1-panda-dev/dc2/butler-external.yaml
+butler_uri: ""
+
+# override in phalanx
+butler_secret_path: ""
+
+ingress:
+  annotations: {}

@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plot-navigator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plot-navigator
+  template:
+    metadata:
+      labels:
+        app: plot-navigator
+    spec:
+      volumes:
+        - name: butler-secret
+          secret:
+            secretName: butler-secret
+      containers:
+      - name: plot-navigator
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion}}
+        imagePullPolicy: Always
+        env:
+          - name: BUTLER_URI
+            value: {{ .Values.butler_uri | quote }}
+        volumeMounts:
+          - name: butler-secret
+            mountPath: "/home/worker/.lsst/"
+        command:
+          - /bin/bash
+          - -c
+          - panel serve dashboard_gen3.py --port 8080 --prefix {{ .Values.basePath }} --allow-websocket-origin {{ .Values.hostname }}
