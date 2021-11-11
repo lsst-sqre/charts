@@ -1,6 +1,6 @@
 # kafka-connect-manager
 
-![Version: 0.9.7](https://img.shields.io/badge/Version-0.9.7-informational?style=flat-square) ![AppVersion: 0.9.3](https://img.shields.io/badge/AppVersion-0.9.3-informational?style=flat-square)
+![Version: 0.9.8](https://img.shields.io/badge/Version-0.9.8-informational?style=flat-square) ![AppVersion: 0.9.3](https://img.shields.io/badge/AppVersion-0.9.3-informational?style=flat-square)
 
 A Helm chart to deploy kafka connectors
 
@@ -57,6 +57,7 @@ A Helm chart to deploy kafka connectors
 | jdbcSink.tasksMax | string | `"10"` | Number of Kafka Connect tasks. |
 | jdbcSink.topicRegex | string | `".*"` | Regex for selecting topics. |
 | mirrorMaker2.enabled | bool | `false` | Whether the MirrorMaker 2 connectors (heartbeat, checkpoint and mirror-source) are deployed. |
+| mirrorMaker2.maxRequestSize | int | `26214400` | The max size of a request in bytes |
 | mirrorMaker2.name | string | `"replicator"` | Name od the connector to create. |
 | mirrorMaker2.replicationPolicySeparator | string | `"."` | Separator used to format the remote topic name. Use an empty string if sourceClusterAlias is empty. |
 | mirrorMaker2.sourceClusterAlias | string | `"src"` | Alias for the source cluster. The remote topic name is prefixed by this value. Use an empty string to preserve the name of the source topic in the destination cluster. |
@@ -69,7 +70,7 @@ A Helm chart to deploy kafka connectors
 | s3Sink.awsSecret | string | `"aws-secret"` | Name of the Kubernetes secret with the `aws_access_key_id` and `aws_secret_access_key` keys. |
 | s3Sink.behaviorOnNullValues | string | `"fail"` | How to handle records with a null value (for example, Kafka tombstone records). Valid options are ignore and fail. |
 | s3Sink.checkInterval | string | `"15000"` | The interval, in milliseconds, to check for new topics and update the connector. |
-| s3Sink.enabled | bool | `true` | Whether the Amazon S3 Sink connector is deployed. It is configured to use the Parquet format class with Snappy compression and a time based partitioner. |
+| s3Sink.enabled | bool | `false` | Whether the Amazon S3 Sink connector is deployed. It is configured to use the Parquet format class with Snappy compression and a time based partitioner. |
 | s3Sink.excludedTopicRegex | string | `""` | Regex to exclude topics from the list of selected topics from Kafka. |
 | s3Sink.flushSize | string | `"1000"` | Number of records written to store before invoking file commits. |
 | s3Sink.locale | string | `"en-US"` | The locale to use when partitioning with TimeBasedPartitioner. |
