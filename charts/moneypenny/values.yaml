@@ -44,7 +44,7 @@ ingress:
   enabled: false
   annotations:
     nginx.ingress.kubernetes.io/auth-method: GET
-    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr-service.gafaelfawr.svc.cluster.local:8080/auth?scope=admin:provision"
+    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=admin:provision"
   hosts:
     - host: chart-example.local
       paths: ["/moneypenny"]
