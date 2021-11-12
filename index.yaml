@@ -2228,6 +2228,24 @@ entries:
   kafka-connect-manager:
   - apiVersion: v1
     appVersion: 0.9.3
+    created: "2021-11-12T21:02:14.871512637Z"
+    description: A Helm chart to deploy kafka connectors
+    digest: 5a8b5accbd4cee12238f01a046cbd14f093331cad16e68defa06451eb0cf97d4
+    home: https://kafka-connect-manager.lsst.io/
+    keywords:
+    - Kafka, InfluxDB Sink, S3 Sink, JDBC Sink, MirrorMaker 2
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: kafka-connect-manager
+    sources:
+    - https://github.com/lsst-sqre/kafka-connect-manager
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/kafka-connect-manager-0.9.9/kafka-connect-manager-0.9.9.tgz
+    version: 0.9.9
+  - apiVersion: v1
+    appVersion: 0.9.3
     created: "2021-11-11T22:52:30.393876029Z"
     description: A Helm chart to deploy kafka connectors
     digest: 4819e619f53399ea98c725e6a92d077953263fdfdc6fe6aea7575bd6dcc81fa9
@@ -5770,4 +5788,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-12T00:33:39.694190685Z"
+generated: "2021-11-12T21:02:14.873666262Z"
