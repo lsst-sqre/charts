@@ -1197,6 +1197,18 @@ entries:
     version: 0.1.2
   gafaelfawr:
   - apiVersion: v2
+    appVersion: 3.3.0
+    created: "2021-11-12T00:33:39.539251655Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 2568fbd753ae9d260dd0905cd2d1ff862c27875111c62fb2833cb73db054e6fa
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.3.0/gafaelfawr-4.3.0.tgz
+    version: 4.3.0
+  - apiVersion: v2
     appVersion: 3.2.1
     created: "2021-11-09T16:00:08.741942601Z"
     description: The Gafaelfawr authentication and authorization system
@@ -3032,6 +3044,17 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.1/mobu-0.1.1.tgz
     version: 0.1.1
   moneypenny:
+  - apiVersion: v2
+    appVersion: "1.0"
+    created: "2021-11-12T00:33:39.692031297Z"
+    description: A Helm chart for Kubernetes
+    digest: 41cf9531245d42383432f5ef0dda0a0ef3683a2651acadfb4bd04fb271557952
+    maintainers:
+    - name: athornton
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.1.2/moneypenny-0.1.2.tgz
+    version: 0.1.2
   - apiVersion: v2
     appVersion: "1.0"
     created: "2021-10-04T23:41:56.174200771Z"
@@ -5747,4 +5770,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-11T22:59:54.202330567Z"
+generated: "2021-11-12T00:33:39.694190685Z"
