@@ -111,8 +111,6 @@ mirrorMaker2:
   tasksMax: 1
   # -- Whether to monitor source cluster ACLs for changes.
   syncTopicAclsEnabled: false
-  # -- The max size of a request in bytes
-  maxRequestSize: 26214400
 
 jdbcSink:
   # -- Whether the JDBC Sink connector is deployed.
