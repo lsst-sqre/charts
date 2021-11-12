@@ -1,6 +1,6 @@
 # kafka-connect-manager
 
-![Version: 0.9.8](https://img.shields.io/badge/Version-0.9.8-informational?style=flat-square) ![AppVersion: 0.9.3](https://img.shields.io/badge/AppVersion-0.9.3-informational?style=flat-square)
+![Version: 0.9.9](https://img.shields.io/badge/Version-0.9.9-informational?style=flat-square) ![AppVersion: 0.9.3](https://img.shields.io/badge/AppVersion-0.9.3-informational?style=flat-square)
 
 A Helm chart to deploy kafka connectors
 
@@ -57,7 +57,6 @@ A Helm chart to deploy kafka connectors
 | jdbcSink.tasksMax | string | `"10"` | Number of Kafka Connect tasks. |
 | jdbcSink.topicRegex | string | `".*"` | Regex for selecting topics. |
 | mirrorMaker2.enabled | bool | `false` | Whether the MirrorMaker 2 connectors (heartbeat, checkpoint and mirror-source) are deployed. |
-| mirrorMaker2.maxRequestSize | int | `26214400` | The max size of a request in bytes |
 | mirrorMaker2.name | string | `"replicator"` | Name od the connector to create. |
 | mirrorMaker2.replicationPolicySeparator | string | `"."` | Separator used to format the remote topic name. Use an empty string if sourceClusterAlias is empty. |
 | mirrorMaker2.sourceClusterAlias | string | `"src"` | Alias for the source cluster. The remote topic name is prefixed by this value. Use an empty string to preserve the name of the source topic in the destination cluster. |
@@ -80,6 +79,7 @@ A Helm chart to deploy kafka connectors
 | s3Sink.rotateIntervalMs | string | `"600000"` | The time interval in milliseconds to invoke file commits. Set to 10 minutes by default. |
 | s3Sink.s3BucketName | string | `""` | s3 bucket name. The bucket must already exist at the s3 provider. |
 | s3Sink.s3PartRetries | int | `3` | Maximum number of retry attempts for failed requests. Zero means no retries. |
+| s3Sink.s3PartSize | int | `5242880` | The Part Size in S3 Multi-part Uploads. Valid Values: [5242880,…,2147483647] |
 | s3Sink.s3Region | string | `"us-east-1"` | s3 region |
 | s3Sink.s3RetryBackoffMs | int | `200` | How long to wait in milliseconds before attempting the first retry of a failed S3 request. |
 | s3Sink.s3SchemaCompatibility | string | `"NONE"` | s3 schema compatibility |
