@@ -21,6 +21,7 @@ data:
       "s3.region": {{ .Values.s3Sink.s3Region | quote }},
       "s3.schema.compatibility": {{ .Values.s3Sink.s3SchemaCompatibility | quote }},
       "s3.part.retries": {{ .Values.s3Sink.s3PartRetries }},
+      "s3.part.size": {{ .Values.s3Sink.s3PartSize }},
       "s3.retry.backoff.ms": {{ .Values.s3Sink.s3RetryBackoffMs}},
       "behavior.on.null.values": {{ .Values.s3Sink.behaviorOnNullValues | quote }},
       "schema.cache.config": {{ .Values.s3Sink.schemaCacheConfig }},

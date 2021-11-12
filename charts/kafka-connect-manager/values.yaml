@@ -53,6 +53,8 @@ s3Sink:
   s3SchemaCompatibility: "NONE"
   # -- Maximum number of retry attempts for failed requests. Zero means no retries.
   s3PartRetries: 3
+  # -- The Part Size in S3 Multi-part Uploads. Valid Values: [5242880,…,2147483647]
+  s3PartSize: 5242880
   # -- How long to wait in milliseconds before attempting the first retry of a failed S3 request.
   s3RetryBackoffMs: 200
   # -- The size of the schema cache used in the Avro converter.
