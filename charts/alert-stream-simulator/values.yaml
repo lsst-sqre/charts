@@ -30,9 +30,9 @@ strimziAPIVersion: v1beta2
 
 image:
   # -- Source repository for the image which holds the rubin-alert-stream program.
-  repository: swnelson/alert-stream-simulator
+  repository: lsstdm/alert-stream-simulator
   # -- Tag to use for the rubin-alert-stream container.
-  tag: "latest"
+  tag: v1.0.0
   # -- Pull policy for the Deployment
   imagePullPolicy: IfNotPresent
 
