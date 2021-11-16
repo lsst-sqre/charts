@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-load-data"
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "0"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: "{{ .Release.Name }}"
+      labels:
+        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: pre-install-job
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        volumeMounts:
+          - name: "kafka-client-secret"
+            mountPath: "/etc/kafka-client-secret"
+            readOnly: True
+          - name: "kafka-server-ca-cert"
+            mountPath: "/etc/kafka-server-ca-cert"
+            readOnly: True
+        command:
+          - "rubin-alert-sim"
+          - "--verbose"
+          - "create-stream"
+          - "--broker={{ .Values.clusterName }}-kafka-bootstrap:{{ .Values.clusterPort }}"
+          - "--dst-topic={{ .Values.staticTopicName }}"
+          - "--schema-id={{ .Values.schemaID }}"
+          - "--tls-client-key-location=/etc/kafka-client-secret/user.key"
+          - "--tls-client-crt-location=/etc/kafka-client-secret/user.crt"
+          - "--tls-server-ca-crt-location=/etc/kafka-server-ca-cert/ca.crt"
+          - "--force"
+          - "/var/sample_alert_data/rubin_single_visit_sample.avro"
+      volumes:
+        - name: "kafka-client-secret"
+          secret:
+            secretName: "{{ .Values.kafkaUserName}}"
+        - name: "kafka-server-ca-cert"
+          secret:
+            secretName: "{{ .Values.clusterName}}-cluster-ca-cert"
