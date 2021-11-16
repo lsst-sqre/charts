@@ -58,6 +58,20 @@ entries:
   alert-stream-simulator:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2021-11-16T23:59:47.25887067Z"
+    description: Producer which repeatedly publishes a static set of alerts into a
+      Kafka topic
+    digest: 1cfeddd4692d8e0c3f349144aebd051a686c0d481bd7cf7fe55486b9200be1ad
+    maintainers:
+    - email: swnelson@uw.edu
+      name: swnelson
+    name: alert-stream-simulator
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/alert-stream-simulator-1.1.2/alert-stream-simulator-1.1.2.tgz
+    version: 1.1.2
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2021-11-16T23:48:36.037044032Z"
     description: Producer which repeatedly publishes a static set of alerts into a
       Kafka topic
@@ -5842,4 +5856,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-16T23:48:36.039504732Z"
+generated: "2021-11-16T23:59:47.260792602Z"
