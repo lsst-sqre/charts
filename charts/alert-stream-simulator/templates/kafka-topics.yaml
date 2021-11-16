@@ -1,0 +1,23 @@
+apiVersion: "kafka.strimzi.io/{{ .Values.strimziAPIVersion }}"
+kind: KafkaTopic
+metadata:
+  name: "{{ .Values.staticTopicName }}"
+  labels:
+    strimzi.io/cluster: "{{ .Values.clusterName }}"
+spec:
+  partitions: 8
+  replicas: 1
+  config:
+    cleanup.policy: compact
+---
+apiVersion: "kafka.strimzi.io/{{ .Values.strimziAPIVersion }}"
+kind: KafkaTopic
+metadata:
+  name: "{{ .Values.replayTopicName }}"
+  labels:
+    strimzi.io/cluster: "{{ .Values.clusterName }}"
+spec:
+  partitions: 8
+  replicas: 2
+  config:
+    cleanup.policy: compact
