@@ -48,3 +48,10 @@ Selector labels
 app.kubernetes.io/name: {{ include "alertStreamSimulator.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+{{/*
+Versioned name for the static topic
+*/}}
+{{- define "alertStreamSimulator.staticTopicName" -}}
+{{ .Values.staticTopicName }}-v-{{ .Chart.Version }}
+{{- end }}

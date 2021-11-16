@@ -32,7 +32,7 @@ image:
   # -- Source repository for the image which holds the rubin-alert-stream program.
   repository: lsstdm/alert-stream-simulator
   # -- Tag to use for the rubin-alert-stream container.
-  tag: v1.0.0
+  tag: v1.1.0
   # -- Pull policy for the Deployment
   imagePullPolicy: IfNotPresent
 
