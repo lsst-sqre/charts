@@ -13,7 +13,7 @@ spec:
       # Allow all operations on both topics
       - resource:
           type: topic
-          name: "{{ .Values.staticTopicName }}"
+          name: {{ template "alertStreamSimulator.staticTopicName" . }}
           patternType: literal
         operation: All
         type: allow

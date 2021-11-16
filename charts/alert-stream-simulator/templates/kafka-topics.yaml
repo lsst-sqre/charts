@@ -1,11 +1,11 @@
 apiVersion: "kafka.strimzi.io/{{ .Values.strimziAPIVersion }}"
 kind: KafkaTopic
 metadata:
-  name: "{{ .Values.staticTopicName }}"
+  name: {{ template "alertStreamSimulator.staticTopicName" . }}
   labels:
     strimzi.io/cluster: "{{ .Values.clusterName }}"
 spec:
-  partitions: 8
+  partitions: 1
   replicas: 1
   config:
     cleanup.policy: compact
