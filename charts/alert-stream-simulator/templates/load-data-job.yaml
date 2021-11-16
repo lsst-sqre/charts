@@ -33,7 +33,7 @@ spec:
             readOnly: True
         command:
           - "rubin-alert-sim"
-          - "--verbose"
+          - "--debug"
           - "create-stream"
           - "--broker={{ .Values.clusterName }}-kafka-bootstrap:{{ .Values.clusterPort }}"
           - "--dst-topic={{ template "alertStreamSimulator.staticTopicName" . }}"

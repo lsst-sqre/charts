@@ -5,10 +5,12 @@ metadata:
   labels:
     strimzi.io/cluster: "{{ .Values.clusterName }}"
 spec:
-  partitions: 1
-  replicas: 1
+  partitions: 8
+  replicas: 2
   config:
-    cleanup.policy: compact
+    message.max.bytes: "10000000"  # 10MB
+    retention.ms: "-1" # infinite
+    retention.bytes: "-1"
 ---
 apiVersion: "kafka.strimzi.io/{{ .Values.strimziAPIVersion }}"
 kind: KafkaTopic
@@ -20,4 +22,7 @@ spec:
   partitions: 8
   replicas: 2
   config:
-    cleanup.policy: compact
+    cleanup.policy: "delete"
+    message.max.bytes: "10000000"  # 10MB
+    retention.ms: "604800000" # 7 days
+    retention.bytes: "-1"
