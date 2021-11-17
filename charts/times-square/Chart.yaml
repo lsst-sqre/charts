@@ -1,0 +1,15 @@
+apiVersion: v2
+description: A parameterized notebook web viewer for the Rubin Science Platform.
+name: times-square
+type: application
+sources:
+  - https://github.com/lsst-sqre/times-square
+maintainers:
+  - name: jonathansick
+    url: https://github.com/jonathansick
+
+# The chart version.
+version: 0.1.0
+
+# The app's version corresponding to the image tag.
+appVersion: "0.1.0"

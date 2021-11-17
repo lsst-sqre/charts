@@ -19,12 +19,14 @@ See the [Helm Documentation](https://helm.sh/docs/) for more information.
 
 # Adding a new chart to this repository
 
-This command will create  a [collection of files](https://helm.sh/docs/topics/charts/#the-chart-file-structure) that defines your chart:
+This command will create a [collection of files](https://helm.sh/docs/topics/charts/#the-chart-file-structure) that defines your chart using SQuaRE's standard conventions for the Rubin Science Platform:
 
 ```
 cd charts
-helm create mychart
+helm create <mychart> --starter `echo $(cd $(dirname ../rsp-starter); pwd)/rsp-starter`
 ```
+
+(Replace `<mychart>` with your chart's name.)
 
 Be sure to do this in the `charts` subdirectory, since only charts in that directory will be released and uploaded to the repository.
 
