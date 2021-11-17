@@ -79,3 +79,26 @@ tolerations: []
 
 # -- Affinity rules for the times-square deployment pod
 affinity: {}
+
+# -- Path to the Vault secret (`secret/k8s_operator/<host>/times-square`, for
+# example)
+# @default -- None, must be set
+vaultSecretsPath: ""
+
+# Configurations for the times-square application.
+config:
+  # -- Name of the service.
+  name: "times-square"
+
+  # -- Run profile: "production" or "development"
+  profile: "production"
+
+  # -- Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"
+  logLevel: "INFO"
+
+  # -- Logger name
+  loggerName: "times-square"
+
+  # -- RSP hostname, for computing internal service URLs
+  # @default -- None, must be set
+  environmentUrl: ""
