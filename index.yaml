@@ -5831,6 +5831,22 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/telegraf-ds-1.0.23/telegraf-ds-1.0.23.tgz
     version: 1.0.23
+  times-square:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-11-17T19:41:35.827468238Z"
+    description: A parameterized notebook web viewer for the Rubin Science Platform.
+    digest: 6a299a94bd01456d5a77345603054734c75d61904744af2fd9b91f2ed768dd51
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: times-square
+    sources:
+    - https://github.com/lsst-sqre/times-square
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/times-square-0.1.0/times-square-0.1.0.tgz
+    version: 0.1.0
   vo-cutouts:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -5856,4 +5872,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-11-16T23:59:47.260792602Z"
+generated: "2021-11-17T19:41:35.831375467Z"
