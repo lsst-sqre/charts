@@ -5,11 +5,11 @@ image:
   repository: lsstdm/pipetask-plot-navigator
   tag: ""
 
-# This is the path to a butler.yaml file.
-# e.g. s3://butler-us-central1-panda-dev/dc2/butler-external.yaml
-butler_uri: ""
+# Environment variables to be passed to panel.
+# e.g. butler configuration and auth params.
+environment: {}
 
-# override in phalanx
+# Path to the vault secret.
 butler_secret_path: ""
 
 ingress:
