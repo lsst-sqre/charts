@@ -14,3 +14,9 @@ schemaTopic: registry-schemas
 
 # -- Hostname for an ingress which sends traffic to the Schema Registry.
 hostname: alert-schemas-int.lsst.cloud
+
+schemaSync:
+  image:
+    repository: swnelson/lsst_alert_packet
+    tag: latest
+  subject: alert-packet
