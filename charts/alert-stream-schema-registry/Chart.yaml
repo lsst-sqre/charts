@@ -1,6 +1,6 @@
 apiVersion: v2
 name: alert-stream-schema-registry
-version: 1.0.0
+version: 2.0.0
 description: Confluent Schema Registry for managing schema versions for the Alert Stream
 maintainers:
   - name: swnelson
