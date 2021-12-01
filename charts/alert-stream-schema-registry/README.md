@@ -17,6 +17,10 @@ Confluent Schema Registry for managing schema versions for the Alert Stream
 | clusterName | string | `"alert-broker"` | Strimzi "cluster name" of the broker to use as a backend. |
 | hostname | string | `"alert-schemas-int.lsst.cloud"` | Hostname for an ingress which sends traffic to the Schema Registry. |
 | name | string | `"alert-schema-registry"` | Name used by the registry, and by its users. |
+| schemaSync | object | `{"image":{"repository":"swnelson/lsst_alert_packet","tag":"latest"},"subject":"alert-packet"}` | Configuration for the Job which injects the most recent alert_packet schema into the Schema Registry |
+| schemaSync.image.repository | string | `"swnelson/lsst_alert_packet"` | Repository of a container which has the alert_packet syncLatestSchemaToRegistry.py program |
+| schemaSync.image.tag | string | `"latest"` | Version of the container to use |
+| schemaSync.subject | string | `"alert-packet"` | Subject name to use when inserting data into the Schema Registry |
 | schemaTopic | string | `"registry-schemas"` | Name of the topic used by the Schema Registry to store data. |
 | strimziAPIVersion | string | `"v1beta2"` | Version of the Strimzi Custom Resource API. The correct value depends on the deployed version of Strimzi. See [this blog post](https://strimzi.io/blog/2021/04/29/api-conversion/) for more. |
 
