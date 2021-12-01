@@ -25,5 +25,5 @@ spec:
         image: "{{ .Values.schemaSync.image.repository }}:{{ .Values.schemaSync.image.tag | default .Chart.AppVersion }}"
         command:
           - "syncLatestSchemaToRegistry.py"
-          - "--schema-registry-url=http://{{ .Values.name }}"
+          - "--schema-registry-url=http://{{ .Values.name }}:{{ .Values.port }}"
           - "--subject={{ .Values.schemaSync.subject }}"

@@ -27,4 +27,4 @@ spec:
             name: {{ .Values.name }}
             port:
               # TODO: not configurable in strimzi-registry-operator
-              number: 8081
+              number: {{ .Values.port }}
