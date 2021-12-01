@@ -25,9 +25,9 @@ schemaSync:
   image:
     # -- Repository of a container which has the alert_packet
     # syncLatestSchemaToRegistry.py program
-    repository: swnelson/lsst_alert_packet
+    repository: lsstdm/lsst_alert_packet
     # -- Version of the container to use
-    tag: latest
+    tag: tickets-DM-32743
 
   # -- Subject name to use when inserting data into the Schema Registry
   subject: alert-packet
