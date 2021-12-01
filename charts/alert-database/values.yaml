@@ -1,0 +1,34 @@
+# -- Configuration for the ingester, which pulls data out of Kafka and writes
+# it to the database backend.
+ingester:
+  image:
+    repository: swnelson/alert_database_ingester
+    tag: v1.1.0
+    imagePullPolicy: IfNotPresent
+
+  kafka:
+    # -- Name of a Strimzi Kafka cluster to connect to.
+    cluster: alert-broker
+
+    # -- Port to connect to on the Strimzi Kafka cluster. It should be an
+    # internal listener that expects SCRAM SHA-512 auth.
+    port: 9092
+
+    # -- The username of the Kafka user identity used to connect to the broker.
+    user: alert-database-ingester
+
+    # -- Name of the topic which will holds alert data.
+    topic: alerts
+
+    # -- API version of the Strimzi installation's custom resource definitions
+    strimziAPIVersion: v1beta2
+
+  # -- URL of a schema registry instance
+  schemaRegistryURL: ""
+
+storage:
+  gcp:
+    # -- Name of a GCP project that has a bucket for database storage
+    project: ""
+    # -- Name of a Google Cloud Storage bucket in GCP
+    bucket: ""
