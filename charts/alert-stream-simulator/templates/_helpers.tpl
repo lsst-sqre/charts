@@ -53,5 +53,5 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Versioned name for the static topic
 */}}
 {{- define "alertStreamSimulator.staticTopicName" -}}
-{{ .Values.staticTopicName }}-v-{{ .Chart.Version }}
+{{ .Values.staticTopicName }}-rev-{{ .Release.Revision }}
 {{- end }}
