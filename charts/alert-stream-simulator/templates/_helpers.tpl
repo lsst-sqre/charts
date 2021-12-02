@@ -50,8 +50,6 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
-Versioned name for the static topic
+Name for the static alerts topic.
 */}}
-{{- define "alertStreamSimulator.staticTopicName" -}}
-{{ .Values.staticTopicName }}-rev-{{ .Release.Revision }}
-{{- end }}
+{{- define "alertStreamSimulator.staticTopicName" -}}alerts-static{{- end }}
