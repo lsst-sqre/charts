@@ -1,6 +1,6 @@
 # alert-stream-broker
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Kafka broker cluster for distributing alerts
 
@@ -15,6 +15,8 @@ Kafka broker cluster for distributing alerts
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | cluster.name | string | `"alert-broker"` | Name used for the Kafka broker, and used by Strimzi for many annotations. |
+| kafka.bootstrapIP | string | `""` | IP address that should be used by the broker's external bootstrap load balancer for access from the internet. The format of this is a string like "192.168.1.1". |
+| kafka.brokerIPs | list | `[]` | List of IP addresses that should be used by each broker's as the advertised address for access from the internet. The format of this is a list of strings like ["192.168.1.1", "192.168.1.1"]. Each replica should get an IP, in order: broker 0 will get the first IP, broker 1 will get the second, and so on. |
 | kafka.config | object | `{"log.retention.bytes":"644245094400","log.retention.hours":168,"offsets.retention.minutes":10080}` | Configuration overrides for the Kafka server. |
 | kafka.config."log.retention.bytes" | string | `"644245094400"` | Maximum retained number of bytes for a topic's data. This is a string -- to avoid YAML type conversion issues for large numbers. |
 | kafka.config."log.retention.hours" | int | `168` | Number of days for a topic's data to be retained. |
