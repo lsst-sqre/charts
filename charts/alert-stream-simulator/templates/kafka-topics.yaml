@@ -1,23 +1,6 @@
 apiVersion: "kafka.strimzi.io/{{ .Values.strimziAPIVersion }}"
 kind: KafkaTopic
 metadata:
-  name: {{ template "alertStreamSimulator.staticTopicName" . }}
-  annotations:
-    # The static topic should be deleted and replaced on every sync. This way,
-    # the job which loads data into it always has a clean slate.
-    argocd.argoproj.io/sync-options: Replace=true
-  labels:
-    strimzi.io/cluster: "{{ .Values.clusterName }}"
-spec:
-  partitions: 8
-  replicas: 2
-  config:
-    retention.ms: "-1" # infinite
-    retention.bytes: "-1"
----
-apiVersion: "kafka.strimzi.io/{{ .Values.strimziAPIVersion }}"
-kind: KafkaTopic
-metadata:
   name: "{{ .Values.replayTopicName }}"
   labels:
     strimzi.io/cluster: "{{ .Values.clusterName }}"
