@@ -25,6 +25,18 @@ spec:
         tls: true
         authentication:
           type: tls
+        configuration:
+          {{- if .Values.bootstrapIP }}
+          bootstrap:
+            loadBalancerIP: {{ .Values.kafka.bootstrapIP }}
+          {{- end }}
+          {{- if .Values.brokerIPs }}
+          brokers:
+            {{- range $idx, $ip := .Values.brokerIPs }}
+            - broker: {{ $idx }}
+              loadBalancerIP: {{ $ip }}
+            {{- end }}
+          {{ end }}
     authorization:
       type: simple
 {{- if .Values.superusers }}

@@ -36,6 +36,18 @@ kafka:
     # -- to avoid YAML type conversion issues for large numbers.
     log.retention.bytes: "644245094400"
 
+  # -- IP address that should be used by the broker's external bootstrap load
+  # balancer for access from the internet. The format of this is a string like
+  # "192.168.1.1".
+  bootstrapIP: ""
+
+  # -- List of IP addresses that should be used by each broker's as the
+  # advertised address for access from the internet. The format of this is a
+  # list of strings like ["192.168.1.1", "192.168.1.1"]. Each replica should
+  # get an IP, in order: broker 0 will get the first IP, broker 1 will get the
+  # second, and so on.
+  brokerIPs: []
+
 
 # -- A list of usernames for users who should have global admin permissions.
 # These users will be created, along with their credentials.
