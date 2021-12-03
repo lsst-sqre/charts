@@ -56,6 +56,20 @@ entries:
   alert-stream-schema-registry:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-12-03T00:26:01.590639307Z"
+    description: Confluent Schema Registry for managing schema versions for the Alert
+      Stream
+    digest: 237ecf9bebdc1c5ce070b8dd45859cd18a4a9963bffb6f6e5d4636787c875711
+    maintainers:
+    - email: swnelson@uw.edu
+      name: swnelson
+    name: alert-stream-schema-registry
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/alert-stream-schema-registry-2.1.0/alert-stream-schema-registry-2.1.0.tgz
+    version: 2.1.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-12-01T19:14:45.242271049Z"
     description: Confluent Schema Registry for managing schema versions for the Alert
       Stream
@@ -6072,4 +6086,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-02T23:23:04.727236638Z"
+generated: "2021-12-03T00:26:01.594387254Z"
