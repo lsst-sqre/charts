@@ -1,0 +1,81 @@
+# Default values for sherlock.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Number of web deployment pods to start
+replicaCount: 1
+
+image:
+  # -- Image to use in the sherlock deployment
+  repository: lsstsqre/sherlock
+
+  # -- Pull policy for the sherlock image
+  pullPolicy: Always
+
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# -- Secret names to use for all Docker pulls
+imagePullSecrets: []
+
+# -- Override the base name for resources
+nameOverride: ""
+
+# -- Override the full name for resources (includes the release name)
+fullnameOverride: ""
+
+# -- Annotations for the sherlock deployment pod
+podAnnotations: {}
+
+service:
+  # -- Type of service to create
+  type: ClusterIP
+
+  # -- Port of the service to create and map to the ingress
+  port: 8080
+
+ingress:
+  # -- Create an ingress resource
+  enabled: true
+
+  # -- Hostname of the deployment to run behind
+  host: ""
+
+  # -- Gafaelfawr Auth Query string (default, unauthenticated)
+  # gafaelfawrAuthQuery: "scope=exec:portal&delegate_to=portal&delegate_scope=read:tap"
+  gafaelfawrAuthQuery: ""
+
+  # -- Additional annotations for the ingress rule
+  annotations: {}
+
+  # -- Path type for the ingress rule
+  pathType: ImplementationSpecific
+
+  # -- URL path to dispatch to the sherlock deployment pod
+  path: "/api/sherlock"
+
+# -- Resource limits and requests for the sherlock deployment pod
+resources: {}
+
+autoscaling:
+  # -- Enable autoscaling of sherlock deployment
+  enabled: false
+
+  # -- Minimum number of sherlock deployment pods
+  minReplicas: 1
+
+  # -- Maximum number of sherlock deployment pods
+  maxReplicas: 100
+
+  # -- Target CPU utilization of sherlock deployment pods
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# -- Node selection rules for the sherlock deployment pod
+nodeSelector: {}
+
+# -- Tolerations for the sherlock deployment pod
+tolerations: []
+
+# -- Affinity rules for the sherlock deployment pod
+affinity: {}
