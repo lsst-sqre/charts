@@ -36,18 +36,29 @@ kafka:
     # -- to avoid YAML type conversion issues for large numbers.
     log.retention.bytes: "644245094400"
 
-  # -- IP address that should be used by the broker's external bootstrap load
-  # balancer for access from the internet. The format of this is a string like
-  # "192.168.1.1".
-  bootstrapIP: ""
+  externalListener:
+    bootstrap:
+      # -- IP address that should be used by the broker's external bootstrap load
+      # balancer for access from the internet. The format of this is a string like
+      # "192.168.1.1".
+      ip: ""
+      # -- Hostname that should be used by clients who want to connect to the
+      # broker through the bootstrap address.
+      host: ""
 
-  # -- List of IP addresses that should be used by each broker's as the
-  # advertised address for access from the internet. The format of this is a
-  # list of strings like ["192.168.1.1", "192.168.1.1"]. Each replica should
-  # get an IP, in order: broker 0 will get the first IP, broker 1 will get the
-  # second, and so on.
-  brokerIPs: []
-
+    # -- List of hostname and IP for each broker. The format of this is a list
+    # of maps with 'ip' and 'host' keys. For example:
+    #
+    #    - ip: "192.168.1.1"
+    #      host: broker-0.example
+    #    - ip: "192.168.1.2"
+    #      host: broker-1.example
+    #
+    # Each replica should get a host and IP. If these are unset, then IP
+    # addresses will be chosen automatically by the Kubernetes cluster's
+    # LoadBalancer controller, and hostnames will be unset, which will break
+    # TLS connections.
+    brokers: []
 
 # -- A list of usernames for users who should have global admin permissions.
 # These users will be created, along with their credentials.
