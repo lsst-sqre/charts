@@ -25,20 +25,37 @@ spec:
         tls: true
         authentication:
           type: tls
-        {{- if or .Values.kafka.bootstrapIP .Values.kafka.brokerIPs }}
         configuration:
-          {{- if .Values.kafka.bootstrapIP }}
+          {{- /*
+
+          This is complicated looking, but that's just because these are all
+          optional parameters. They're optional because we don't actually know
+          the right IP addresses to use on a fresh deployment.
+
+          The LoadBalancer Service type triggers automatic creation of a cloud
+          load balancer, which will get provisioned with some IP address that
+          we don't actually choose - it's picked for us. Once that has been
+          done, these options make it possible to pin the IP address: we can
+          request the actual IP that we already have. This is important because
+          it lets us configure a DNS record, associating a hostname with that
+          pinned IP address.
+
+          */}}
           bootstrap:
-            loadBalancerIP: {{ .Values.kafka.bootstrapIP }}
+            {{- if .Values.kafka.externalListener.bootstrap.ip }}
+            loadBalancerIP: {{ .Values.kafka.externalListener.bootstrap.ip }}
           {{- end }}
-          {{- if .Values.kafka.brokerIPs }}
+          {{- if .Values.kafka.externalListener.bootstrap.host }}
+            host: {{ .Values.kafka.externalListener.bootstrap.host}}
+          {{- end }}
+          {{- if .Values.kafka.externalListener.brokers }}
           brokers:
-            {{- range $idx, $ip := .Values.kafka.brokerIPs }}
+            {{- range $idx, $broker := .Values.kafka.externalListener.brokers }}
             - broker: {{ $idx }}
-              loadBalancerIP: {{ $ip }}
+              loadBalancerIP: {{ $broker.ip }}
+              advertisedHost: {{ $broker.host }}
             {{- end }}
           {{- end }}
-        {{- end }}
     authorization:
       type: simple
 {{- if .Values.superusers }}
