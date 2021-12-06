@@ -8,7 +8,7 @@ spec:
   secretName: {{ .Values.cluster.name }}-external-tls
 
   issuerRef:
-    name: ca-issuer
+    name: {{ .Values.tls.certIssuerName }}
     kind: ClusterIssuer
 
   subject:

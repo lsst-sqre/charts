@@ -77,5 +77,8 @@ zookeeper:
 
 tls:
   subject:
-    # -- Organization to use in the 'Subject' field of the broker's TLS certifcates.
+    # -- Organization to use in the 'Subject' field of the broker's TLS certifcate.
     organization: "Vera C. Rubin Observatory"
+  # -- Name of a ClusterIssuer capable of provisioning a TLS certificate for
+  # the broker.
+  certIssuerName: "cert-issuer-letsencrypt-dns"
