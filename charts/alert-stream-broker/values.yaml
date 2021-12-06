@@ -74,3 +74,8 @@ zookeeper:
     size: 1000Gi
     # -- Name of a StorageClass to use when requesting persistent volumes.
     storageClassName: standard
+
+tls:
+  subject:
+    # -- Organization to use in the 'Subject' field of the broker's TLS certifcates.
+    organization: "Vera C. Rubin Observatory"

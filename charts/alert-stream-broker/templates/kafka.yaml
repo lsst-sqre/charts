@@ -42,12 +42,15 @@ spec:
 
           */}}
           bootstrap:
+
             {{- if .Values.kafka.externalListener.bootstrap.ip }}
             loadBalancerIP: {{ .Values.kafka.externalListener.bootstrap.ip }}
-          {{- end }}
-          {{- if .Values.kafka.externalListener.bootstrap.host }}
+            {{- end }}
+
+            {{- if .Values.kafka.externalListener.bootstrap.host }}
             host: {{ .Values.kafka.externalListener.bootstrap.host}}
-          {{- end }}
+            {{- end }}
+
           {{- if .Values.kafka.externalListener.brokers }}
           brokers:
             {{- range $idx, $broker := .Values.kafka.externalListener.brokers }}
@@ -56,6 +59,14 @@ spec:
               advertisedHost: {{ $broker.host }}
             {{- end }}
           {{- end }}
+
+          {{- if .Values.kafka.externalListener.bootstrap.host }}
+          brokerCertChainAndKey:
+            secretName: {{ .Values.cluster.name }}-external-tls
+            certificate: tls.crt
+            key: tls.key
+          {{- end }}
+
     authorization:
       type: simple
 {{- if .Values.superusers }}
