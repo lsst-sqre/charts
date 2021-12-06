@@ -17,7 +17,7 @@ spec:
 
   dnsNames:
     - {{ .Values.kafka.externalListener.bootstrap.host }}
-    {{- range _, $broker := .Values.kafka.externalListener.brokers }}
+    {{- range $broker := .Values.kafka.externalListener.brokers }}
     - {{ $broker.host }}
     {{- end }}
 {{- end }}
