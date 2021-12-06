@@ -47,10 +47,6 @@ spec:
             loadBalancerIP: {{ .Values.kafka.externalListener.bootstrap.ip }}
             {{- end }}
 
-            {{- if .Values.kafka.externalListener.bootstrap.host }}
-            host: {{ .Values.kafka.externalListener.bootstrap.host}}
-            {{- end }}
-
           {{- if .Values.kafka.externalListener.brokers }}
           brokers:
             {{- range $idx, $broker := .Values.kafka.externalListener.brokers }}
