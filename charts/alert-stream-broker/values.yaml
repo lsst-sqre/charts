@@ -82,3 +82,12 @@ tls:
   # -- Name of a ClusterIssuer capable of provisioning a TLS certificate for
   # the broker.
   certIssuerName: "cert-issuer-letsencrypt-dns"
+
+# -- Path to the secret resource in Vault
+vaultSecretsPath: ""
+
+# -- Override for the full name used for Kubernetes resources; by default one
+# will be created based on the chart name and helm release name.
+fullnameOverride: ""
+
+nameOverride: ""

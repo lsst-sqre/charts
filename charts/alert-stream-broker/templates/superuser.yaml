@@ -9,6 +9,11 @@ metadata:
 spec:
   authentication:
     type: scram-sha-512
+    password:
+      valueFrom:
+        secretKeyRef:
+          name: {{ template "alertStreamBroker.fullname" $ }}-secrets
+          key: {{ $username }}-pass
   authorization:
     type: simple
     acls:
