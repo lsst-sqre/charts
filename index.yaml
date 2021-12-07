@@ -3,6 +3,19 @@ entries:
   alert-stream-broker:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2021-12-07T21:32:34.382124308Z"
+    description: Kafka broker cluster for distributing alerts
+    digest: be8f3b47052b5a06ebda164aa52981d314f68369eaa9580af99a500083f6069e
+    maintainers:
+    - email: swnelson@uw.edu
+      name: swnelson
+    name: alert-stream-broker
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/alert-stream-broker-2.3.1/alert-stream-broker-2.3.1.tgz
+    version: 2.3.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-12-07T20:13:34.235098317Z"
     description: Kafka broker cluster for distributing alerts
     digest: 4dc0a93674ba65b632d54af89fd97e69afaa0f771a9968f61344c521e9dad1be
@@ -6164,4 +6177,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-07T20:13:34.238565015Z"
+generated: "2021-12-07T21:32:34.384480323Z"
