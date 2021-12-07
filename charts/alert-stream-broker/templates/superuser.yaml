@@ -13,7 +13,7 @@ spec:
       valueFrom:
         secretKeyRef:
           name: {{ template "alertStreamBroker.fullname" $ }}-secrets
-          key: {{ $username }}-pass
+          key: {{ $username }}-password
   authorization:
     type: simple
     acls:
