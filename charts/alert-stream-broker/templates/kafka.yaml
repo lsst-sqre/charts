@@ -24,7 +24,7 @@ spec:
         type: loadbalancer
         tls: true
         authentication:
-          type: tls
+          type: scram-sha-512
         configuration:
           {{- /*
 
