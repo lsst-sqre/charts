@@ -71,7 +71,7 @@ superusers:
 # to be stored as 1Password secrets which are replicated into Vault. Each
 # username should have a "{{ $username }}-password" secret associated with it.
 users:
-  - # -- The username for the user that should be created.
+  -  # -- The username for the user that should be created.
     username: rubin-testing
     # -- A list of topics that the user should get read-only access to.
     readonlyTopics: ["alert-stream", "alerts-simulated"]
