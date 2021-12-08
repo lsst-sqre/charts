@@ -1,6 +1,6 @@
 # alert-stream-broker
 
-![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Kafka broker cluster for distributing alerts
 
@@ -34,6 +34,10 @@ Kafka broker cluster for distributing alerts
 | superusers | list | `["kafka-admin"]` | A list of usernames for users who should have global admin permissions. These users will be created, along with their credentials. |
 | tls.certIssuerName | string | `"cert-issuer-letsencrypt-dns"` | Name of a ClusterIssuer capable of provisioning a TLS certificate for the broker. |
 | tls.subject.organization | string | `"Vera C. Rubin Observatory"` | Organization to use in the 'Subject' field of the broker's TLS certifcate. |
+| users | list | `[{"groups":["rubin-testing"],"readonlyTopics":["alert-stream","alerts-simulated"],"username":"rubin-testing"}]` | A list of users that should be created and granted access. Passwords for these users are not generated automatically; they are expected to be stored as 1Password secrets which are replicated into Vault. Each username should have a "{{ $username }}-password" secret associated with it. |
+| users[0].groups | list | `["rubin-testing"]` | A list of string prefixes for groups that the user should get admin access to, allowing them to create, delete, describe, etc consumer groups. Note that these are prefix-matched, not just literal exact matches. |
+| users[0].readonlyTopics | list | `["alert-stream","alerts-simulated"]` | A list of topics that the user should get read-only access to. |
+| users[0].username | string | `"rubin-testing"` | The username for the user that should be created. |
 | vaultSecretsPath | string | `""` | Path to the secret resource in Vault |
 | zookeeper.replicas | int | `3` | Number of Zookeeper replicas to run. |
 | zookeeper.storage.size | string | `"1000Gi"` | Size of the backing storage disk for each of the Zookeeper instances. |
