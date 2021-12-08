@@ -65,6 +65,23 @@ kafka:
 superusers:
   - kafka-admin
 
+# -- A list of users that should be created and granted access.
+#
+# Passwords for these users are not generated automatically; they are expected
+# to be stored as 1Password secrets which are replicated into Vault. Each
+# username should have a "{{ $username }}-password" secret associated with it.
+users:
+  - # -- The username for the user that should be created.
+    username: rubin-testing
+    # -- A list of topics that the user should get read-only access to.
+    readonlyTopics: ["alert-stream", "alerts-simulated"]
+    # -- A list of string prefixes for groups that the user should get admin
+    # access to, allowing them to create, delete, describe, etc consumer
+    # groups. Note that these are prefix-matched, not just literal exact
+    # matches.
+    groups: ["rubin-testing"]
+
+
 zookeeper:
   # -- Number of Zookeeper replicas to run.
   replicas: 3
