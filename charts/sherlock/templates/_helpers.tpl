@@ -49,3 +49,10 @@ Selector labels
 app.kubernetes.io/name: {{ include "sherlock.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "sherlock.serviceAccountName" -}}
+{{ default (include "sherlock.fullname" .) .Values.serviceAccount.name }}
+{{- end -}}
