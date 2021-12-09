@@ -5698,6 +5698,19 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/semaphore-0.1.0/semaphore-0.1.0.tgz
     version: 0.1.0
+  sherlock:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-12-09T21:39:05.240662803Z"
+    description: A Helm chart for Kubernetes
+    digest: 16e6e7f53015e13109d1c4b079ce08a13bda92cc9930c0b9640862e5bca193dd
+    maintainers:
+    - name: cbanek
+    name: sherlock
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/sherlock-0.1.0/sherlock-0.1.0.tgz
+    version: 0.1.0
   squareone:
   - apiVersion: v2
     appVersion: 0.4.0
@@ -6190,4 +6203,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-08T21:43:12.202693343Z"
+generated: "2021-12-09T21:39:05.242940232Z"
