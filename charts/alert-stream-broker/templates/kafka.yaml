@@ -106,3 +106,26 @@ spec:
   entityOperator:
     topicOperator: {}
     userOperator: {}
+
+  {{- if .Values.kafka.nodePool.affinities }}
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoreDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              {{- range $affinity := .Values.kafka.nodePool.affinities }}
+              - key: {{ $affinity.key }}
+                operator: In
+                values:
+                - {{ $affinity.value }}
+              {{- end }}
+  {{- end }}
+  {{- if .Values.kafka.nodePool.tolerations }}
+  tolerations:
+    {{- range $tol := .Values.kafka.nodePool.tolerations }}
+    - key: {{ $tol.key }}
+      operator: "Equal"
+      value: {{ $tol.value }}
+      effect: {{ $tol.effect }}
+    {{- end }}
+  {{- end }}
