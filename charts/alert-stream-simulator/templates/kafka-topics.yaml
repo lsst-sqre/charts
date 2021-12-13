@@ -9,5 +9,5 @@ spec:
   replicas: 2
   config:
     cleanup.policy: "delete"
-    retention.ms: "604800000" # 7 days
-    retention.bytes: "-1"
+    retention.ms: "{{ .Values.maxMillisecondsRetained }}" # 7 days
+    retention.bytes: "{{ .Values.maxBytesRetained }}"
