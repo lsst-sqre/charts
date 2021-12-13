@@ -94,6 +94,31 @@ spec:
         size: {{ .Values.kafka.storage.size }}
         class: {{ .Values.kafka.storage.storageClassName }}
         deleteClaim: false
+
+    {{- if .Values.kafka.nodePool.tolerations }}
+    tolerations:
+      {{- range $tol := .Values.kafka.nodePool.tolerations }}
+      - key: {{ $tol.key }}
+        operator: "Equal"
+        value: {{ $tol.value }}
+        effect: {{ $tol.effect }}
+      {{- end }}
+    {{- end }}
+
+    {{- if .Values.kafka.nodePool.affinities }}
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoreDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                {{- range $affinity := .Values.kafka.nodePool.affinities }}
+                - key: {{ $affinity.key }}
+                  operator: In
+                  values:
+                  - {{ $affinity.value }}
+                {{- end }}
+    {{- end }}
+
   zookeeper:
     replicas: {{ .Values.zookeeper.replicas }}
     storage:
@@ -103,29 +128,31 @@ spec:
       size: {{ .Values.zookeeper.storage.size }}
       class: {{ .Values.zookeeper.storage.storageClassName }}
       deleteClaim: false
+
+    {{- if .Values.kafka.nodePool.tolerations }}
+    tolerations:
+      {{- range $tol := .Values.kafka.nodePool.tolerations }}
+      - key: {{ $tol.key }}
+        operator: "Equal"
+        value: {{ $tol.value }}
+        effect: {{ $tol.effect }}
+      {{- end }}
+    {{- end }}
+
+    {{- if .Values.kafka.nodePool.affinities }}
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoreDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                {{- range $affinity := .Values.kafka.nodePool.affinities }}
+                - key: {{ $affinity.key }}
+                  operator: In
+                  values:
+                  - {{ $affinity.value }}
+                {{- end }}
+    {{- end }}
+
   entityOperator:
     topicOperator: {}
     userOperator: {}
-
-  {{- if .Values.kafka.nodePool.affinities }}
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoreDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              {{- range $affinity := .Values.kafka.nodePool.affinities }}
-              - key: {{ $affinity.key }}
-                operator: In
-                values:
-                - {{ $affinity.value }}
-              {{- end }}
-  {{- end }}
-  {{- if .Values.kafka.nodePool.tolerations }}
-  tolerations:
-    {{- range $tol := .Values.kafka.nodePool.tolerations }}
-    - key: {{ $tol.key }}
-      operator: "Equal"
-      value: {{ $tol.value }}
-      effect: {{ $tol.effect }}
-    {{- end }}
-  {{- end }}
