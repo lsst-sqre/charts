@@ -1470,6 +1470,18 @@ entries:
   gafaelfawr:
   - apiVersion: v2
     appVersion: 3.4.1
+    created: "2021-12-13T18:31:48.489657491Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: f8f623ae4072f21d35a72ae03eb8dd64339bb1dd5e53b00cbdfc0d55b1113189
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.4.2/gafaelfawr-4.4.2.tgz
+    version: 4.4.2
+  - apiVersion: v2
+    appVersion: 3.4.1
     created: "2021-12-10T01:01:51.058744387Z"
     description: The Gafaelfawr authentication and authorization system
     digest: cdebbdc99ca8bdf69598c59c3b7cb3a61e4e3d21d32b13d3ae4b70605538a1cc
@@ -6193,6 +6205,18 @@ entries:
   vo-cutouts:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2021-12-13T18:31:48.580060921Z"
+    description: Image cutout service complying with IVOA SODA
+    digest: 3626fc5ab4ed74eea380468d6465d5558ac24caf4df8c1f917d5674129359bd9
+    home: https://github.com/lsst-sqre/vo-cutouts
+    maintainers:
+    - name: rra
+    name: vo-cutouts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.2/vo-cutouts-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2021-11-09T16:00:08.887802592Z"
     description: Image cutout service complying with IVOA SODA
     digest: 69a6df32160d9ec0cc05a7bd229ee2bfbb245b4dea8f4008d744494822f3c6d5
@@ -6215,4 +6239,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-10T01:01:51.061342906Z"
+generated: "2021-12-13T18:31:48.582392822Z"
