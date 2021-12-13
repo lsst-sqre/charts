@@ -61,9 +61,18 @@ kafka:
     brokers: []
 
   nodePool:
+    # -- List of node affinities to set for the broker's nodes. The key should
+    # be a label key, and the value should be a label value, and then the
+    # broker will prefer running Kafka and Zookeeper on nodes with those
+    # key-value pairs.
     affinities:
       - key: kafka
         value: ok
+
+    # -- List of taint tolerations when scheduling the broker's pods onto
+    # nodes. The key should be a taint key, the value should be a taint
+    # value, and effect should be a taint effect that can be tolerated
+    # (ignored) when scheduling the broker's Kafka and Zookeeper pods.
     tolerations:
       - key: kafka
         value: ok
