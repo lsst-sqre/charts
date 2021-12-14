@@ -5,9 +5,9 @@ metadata:
   labels:
     strimzi.io/cluster: "{{ .Values.clusterName }}"
 spec:
-  partitions: "{{ .Values.replayTopicPartitions }}"
+  partitions: {{ .Values.replayTopicPartitions }}
   replicas: {{ .Values.replayTopicReplicas }}
   config:
     cleanup.policy: "delete"
-    retention.ms: "{{ .Values.maxMillisecondsRetained }}" # 7 days
-    retention.bytes: "{{ .Values.maxBytesRetained }}"
+    retention.ms: {{ .Values.maxMillisecondsRetained }} # 7 days
+    retention.bytes: {{ .Values.maxBytesRetained }}
