@@ -2,58 +2,55 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- Number of pods to start
 replicaCount: 1
 
-image:
-  repository: lsstsqre/moneypenny
-  tag: latest
-  pullPolicy: Always
-
-imagePullSecrets: []
-pull_secret: ""
-
-vault_secrets:
-  enabled: false
-  name: "pull-secret"
-  path: ""
-
+# -- Override the base name for resources
 nameOverride: ""
+
+# -- Override the full name for resources (includes the release name)
 fullnameOverride: ""
 
+image:
+  # -- moneypenny image to use
+  repository: "lsstsqre/moneypenny"
+
+  # -- Pull policy for the moneypenny image
+  pullPolicy: "IfNotPresent"
+
+  # -- Tag of moneypenny image to use
+  # @default -- The appVersion of the chart
+  tag: ""
+
+# -- Secret names to use for all Docker pulls
+imagePullSecrets: []
+
 serviceAccount:
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
+  # -- Name of the service account to use
+  # @default -- Name based on the fullname template
   name: ""
 
-podSecurityContext:
-  runAsNonRoot: true
-  runAsUser: 1000
-  runAsGroup: 1000
-
-securityContext:
-  capabilities:
-    drop:
-      - ALL
-  readOnlyRootFilesystem: true
-
-service:
-  type: ClusterIP
-  port: 8080
-
 ingress:
-  enabled: false
-  annotations:
-    nginx.ingress.kubernetes.io/auth-method: GET
-    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=admin:provision"
-  hosts:
-    - host: chart-example.local
-      paths: ["/moneypenny"]
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  # -- Hostname for the ingress
+  # @default -- None, must be set
+  host: ""
 
-orders: |
+  # -- Gafaelfawr auth query string
+  gafaelfawrAuthQuery: "scope=admin:provision"
+
+  # -- Configure TLS for the ingress if needed. If multiple ingresses share
+  # the same hostname, only one of them needs a TLS configuration.
+  tls: []
+
+networkPolicy:
+  # -- Whether to restrict access to the service. Only enable if the ingress
+  # controller namespace is tagged with `gafaelfawr.lsst.io/ingress: "true"`.
+  enabled: false
+
+orders:
+  # -- List of specifications for containers to run to commission a new user.
+  # Each member of the list should set a container `name`, `image`, and
+  # `securityContext`.
   commission:
     - name: farthing
       image: lsstsqre/farthing
@@ -61,6 +58,10 @@ orders: |
         runAsUser: 1000
         runAsNonRootUser: true
         allowPrivilegeEscalation: false
+
+  # -- List of specifications for containers to run to retire a user.  Each
+  # member of the list should set a container `name`, `image`, and
+  # `securityContext`.
   retire:
     - name: farthing
       image: lsstsqre/farthing
@@ -68,8 +69,34 @@ orders: |
         runAsUser: 1000
         runAsNonRootUser: true
         allowPrivilegeEscalation: false
+
+  # -- Additional volumes to mount when commissioning or retiring users.
   volumes: []
 
+service:
+  # -- Type of service to create
+  type: ClusterIP
+
+  # -- Port of the service to create and map to the ingress
+  port: 8080
+
+# -- Resource limits and requests for the vo-cutouts frontend pod
+resources: {}
+
+# -- Annotations for the vo-cutouts frontend pod
+podAnnotations: {}
+
+# -- Node selector rules for the vo-cutouts frontend pod
+nodeSelector: {}
+
+# -- Tolerations for the vo-cutouts frontend pod
+tolerations: []
+
+# -- Affinity rules for the vo-cutouts frontend pod
+affinity: {}
+
+# -- Moneypenny quotes
+# @default -- A small selection
 quips: |
   Flattery will get you nowhere... but don't stop trying.
   %

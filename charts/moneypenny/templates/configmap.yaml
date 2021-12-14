@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: moneypenny
+  name: {{ include "moneypenny.fullname" .}}
+  labels:
+    {{- include "moneypenny.labels" . | nindent 4 }}
 data:
-  # These configurations are injected as environment variables into the
-  # app container.
   SAFIR_NAME: "moneypenny"
   SAFIR_PROFILE: "production"
   SAFIR_LOGGER: "moneypenny"
   SAFIR_LOG_LEVEL: "INFO"
-  DOCKER_SECRET_NAME: "pull-secret"
+  {{- with (first .Values.imagePullSecrets) }}
+  DOCKER_SECRET_NAME: {{ .name | quote }}
+  {{- end }}

@@ -45,8 +45,16 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
+Selector labels
+*/}}
+{{- define "moneypenny.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "moneypenny.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "moneypenny.serviceAccountName" -}}
-    {{ default (include "moneypenny.fullname" .) .Values.serviceAccount.name }}
+{{ default (include "moneypenny.fullname" .) .Values.serviceAccount.name }}
 {{- end -}}
