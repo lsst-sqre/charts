@@ -5,8 +5,8 @@ metadata:
   labels:
     strimzi.io/cluster: "{{ .Values.clusterName }}"
 spec:
-  partitions: 8
-  replicas: 2
+  partitions: "{{ .Values.replayTopicPartitions }}"
+  replicas: {{ .Values.replayTopicReplicas }}
   config:
     cleanup.policy: "delete"
     retention.ms: "{{ .Values.maxMillisecondsRetained }}" # 7 days
