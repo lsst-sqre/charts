@@ -1,6 +1,6 @@
 # moneypenny
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
+![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -26,8 +26,8 @@ A Helm chart for Kubernetes
 | nameOverride | string | `""` | Override the base name for resources |
 | networkPolicy.enabled | bool | `false` | Whether to restrict access to the service. Only enable if the ingress controller namespace is tagged with `gafaelfawr.lsst.io/ingress: "true"`. |
 | nodeSelector | object | `{}` | Node selector rules for the vo-cutouts frontend pod |
-| orders.commission | list | `[{"image":"lsstsqre/farthing","name":"farthing","securityContext":{"allowPrivilegeEscalation":false,"runAsNonRootUser":true,"runAsUser":1000}}]` | List of specifications for containers to run to commission a new user. Each member of the list should set a container `name`, `image`, and `securityContext`. |
-| orders.retire | list | `[{"image":"lsstsqre/farthing","name":"farthing","securityContext":{"allowPrivilegeEscalation":false,"runAsNonRootUser":true,"runAsUser":1000}}]` | List of specifications for containers to run to retire a user.  Each member of the list should set a container `name`, `image`, and `securityContext`. |
+| orders.commission | list | `[{"image":"lsstsqre/farthing","name":"farthing","securityContext":{"allowPrivilegeEscalation":false,"runAsNonRootUser":true,"runAsUser":1000}}]` | List of specifications for containers to run to commission a new user. Each member of the list should set a container `name`, `image`, and `securityContext` and may contain `volumeMounts`. |
+| orders.retire | list | `[{"image":"lsstsqre/farthing","name":"farthing","securityContext":{"allowPrivilegeEscalation":false,"runAsNonRootUser":true,"runAsUser":1000}}]` | List of specifications for containers to run to retire a user.  Each member of the list should set a container `name`, `image`, and `securityContext` and may contain `volumeMounts`. |
 | orders.volumes | list | `[]` | Additional volumes to mount when commissioning or retiring users. |
 | podAnnotations | object | `{}` | Annotations for the vo-cutouts frontend pod |
 | quips | string | A small selection | Moneypenny quotes |
