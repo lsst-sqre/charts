@@ -50,7 +50,7 @@ networkPolicy:
 orders:
   # -- List of specifications for containers to run to commission a new user.
   # Each member of the list should set a container `name`, `image`, and
-  # `securityContext`.
+  # `securityContext` and may contain `volumeMounts`.
   commission:
     - name: farthing
       image: lsstsqre/farthing
@@ -61,7 +61,7 @@ orders:
 
   # -- List of specifications for containers to run to retire a user.  Each
   # member of the list should set a container `name`, `image`, and
-  # `securityContext`.
+  # `securityContext` and may contain `volumeMounts`.
   retire:
     - name: farthing
       image: lsstsqre/farthing

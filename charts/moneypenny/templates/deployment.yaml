@@ -32,7 +32,7 @@ spec:
       containers:
         - name: "moneypenny"
           securityContext:
-            allowPrivilegeEscapation: false
+            allowPrivilegeEscalation: false
             capabilities:
               drop:
                 - "all"
