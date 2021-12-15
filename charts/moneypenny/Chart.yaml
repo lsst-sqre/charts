@@ -1,7 +1,8 @@
 apiVersion: v2
-appVersion: "0.3.0"
+appVersion: "0.3.1"
 description: A Helm chart for Kubernetes
 name: moneypenny
 maintainers:
   - name: athornton
-version: 0.3.0
+  - name: rra
+version: 0.3.1
