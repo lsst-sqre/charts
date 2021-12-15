@@ -1,6 +1,6 @@
 # vo-cutouts
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 Image cutout service complying with IVOA SODA
 
@@ -51,7 +51,6 @@ Image cutout service complying with IVOA SODA
 | image.tag | string | The appVersion of the chart | Tag of vo-cutouts image to use |
 | imagePullSecrets | list | `[]` | Secret names to use for all Docker pulls |
 | ingress.annotations | object | `{}` | Additional annotations to add to the ingress |
-| ingress.enabled | bool | `true` | Whether to create an ingress |
 | ingress.gafaelfawrAuthQuery | string | `"scope=read:image"` | Gafaelfawr auth query string |
 | ingress.host | string | `""` | Hostname for the ingress |
 | ingress.tls | list | `[]` | Configures TLS for the ingress if needed. If multiple ingresses share the same hostname, only one of them needs a TLS configuration. |

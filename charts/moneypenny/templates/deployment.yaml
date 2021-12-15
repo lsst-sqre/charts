@@ -2,72 +2,83 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "moneypenny.fullname" . }}
-  namespace: {{ .Release.Namespace }}
   labels:
-{{ include "moneypenny.labels" . | indent 4 }}
+    {{- include "moneypenny.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "moneypenny.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+      {{- include "moneypenny.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/config-m: {{ include (print $.Template.BasePath "/cm-m-config.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       labels:
-        app.kubernetes.io/name: {{ include "moneypenny.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        {{- include "moneypenny.selectorLabels" . | nindent 8 }}
     spec:
-    {{- with .Values.imagePullSecrets }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
-      serviceAccountName: {{ template "moneypenny.serviceAccountName" . }}
+      {{- end }}
+      serviceAccountName: {{ include "moneypenny.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
-        - name: {{ .Chart.Name }}
+        - name: "moneypenny"
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+            allowPrivilegeEscapation: false
+            capabilities:
+              drop:
+                - "all"
+            readOnlyRootFilesystem: true
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           envFrom:
             - configMapRef:
                 name: {{ template "moneypenny.fullname" . }}
           ports:
-            - name: http
+            - name: "http"
               containerPort: 8080
-              protocol: TCP
+              protocol: "TCP"
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path: "/"
+              port: "http"
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path: "/"
+              port: "http"
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           volumeMounts:
-          - name: m-config
-            mountPath: /opt/lsst/software/moneypenny/config/M
-          - name: quips
-            mountPath: /opt/lsst/software/moneypenny/config/quips
+          - name: "m-config"
+            mountPath: "/opt/lsst/software/moneypenny/config/M"
+          - name: "quips"
+            mountPath: "/opt/lsst/software/moneypenny/config/quips"
       volumes:
-      - name: m-config
-        configMap:
-          name: {{ template "moneypenny.fullname" . }}-m-config
-      - name: quips
-        configMap:
-          name: {{ template "moneypenny.fullname" . }}-quips
+        - name: "m-config"
+          configMap:
+            name: {{ template "moneypenny.fullname" . }}-m-config
+        - name: "quips"
+          configMap:
+            name: {{ template "moneypenny.fullname" . }}-quips
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-    {{- with .Values.affinity }}
+      {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
+      {{- end }}
+      {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}

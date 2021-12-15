@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ include "moneypenny.fullname" . }}-quips
   labels:
-{{ include "moneypenny.labels" . | indent 4 }}
+    {{- include "moneypenny.labels" . | nindent 4 }}
 data:
-  quips.txt:
-{{- toYaml .Values.quips | indent 2 }}
+  quips.txt: |
+    {{- .Values.quips | nindent 4 }}

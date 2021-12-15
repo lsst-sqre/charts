@@ -38,9 +38,6 @@ serviceAccount:
   name: ""
 
 ingress:
-  # -- Whether to create an ingress
-  enabled: true
-
   # -- Additional annotations to add to the ingress
   annotations: {}
 
