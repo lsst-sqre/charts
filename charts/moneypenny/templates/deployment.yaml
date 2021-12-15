@@ -59,10 +59,15 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           volumeMounts:
-          - name: "m-config"
-            mountPath: "/opt/lsst/software/moneypenny/config/M"
-          - name: "quips"
-            mountPath: "/opt/lsst/software/moneypenny/config/quips"
+            - name: "m-config"
+              mountPath: "/opt/lsst/software/moneypenny/config/M"
+              readOnly: true
+            - name: "quips"
+              mountPath: "/opt/lsst/software/moneypenny/config/quips"
+              readOnly: true
+            - name: "podinfo"
+              mountPath: "/etc/podinfo"
+              readOnly: true
       volumes:
         - name: "m-config"
           configMap:
@@ -70,6 +75,18 @@ spec:
         - name: "quips"
           configMap:
             name: {{ template "moneypenny.fullname" . }}-quips
+        - name: "podinfo"
+          downwardAPI:
+            items:
+              - path: "labels"
+                fieldRef:
+                  fieldPath: "metadata.labels"
+              - path: "name"
+                fieldRef:
+                  fieldPath: "metadata.name"
+              - path: "uid"
+                fieldRef:
+                  fieldPath: "metadata.uid"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
