@@ -3451,6 +3451,17 @@ entries:
     version: 0.1.1
   moneypenny:
   - apiVersion: v2
+    appVersion: 0.3.0
+    created: "2021-12-15T22:56:40.25895541Z"
+    description: A Helm chart for Kubernetes
+    digest: 2ec2add35bd6ef327513ca5ff9643c782c86372713b262b8c2d93ee19e09e8f9
+    maintainers:
+    - name: athornton
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.3.0/moneypenny-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: 0.2.0
     created: "2021-12-15T00:50:07.873462193Z"
     description: A Helm chart for Kubernetes
@@ -6341,4 +6352,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2021-12-15T00:50:07.875368776Z"
+generated: "2021-12-15T22:56:40.265547791Z"
