@@ -4,7 +4,7 @@
 ingester:
   image:
     repository: swnelson/alert_database_ingester
-    tag: v1.1.0
+    tag: v2.0.0
     imagePullPolicy: IfNotPresent
 
   kafka:
@@ -42,5 +42,7 @@ storage:
   gcp:
     # -- Name of a GCP project that has a bucket for database storage
     project: ""
-    # -- Name of a Google Cloud Storage bucket in GCP
-    bucket: ""
+    # -- Name of a Google Cloud Storage bucket in GCP with alert data
+    alertBucket: ""
+    # -- Name of a Google Cloud Storage bucket in GCP with schema data
+    schemaBucket: ""

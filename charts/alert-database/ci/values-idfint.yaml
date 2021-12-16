@@ -8,4 +8,5 @@ ingester:
 storage:
   gcp:
     project: science-platform-int-dc5d
-    bucket: alertdb-packets
+    alertBucket: alertdb-packets
+    schemaBucket: alertdb-schemas

@@ -35,7 +35,8 @@ spec:
             - "--kafka-auth-mechanism=mtls"
             - "--schema-registry-address={{ required "A schema registry URL is required " .Values.ingester.schemaRegistryURL }}"
             - "--gcp-project={{ required "A GCP project is required " .Values.storage.gcp.project }}"
-            - "--gcp-bucket={{ required "A GCP bucket name is required " .Values.storage.gcp.bucket }}"
+            - "--gcp-bucket-alerts={{ required "A GCP bucket name is required " .Values.storage.gcp.alertBucket }}"
+            - "--gcp-bucket-schemas={{ required "A GCP bucket name is required " .Values.storage.gcp.schemaBucket }}"
 
       volumes:
         - name: "kafka-client-secret"
