@@ -45,4 +45,4 @@ spec:
         - name: "kafka-server-ca-cert"
           secret:
             secretName: "{{ .Values.ingester.kafka.cluster}}-cluster-ca-cert"
-      serviceAccountNane: "{{ .Values.ingester.serviceAccountName }}"
+      serviceAccountName: "{{ .Values.ingester.serviceAccountName }}"
