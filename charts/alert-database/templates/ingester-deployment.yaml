@@ -37,6 +37,12 @@ spec:
             - "--gcp-project={{ required "A GCP project is required " .Values.storage.gcp.project }}"
             - "--gcp-bucket-alerts={{ required "A GCP bucket name is required " .Values.storage.gcp.alertBucket }}"
             - "--gcp-bucket-schemas={{ required "A GCP bucket name is required " .Values.storage.gcp.schemaBucket }}"
+            {{- if eq .Values.ingester.logLevel "debug" }}
+            - "--debug"
+            {{- end }}
+            {{- if eq .Values.ingester.logLevel "verbose" }}
+            - "--verbose"
+            {{- end }}
 
       volumes:
         - name: "kafka-client-secret"

@@ -3,8 +3,8 @@
 
 ingester:
   image:
-    repository: swnelson/alert_database_ingester
-    tag: v2.0.0
+    repository: lsstdm/alert_database_ingester
+    tag: v2.0.1
     imagePullPolicy: IfNotPresent
 
   kafka:
@@ -19,7 +19,7 @@ ingester:
     user: alert-database-ingester
 
     # -- Name of the topic which will holds alert data.
-    topic: alerts
+    topic: alerts-simulated
 
     # -- API version of the Strimzi installation's custom resource definitions
     strimziAPIVersion: v1beta2
@@ -37,6 +37,10 @@ ingester:
   # -- The name of the Kubernetes ServiceAccount (*not* the Google Cloud IAM
   # service account!) which is used by the alert database ingester.
   serviceAccountName: alert-database-ingester
+
+  # -- set the log level of the application. can be 'info', or 'debug', or
+  # anything else to suppress logging.
+  logLevel: verbose
 
 storage:
   gcp:
