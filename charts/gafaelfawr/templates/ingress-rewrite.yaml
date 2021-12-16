@@ -1,9 +1,4 @@
-{{- /*
-  Revert 3d0f5a89831d5c05f8d384031df6074fb6287e67 when Argo CD has been
-  fixed to pass in cluster capabilities, or when all clusters are running
-  Kubernetes 1.19 or later.
-*/ -}}
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -26,6 +21,9 @@ spec:
     {{- end }}
         paths:
           - path: "/auth/tokens/id/.*"
+            pathType: "ImplementationSpecific"
             backend:
-              serviceName: {{ template "gafaelfawr.fullname" . }}
-              servicePort: 8080
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
