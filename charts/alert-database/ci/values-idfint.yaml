@@ -1,0 +1,11 @@
+ingester:
+  schemaRegistryURL: https://alert-schemas-int.lsst.cloud
+
+  gcp:
+    serviceAccountName: alert-database-writer
+    projectID: science-platform-int-dc5d
+
+storage:
+  gcp:
+    project: science-platform-int-dc5d
+    bucket: alertdb-packets
