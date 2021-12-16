@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "firefly.fullname" . }}
@@ -29,6 +29,9 @@ spec:
 {{ end }}
       paths:
       - path: "/portal/app(/|$)(.*)"
+        pathType: "ImplementationSpecific"
         backend:
-          serviceName: {{ include "firefly.fullname" . }}
-          servicePort: 8080
+          service:
+            name: {{ include "firefly.fullname" . }}
+            port:
+              number: 8080
