@@ -1,3 +1,9 @@
+# -- Override the base name for resources
+nameOverride: ""
+
+# -- Override the full name for resources (includes the release name)
+fullnameOverride: ""
+
 # Configuration for the ingester, which pulls data out of Kafka and writes
 # it to the database backend.
 
@@ -42,6 +48,32 @@ ingester:
   # anything else to suppress logging.
   logLevel: verbose
 
+server:
+  image:
+    repository: lsstdm/alert_database_server
+    tag: v2.1.0
+    imagePullPolicy: IfNotPresent
+
+  gcp:
+    # -- Name of a service account which has credentials granting access to the
+    # alert database's backing storage buckets.
+    serviceAccountName: ""
+    # -- Project ID which has the above GCP IAM service account
+    projectID: ""
+
+  # -- The name of the Kubernetes ServiceAccount (*not* the Google Cloud IAM
+  # service account!) which is used by the alert database server.
+  serviceAccountName: alertdb-reader
+
+  # -- set the log level of the application. can be 'info', or 'debug', or
+  # anything else to suppress logging.
+  logLevel: verbose
+
+  service:
+    type: ClusterIP
+    port: 3000
+
+
 storage:
   gcp:
     # -- Name of a GCP project that has a bucket for database storage
@@ -50,3 +82,24 @@ storage:
     alertBucket: ""
     # -- Name of a Google Cloud Storage bucket in GCP with schema data
     schemaBucket: ""
+
+ingress:
+  # -- Whether to create an ingress
+  enabled: true
+
+  # Additional annotations to add to the ingress
+  annotations: {}
+
+  # -- Hostname for the ingress
+  # @default -- None, must be set if the ingress is enabled
+  host: ""
+
+  # -- Configures TLS for the ingress if needed. If multiple ingresses share
+  # the same hostname, only one of them needs a TLS configuration.
+  tls: []
+
+  # -- Subpath to host the alert database application under the ingress
+  path: "/alertdb"
+
+  # -- Query string for Gafaelfawr to authorize access
+  gafaelfawrAuthQuery: "scope=exec:admin"
