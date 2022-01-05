@@ -3530,6 +3530,18 @@ entries:
     version: 0.1.1
   moneypenny:
   - apiVersion: v2
+    appVersion: 0.3.2
+    created: "2022-01-05T00:50:36.509216272Z"
+    description: User provisioning actions for the Science Platform
+    digest: 822e8cd780f69905bf066de9dc084860f3994dcaa43d981421f409a040829825
+    maintainers:
+    - name: athornton
+    - name: rra
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.3.2/moneypenny-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v2
     appVersion: 0.3.1
     created: "2021-12-15T23:51:05.545036466Z"
     description: A Helm chart for Kubernetes
@@ -6455,4 +6467,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-04T21:20:32.989684021Z"
+generated: "2022-01-05T00:50:36.512186401Z"
