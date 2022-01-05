@@ -1,6 +1,6 @@
 # alert-database
 
-![Version: 2.0.3](https://img.shields.io/badge/Version-2.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 Archival database of alerts sent through the alert stream.
 
@@ -28,7 +28,7 @@ Archival database of alerts sent through the alert stream.
 | ingester.serviceAccountName | string | `"alert-database-ingester"` | The name of the Kubernetes ServiceAccount (*not* the Google Cloud IAM service account!) which is used by the alert database ingester. |
 | ingress.annotations | object | `{}` |  |
 | ingress.enabled | bool | `true` | Whether to create an ingress |
-| ingress.gafaelfawrAuthQuery | string | `"scope=exec:admin"` | Query string for Gafaelfawr to authorize access |
+| ingress.gafaelfawrAuthQuery | string | `"scope=read:alertdb"` | Query string for Gafaelfawr to authorize access |
 | ingress.host | string | None, must be set if the ingress is enabled | Hostname for the ingress |
 | ingress.path | string | `"/alertdb"` | Subpath to host the alert database application under the ingress |
 | ingress.tls | list | `[]` | Configures TLS for the ingress if needed. If multiple ingresses share the same hostname, only one of them needs a TLS configuration. |
