@@ -3,6 +3,19 @@ entries:
   alert-database:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-01-05T18:37:56.671998376Z"
+    description: Archival database of alerts sent through the alert stream.
+    digest: d18d2b0f106974efcff6744b8d9138549512b71ddc66d117b231da1d36196635
+    maintainers:
+    - email: swnelson@uw.edu
+      name: swnelson
+    name: alert-database
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/alert-database-2.0.3/alert-database-2.0.3.tgz
+    version: 2.0.3
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-01-05T18:18:35.965743976Z"
     description: Archival database of alerts sent through the alert stream.
     digest: 1e50e9a2f05a68f47dfb9b1368371261e8486f37c36f5281281629d204ee6f71
@@ -6480,4 +6493,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-05T18:18:35.970492038Z"
+generated: "2022-01-05T18:37:56.674316857Z"
