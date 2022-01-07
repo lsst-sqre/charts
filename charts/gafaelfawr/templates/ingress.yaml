@@ -1,9 +1,4 @@
-{{- /*
-  Revert 3d0f5a89831d5c05f8d384031df6074fb6287e67 when Argo CD has been
-  fixed to pass in cluster capabilities, or when all clusters are running
-  Kubernetes 1.19 or later.
-*/ -}}
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -24,30 +19,48 @@ spec:
     {{- end }}
         paths:
           - path: "/auth"
+            pathType: Prefix
             backend:
-              serviceName: {{ template "gafaelfawr.fullname" . }}
-              servicePort: 8080
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
           - path: "/login"
+            pathType: Exact
             backend:
-              serviceName: {{ template "gafaelfawr.fullname" . }}
-              servicePort: 8080
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
           - path: "/logout"
+            pathType: Exact
             backend:
-              serviceName: {{ template "gafaelfawr.fullname" . }}
-              servicePort: 8080
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
           - path: "/oauth2/callback"
+            pathType: Exact
             backend:
-              serviceName: {{ template "gafaelfawr.fullname" . }}
-              servicePort: 8080
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
           - path: "/.well-known/jwks.json"
+            pathType: Exact
             backend:
-              serviceName: {{ template "gafaelfawr.fullname" . }}
-              servicePort: 8080
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
           {{- if .Values.config.oidcServer.enabled }}
           - path: "/.well-known/openid-configuration"
+            pathType: Exact
             backend:
-              serviceName: {{ template "gafaelfawr.fullname" . }}
-              servicePort: 8080
+              service:
+                name: {{ template "gafaelfawr.fullname" . }}
+                port:
+                  number: 8080
           {{- end }}
   {{- if .Values.ingress.tls }}
   tls:

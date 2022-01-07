@@ -2,20 +2,22 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ include "<CHARTNAME>.fullname" . }}-networkpolicy
+  name: {{ include "<CHARTNAME>.fullname" . }}
 spec:
   podSelector:
     matchLabels:
       {{- include "<CHARTNAME>.selectorLabels" . | nindent 6 }}
   policyTypes:
     - Ingress
-    - Egress
   ingress:
+    # Allow inbound access from pods (in any namespace) labeled
+    # gafaelfawr.lsst.io/ingress: true.
     - from:
-        - podSelector:
+        - namespaceSelector: {}
+          podSelector:
             matchLabels:
-              {{- include "<CHARTNAME>.selectorLabels" . | nindent 14 }}
+              gafaelfawr.lsst.io/ingress: "true"
       ports:
-        - protocol: TCP
+        - protocol: "TCP"
           port: {{ .Values.service.port }}
 {{- end }}

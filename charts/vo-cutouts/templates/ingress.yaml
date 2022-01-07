@@ -1,8 +1,4 @@
-{{- /*
-  Update apiVersion when Argo CD has been fixed to pass in cluster
-  capabilities, or when all clusters are running Kubernetes 1.19 or later.
-*/ -}}
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -24,9 +20,12 @@ spec:
       http:
         paths:
           - path: "/api/cutout(.*)"
+            pathType: "ImplementationSpecific"
             backend:
-              serviceName: {{ template "vo-cutouts.fullname" . }}
-              servicePort: 8080
+              service:
+                name: {{ template "vo-cutouts.fullname" . }}
+                port:
+                  number: 8080
   {{- if .Values.ingress.tls }}
   tls:
     {{- range .Values.ingress.tls }}

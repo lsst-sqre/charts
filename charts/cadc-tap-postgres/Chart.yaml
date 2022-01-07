@@ -5,4 +5,4 @@ home: https://github.com/lsst-sqre/tap-postgres
 name: cadc-tap-postgres
 maintainers:
   - name: cbanek
-version: 0.1.3
+version: 0.1.4

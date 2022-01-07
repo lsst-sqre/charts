@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -7,18 +7,18 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "900"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "900"
     nginx.ingress.kubernetes.io/rewrite-target: "/tap/$1"
-{{ if .Values.ingress.ssl }}
+    {{- if .Values.ingress.ssl }}
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/proxy-redirect-from: "http://$host/tap/"
     nginx.ingress.kubernetes.io/proxy-redirect-to: "https://$host/api/tap/"
-{{ else }}
+    {{- else }}
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/proxy-redirect-from: "http://$host/tap/"
     nginx.ingress.kubernetes.io/proxy-redirect-to: "http://$host/api/tap/"
-{{ end }}
-{{ if .Values.ingress.anonymous_annotations }}
+    {{- end }}
+{{- if .Values.ingress.anonymous_annotations }}
 {{ toYaml .Values.ingress.anonymous_annotations | indent 4}}
-{{ end }}
+{{- end }}
   name: {{ template "cadc-tap.fullname" . }}-anonymous-ingress
 spec:
   rules:
@@ -30,14 +30,23 @@ spec:
 {{ end }}
       paths:
       - backend:
-          serviceName: {{ template "cadc-tap.fullname" . }}-tap-server
-          servicePort: 8080
+          service:
+            name: {{ template "cadc-tap.fullname" . }}-tap-server
+            port:
+              number: 8080
         path: /api/tap/(availability)
+        pathType: "ImplementationSpecific"
       - backend:
-          serviceName: {{ template "cadc-tap.fullname" . }}-tap-server
-          servicePort: 8080
+          service:
+            name: {{ template "cadc-tap.fullname" . }}-tap-server
+            port:
+              number: 8080
         path: /api/tap/(capabilities)
+        pathType: "ImplementationSpecific"
       - backend:
-          serviceName: {{ template "cadc-tap.fullname" . }}-tap-server
-          servicePort: 8080
+          service:
+            name: {{ template "cadc-tap.fullname" . }}-tap-server
+            port:
+              number: 8080
         path: /api/tap/(swagger-ui.*)
+        pathType: "ImplementationSpecific"
