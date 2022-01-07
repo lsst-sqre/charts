@@ -503,6 +503,17 @@ entries:
   cachemachine:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2022-01-07T19:04:55.412892289Z"
+    description: Service to prepull Docker images for the Science Platform
+    digest: 6a5d27d2efeadd7020f0cb323104bfd9b5b83066276dd906ac5b06068129613e
+    maintainers:
+    - name: cbanek
+    name: cachemachine
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cachemachine-1.1.1/cachemachine-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2021-09-01T18:21:39.805022733Z"
     description: Service to prepull Docker images for the Science Platform
     digest: d6c0f71448117454ed4f761074c376b80e3d1091e237d046db1cd19242e909e4
@@ -689,6 +700,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/cachemachine-0.1.0/cachemachine-0.1.0.tgz
     version: 0.1.0
   cadc-tap:
+  - apiVersion: v1
+    appVersion: 1.1.2
+    created: "2022-01-07T19:04:55.505166488Z"
+    description: A Helm chart for the CADC TAP service
+    digest: b6721ef5b9cc31d69d4bf4ba063ad0aab3954d246d36654ef150db5c4741a98c
+    home: https://github.com/lsst-sqre/lsst-tap-service
+    maintainers:
+    - name: cbanek
+    name: cadc-tap
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-0.3.8/cadc-tap-0.3.8.tgz
+    version: 0.3.8
   - apiVersion: v1
     appVersion: 1.1.2
     created: "2021-11-09T02:21:36.508285082Z"
@@ -938,6 +961,18 @@ entries:
   cadc-tap-postgres:
   - apiVersion: v1
     appVersion: "1.0"
+    created: "2022-01-07T19:04:55.604444763Z"
+    description: A Helm chart for the CADC TAP Postgres service
+    digest: 18cb3fa006e0657a951d5d8cea93eabbfe30bee944b1f52593fae0a66321ac56
+    home: https://github.com/lsst-sqre/tap-postgres
+    maintainers:
+    - name: cbanek
+    name: cadc-tap-postgres
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-postgres-0.1.4/cadc-tap-postgres-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v1
+    appVersion: "1.0"
     created: "2020-12-16T23:38:58.425101661Z"
     description: A Helm chart for the CADC TAP Postgres service
     digest: c547cfea5bd39a15d8ceb3a214534fff3c70ff44b1dbab3d3a419307b9bc88b7
@@ -1083,6 +1118,18 @@ entries:
   datalinker:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-01-07T19:04:55.704911351Z"
+    description: A Helm chart for Kubernetes
+    digest: c8afc03dbded5af54e725de0f6a0987578a1509dfc06e855f131044b911d1b39
+    maintainers:
+    - name: cbanek
+    name: datalinker
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/datalinker-0.1.3/datalinker-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2021-10-29T00:01:20.055432926Z"
     description: A Helm chart for Kubernetes
     digest: 9ec8e4d4420d4e6741f6017aff4f8f4bd0751aa40b627ba78ed231ecd06fdc97
@@ -1118,6 +1165,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/datalinker-0.1.0/datalinker-0.1.0.tgz
     version: 0.1.0
   exposurelog:
+  - apiVersion: v2
+    appVersion: 0.6.0
+    created: "2022-01-07T19:04:55.820670504Z"
+    description: Exposure log service
+    digest: f74d17ad4b05437459fe7301e8303a56acf772649b7f5fa2d592d9f56f4445ef
+    maintainers:
+    - name: r-owen
+    name: exposurelog
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/exposurelog-0.1.32/exposurelog-0.1.32.tgz
+    version: 0.1.32
   - apiVersion: v2
     appVersion: 0.6.0
     created: "2021-06-25T18:32:38.639821739Z"
@@ -1477,6 +1536,18 @@ entries:
   firefly:
   - apiVersion: v2
     appVersion: suit-233-7-dev
+    created: "2022-01-07T19:04:55.927201857Z"
+    description: 'SUIT: the Rubin Science Platform portal aspect'
+    digest: 06e3ee56f4dfa11e61f53e45fcfe3679835d8905a61f21f15cf701e0dea552a9
+    home: https://github.com/lsst/suit
+    maintainers:
+    - name: cbanek
+    name: firefly
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/firefly-0.3.7/firefly-0.3.7.tgz
+    version: 0.3.7
+  - apiVersion: v2
+    appVersion: suit-233-7-dev
     created: "2021-10-06T20:18:50.735459901Z"
     description: 'SUIT: the Rubin Science Platform portal aspect'
     digest: 6efebbe20e4996367a81e0517ca471e7d0075aba089388cd8a43fbc1dcaeb7ce
@@ -1641,6 +1712,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/firefly-0.1.2/firefly-0.1.2.tgz
     version: 0.1.2
   gafaelfawr:
+  - apiVersion: v2
+    appVersion: 3.4.1
+    created: "2022-01-07T19:04:56.039854077Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: a69b73a539b028bae54eea2a5b5cb2a1f3c7f322bb9a67a792fae285f32d5a39
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.4.3/gafaelfawr-4.4.3.tgz
+    version: 4.4.3
   - apiVersion: v2
     appVersion: 3.4.1
     created: "2021-12-13T18:31:48.489657491Z"
@@ -3154,6 +3237,18 @@ entries:
   mobu:
   - apiVersion: v2
     appVersion: 4.1.0
+    created: "2022-01-07T19:04:56.14082467Z"
+    description: Generate system load by pretending to be a random scientist
+    digest: d0c86dd009c1e9bcae9180aecee29e58f8572d928b62293de5c4f3ee954a9e75
+    home: https://github.com/lsst-sqre/mobu
+    maintainers:
+    - name: cbanek
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-3.1.1/mobu-3.1.1.tgz
+    version: 3.1.1
+  - apiVersion: v2
+    appVersion: 4.1.0
     created: "2021-12-01T16:34:29.362953965Z"
     description: Generate system load by pretending to be a random scientist
     digest: 4fdcabef95535be63e881f358189cab313f42296485cdc03e7f68c14bb1d862d
@@ -3866,6 +3961,22 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/neophile-0.0.1/neophile-0.0.1.tgz
     version: 0.0.1
   noteburst:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-01-07T19:04:56.225100382Z"
+    description: Noteburst is a notebook execution service for the Rubin Science Platform.
+    digest: d1f363121f17baae3689fe3f4a9de92a68fbed6283a5d817819b1fb2014a5540
+    home: https://noteburst.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: noteburst
+    sources:
+    - https://github.com/lsst-sqre/noteburst
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/noteburst-0.1.3/noteburst-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2021-10-25T21:23:50.711065358Z"
@@ -5852,6 +5963,23 @@ entries:
   semaphore:
   - apiVersion: v2
     appVersion: 0.2.1
+    created: "2022-01-07T19:04:56.331678936Z"
+    description: Semaphore is the user notification and messaging service for the
+      Rubin Science Platform.
+    digest: 31d7bfaa32b9c94d98388f65c397fa8457a40bae2fae8fd5c16299cdd5f3fdeb
+    home: https://semaphore.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: semaphore
+    sources:
+    - https://github.com/lsst-sqre/semaphore
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/semaphore-0.2.2/semaphore-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
+    appVersion: 0.2.1
     created: "2021-08-12T21:29:09.837582103Z"
     description: Semaphore is the user notification and messaging service for the
       Rubin Science Platform.
@@ -5955,6 +6083,18 @@ entries:
   sherlock:
   - apiVersion: v2
     appVersion: 0.1.1
+    created: "2022-01-07T19:04:56.43175802Z"
+    description: A Helm chart for Kubernetes
+    digest: 0648372ceeabd6ac818afae04710911bf2c23079896118a516ef27d488b1771d
+    maintainers:
+    - name: cbanek
+    name: sherlock
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/sherlock-0.1.2/sherlock-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.1
     created: "2021-12-16T01:49:31.898030491Z"
     description: A Helm chart for Kubernetes
     digest: 2889a7280550e03ae6a369c1133f2fa326e2ff8455db5c5efc8325b3f07f379e
@@ -5978,6 +6118,22 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/sherlock-0.1.0/sherlock-0.1.0.tgz
     version: 0.1.0
   squareone:
+  - apiVersion: v2
+    appVersion: 0.4.0
+    created: "2022-01-07T19:04:56.553906042Z"
+    description: Squareone is the homepage for the Rubin Science Platform.
+    digest: fd5ed7b26aeaa98bdb996b0b413e1fdb0bb67ddc73f5ce7f23e195d10abd22fb
+    home: https://squareone.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: squareone
+    sources:
+    - https://github.com/lsst-sqre/squareone
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/squareone-0.4.1/squareone-0.4.1.tgz
+    version: 0.4.1
   - apiVersion: v2
     appVersion: 0.4.0
     created: "2021-08-11T15:16:49.515928913Z"
@@ -6221,6 +6377,24 @@ entries:
   squash-api:
   - apiVersion: v1
     appVersion: 0.5.3
+    created: "2022-01-07T19:04:56.667217869Z"
+    description: A Helm chart to deploy the SQuaSH API
+    digest: bccf0907e7b4d16a92d409da80f2fe3be6ba6be3f87418ba79baab588d525dd5
+    home: https://squash.lsst.io/
+    keywords:
+    - SQuaSH, Metrics, InfluxDB, Chronograf, S3
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+      url: https://afausti.github.io/
+    name: squash-api
+    sources:
+    - https://github.com/lsst-sqre/squash-api/
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/squash-api-0.1.6/squash-api-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v1
+    appVersion: 0.5.3
     created: "2021-05-10T15:38:52.437079627Z"
     description: A Helm chart to deploy the SQuaSH API
     digest: 1d671c2b4c1f85750c9f708aa6cc05b251491e26f506443cfb007bc4d9bbc60b
@@ -6416,6 +6590,21 @@ entries:
   times-square:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-01-07T19:04:56.788018377Z"
+    description: A parameterized notebook web viewer for the Rubin Science Platform.
+    digest: 0c2444ad84c2202c643088d1e7797e13a9a1e96e661b83b225fc4dd3aae32255
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: times-square
+    sources:
+    - https://github.com/lsst-sqre/times-square
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/times-square-0.1.2/times-square-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2021-11-17T20:07:56.377537799Z"
     description: A parameterized notebook web viewer for the Rubin Science Platform.
     digest: 55d05775c7118fe3c53d3106729582e80caf627a5de514fa477590190d3e1f5a
@@ -6445,6 +6634,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/times-square-0.1.0/times-square-0.1.0.tgz
     version: 0.1.0
   vo-cutouts:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-01-07T19:04:56.89634445Z"
+    description: Image cutout service complying with IVOA SODA
+    digest: 9a7e11542e9755363fb415e5b237d2b36c26152ae9b940394b111578d1faad45
+    home: https://github.com/lsst-sqre/vo-cutouts
+    maintainers:
+    - name: rra
+    name: vo-cutouts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.4/vo-cutouts-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2021-12-15T00:33:16.755253999Z"
@@ -6493,4 +6694,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-05T18:37:56.674316857Z"
+generated: "2022-01-07T19:04:56.904255635Z"
