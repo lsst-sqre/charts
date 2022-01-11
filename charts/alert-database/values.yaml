@@ -102,4 +102,4 @@ ingress:
   path: "/alertdb"
 
   # -- Query string for Gafaelfawr to authorize access
-  gafaelfawrAuthQuery: "scope=exec:admin"
+  gafaelfawrAuthQuery: "scope=read:alertdb"

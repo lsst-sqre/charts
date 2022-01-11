@@ -148,6 +148,7 @@ config:
     "exec:admin": "Administrative access to all APIs"
     "exec:notebook": "Use the Notebook Aspect"
     "exec:portal": "Use the Portal Aspect"
+    "read:alertdb": "Retrieve alert packets and schemas from the alert archive database"
     "read:image": "Retrieve images from project datasets"
     "read:tap": "Execute SELECT queries in the TAP interface on project datasets"
     "user:token": "Can create and modify user tokens"
