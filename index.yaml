@@ -3,6 +3,19 @@ entries:
   alert-database:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-01-11T15:44:36.972320689Z"
+    description: Archival database of alerts sent through the alert stream.
+    digest: 1151c7af6b56da43f28b5417568b413d39341abed3b4a6937c375b5b5048d16e
+    maintainers:
+    - email: swnelson@uw.edu
+      name: swnelson
+    name: alert-database
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/alert-database-2.1.0/alert-database-2.1.0.tgz
+    version: 2.1.0
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-01-05T18:37:56.671998376Z"
     description: Archival database of alerts sent through the alert stream.
     digest: d18d2b0f106974efcff6744b8d9138549512b71ddc66d117b231da1d36196635
@@ -1724,6 +1737,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/firefly-0.1.2/firefly-0.1.2.tgz
     version: 0.1.2
   gafaelfawr:
+  - apiVersion: v2
+    appVersion: 3.4.1
+    created: "2022-01-11T15:44:37.108797874Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 4b6cc6bf96b7655a329aeaafcf494722f311938c8496bcdaeef316e84d08b549
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.4.5/gafaelfawr-4.4.5.tgz
+    version: 4.4.5
   - apiVersion: v2
     appVersion: 3.4.1
     created: "2022-01-10T18:00:01.630829772Z"
@@ -6730,4 +6755,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-10T18:00:01.978605687Z"
+generated: "2022-01-11T15:44:37.113299128Z"
