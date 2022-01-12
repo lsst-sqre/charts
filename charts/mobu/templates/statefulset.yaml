@@ -63,6 +63,7 @@ spec:
             httpGet:
               path: "/mobu/flocks"
               port: "http"
+            timeoutSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
