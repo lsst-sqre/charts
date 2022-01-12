@@ -1,0 +1,12 @@
+apiVersion: v2
+name: sasquatch
+version: 0.1.0
+description: A Helm chart to deploy Sasquatch components on Kubernetes
+maintainers:
+  - name: afausti
+    email: afausti@lsst.org
+type: application
+appVersion: "0.1.0"
+dependencies:
+  - name: "strimzi-kafka"
+    version: "0.1.0"

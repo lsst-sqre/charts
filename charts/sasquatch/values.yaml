@@ -1,0 +1,3 @@
+# Override default values for the Sasquatch subcharts.
+
+strimzi-kafka: {}

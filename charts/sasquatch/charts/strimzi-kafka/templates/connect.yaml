@@ -1,0 +1,24 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  name: {{ .Values.cluster.name }}
+  annotations:
+    # Use Connect REST API to configure connectors
+    strimzi.io/use-connector-resources: "false"
+spec:
+  version: {{ .Values.kafka.version | quote }}
+  replicas: {{ .Values.connect.replicas }}
+  bootstrapServers: {{ .Values.cluster.name }}-kafka-bootstrap:9093
+  tls:
+    trustedCertificates:
+      - secretName: sasquatch-cluster-ca-cert
+        certificate: ca.crt
+  config:
+    group.id: sasquatch-connect
+    offset.storage.topic: sasquatch-connect-offsets
+    config.storage.topic: sasquatch-connect-configs
+    status.storage.topic: sasquatch-connect-status
+    # -1 means it will use the default replication factor configured in the broker
+    config.storage.replication.factor: -1
+    offset.storage.replication.factor: -1
+    status.storage.replication.factor: -1
