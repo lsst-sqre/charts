@@ -6021,6 +6021,24 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/pull-secret-0.1.0/pull-secret-0.1.0.tgz
     version: 0.1.0
+  sasquatch:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-01-12T23:52:16.841735256Z"
+    dependencies:
+    - name: strimzi-kafka
+      repository: ""
+      version: 0.1.0
+    description: A Helm chart to deploy Sasquatch components on Kubernetes
+    digest: dc5ab0c2ff9f107609f5c8c65d0db2ba0ca4f590d5dae6c4e59559d9be016fb4
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+    name: sasquatch
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/sasquatch-0.1.0/sasquatch-0.1.0.tgz
+    version: 0.1.0
   semaphore:
   - apiVersion: v2
     appVersion: 0.2.1
@@ -6767,4 +6785,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-12T01:01:49.069761889Z"
+generated: "2022-01-12T23:52:16.847162666Z"
