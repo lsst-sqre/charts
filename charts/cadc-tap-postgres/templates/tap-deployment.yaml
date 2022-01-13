@@ -19,7 +19,7 @@ spec:
       containers:
       - name: {{ template "cadc-tap-postgres.fullname" . }}-tap-server
         image: lsstdax/tap-postgres-server:{{ .Values.tag }}
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
         resources:
           {{toYaml .Values.resources | nindent 10}}
         ports:
