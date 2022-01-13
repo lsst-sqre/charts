@@ -36,6 +36,10 @@ connect:
   # -- Number of Kafka Connect replicas to run.
   replicas: 3
 
+registry:
+  # -- Name of the topic used by the Schema Registry
+  schemaTopic: registry-schemas
+
 # -- A list of usernames for users who should have global admin permissions.
 # These users will be created, along with their credentials.
 superusers:

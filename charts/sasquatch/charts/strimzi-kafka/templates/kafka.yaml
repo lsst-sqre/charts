@@ -12,7 +12,7 @@ spec:
         port: 9092
         type: internal
         tls: false
-      - name: tls
+      - name: tls # Used by the schema registry; it has a fixed name it expects
         port: 9093
         type: internal
         tls: true
