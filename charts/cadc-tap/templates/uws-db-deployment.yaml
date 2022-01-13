@@ -3,28 +3,64 @@ kind: Deployment
 metadata:
   name: {{ template "cadc-tap.fullname" . }}-uws-db
   labels:
-    app: {{ template "cadc-tap.fullname" . }}-uws-db
-{{ include "cadc-tap.labels" . | indent 4 }}
+    {{- include "cadc-tap.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "cadc-tap.fullname" . }}-uws-db
+      {{- include "cadc-tap.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "uws-db"
   template:
     metadata:
+      {{- with .Values.uws.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
-        app: {{ template "cadc-tap.fullname" . }}-uws-db
-{{ include "cadc-tap.labels" . | indent 8 }}
+        {{- include "cadc-tap.labels" . | nindent 8 }}
+        app.kubernetes.io/component: "uws-db"
     spec:
-      containers:
-      - name: postgresql
-        image: lsstdax/uws-db:{{ .Values.tag }}
-        imagePullPolicy: {{ .Values.imagePullPolicy }}
-        ports:
-        - containerPort: 5432
-        resources:
-          {{toYaml .Values.aux_resources | nindent 10}}
-      {{- if .Values.pull_secret }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-      - name: {{ .Values.pull_secret }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      automountServiceAccountToken: false
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: "postgresql"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "all"
+            readOnlyRootFilesystem: true
+          image: "{{ .Values.uws.image.repository }}:{{ .Values.uws.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.uws.image.pullPolicy | quote }}
+          ports:
+            - containerPort: 5432
+          {{- with .Values.uws.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: "data"
+              mountPath: "/var/lib/postgresql/data"
+      volumes:
+        - name: "data"
+          emptyDir: {}
+      {{- with .Values.uws.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.uws.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.uws.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
       {{- end }}

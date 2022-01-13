@@ -1,32 +1,61 @@
-{{ if .Values.use_mock_qserv }}
+{{ if .Values.qserv.mock.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "cadc-tap.fullname" . }}-mock-qserv
   labels:
-    app: {{ template "cadc-tap.fullname" . }}-mock-qserv
-{{ include "cadc-tap.labels" . | indent 4 }}
+    {{- include "cadc-tap.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "cadc-tap.fullname" . }}-mock-qserv
+      {{- include "cadc-tap.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "mock-qserv"
   template:
     metadata:
-      labels:
-        app: {{ template "cadc-tap.fullname" . }}-mock-qserv
-{{ include "cadc-tap.labels" . | indent 8 }}
-    spec:
-      containers:
-      - name: mock-qserv
-        image: lsstdax/mock-qserv:{{ .Values.tag }}
-        imagePullPolicy: {{ .Values.imagePullPolicy }}
-        ports:
-        - containerPort: 3306
-        resources:
-          {{toYaml .Values.aux_resources | nindent 10}}
-      {{- if .Values.pull_secret }}
-      imagePullSecrets:
-      - name: {{ .Values.pull_secret }}
+      {{- with .Values.qserv.mock.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
       {{- end }}
-{{ end }}
+      labels:
+        {{- include "cadc-tap.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: "mock-qserv"
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: "mock-qserv"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "all"
+            readOnlyRootFilesystem: true
+          image: "{{ .Values.qserv.mock.image.repository }}:{{ .Values.qserv.mock.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.qserv.mock.image.pullPolicy | quote }}
+          ports:
+            - containerPort: 3306
+          {{- with .Values.qserv.mock.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.qserv.mock.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.qserv.mock.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.qserv.mock.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+{{- end }}

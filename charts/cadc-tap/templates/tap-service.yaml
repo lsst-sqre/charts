@@ -1,14 +1,15 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: {{ template "cadc-tap.fullname" . }}-tap-server
+  name: {{ template "cadc-tap.fullname" . }}
   labels:
-    app: {{ template "cadc-tap.fullname" . }}-tap-server
-{{ include "cadc-tap.labels" . | indent 4 }}
+    {{- include "cadc-tap.labels" . | nindent 4 }}
 spec:
-  selector:
-    app: {{ template "cadc-tap.fullname" . }}-tap-server
+  type: ClusterIP
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
+    - protocol: "TCP"
+      port: 80
+      targetPort: 8080
+  selector:
+    {{- include "cadc-tap.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: "server"
