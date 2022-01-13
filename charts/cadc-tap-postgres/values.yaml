@@ -6,7 +6,7 @@ replicaCount: 1
 
 # Version tag of all images to use.
 imagePullPolicy: Always
-tag: "1.0"
+tag: "1.1"
 
 gcs_bucket: ""
 gcs_bucket_url: ""
