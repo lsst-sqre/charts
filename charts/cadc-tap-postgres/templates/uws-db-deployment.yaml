@@ -19,7 +19,7 @@ spec:
       containers:
       - name: postgresql
         image: lsstdax/tap-postgres-uws:{{ .Values.tag }}
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
         ports:
         - containerPort: 5432
         resources:

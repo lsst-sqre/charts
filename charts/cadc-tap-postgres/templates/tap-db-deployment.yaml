@@ -19,7 +19,7 @@ spec:
       containers:
       - name: {{ template "cadc-tap-postgres.fullname" . }}-tap-db
         image: lsstdax/tap-postgres-db:{{ .Values.tag }}
-        imagePullPolicy: Always
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
         ports:
         - containerPort: 5432
         resources:
