@@ -1,6 +1,6 @@
 # gafaelfawr
 
-![Version: 4.4.5](https://img.shields.io/badge/Version-4.4.5-informational?style=flat-square) ![AppVersion: 3.4.1](https://img.shields.io/badge/AppVersion-3.4.1-informational?style=flat-square)
+![Version: 4.5.0](https://img.shields.io/badge/Version-4.5.0-informational?style=flat-square) ![AppVersion: 3.5.0](https://img.shields.io/badge/AppVersion-3.5.0-informational?style=flat-square)
 
 The Gafaelfawr authentication and authorization system
 
@@ -23,13 +23,13 @@ The Gafaelfawr authentication and authorization system
 | cloudsql.image.tag | string | `"1.28.0-buster"` | Cloud SQL Auth Proxy tag to use |
 | cloudsql.instanceConnectionName | string | `""` | Instance connection name for a CloudSQL PostgreSQL instance |
 | cloudsql.serviceAccount | string | `""` | The Google service account that has an IAM binding to the `gafaelfawr` and `gafaelfawr-tokens` Kubernetes service accounts and has the `cloudsql.client` role |
-| config.cilogon.clientId | string | `""` | CILogon client ID. One and only one of this or config.github.clientId must be set. |
+| config.cilogon.clientId | string | `""` | CILogon client ID. One and only one of this, `config.github.clientId`, or `config.oidc.clientId` must be set. |
 | config.cilogon.loginParams | object | `{"skin":"LSST"}` | Additional parameters to add |
 | config.cilogon.redirectUrl | string | `/login` at the value of config.host | Return URL given to CILogon (must match the CILogon configuration) |
 | config.cilogon.test | bool | `false` | Whether to use the test instance of CILogon |
 | config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
 | config.errorFooter | string | `""` | HTML footer to add to any login error page (inside a <p> tag). |
-| config.github.clientId | string | `""` | GitHub client ID. One and only one of this or config.cilogon.clientId must be set. |
+| config.github.clientId | string | `""` | GitHub client ID. One and only one of this, `config.cilogon.clientId`, or `config.oidc.clientId` must be set. |
 | config.groupMapping | object | `{}` | Defines a mapping of scopes to groups that provide that scope. Tokens from an OpenID Connect provider such as CILogon that include groups in an `isMemberOf` claim will be granted scopes based on this mapping. |
 | config.host | string | None, must be set | Used to construct issuers and URLs. |
 | config.initialAdmins | list | `[]` | Usernames to add as administrators when initializing a new database. Used only if there are no administrators. |
@@ -37,7 +37,18 @@ The Gafaelfawr authentication and authorization system
 | config.issuer.influxdb.enabled | bool | `false` | Whether to issue tokens for InfluxDB. If set to true, `influxdb-secret` must be set in the Gafaelfawr secret. |
 | config.issuer.influxdb.username | string | `""` | If set, force all InfluxDB tokens to have that username instead of the authenticated identity of the user requesting a token |
 | config.knownScopes | object | See the `values.yaml` file | Names and descriptions of all scopes in use. This is used to populate the new token creation page. Only scopes listed here will be options when creating a new token. |
+| config.ldap.baseDn | string | None, must be set | Base DN for the LDAP search to find a user's groups |
+| config.ldap.groupMember | string | `"member"` | Member attribute of the object class. Values must match the username returned in the token from the OpenID Connect authentication server. |
+| config.ldap.groupObjectClass | string | `"posixGroup"` | Object class containing group information |
+| config.ldap.url | string | Do not use LDAP | LDAP server URL from which to retrieve user group information |
 | config.loglevel | string | `"INFO"` | Choose from the text form of Python logging levels |
+| config.oidc.audience | string | Value of `config.oidc.clientId` | Audience for the JWT token |
+| config.oidc.clientId | string | `""` | Client ID for generic OpenID Connect support. One and only one of this, `config.cilogon.clientId`, or `config.github.clientId` must be set. |
+| config.oidc.issuer | string | None, must be set | Issuer for the JWT token |
+| config.oidc.loginParams | object | `{}` | Additional parameters to add to the login request |
+| config.oidc.loginUrl | string | None, must be set | URL to which to redirect the user for authorization |
+| config.oidc.scopes | list | `["openid"]` | Scopes to request from the OpenID Connect provider |
+| config.oidc.tokenUrl | string | None, must be set | URL from which to retrieve the token for the user |
 | config.oidcServer.enabled | bool | `false` | Whether to support OpenID Connect clients. If set to true, `oidc-server-secrets` must be set in the Gafaelfawr secret. |
 | config.proxies | list | [`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`] | List of netblocks used for internal Kubernetes IP addresses, used to determine the true client IP for logging |
 | fullnameOverride | string | `""` | Override the full name for resources (includes the release name) |
@@ -81,3 +92,5 @@ The Gafaelfawr authentication and authorization system
 | tolerations | list | `[]` | Tolerations for the Gafaelfawr frontend pod |
 | vaultSecretsPath | string | None, must be set | Path to the Vault secret (`secret/k8s_operator/<host>/gafaelfawr`, for example) |
 
+----------------------------------------------
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)

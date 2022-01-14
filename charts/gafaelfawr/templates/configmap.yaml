@@ -74,6 +74,36 @@ data:
       key_ids:
         - "244B235F6B28E34108D101EAC7362C4E"
 
+    {{- else if .Values.config.oidc.clientId }}
+
+    oidc:
+      client_id: {{ .Values.config.oidc.clientId | quote }}
+      client_secret_file: "/etc/gafaelfawr/secrets/oidc-client-secret"
+      {{- if .Values.config.oidc.audience }}
+      audience: {{ .Values.config.oidc.audience | quote }}
+      {{- else }}
+      audience: {{ .Values.config.oidc.clientId | quote }}
+      {{- end }}
+      login_url: {{ required "config.oidc.loginUrl must be set" .Values.config.oidc.loginUrl | quote }}
+      token_url: {{ required "config.oidc.tokenUrl must be set" .Values.config.oidc.tokenUrl | quote }}
+      issuer: {{ required "config.oidc.issuer must be set" .Values.config.oidc.issuer | quote }}
+      scopes:
+        {{- with .Values.config.oidc.scopes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      {{- with .Values.config.oidc.loginParams }}
+      login_params:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+    {{- end }}
+
+    {{- if .Values.config.ldap.url }}
+    ldap:
+      url: {{ .Values.config.ldap.url | quote }}
+      baseDn: {{ required "config.ldap.baseDn must be set" .Values.config.ldap.baseDn | quote }}
+      groupObjectClass: {{ .Values.config.ldap.groupObjectClass | quote }}
+      groupMember: {{ .Values.config.ldap.groupMember | quote }}
     {{- end }}
 
     {{- if .Values.config.oidcServer.enabled }}

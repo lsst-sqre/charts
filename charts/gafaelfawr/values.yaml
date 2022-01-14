@@ -99,8 +99,8 @@ config:
     - "192.168.0.0/16"
 
   cilogon:
-    # -- CILogon client ID. One and only one of this or config.github.clientId
-    # must be set.
+    # -- CILogon client ID. One and only one of this,
+    # `config.github.clientId`, or `config.oidc.clientId` must be set.
     clientId: ""
 
     # -- Return URL given to CILogon (must match the CILogon configuration)
@@ -115,9 +115,53 @@ config:
       skin: "LSST"
 
   github:
-    # -- GitHub client ID. One and only one of this or config.cilogon.clientId
-    # must be set.
+    # -- GitHub client ID. One and only one of this, `config.cilogon.clientId`,
+    # or `config.oidc.clientId` must be set.
     clientId: ""
+
+  oidc:
+    # -- Client ID for generic OpenID Connect support. One and only one of
+    # this, `config.cilogon.clientId`, or `config.github.clientId` must be set.
+    clientId: ""
+
+    # -- Audience for the JWT token
+    # @default -- Value of `config.oidc.clientId`
+    audience: ""
+
+    # -- URL to which to redirect the user for authorization
+    # @default -- None, must be set
+    loginUrl: ""
+
+    # -- Additional parameters to add to the login request
+    loginParams: {}
+
+    # -- URL from which to retrieve the token for the user
+    # @default -- None, must be set
+    tokenUrl: ""
+
+    # -- Issuer for the JWT token
+    # @default -- None, must be set
+    issuer: ""
+
+    # -- Scopes to request from the OpenID Connect provider
+    scopes:
+      - "openid"
+
+  ldap:
+    # -- LDAP server URL from which to retrieve user group information
+    # @default -- Do not use LDAP
+    url: ""
+
+    # -- Base DN for the LDAP search to find a user's groups
+    # @default -- None, must be set
+    baseDn: ""
+
+    # -- Object class containing group information
+    groupObjectClass: "posixGroup"
+
+    # -- Member attribute of the object class. Values must match the username
+    # returned in the token from the OpenID Connect authentication server.
+    groupMember: "member"
 
   issuer:
     # -- Session length and token expiration (in minutes)
