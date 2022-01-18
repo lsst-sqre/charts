@@ -3748,6 +3748,18 @@ entries:
     version: 0.1.1
   moneypenny:
   - apiVersion: v2
+    appVersion: 0.3.3
+    created: "2022-01-18T23:21:57.773715015Z"
+    description: User provisioning actions for the Science Platform
+    digest: 040b9eb4a3c946bd472a3c6edff3b0e892e50ec942e9c6c04272913d7ae319d9
+    maintainers:
+    - name: athornton
+    - name: rra
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.3.3/moneypenny-0.3.3.tgz
+    version: 0.3.3
+  - apiVersion: v2
     appVersion: 0.3.2
     created: "2022-01-05T00:50:36.509216272Z"
     description: User provisioning actions for the Science Platform
@@ -6821,4 +6833,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-14T23:20:15.758979881Z"
+generated: "2022-01-18T23:21:57.775832125Z"
