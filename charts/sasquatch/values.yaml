@@ -6,3 +6,35 @@ strimzi-registry-operator:
   clusterName: sasquatch
   watchNamespace: sasquatch
   operatorNamespace: sasquatch
+
+influxdb:
+  # -- Default InfluxDB user, use influxb-user and influxdb-password keys from secret
+  setDefaultUser:
+    enabled: true
+    user:
+      existingSecret: sasquatch
+
+  # -- InfluxDB configuration parameters, see https://docs.influxdata.com/influxdb/v1.8/administration/config/
+  config:
+    data:
+      cache_max_memory_size: 0
+      wal_fsync_delay: "100ms"
+      trace_logging_enabled: true
+    http:
+      enabled: true
+      auth_enabled: true
+      max_row_limit: 0
+    coordinator:
+      write_timeout: "60s"
+      max_concurrent_queries: 10
+      query_timeout: "900s"
+      log_queries_after: "15s"
+    continuous_queries:
+      enabled: false
+
+  # -- Custom initialization scripts
+  initScripts:
+    enabled: true
+    scripts:
+      init.iql: |+
+        CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"

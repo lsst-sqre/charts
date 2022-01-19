@@ -15,11 +15,16 @@ A Helm chart to deploy Sasquatch components on Kubernetes
 | Repository | Name | Version |
 |------------|------|---------|
 |  | strimzi-kafka | 0.1.1 |
+| https://helm.influxdata.com/ | influxdb | 4.10.3 |
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| influxdb.config | object | `{"continuous_queries":{"enabled":false},"coordinator":{"log_queries_after":"15s","max_concurrent_queries":10,"query_timeout":"900s","write_timeout":"60s"},"data":{"cache_max_memory_size":0,"trace_logging_enabled":true,"wal_fsync_delay":"100ms"},"http":{"auth_enabled":true,"enabled":true,"max_row_limit":0}}` | InfluxDB configuration parameters, see https://docs.influxdata.com/influxdb/v1.8/administration/config/ |
+| influxdb.envFromSecret | string | `"influxdb-secret"` | InfluxDB secret |
+| influxdb.initScripts | object | `{"enabled":true,"scripts":{"init.iql":"CREATE DATABASE \"telegraf\" WITH DURATION 30d REPLICATION 1 NAME \"rp_30d\"\n\n"}}` | Custom initialization scripts |
+| influxdb.setDefaultUser | object | `{"enabled":true,"user":{"existingSecret":"influxdb-auth"}}` | Default InfluxDB user |
 | strimzi-kafka | object | `{}` |  |
 
 ----------------------------------------------
