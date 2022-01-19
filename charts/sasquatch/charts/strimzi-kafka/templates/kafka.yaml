@@ -48,3 +48,6 @@ spec:
       size: {{ .Values.zookeeper.storage.size }}
       class: {{ .Values.zookeeper.storage.storageClassName }}
       deleteClaim: false
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}
