@@ -8,14 +8,27 @@ spec:
     version: {{ .Values.kafka.version | quote }}
     replicas: {{ .Values.kafka.replicas }}
     listeners:
-      - name: plain
+      - name: internal
         port: 9092
         type: internal
-        tls: false
-      - name: tls
+        tls: true
+        authentication:
+          type: tls
+      - name: tls # Used by the schema registry; it has a fixed name it expects
         port: 9093
         type: internal
         tls: true
+        authentication:
+          type: tls
+    authorization:
+      type: simple
+{{- if .Values.superusers }}
+      superUsers:
+{{- range .Values.superusers }}
+        - {{ . }}
+{{- end }}
+{{- end }}
+
     config:
       offsets.topic.replication.factor:  {{ .Values.kafka.replicas }}
       transaction.state.log.replication.factor:  {{ .Values.kafka.replicas }}
@@ -48,3 +61,6 @@ spec:
       size: {{ .Values.zookeeper.storage.size }}
       class: {{ .Values.zookeeper.storage.storageClassName }}
       deleteClaim: false
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}
