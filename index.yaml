@@ -6630,6 +6630,17 @@ entries:
     version: 0.1.0
   strimzi-registry-operator:
   - apiVersion: v2
+    appVersion: 0.4.1
+    created: "2022-01-20T22:02:22.445258845Z"
+    description: Operator to create and manage Schema Registry on Strimzi
+    digest: 848ce3fcb6b992e5eb9fca75e98cf302d7833320e22a1724e56c8d81ae19db33
+    maintainers:
+    - name: swnelson
+    name: strimzi-registry-operator
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/strimzi-registry-operator-1.2.0/strimzi-registry-operator-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
     appVersion: 0.3.0
     created: "2021-11-10T19:08:44.64030518Z"
     description: Operator to create and manage Schema Registry on Strimzi
@@ -6833,4 +6844,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-18T23:21:57.775832125Z"
+generated: "2022-01-20T22:02:22.448524341Z"
