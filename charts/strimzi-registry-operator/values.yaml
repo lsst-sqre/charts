@@ -7,3 +7,5 @@ image:
 clusterName: alert-broker
 
 watchNamespace: strimzi
+
+operatorNamespace: strimzi-registry-operator
