@@ -6072,6 +6072,26 @@ entries:
   sasquatch:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-01-20T22:31:49.021391495Z"
+    dependencies:
+    - name: strimzi-kafka
+      repository: ""
+      version: 0.1.1
+    - name: strimzi-registry-operator
+      repository: https://lsst-sqre.github.io/charts/
+      version: 1.2.0
+    description: A Helm chart to deploy Sasquatch components on Kubernetes
+    digest: a95b1356a8983f728b0199db6aac88bea5f91544d3ee4d75b5d1a320b0cc0d96
+    maintainers:
+    - email: afausti@lsst.org
+      name: afausti
+    name: sasquatch
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/sasquatch-0.1.2/sasquatch-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-01-12T23:52:16.841735256Z"
     dependencies:
     - name: strimzi-kafka
@@ -6844,4 +6864,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-20T22:02:22.448524341Z"
+generated: "2022-01-20T22:31:49.024401826Z"
