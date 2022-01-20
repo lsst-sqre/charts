@@ -10,3 +10,6 @@ appVersion: "0.1.0"
 dependencies:
   - name: "strimzi-kafka"
     version: "0.1.1"
+  - name: strimzi-registry-operator
+    version: 1.1.0
+    repository: https://lsst-sqre.github.io/charts/

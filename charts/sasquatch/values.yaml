@@ -1,3 +1,7 @@
 # Override default values for the Sasquatch subcharts.
 
 strimzi-kafka: {}
+
+strimzi-registry-operator:
+  clusterName: sasquatch
+  watchNamespace: sasquatch
