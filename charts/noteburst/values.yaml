@@ -100,3 +100,7 @@ config:
   # and TAP
   # @default -- None, must be set
   environmentUrl: ""
+
+redis:
+  auth:
+    enabled: false
