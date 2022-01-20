@@ -5,3 +5,4 @@ strimzi-kafka: {}
 strimzi-registry-operator:
   clusterName: sasquatch
   watchNamespace: sasquatch
+  operatorNamespace: sasquatch
