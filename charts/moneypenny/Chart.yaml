@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: "0.3.3"
+appVersion: "1.0.0"
 description: User provisioning actions for the Science Platform
 name: moneypenny
 maintainers:
   - name: athornton
   - name: rra
-version: 0.3.3
+version: 1.0.0

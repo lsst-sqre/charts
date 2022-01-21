@@ -6,8 +6,16 @@ metadata:
     {{- include "moneypenny.labels" . | nindent 4 }}
 rules:
   - apiGroups: [""]
-    resources: [ "pods" ]
-    verbs: ["get", "create",  "delete"]  
+    resources:
+      - "pods"
+    verbs:
+      - "create"
+      - "delete"
+      - "get"
+      - "list"
+      - "watch"
   - apiGroups: [""]
     resources: ["configmaps"]
-    verbs: ["create",  "delete"]
+    verbs:
+      - "create"
+      - "delete"
