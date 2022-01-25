@@ -28,4 +28,4 @@ spec:
               service:
                 name: {{ template "cadc-tap.fullname" . }}
                 port:
-                  number: 8080
+                  number: {{ .Values.service.port }}

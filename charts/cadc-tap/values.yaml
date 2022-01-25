@@ -25,6 +25,13 @@ image:
 # -- Secret names to use for all Docker pulls
 imagePullSecrets: []
 
+service:
+  # -- Type of service to create
+  type: ClusterIP
+
+  # -- Port of the service to create and map to the ingress
+  port: 80
+
 # Settings for the ingress rules.
 ingress:
   # -- Hostname for the ingress
