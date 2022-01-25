@@ -13,6 +13,9 @@ ingester:
     tag: v2.0.1
     imagePullPolicy: IfNotPresent
 
+  # -- Number of replicas of the ingester to run.
+  replicas: 4
+
   kafka:
     # -- Name of a Strimzi Kafka cluster to connect to.
     cluster: alert-broker
