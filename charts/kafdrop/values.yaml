@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: obsidiandynamics/kafdrop
-  tag: 3.27.0
+  tag: 3.28.0
   pullPolicy: IfNotPresent
 
 kafka:
