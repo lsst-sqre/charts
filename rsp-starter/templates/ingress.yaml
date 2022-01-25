@@ -9,8 +9,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     {{- if .Values.ingress.gafaelfawrAuthQuery -}}
-    nginx.ingress.kubernetes.io/auth-method: GET
-    nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Token
+    nginx.ingress.kubernetes.io/auth-method: "GET"
+    nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Token"
     nginx.ingress.kubernetes.io/auth-signin: "https://{{ .Values.ingress.host }}/login"
     nginx.ingress.kubernetes.io/auth-url: "https://{{ .Values.ingress.host }}/auth?{{ .Values.gafaelfawrAuthQuery }}"
     {{- end }}

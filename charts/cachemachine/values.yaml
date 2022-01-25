@@ -28,18 +28,30 @@ serviceAccount:
   # -- Annotations to add to the service account
   annotations: {}
 
+service:
+  # -- Type of service to create
+  type: "ClusterIP"
+
+  # -- Port of the service to create and map to the ingress
+  port: 80
+
 ingress:
   # -- Whether to create an ingress
-  enabled: false
+  enabled: true
 
-  # -- Additional annotations to add to the ingress.
-  annotations:
-    nginx.ingress.kubernetes.io/auth-method: "GET"
-    nginx.ingress.kubernetes.io/auth-url: "http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:admin"
+  # -- Gafaelfawr auth query string
+  gafaelfawrAuthQuery: "scope=exec:admin"
 
   # -- Hostname for the ingress
   # @default -- None, must be set if the ingress is enabled
   host: ""
+
+  # -- Additional annotations to add for endpoints that are authenticated.
+  annotations: {}
+
+  # -- Additional annotations to add for endpoints that allow anonymous
+  # access, such as `/*/available`.
+  anonymousAnnotations: {}
 
   # -- Configures TLS for the ingress if needed. If multiple ingresses share
   # the same hostname, only one of them needs a TLS configuration.
