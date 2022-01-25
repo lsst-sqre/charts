@@ -93,10 +93,14 @@ config:
   # -- Run profile: "production" or "development"
   profile: "production"
   # -- Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"
-  log_level: "INFO"
+  logLevel: "INFO"
   # -- Logger name
-  logger_name: "noteburst"
+  loggerName: "noteburst"
   # -- Base URL used to find other services in the environment such as Nublado
   # and TAP
   # @default -- None, must be set
-  environment_url: ""
+  environmentUrl: ""
+
+redis:
+  auth:
+    enabled: false
