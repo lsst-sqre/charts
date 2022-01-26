@@ -101,6 +101,13 @@ config:
   # @default -- None, must be set
   environmentUrl: ""
 
+  worker:
+    # -- Science Platform user identies that workers can acquire. Each item
+    # is an object with username and uuid keys
+    identities: []
+    # -- Number of workers to run
+    workerCount: 1
+
 redis:
   auth:
     enabled: false
