@@ -1,6 +1,6 @@
 # sasquatch
 
-![Version: 0.1.3](https://img.shields.io/badge/Version-0.1.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 A Helm chart to deploy Sasquatch components on Kubernetes
 
@@ -23,6 +23,7 @@ A Helm chart to deploy Sasquatch components on Kubernetes
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | influxdb.config | object | `{"continuous_queries":{"enabled":false},"coordinator":{"log_queries_after":"15s","max_concurrent_queries":10,"query_timeout":"900s","write_timeout":"60s"},"data":{"cache_max_memory_size":0,"trace_logging_enabled":true,"wal_fsync_delay":"100ms"},"http":{"auth_enabled":true,"enabled":true,"max_row_limit":0}}` | InfluxDB configuration parameters, see https://docs.influxdata.com/influxdb/v1.8/administration/config/ |
+| influxdb.image | object | `{"tag":"1.8.10"}` | InfluxDB image tag |
 | influxdb.initScripts | object | `{"enabled":true,"scripts":{"init.iql":"CREATE DATABASE \"telegraf\" WITH DURATION 30d REPLICATION 1 NAME \"rp_30d\"\n"}}` | Custom initialization scripts |
 | influxdb.setDefaultUser | object | `{"enabled":true,"user":{"existingSecret":"sasquatch"}}` | Default InfluxDB user, use influxb-user and influxdb-password keys from secret |
 | strimzi-kafka | object | `{}` |  |
