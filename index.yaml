@@ -4097,6 +4097,26 @@ entries:
   noteburst:
   - apiVersion: v2
     appVersion: tickets-DM-33025
+    created: "2022-01-26T17:13:44.535485898Z"
+    dependencies:
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.0.1
+    description: Noteburst is a notebook execution service for the Rubin Science Platform.
+    digest: 86b6e85a021573343c170a5b6448f5151fc346cf40022a79f23c2450ea1c6bf0
+    home: https://noteburst.lsst.io/
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: noteburst
+    sources:
+    - https://github.com/lsst-sqre/noteburst
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/noteburst-0.2.0-alpha.3/noteburst-0.2.0-alpha.3.tgz
+    version: 0.2.0-alpha.3
+  - apiVersion: v2
+    appVersion: tickets-DM-33025
     created: "2022-01-25T22:29:09.594758437Z"
     dependencies:
     - name: redis
@@ -6995,4 +7015,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-26T17:06:35.917301753Z"
+generated: "2022-01-26T17:13:44.538169699Z"
