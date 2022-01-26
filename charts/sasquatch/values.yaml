@@ -8,6 +8,9 @@ strimzi-registry-operator:
   operatorNamespace: sasquatch
 
 influxdb:
+  # -- InfluxDB image tag
+  image:
+    tag: "1.8.10"
   # -- Default InfluxDB user, use influxb-user and influxdb-password keys from secret
   setDefaultUser:
     enabled: true
