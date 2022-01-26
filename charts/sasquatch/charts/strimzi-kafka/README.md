@@ -15,7 +15,7 @@ A Helm chart to deploy Strimzi Kafka components for Sasquatch
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | cluster.name | string | `"sasquatch"` | Name used for the Kafka cluster, and used by Strimzi for many annotations. |
-| connect.replicas | int | `3` | Number of Kafka Connect replicas to run. |
+| connect.replicas | int | `1` | Number of Kafka Connect replicas to run. |
 | kafka.config | object | `{"log.retention.bytes":"644245094400","log.retention.hours":168,"offsets.retention.minutes":10080}` | Configuration overrides for the Kafka server. |
 | kafka.config."log.retention.bytes" | string | `"644245094400"` | Maximum retained number of bytes for a topic's data. This is a string -- to avoid YAML type conversion issues for large numbers. |
 | kafka.config."log.retention.hours" | int | `168` | Number of days for a topic's data to be retained. |
