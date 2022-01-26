@@ -11,13 +11,19 @@ spec:
   bootstrapServers: {{ .Values.cluster.name }}-kafka-bootstrap:9093
   tls:
     trustedCertificates:
-      - secretName: sasquatch-cluster-ca-cert
+      - secretName: {{ .Values.cluster.name }}-cluster-ca-cert
         certificate: ca.crt
+  authentication:
+    type: tls
+    certificateAndKey:
+      secretName: {{ .Values.cluster.name }}-connect
+      certificate: user.crt
+      key: user.key
   config:
-    group.id: sasquatch-connect
-    offset.storage.topic: sasquatch-connect-offsets
-    config.storage.topic: sasquatch-connect-configs
-    status.storage.topic: sasquatch-connect-status
+    group.id: {{ .Values.cluster.name }}-connect
+    offset.storage.topic: {{ .Values.cluster.name }}-connect-offsets
+    config.storage.topic: {{ .Values.cluster.name }}-connect-configs
+    status.storage.topic: {{ .Values.cluster.name }}-connect-status
     # -1 means it will use the default replication factor configured in the broker
     config.storage.replication.factor: -1
     offset.storage.replication.factor: -1
