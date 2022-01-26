@@ -34,7 +34,7 @@ zookeeper:
 
 connect:
   # -- Number of Kafka Connect replicas to run.
-  replicas: 3
+  replicas: 1
 
 registry:
   # -- Name of the topic used by the Schema Registry
