@@ -1,6 +1,6 @@
 # noteburst
 
-![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.2.0-alpha.3](https://img.shields.io/badge/Version-0.2.0--alpha.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: tickets-DM-33025](https://img.shields.io/badge/AppVersion-tickets--DM--33025-informational?style=flat-square)
 
 Noteburst is a notebook execution service for the Rubin Science Platform.
 
@@ -16,6 +16,12 @@ Noteburst is a notebook execution service for the Rubin Science Platform.
 
 * <https://github.com/lsst-sqre/noteburst>
 
+## Requirements
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://charts.bitnami.com/bitnami | redis | 16.0.1 |
+
 ## Values
 
 | Key | Type | Default | Description |
@@ -25,11 +31,13 @@ Noteburst is a notebook execution service for the Rubin Science Platform.
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
-| config.environment_url | string | None, must be set | Base URL used to find other services in the environment such as Nublado and TAP |
-| config.log_level | string | `"INFO"` | Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" |
-| config.logger_name | string | `"noteburst"` | Logger name |
+| config.environmentUrl | string | None, must be set | Base URL used to find other services in the environment such as Nublado and TAP |
+| config.logLevel | string | `"INFO"` | Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" |
+| config.loggerName | string | `"noteburst"` | Logger name |
 | config.name | string | `"noteburst"` | Name of the service, and path where the external API is exposed. |
 | config.profile | string | `"production"` | Run profile: "production" or "development" |
+| config.worker.identities | list | `[]` | Science Platform user identies that workers can acquire. Each item is an object with username and uuid keys |
+| config.worker.workerCount | int | `1` | Number of workers to run |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"lsstsqre/noteburst"` |  |
@@ -49,6 +57,7 @@ Noteburst is a notebook execution service for the Rubin Science Platform.
 | podSecurityContext.runAsGroup | int | `1000` |  |
 | podSecurityContext.runAsNonRoot | bool | `true` |  |
 | podSecurityContext.runAsUser | int | `1000` |  |
+| redis.auth.enabled | bool | `false` |  |
 | replicaCount | int | `1` |  |
 | resources | object | `{}` |  |
 | securityContext.capabilities.drop[0] | string | `"all"` |  |
