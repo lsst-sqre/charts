@@ -27,7 +27,6 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: "postgresql"
-          securityContext:
           image: "{{ .Values.uws.image.repository }}:{{ .Values.uws.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.uws.image.pullPolicy | quote }}
           ports:
