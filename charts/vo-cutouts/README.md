@@ -1,6 +1,6 @@
 # vo-cutouts
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.6](https://img.shields.io/badge/Version-0.1.6-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 Image cutout service complying with IVOA SODA
 
@@ -55,7 +55,6 @@ Image cutout service complying with IVOA SODA
 | ingress.host | string | `""` | Hostname for the ingress |
 | ingress.tls | list | `[]` | Configures TLS for the ingress if needed. If multiple ingresses share the same hostname, only one of them needs a TLS configuration. |
 | nameOverride | string | `""` | Override the base name for resources |
-| networkPolicy.enabled | bool | `false` | Whether to restrict access to the image cutout service. Only enable if the ingress controller namespace is tagged with `gafaelfawr.lsst.io/ingress: "true"`. |
 | nodeSelector | object | `{}` | Node selector rules for the vo-cutouts frontend pod |
 | podAnnotations | object | `{}` | Annotations for the vo-cutouts frontend pod |
 | redis.affinity | object | `{}` | Affinity rules for the Redis pod |

@@ -1,6 +1,6 @@
 # moneypenny
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 User provisioning actions for the Science Platform
 
@@ -25,7 +25,6 @@ User provisioning actions for the Science Platform
 | ingress.host | string | None, must be set | Hostname for the ingress |
 | ingress.tls | list | `[]` | Configure TLS for the ingress if needed. If multiple ingresses share the same hostname, only one of them needs a TLS configuration. |
 | nameOverride | string | `""` | Override the base name for resources |
-| networkPolicy.enabled | bool | `false` | Whether to restrict access to the service. Only enable if the ingress controller namespace is tagged with `gafaelfawr.lsst.io/ingress: "true"`. |
 | nodeSelector | object | `{}` | Node selector rules for the vo-cutouts frontend pod |
 | orders.commission | list | `[{"image":"lsstsqre/farthing","name":"farthing","securityContext":{"allowPrivilegeEscalation":false,"runAsNonRootUser":true,"runAsUser":1000}}]` | List of specifications for containers to run to commission a new user. Each member of the list should set a container `name`, `image`, and `securityContext` and may contain `volumeMounts`. |
 | orders.retire | list | `[{"image":"lsstsqre/farthing","name":"farthing","securityContext":{"allowPrivilegeEscalation":false,"runAsNonRootUser":true,"runAsUser":1000}}]` | List of specifications for containers to run to retire a user.  Each member of the list should set a container `name`, `image`, and `securityContext` and may contain `volumeMounts`. |
