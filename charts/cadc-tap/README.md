@@ -24,12 +24,12 @@ A Helm chart for the CADC TAP service
 | config.jvmMaxHeapSize | string | `"4G"` | Java heap size, which will set the maximum size of the heap. Otherwise Java would determine it based on how much memory is available and black maths. |
 | config.tapSchemaAddress | string | `"tap-schema-db.tap-schema.svc.cluster.local:3306"` | Address to a MySQL database containing TAP schema data |
 | fullnameOverride | string | `""` | Override the full name for resources (includes the release name) |
-| image.pullPolicy | string | `"Always"` | Pull policy for the tap image |
+| image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the tap image |
 | image.repository | string | `"lsstdax/lsst-tap-service"` | tap image to use |
 | image.tag | string | The appVersion of the chart | Tag of tap image to use |
 | imagePullSecrets | list | `[]` | Secret names to use for all Docker pulls |
 | ingress.anonymousAnnotations | object | `{}` | Additional annotations to use for endpoints that allow anonymous access, such as `/capabilities` and `/availability` |
-| ingress.authenticatedNnnotations | object | `{}` | Additional annotations to use for endpoints that are authenticated, such as `/sync`, `/async`, and `/tables` |
+| ingress.authenticatedAnnotations | object | `{}` | Additional annotations to use for endpoints that are authenticated, such as `/sync`, `/async`, and `/tables` |
 | ingress.gafaelfawrAuthQuery | string | `"scope=read:tap&auth_type=basic&delegate_to=tap"` | Gafaelfawr auth query string |
 | ingress.host | string | None, must be set | Hostname for the ingress |
 | nameOverride | string | `""` | Override the base name for resources |
@@ -39,7 +39,7 @@ A Helm chart for the CADC TAP service
 | qserv.host | string | `"mock-qserv:3306"` (the mock QServ) | QServ hostname:port to connect to |
 | qserv.mock.affinity | object | `{}` | Affinity rules for the mock QServ pod |
 | qserv.mock.enabled | bool | `true` | Spin up a container to pretend to be QServ. |
-| qserv.mock.image.pullPolicy | string | `"Always"` | Pull policy for the mock QServ image |
+| qserv.mock.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the mock QServ image |
 | qserv.mock.image.repository | string | `"lsstdax/mock-qserv"` | Mock QServ image to use |
 | qserv.mock.image.tag | string | The appVersion of the chart | Tag of mock QServ image to use |
 | qserv.mock.nodeSelector | object | `{}` | Node selection rules for the mock QServ pod |
@@ -52,7 +52,7 @@ A Helm chart for the CADC TAP service
 | service.type | string | `"ClusterIP"` | Type of service to create |
 | tolerations | list | `[]` | Tolerations for the Gafaelfawr frontend pod |
 | uws.affinity | object | `{}` | Affinity rules for the UWS database pod |
-| uws.image.pullPolicy | string | `"Always"` | Pull policy for the UWS database image |
+| uws.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the UWS database image |
 | uws.image.repository | string | `"lsstdax/uws-db"` | UWS database image to use |
 | uws.image.tag | string | The appVersion of the chart | Tag of UWS database image to use |
 | uws.nodeSelector | object | `{}` | Node selection rules for the UWS database pod |
