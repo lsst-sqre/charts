@@ -33,7 +33,6 @@ A Helm chart for the CADC TAP service
 | ingress.gafaelfawrAuthQuery | string | `"scope=read:tap&auth_type=basic&delegate_to=tap"` | Gafaelfawr auth query string |
 | ingress.host | string | None, must be set | Hostname for the ingress |
 | nameOverride | string | `""` | Override the base name for resources |
-| networkPolicy.enabled | bool | `false` | Whether to restrict access to the service. Only enable if the ingress controller namespace is tagged with `gafaelfawr.lsst.io/ingress: "true"`. |
 | nodeSelector | object | `{}` | Node selector rules for the Gafaelfawr frontend pod |
 | podAnnotations | object | `{}` | Annotations for the Gafaelfawr frontend pod |
 | qserv.host | string | `"mock-qserv:3306"` (the mock QServ) | QServ hostname:port to connect to |

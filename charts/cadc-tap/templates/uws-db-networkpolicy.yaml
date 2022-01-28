@@ -12,7 +12,7 @@ spec:
     # Deny all outbound access; PostgreSQL doesn't need to talk to anything.
     - Egress
   ingress:
-    # Allow inbound access to mock Qserv from the server.
+    # Allow inbound access to UWS database from the server.
     - from:
           podSelector:
             matchLabels:

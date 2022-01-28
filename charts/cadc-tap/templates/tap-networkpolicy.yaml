@@ -19,4 +19,4 @@ spec:
               gafaelfawr.lsst.io/ingress: "true"
       ports:
         - protocol: "TCP"
-          port: {{ .Values.service.port }}
+          port: 8080
