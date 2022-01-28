@@ -516,6 +516,17 @@ entries:
   cachemachine:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2022-01-28T00:43:27.508763923Z"
+    description: Service to prepull Docker images for the Science Platform
+    digest: 17f5c0afafbae901a7394ef274ca05dcd898b873461fea35279f2aa0d7639305
+    maintainers:
+    - name: cbanek
+    name: cachemachine
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cachemachine-1.2.0/cachemachine-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2022-01-07T19:04:55.412892289Z"
     description: Service to prepull Docker images for the Science Platform
     digest: 6a5d27d2efeadd7020f0cb323104bfd9b5b83066276dd906ac5b06068129613e
@@ -1155,6 +1166,18 @@ entries:
   datalinker:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-01-28T00:43:27.618438818Z"
+    description: A Helm chart for Kubernetes
+    digest: 7b1cd48ac38452fa6db91c59c367e0c12f8be101d2d8d054a24e9e15621eb159
+    maintainers:
+    - name: cbanek
+    name: datalinker
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/datalinker-0.1.4/datalinker-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-01-07T19:04:55.704911351Z"
     description: A Helm chart for Kubernetes
     digest: c8afc03dbded5af54e725de0f6a0987578a1509dfc06e855f131044b911d1b39
@@ -1749,6 +1772,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/firefly-0.1.2/firefly-0.1.2.tgz
     version: 0.1.2
   gafaelfawr:
+  - apiVersion: v2
+    appVersion: 3.5.1
+    created: "2022-01-28T00:43:27.739255816Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 823c6e6b971cdc1ccb62f3dc6299de30e8bf2870b74e3f8b3d558d1bb47d633e
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.5.2/gafaelfawr-4.5.2.tgz
+    version: 4.5.2
   - apiVersion: v2
     appVersion: 3.5.1
     created: "2022-01-14T23:20:15.754571455Z"
@@ -3335,6 +3370,18 @@ entries:
   mobu:
   - apiVersion: v2
     appVersion: 4.1.0
+    created: "2022-01-28T00:43:27.858093178Z"
+    description: Generate system load by pretending to be a random scientist
+    digest: 874d7053471f2a317de3579b26aabb11e3b5df8c1a9ccd0ada41e6dbba58edfa
+    home: https://github.com/lsst-sqre/mobu
+    maintainers:
+    - name: cbanek
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-3.2.0/mobu-3.2.0.tgz
+    version: 3.2.0
+  - apiVersion: v2
+    appVersion: 4.1.0
     created: "2022-01-12T01:01:49.063644243Z"
     description: Generate system load by pretending to be a random scientist
     digest: 9239f4df6eb47a159931f5f7b89bfe4b0b5262de4c3a364b6e76b6b718b6bd84
@@ -3760,6 +3807,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.1/mobu-0.1.1.tgz
     version: 0.1.1
   moneypenny:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-01-28T00:43:27.954085625Z"
+    description: User provisioning actions for the Science Platform
+    digest: 2078c9448e146e5dcbafdf557896a8115154dd54f53b1570510ee5b5f65e2526
+    maintainers:
+    - name: athornton
+    - name: rra
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-1.0.1/moneypenny-1.0.1.tgz
+    version: 1.0.1
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2022-01-24T22:41:02.247952661Z"
@@ -4494,6 +4553,26 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/nublado-0.8.10/nublado-0.8.10.tgz
     version: 0.8.10
   nublado2:
+  - apiVersion: v2
+    appVersion: 1.6.0
+    created: "2022-01-28T00:43:28.134238302Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.1.4
+    description: Nublado2 JupyterHub installation
+    digest: d0c072788b55e26a5543671b46d360e6b29de1da39c1dd82e2bef6911dfc1746
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.7.0/nublado2-0.7.0.tgz
+    version: 0.7.0
   - apiVersion: v2
     appVersion: 1.5.0
     created: "2022-01-24T22:41:02.411357515Z"
@@ -6968,6 +7047,18 @@ entries:
   vo-cutouts:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-01-28T00:43:28.225014854Z"
+    description: Image cutout service complying with IVOA SODA
+    digest: f43566412a40f78f81db44282187ae245865ec06b7875191d35411ac7f33148d
+    home: https://github.com/lsst-sqre/vo-cutouts
+    maintainers:
+    - name: rra
+    name: vo-cutouts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.6/vo-cutouts-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-01-10T18:00:01.971619037Z"
     description: Image cutout service complying with IVOA SODA
     digest: a818fd49106e41e0625a7fc3c5cae148f4646481addc5e523fe83a757378b3c1
@@ -7038,4 +7129,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-26T21:25:01.127373095Z"
+generated: "2022-01-28T00:43:28.23136437Z"
