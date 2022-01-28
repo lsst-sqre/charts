@@ -51,12 +51,6 @@ ingress:
   # the same hostname, only one of them needs a TLS configuration.
   tls: []
 
-networkPolicy:
-  # -- Whether to restrict access to the image cutout service. Only enable if
-  # the ingress controller namespace is tagged with
-  # `gafaelfawr.lsst.io/ingress: "true"`.
-  enabled: false
-
 # -- Resource limits and requests for the vo-cutouts frontend pod
 resources: {}
 

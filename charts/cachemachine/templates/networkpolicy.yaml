@@ -1,15 +1,12 @@
+{{- if .Values.ingress.enabled -}}
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: {{ template "vo-cutouts.fullname" . }}
-  labels:
-    {{- include "vo-cutouts.labels" . | nindent 4 }}
+  name: {{ include "cachemachine.fullname" . }}
 spec:
   podSelector:
-    # This policy controls inbound access to the frontend component.
     matchLabels:
-      {{- include "vo-cutouts.selectorLabels" . | nindent 6 }}
-      app.kubernetes.io/component: "frontend"
+      {{- include "cachemachine.selectorLabels" . | nindent 6 }}
   policyTypes:
     - Ingress
   ingress:
@@ -22,4 +19,5 @@ spec:
               gafaelfawr.lsst.io/ingress: "true"
       ports:
         - protocol: "TCP"
-          port: 8080
+          port: {{ .Values.service.port }}
+{{- end }}

@@ -1,6 +1,6 @@
 # mobu
 
-![Version: 3.1.2](https://img.shields.io/badge/Version-3.1.2-informational?style=flat-square) ![AppVersion: 4.1.0](https://img.shields.io/badge/AppVersion-4.1.0-informational?style=flat-square)
+![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 4.1.0](https://img.shields.io/badge/AppVersion-4.1.0-informational?style=flat-square)
 
 Generate system load by pretending to be a random scientist
 
@@ -24,15 +24,17 @@ Generate system load by pretending to be a random scientist
 | image.repository | string | `"lsstsqre/mobu"` | mobu image to use |
 | image.tag | string | The appVersion of the chart | Tag of mobu image to use |
 | imagePullSecrets | list | `[]` | Secret names to use for all Docker pulls |
-| ingress.annotations."nginx.ingress.kubernetes.io/auth-method" | string | `"GET"` |  |
-| ingress.annotations."nginx.ingress.kubernetes.io/auth-url" | string | `"http://gafaelfawr.gafaelfawr.svc.cluster.local:8080/auth?scope=exec:admin&auth_type=basic"` |  |
+| ingress.annotations | object | `{}` | Additional annotations to add to the ingress |
 | ingress.enabled | bool | `true` | Whether to create an ingress |
+| ingress.gafaelfawrAuthQuery | string | `"scope=exec:admin"` | Gafaelfawr auth query string |
 | ingress.host | string | None, must be set if the ingress is enabled | Hostname for the ingress |
 | ingress.tls | list | `[]` | Configures TLS for the ingress if needed. If multiple ingresses share the same hostname, only one of them needs a TLS configuration. |
 | nameOverride | string | `""` | Override the base name for resources |
 | nodeSelector | object | `{}` | Node selector rules for the mobu frontend pod |
 | podAnnotations | object | `{}` | Annotations for the mobu frontend pod |
 | resources | object | `{}` | Resource limits and requests for the mobu frontend pod |
+| service.port | int | `80` | Port of the service to create and map to the ingress |
+| service.type | string | `"ClusterIP"` | Type of service to create |
 | tolerations | list | `[]` | Tolerations for the mobu frontend pod |
 | vaultSecretsPath | string | None, must be set | Path to the Vault secret containing the Slack alert hook |
 

@@ -42,11 +42,6 @@ ingress:
   # the same hostname, only one of them needs a TLS configuration.
   tls: []
 
-networkPolicy:
-  # -- Whether to restrict access to the service. Only enable if the ingress
-  # controller namespace is tagged with `gafaelfawr.lsst.io/ingress: "true"`.
-  enabled: false
-
 orders:
   # -- List of specifications for containers to run to commission a new user.
   # Each member of the list should set a container `name`, `image`, and
