@@ -41,8 +41,7 @@ ingress:
   # -- Hostname of the deployment to run behind
   host: ""
 
-  # -- Gafaelfawr Auth Query string (default, unauthenticated)
-  # gafaelfawrAuthQuery: "scope=exec:portal&delegate_to=portal&delegate_scope=read:tap"
+  # -- Gafaelfawr auth query string (default, unauthenticated)
   gafaelfawrAuthQuery: ""
 
   # -- Additional annotations for the ingress rule
