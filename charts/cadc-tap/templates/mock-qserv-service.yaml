@@ -1,16 +1,17 @@
-{{ if .Values.use_mock_qserv }}
+{{ if .Values.qserv.mock.enabled -}}
 kind: Service
 apiVersion: v1
 metadata:
-  name: qserv-master01
+  name: "qserv-master01"
   labels:
-    app: {{ template "cadc-tap.fullname" . }}-mock-qserv
-{{ include "cadc-tap.labels" . | indent 4 }}
+    {{- include "cadc-tap.labels" . | nindent 4 }}
 spec:
-  selector:
-    app: {{ template "cadc-tap.fullname" . }}-mock-qserv
+  type: ClusterIP
   ports:
-  - protocol: TCP
-    port: 4040
-    targetPort: 3306
-{{ end }}
+    - protocol: "TCP"
+      port: 3306
+      targetPort: 3306
+  selector:
+    {{- include "cadc-tap.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: "mock-qserv"
+{{- end }}

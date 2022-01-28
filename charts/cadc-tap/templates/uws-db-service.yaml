@@ -3,12 +3,12 @@ apiVersion: v1
 metadata:
   name: {{ template "cadc-tap.fullname" . }}-uws-db
   labels:
-    app: {{ template "cadc-tap.fullname" . }}-uws-db
-{{ include "cadc-tap.labels" . | indent 4 }}
+    {{- include "cadc-tap.labels" . | nindent 4 }}
 spec:
-  selector:
-    app: {{ template "cadc-tap.fullname" . }}-uws-db
   ports:
-  - protocol: TCP
-    port: 5432
-    targetPort: 5432
+    - protocol: "TCP"
+      port: 5432
+      targetPort: 5432
+  selector:
+    {{- include "cadc-tap.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: "uws-db"

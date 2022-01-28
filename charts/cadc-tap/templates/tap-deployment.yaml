@@ -1,63 +1,97 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "cadc-tap.fullname" . }}-tap-server
+  name: {{ template "cadc-tap.fullname" . }}
   labels:
-    app: {{ template "cadc-tap.fullname" . }}-tap-server
-{{ include "cadc-tap.labels" . | indent 4 }}
+    {{- include "cadc-tap.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "cadc-tap.fullname" . }}-tap-server
+      {{- include "cadc-tap.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "server"
   template:
     metadata:
-      labels:
-        app: {{ template "cadc-tap.fullname" . }}-tap-server
-{{ include "cadc-tap.labels" . | indent 8 }}
-    spec:
-      containers:
-      - name: {{ template "cadc-tap.fullname" . }}-tap-server
-        image: lsstdax/lsst-tap-service:{{ .Values.tag }}
-        imagePullPolicy: {{ .Values.imagePullPolicy }}
-        resources:
-          {{toYaml .Values.resources | nindent 10}}
-        ports:
-        - containerPort: 8080
-        volumeMounts:
-        - name: google-creds
-          mountPath: "/etc/creds"
-          readOnly: true
-        env:
-        - name: CATALINA_OPTS
-          value: >-
-              -Dqservuser.jdbc.username=qsmaster
-              -Dqservuser.jdbc.password=
-              -Dqservuser.jdbc.driverClassName=com.mysql.cj.jdbc.Driver
-              -Dqservuser.jdbc.url=jdbc:mysql://{{ .Values.qserv_host }}/
-              -Dtapuser.jdbc.username=TAP_SCHEMA -Dtapuser.jdbc.password=TAP_SCHEMA
-              -Dtapuser.jdbc.driverClassName=com.mysql.cj.jdbc.Driver
-              -Dtapuser.jdbc.url=jdbc:mysql://{{ .Values.tap_schema_address }}/
-              -Dca.nrc.cadc.reg.client.RegistryClient.local=true
-              -Duws.jdbc.username=postgres
-              -Duws.jdbc.driverClassName=org.postgresql.Driver
-              -Duws.jdbc.url=jdbc:postgresql://{{ template "cadc-tap.fullname" . }}-uws-db/
-              -Dca.nrc.cadc.auth.Authenticator=org.opencadc.tap.impl.AuthenticatorImpl
-              -Dgafaelfawr_url=https://{{ .Values.host }}/auth/api/v1/user-info
-              -Dgcs_bucket={{ .Values.gcs_bucket }}
-              -Dgcs_bucket_url={{ .Values.gcs_bucket_url }}
-              -Dbase_url=https://{{ .Values.host }}
-              -Dca.nrc.cadc.util.PropertiesReader.dir=/etc/creds/
-              -Xmx{{ .Values.jvm_max_heap_size }}
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: "/etc/creds/google_creds.json"
-        - name: DATALINK_PAYLOAD_URL
-          value: "{{ .Values.datalink_payload_url }}"
-      {{- if .Values.pull_secret }}
-      imagePullSecrets:
-      - name: {{ .Values.pull_secret }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
       {{- end }}
+      labels:
+        {{- include "cadc-tap.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: "server"
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: "tap-server"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "all"
+            readOnlyRootFilesystem: true
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+            - name: CATALINA_OPTS
+              value: >-
+                -Dqservuser.jdbc.username=qsmaster
+                -Dqservuser.jdbc.password=
+                -Dqservuser.jdbc.driverClassName=com.mysql.cj.jdbc.Driver
+                -Dqservuser.jdbc.url=jdbc:mysql://{{ .Values.qserv.host }}/
+                -Dtapuser.jdbc.username=TAP_SCHEMA
+                -Dtapuser.jdbc.password=TAP_SCHEMA
+                -Dtapuser.jdbc.driverClassName=com.mysql.cj.jdbc.Driver
+                -Dtapuser.jdbc.url=jdbc:mysql://{{ .Values.config.tapSchemaAddress }}/
+                -Dca.nrc.cadc.reg.client.RegistryClient.local=true
+                -Duws.jdbc.username=postgres
+                -Duws.jdbc.driverClassName=org.postgresql.Driver
+                -Duws.jdbc.url=jdbc:postgresql://{{ template "cadc-tap.fullname" . }}-uws-db/
+                -Dca.nrc.cadc.auth.Authenticator=org.opencadc.tap.impl.AuthenticatorImpl
+                -Dgafaelfawr_url=https://{{ .Values.config.gafaelfawrHost | default .Values.ingress.host }}/auth/api/v1/user-info
+                -Dgcs_bucket={{ .Values.config.gcsBucket }}
+                -Dgcs_bucket_url={{ .Values.config.gcsBucketUrl }}
+                -Dbase_url=https://{{ .Values.ingress.host }}
+                -Dca.nrc.cadc.util.PropertiesReader.dir=/etc/creds/
+                -Xmx{{ .Values.config.jvmMaxHeapSize }}
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/etc/creds/google_creds.json"
+            - name: DATALINK_PAYLOAD_URL
+              value: "{{ .Values.config.datalinkPayloadUrl }}"
+          ports:
+            - containerPort: 8080
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: "google-creds"
+              mountPath: "/etc/creds"
+              readOnly: true
+            - name: "tmp"
+              mountPath: "/tmp"
       volumes:
-      - name: google-creds
-        secret:
-          secretName: {{ template "cadc-tap.fullname" . }}-secrets
+        - name: "google-creds"
+          secret:
+            secretName: {{ template "cadc-tap.fullname" . }}-secret
+        - name: "tmp"
+          emptyDir: {}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
