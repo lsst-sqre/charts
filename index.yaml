@@ -516,6 +516,17 @@ entries:
   cachemachine:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2022-01-28T02:11:49.168473988Z"
+    description: Service to prepull Docker images for the Science Platform
+    digest: 78c1ef1fe725fa85e283e5894ed013e4ec607267c745745fa0448e88e5e4cd45
+    maintainers:
+    - name: cbanek
+    name: cachemachine
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cachemachine-1.2.2/cachemachine-1.2.2.tgz
+    version: 1.2.2
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2022-01-28T01:12:24.412846488Z"
     description: Service to prepull Docker images for the Science Platform
     digest: 36d62c5a785dd506c7ee1526b036f24500f06f6038ea4136ca479cf71f88f9a2
@@ -1175,6 +1186,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/chronograf-1.3.0/chronograf-1.3.0.tgz
     version: 1.3.0
   datalinker:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-01-28T02:11:49.260183698Z"
+    description: A Helm chart for Kubernetes
+    digest: 39dc8e7980d3d6f6264eebbdacaea7dab8586735276be4d231fd0e034c5ba580
+    maintainers:
+    - name: cbanek
+    name: datalinker
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/datalinker-0.1.6/datalinker-0.1.6.tgz
+    version: 0.1.6
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2022-01-28T01:12:24.512652015Z"
@@ -3393,6 +3416,18 @@ entries:
   mobu:
   - apiVersion: v2
     appVersion: 4.1.0
+    created: "2022-01-28T02:11:49.363765518Z"
+    description: Generate system load by pretending to be a random scientist
+    digest: 37e19bdc91399444caee3eed9a0f7834497dfe1f6389e1e15a99a3f52e2c9922
+    home: https://github.com/lsst-sqre/mobu
+    maintainers:
+    - name: cbanek
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-3.2.2/mobu-3.2.2.tgz
+    version: 3.2.2
+  - apiVersion: v2
+    appVersion: 4.1.0
     created: "2022-01-28T01:12:24.6035664Z"
     description: Generate system load by pretending to be a random scientist
     digest: 659ff1c63d286eb23934038c106722ae625fa400f40950cb01f4e627ab974135
@@ -3842,6 +3877,18 @@ entries:
     - https://github.com/lsst-sqre/charts/releases/download/mobu-0.1.1/mobu-0.1.1.tgz
     version: 0.1.1
   moneypenny:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-01-28T02:11:49.445664202Z"
+    description: User provisioning actions for the Science Platform
+    digest: 9647ee2fb5e841b0f04456fa1b58e7d7574d663602a2f44ec43aa4b802e18333
+    maintainers:
+    - name: athornton
+    - name: rra
+    name: moneypenny
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/moneypenny-1.0.2/moneypenny-1.0.2.tgz
+    version: 1.0.2
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2022-01-28T00:43:27.954085625Z"
@@ -6518,6 +6565,18 @@ entries:
   sherlock:
   - apiVersion: v2
     appVersion: 0.1.1
+    created: "2022-01-28T02:11:49.549259522Z"
+    description: A Helm chart for Kubernetes
+    digest: 870a71f0489783b8aa2069dac3ee8648a8c3b3725721d231f8d415673635ffec
+    maintainers:
+    - name: cbanek
+    name: sherlock
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/sherlock-0.1.4/sherlock-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 0.1.1
     created: "2022-01-28T01:12:24.693713721Z"
     description: A Helm chart for Kubernetes
     digest: e400e1900517dfd568e8fa057ad2c1417057535b67f0cb1cff7a590d27f1025b
@@ -7048,6 +7107,21 @@ entries:
   times-square:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-01-28T02:11:49.642226623Z"
+    description: A parameterized notebook web viewer for the Rubin Science Platform.
+    digest: b2d53e69a7dc2db10bbd41668b5c69dcb935f9dc90b8cae70839aa3b9c975dcd
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: times-square
+    sources:
+    - https://github.com/lsst-sqre/times-square
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/times-square-0.1.4/times-square-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-01-28T01:12:24.776923963Z"
     description: A parameterized notebook web viewer for the Rubin Science Platform.
     digest: 47bb5a4c00e5e5da277585091977499368e797bc174659e22107c6403bfee28a
@@ -7191,4 +7265,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-28T01:12:24.781870576Z"
+generated: "2022-01-28T02:11:49.650100264Z"
