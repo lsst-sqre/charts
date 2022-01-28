@@ -14,7 +14,7 @@ spec:
   ingress:
     # Allow inbound access to mock Qserv from the server.
     - from:
-          podSelector:
+        - podSelector:
             matchLabels:
               {{- include "cadc-tap.selectorLabels" . | nindent 14 }}
               app.kubernetes.io/component: "server"
