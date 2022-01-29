@@ -5,4 +5,4 @@ home: https://github.com/lsst-sqre/lsst-tap-service
 maintainers:
   - name: cbanek
 name: cadc-tap
-version: 1.0.4
+version: 1.0.5
