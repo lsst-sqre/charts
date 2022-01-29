@@ -28,11 +28,6 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: "mock-qserv"
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - "all"
           image: "{{ .Values.qserv.mock.image.repository }}:{{ .Values.qserv.mock.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.qserv.mock.image.pullPolicy | quote }}
           ports:

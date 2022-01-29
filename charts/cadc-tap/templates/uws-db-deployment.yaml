@@ -25,11 +25,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       automountServiceAccountToken: false
-      securityContext:
-        fsGroup: 999
-        runAsNonRoot: true
-        runAsUser: 999
-        runAsGroup: 999
       containers:
         - name: "postgresql"
           securityContext:
