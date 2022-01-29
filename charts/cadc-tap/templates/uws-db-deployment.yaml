@@ -26,10 +26,10 @@ spec:
       {{- end }}
       automountServiceAccountToken: false
       securityContext:
-        fsGroup: 1000
+        fsGroup: 999
         runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
+        runAsUser: 999
+        runAsGroup: 999
       containers:
         - name: "postgresql"
           securityContext:
