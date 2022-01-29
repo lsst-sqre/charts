@@ -2,7 +2,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: "qserv-master01"
+  name: "mock-qserv"
   labels:
     {{- include "cadc-tap.labels" . | nindent 4 }}
 spec:
