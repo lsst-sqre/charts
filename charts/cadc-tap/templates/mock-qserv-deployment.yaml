@@ -26,10 +26,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       automountServiceAccountToken: false
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
       containers:
         - name: "mock-qserv"
           securityContext:
@@ -37,7 +33,6 @@ spec:
             capabilities:
               drop:
                 - "all"
-            readOnlyRootFilesystem: true
           image: "{{ .Values.qserv.mock.image.repository }}:{{ .Values.qserv.mock.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.qserv.mock.image.pullPolicy | quote }}
           ports:
