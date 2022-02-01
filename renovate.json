@@ -2,5 +2,6 @@
   "extends": [
     "config:base", "schedule:weekly"
   ],
-  "versioning": "docker"
+  "versioning": "docker",
+  "bumpVersion": "patch"
 }
