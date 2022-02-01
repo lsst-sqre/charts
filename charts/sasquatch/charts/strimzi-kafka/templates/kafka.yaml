@@ -8,12 +8,10 @@ spec:
     version: {{ .Values.kafka.version | quote }}
     replicas: {{ .Values.kafka.replicas }}
     listeners:
-      - name: internal
+      - name: plain
         port: 9092
         type: internal
-        tls: true
-        authentication:
-          type: tls
+        tls: false
       - name: tls # Used by the schema registry; it has a fixed name it expects
         port: 9093
         type: internal
