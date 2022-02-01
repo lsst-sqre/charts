@@ -1,6 +1,6 @@
 # sasquatch
 
-![Version: 0.1.7](https://img.shields.io/badge/Version-0.1.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.8](https://img.shields.io/badge/Version-0.1.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 A Helm chart to deploy Sasquatch components on Kubernetes
 
@@ -16,6 +16,7 @@ A Helm chart to deploy Sasquatch components on Kubernetes
 |------------|------|---------|
 |  | strimzi-kafka | 0.1.1 |
 | https://helm.influxdata.com/ | influxdb | 4.10.4 |
+| https://lsst-sqre.github.io/charts/ | kafka-connect-manager | 0.9.9 |
 | https://lsst-sqre.github.io/charts/ | strimzi-registry-operator | 1.2.0 |
 
 ## Values
@@ -24,8 +25,11 @@ A Helm chart to deploy Sasquatch components on Kubernetes
 |-----|------|---------|-------------|
 | influxdb.config | object | `{"continuous_queries":{"enabled":false},"coordinator":{"log_queries_after":"15s","max_concurrent_queries":10,"query_timeout":"900s","write_timeout":"60s"},"data":{"cache_max_memory_size":0,"trace_logging_enabled":true,"wal_fsync_delay":"100ms"},"http":{"auth_enabled":true,"enabled":true,"max_row_limit":0}}` | InfluxDB configuration parameters, see https://docs.influxdata.com/influxdb/v1.8/administration/config/ |
 | influxdb.image | object | `{"tag":"1.8.10"}` | InfluxDB image tag |
-| influxdb.initScripts | object | `{"enabled":true,"scripts":{"init.iql":"CREATE DATABASE \"telegraf\" WITH DURATION 30d REPLICATION 1 NAME \"rp_30d\"\n"}}` | Custom initialization scripts |
+| influxdb.initScripts | object | `{"enabled":true,"scripts":{"init.iql":"CREATE DATABASE \"telegraf\" WITH DURATION 30d REPLICATION 1 NAME \"rp_30d\"\n\n"}}` | Custom initialization scripts |
 | influxdb.setDefaultUser | object | `{"enabled":true,"user":{"existingSecret":"sasquatch"}}` | Default InfluxDB user, use influxb-user and influxdb-password keys from secret |
+| kafka-connect-manager.env.kafkaBrokerUrl | string | `"sasquatch-kafka-bootstrap.sasquatch:9092"` | Kafka broker URL. |
+| kafka-connect-manager.env.kafkaConnectUrl | string | `"http://sasquatch-connect-api.sasquatch:8083"` | Kafka connnect URL. |
+| kafka-connect-manager.influxdbSink | object | `{"influxdb-sink":{"autoUpdate":true,"checkInterval":"15000","connectInfluxDb":"efd","connectInfluxErrorPolicy":"NOOP","connectInfluxMaxRetries":"10","connectInfluxRetryInterval":"60000","connectInfluxUrl":"http://sasquatch.influxdb:8086","connectProgressEnabled":false,"enabled":true,"influxSecret":"sasquatch","name":"influxdb-sink","tasksMax":1,"timestamp":"private_efdStamp","topicRegex":"lsst.sal.*"}}` | InfluxDB Sink connector configuration |
 | strimzi-kafka | object | `{}` |  |
 | strimzi-registry-operator.clusterName | string | `"sasquatch"` |  |
 | strimzi-registry-operator.operatorNamespace | string | `"sasquatch"` |  |
