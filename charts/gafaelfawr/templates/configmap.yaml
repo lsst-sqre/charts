@@ -87,6 +87,11 @@ data:
       login_url: {{ required "config.oidc.loginUrl must be set" .Values.config.oidc.loginUrl | quote }}
       token_url: {{ required "config.oidc.tokenUrl must be set" .Values.config.oidc.tokenUrl | quote }}
       issuer: {{ required "config.oidc.issuer must be set" .Values.config.oidc.issuer | quote }}
+      {{- if .Values.config.oidc.redirectUrl }}
+      redirect_url: {{ .Values.config.oidc.redirectUrl | quote }}
+      {{- else }}
+      redirect_url: "https://{{ .Values.config.host }}/login"
+      {{- end }}
       scopes:
         {{- with .Values.config.oidc.scopes }}
         {{- toYaml . | nindent 8 }}
