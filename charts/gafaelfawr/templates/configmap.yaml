@@ -106,7 +106,7 @@ data:
     {{- if .Values.config.ldap.url }}
     ldap:
       url: {{ .Values.config.ldap.url | quote }}
-      baseDn: {{ required "config.ldap.baseDn must be set" .Values.config.ldap.baseDn | quote }}
+      base_dn: {{ required "config.ldap.baseDn must be set" .Values.config.ldap.baseDn | quote }}
       groupObjectClass: {{ .Values.config.ldap.groupObjectClass | quote }}
       groupMember: {{ .Values.config.ldap.groupMember | quote }}
     {{- end }}
