@@ -107,8 +107,8 @@ data:
     ldap:
       url: {{ .Values.config.ldap.url | quote }}
       base_dn: {{ required "config.ldap.baseDn must be set" .Values.config.ldap.baseDn | quote }}
-      groupObjectClass: {{ .Values.config.ldap.groupObjectClass | quote }}
-      groupMember: {{ .Values.config.ldap.groupMember | quote }}
+      group_object_class: {{ .Values.config.ldap.groupObjectClass | quote }}
+      group_member: {{ .Values.config.ldap.groupMember | quote }}
     {{- end }}
 
     {{- if .Values.config.oidcServer.enabled }}
