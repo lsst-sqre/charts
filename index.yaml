@@ -1892,6 +1892,18 @@ entries:
   gafaelfawr:
   - apiVersion: v2
     appVersion: 3.5.1
+    created: "2022-02-02T19:28:14.695012913Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 8fdb6dd67637b51204f1daeaf99a9694538fd95ebbd30cc1eaef7625e78b7ea7
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.5.3/gafaelfawr-4.5.3.tgz
+    version: 4.5.3
+  - apiVersion: v2
+    appVersion: 3.5.1
     created: "2022-01-28T00:43:27.739255816Z"
     description: The Gafaelfawr authentication and authorization system
     digest: 823c6e6b971cdc1ccb62f3dc6299de30e8bf2870b74e3f8b3d558d1bb47d633e
@@ -7459,4 +7471,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-02T01:40:59.362284867Z"
+generated: "2022-02-02T19:28:14.69809033Z"
