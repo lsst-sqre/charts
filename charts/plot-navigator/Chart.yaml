@@ -3,5 +3,5 @@ name: plot-navigator
 description: Panel-based plot viewer.
 maintainers:
   - name: ctslater
-version: 1.5.8
-appVersion: 0.5.6
+version: 1.6.0
+appVersion: 0.6.0
