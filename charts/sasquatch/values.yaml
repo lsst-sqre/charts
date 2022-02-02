@@ -65,3 +65,17 @@ kafka-connect-manager:
     kafkaBrokerUrl: "sasquatch-kafka-bootstrap.sasquatch:9092"
     # -- Kafka connnect URL.
     kafkaConnectUrl: "http://sasquatch-connect-api.sasquatch:8083"
+
+chronograf:
+  # -- Chronograf image tag
+  image:
+    repository: "quay.io/influxdb/chronograf"
+    tag: 1.9.3
+
+  # -- Persist Chronograf data
+  persistence:
+    enabled: true
+    size: 16Gi
+
+  # -- Secrets for Chronograf: generic_client_id, generic_client_secret and token_secret
+  envFromSecret: "sasquatch"
