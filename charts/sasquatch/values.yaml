@@ -79,3 +79,7 @@ chronograf:
 
   # -- Secrets for Chronograf: generic_client_id, generic_client_secret and token_secret
   envFromSecret: "sasquatch"
+
+# -- Path to the Vault secret (`secret/k8s_operator/<host>/sasquatch`)
+# @default -- None, must be set
+vaultSecretsPath: ""
