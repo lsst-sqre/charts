@@ -1,0 +1,10 @@
+apiVersion: v2
+description: Production-tools helm chart
+name: production-tools
+type: application
+maintainers:
+  - name: ctslater
+# Chart version
+version: 0.1.0
+# Docker image version
+appVersion: 0.0.4
