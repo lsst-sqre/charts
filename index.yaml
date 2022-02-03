@@ -6283,6 +6283,17 @@ entries:
     version: 1.1.0
   plot-navigator:
   - apiVersion: v2
+    appVersion: 0.6.1
+    created: "2022-02-03T17:48:45.278137763Z"
+    description: Panel-based plot viewer.
+    digest: 773988310da0f358739f1349496e3b5f542f5810e4b46f1a46aeef565d0051ca
+    maintainers:
+    - name: ctslater
+    name: plot-navigator
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/plot-navigator-1.6.1/plot-navigator-1.6.1.tgz
+    version: 1.6.1
+  - apiVersion: v2
     appVersion: 0.6.0
     created: "2022-02-02T22:26:33.228173314Z"
     description: Panel-based plot viewer.
@@ -7555,4 +7566,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-03T02:08:08.485286694Z"
+generated: "2022-02-03T17:48:45.28517145Z"
