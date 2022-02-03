@@ -1,6 +1,6 @@
 # sasquatch
 
-![Version: 0.1.10](https://img.shields.io/badge/Version-0.1.10-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.11](https://img.shields.io/badge/Version-0.1.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 A Helm chart to deploy Sasquatch components on Kubernetes
 
@@ -17,6 +17,7 @@ A Helm chart to deploy Sasquatch components on Kubernetes
 |  | strimzi-kafka | 0.1.1 |
 | https://helm.influxdata.com/ | chronograf | 1.2.1 |
 | https://helm.influxdata.com/ | influxdb | 4.10.4 |
+| https://helm.influxdata.com/ | kapacitor | 1.4.2 |
 | https://lsst-sqre.github.io/charts/ | kafka-connect-manager | 0.9.9 |
 | https://lsst-sqre.github.io/charts/ | strimzi-registry-operator | 1.2.0 |
 
@@ -34,6 +35,11 @@ A Helm chart to deploy Sasquatch components on Kubernetes
 | kafka-connect-manager.env.kafkaBrokerUrl | string | `"sasquatch-kafka-bootstrap.sasquatch:9092"` | Kafka broker URL. |
 | kafka-connect-manager.env.kafkaConnectUrl | string | `"http://sasquatch-connect-api.sasquatch:8083"` | Kafka connnect URL. |
 | kafka-connect-manager.influxdbSink | object | `{"influxdb-sink":{"autoUpdate":true,"checkInterval":"15000","connectInfluxDb":"efd","connectInfluxErrorPolicy":"NOOP","connectInfluxMaxRetries":"10","connectInfluxRetryInterval":"60000","connectInfluxUrl":"http://sasquatch.influxdb:8086","connectProgressEnabled":false,"enabled":true,"influxSecret":"sasquatch","name":"influxdb-sink","tasksMax":1,"timestamp":"private_efdStamp","topicRegex":"lsst.sal.*"}}` | InfluxDB Sink connector configuration |
+| kapacitor.envVars | object | `{"KAPACITOR_SLACK_ENABLED":true,"KAPACITOR_SLACK_URL":"https://hooks.slack.com/services/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"}` | Kapacitor environment variables |
+| kapacitor.existingSecret | string | `"sasquatch"` | InfluxDB credentials, use influxdb-user and influxdb-password keys from secret. |
+| kapacitor.image | object | `{"repository":"kapacitor","tag":"1.6.3"}` | Kapacitor image tag |
+| kapacitor.influxURL | string | `"http://sasquatch.influxdb:8086"` | InfluxDB connection URL |
+| kapacitor.persistence | object | `{"enabled":true,"size":"16Gi"}` | Persist Kapacitor data |
 | strimzi-kafka | object | `{}` |  |
 | strimzi-registry-operator.clusterName | string | `"sasquatch"` |  |
 | strimzi-registry-operator.operatorNamespace | string | `"sasquatch"` |  |
