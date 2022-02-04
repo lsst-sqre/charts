@@ -94,6 +94,14 @@ spec:
               set -x
               pip install --quiet --no-cache-dir 'dramatiq[redis]'
               cd /tmp
+              rm -r cutouts
+              mkdir cutouts
+              rm -r image_cutout_backend
+              git clone --depth 1 https://github.com/lsst-dm/image_cutout_backend.git
+              cd image_cutout_backend
+              setup -r .
+              scons install declare -t current
+              cd ..
               rm -r vo-cutouts
               git clone --depth 1 -b "$(echo '{{ .Values.image.tag | default .Chart.AppVersion }}' | sed 's,tickets-,tickets/,')" https://github.com/lsst-sqre/vo-cutouts
               cd vo-cutouts/src/vocutouts
@@ -115,6 +123,14 @@ spec:
                 secretKeyRef:
                   name: {{ template "vo-cutouts.fullname" . }}-secret
                   key: "redis-password"
+
+            # URL of the bucket into which to store the cutouts.
+            - name: "CUTOUT_STORAGE_URL"
+              value: {{ required "config.gcsBucketUrl must be set" .Values.config.gcsBucketUrl | quote }}
+
+            # Temporary directory into which to stage cutouts before uploading.
+            - name: "CUTOUT_TMPDIR"
+              value: "/tmp/cutouts"
           envFrom:
             - configMapRef:
                 name: {{ template "vo-cutouts.fullname" . }}-config
