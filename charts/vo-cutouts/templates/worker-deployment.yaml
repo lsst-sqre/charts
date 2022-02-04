@@ -65,7 +65,6 @@ spec:
             capabilities:
               drop:
                 - "all"
-            readOnlyRootFilesystem: true
           image: "{{ .Values.cutoutWorker.image.repository }}:{{ .Values.cutoutWorker.image.tag }}"
           imagePullPolicy: {{ .Values.cutoutWorker.image.pullPolicy | quote }}
 
@@ -76,7 +75,17 @@ spec:
           # Python file from there.  It then installs Dramatiq and runs it
           # with the stack Python.
           #
-          # The path in the user home directory uesd by pip install run as a
+          # The current approach requires a writable root file system so that
+          # image_cutout_backend can be installed into the Conda environment.
+          # It will instead be incorporated into the stack in the future so
+          # that we don't have to do all the setup nonsense below and can go
+          # back to using a read-only root file system.  Once that's done, the
+          # invocation of dramatiq must be replaced with:
+          #
+          # python /home/lsst/.local/bin/dramatiq
+          #
+          # because pip will then install new packages into ~/.local.  The
+          # path in the user home directory uesd by pip install run as a
           # non-root user is in the Python path by default, so packages
           # installed that way will be picked up by the stack Python.
           # However, ~/.local/bin is not in PATH and we want to force the
@@ -92,7 +101,7 @@ spec:
               source /opt/lsst/software/stack/loadLSST.bash
               setup lsst_distrib
               set -x
-              pip install --quiet --no-cache-dir 'dramatiq[redis]'
+              pip install --no-cache-dir 'dramatiq[redis]'
               cd /tmp
               rm -r cutouts
               mkdir cutouts
@@ -105,7 +114,7 @@ spec:
               rm -r vo-cutouts
               git clone --depth 1 -b "$(echo '{{ .Values.image.tag | default .Chart.AppVersion }}' | sed 's,tickets-,tickets/,')" https://github.com/lsst-sqre/vo-cutouts
               cd vo-cutouts/src/vocutouts
-              python /home/lsst/.local/bin/dramatiq workers -Q cutout
+              dramatiq workers -Q cutout
 
           env:
             # The following are used by Butler to retrieve its configuration
