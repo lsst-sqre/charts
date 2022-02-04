@@ -97,7 +97,7 @@ spec:
               rm -r cutouts
               mkdir cutouts
               rm -r image_cutout_backend
-              git clone --depth 1 https://github.com/lsst-dm/image_cutout_backend.git
+              git clone --depth 1 -b tickets/DM-32097 https://github.com/lsst-dm/image_cutout_backend.git
               cd image_cutout_backend
               setup -r .
               scons install declare -t current
