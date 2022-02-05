@@ -76,13 +76,14 @@ config:
   # @default -- None, must be set
   butlerRepository: ""
 
-  # -- Collection of source data from which cutouts will be taken
-  # @default -- None, must be set
-  butlerCollection: ""
-
   # -- URL for the PostgreSQL database
   # @default -- None, must be set
   databaseUrl: ""
+
+  # -- URL for the GCS bucket into which to store cutouts (must start with
+  # `s3`)
+  # @default -- None, must be set
+  gcsBucketUrl: ""
 
   # -- Timeout for a single cutout job in seconds
   # @default -- 600 (10 minutes)
@@ -130,7 +131,7 @@ cutoutWorker:
     repository: "lsstsqre/centos"
 
     # -- Stack image tag to use
-    tag: "7-stack-lsst_distrib-w_2021_43"
+    tag: "7-stack-lsst_distrib-w_2022_06"
 
     # -- Pull policy for cutout workers
     pullPolicy: "IfNotPresent"
