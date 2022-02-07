@@ -94,7 +94,6 @@ kapacitor:
   # -- Kapacitor environment variables
   envVars:
     KAPACITOR_SLACK_ENABLED: true
-    KAPACITOR_SLACK_URL: "https://hooks.slack.com/services/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"
 
 # -- Path to the Vault secret (`secret/k8s_operator/<host>/sasquatch`)
 # @default -- None, must be set

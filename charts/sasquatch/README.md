@@ -35,7 +35,7 @@ A Helm chart to deploy Sasquatch components on Kubernetes
 | kafka-connect-manager.env.kafkaBrokerUrl | string | `"sasquatch-kafka-bootstrap.sasquatch:9092"` | Kafka broker URL. |
 | kafka-connect-manager.env.kafkaConnectUrl | string | `"http://sasquatch-connect-api.sasquatch:8083"` | Kafka connnect URL. |
 | kafka-connect-manager.influxdbSink | object | `{"influxdb-sink":{"autoUpdate":true,"checkInterval":"15000","connectInfluxDb":"efd","connectInfluxErrorPolicy":"NOOP","connectInfluxMaxRetries":"10","connectInfluxRetryInterval":"60000","connectInfluxUrl":"http://sasquatch.influxdb:8086","connectProgressEnabled":false,"enabled":true,"influxSecret":"sasquatch","name":"influxdb-sink","tasksMax":1,"timestamp":"private_efdStamp","topicRegex":"lsst.sal.*"}}` | InfluxDB Sink connector configuration |
-| kapacitor.envVars | object | `{"KAPACITOR_SLACK_ENABLED":true,"KAPACITOR_SLACK_URL":"https://hooks.slack.com/services/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"}` | Kapacitor environment variables |
+| kapacitor.envVars | object | `{"KAPACITOR_SLACK_ENABLED":true}` | Kapacitor environment variables |
 | kapacitor.existingSecret | string | `"sasquatch"` | InfluxDB credentials, use influxdb-user and influxdb-password keys from secret. |
 | kapacitor.image | object | `{"repository":"kapacitor","tag":"1.6.3"}` | Kapacitor image tag |
 | kapacitor.influxURL | string | `"http://sasquatch.influxdb:8086"` | InfluxDB connection URL |
