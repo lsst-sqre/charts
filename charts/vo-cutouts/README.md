@@ -1,6 +1,6 @@
 # vo-cutouts
 
-![Version: 0.1.6](https://img.shields.io/badge/Version-0.1.6-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.2.1](https://img.shields.io/badge/Version-0.2.1-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
 
 Image cutout service complying with IVOA SODA
 
@@ -20,12 +20,12 @@ Image cutout service complying with IVOA SODA
 | cloudsql.enabled | bool | `false` | Enable the Cloud SQL Auth Proxy sidecar, used with CloudSQL databases on Google Cloud |
 | cloudsql.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for Cloud SQL Auth Proxy images |
 | cloudsql.image.repository | string | `"gcr.io/cloudsql-docker/gce-proxy"` | Cloud SQL Auth Proxy image to use |
-| cloudsql.image.tag | string | `"1.28.0-buster"` | Cloud SQL Auth Proxy tag to use |
+| cloudsql.image.tag | string | `"1.28.1"` | Cloud SQL Auth Proxy tag to use |
 | cloudsql.instanceConnectionName | string | `""` | Instance connection name for a CloudSQL PostgreSQL instance |
 | cloudsql.serviceAccount | string | `""` | The Google service account that has an IAM binding to the `vo-cutouts` Kubernetes service accounts and has the `cloudsql.client` role |
-| config.butlerCollection | string | None, must be set | Collection of source data from which cutouts will be taken |
 | config.butlerRepository | string | None, must be set | Configuration for the Butler repository to use |
 | config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
+| config.gcsBucketUrl | string | None, must be set | URL for the GCS bucket into which to store cutouts (must start with `s3`) |
 | config.lifetime | int | 604800 (1 week) | Lifetime of job results in seconds |
 | config.loglevel | string | `"INFO"` | Choose from the text form of Python logging levels |
 | config.syncTimeout | int | 60 (1 minute) | Timeout for results from a sync cutout in seconds |
@@ -33,7 +33,7 @@ Image cutout service complying with IVOA SODA
 | cutoutWorker.affinity | object | `{}` | Affinity rules for the cutout worker pod |
 | cutoutWorker.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for cutout workers |
 | cutoutWorker.image.repository | string | `"lsstsqre/centos"` | Stack image to use for cutouts |
-| cutoutWorker.image.tag | string | `"7-stack-lsst_distrib-w_2021_43"` | Stack image tag to use |
+| cutoutWorker.image.tag | string | `"7-stack-lsst_distrib-w_2022_06"` | Stack image tag to use |
 | cutoutWorker.nodeSelector | object | `{}` | Node selection rules for the cutout worker pod |
 | cutoutWorker.podAnnotations | object | `{}` | Annotations for the cutout worker pod |
 | cutoutWorker.replicaCount | int | `1` | Number of cutout worker pods to start |
