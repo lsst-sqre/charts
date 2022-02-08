@@ -7,6 +7,7 @@ metadata:
 data:
   CUTOUT_BUTLER_REPOSITORY: {{ required "config.butlerRepository must be set" .Values.config.butlerRepository | quote }}
   CUTOUT_DATABASE_URL: {{ required "config.databaseUrl must be set" .Values.config.databaseUrl | quote }}
+  CUTOUT_SERVICE_ACCOUNT: {{ required "cloudsql.serviceAccount must be set" .Values.cloudsql.serviceAccount | quote }}
   CUTOUT_STORAGE_URL: {{ required "config.gcsBucketUrl must be set" .Values.config.gcsBucketUrl | quote }}
   CUTOUT_TIMEOUT: {{ .Values.config.timeout | quote }}
   CUTOUT_LIFETIME: {{ .Values.config.lifetime | quote }}
