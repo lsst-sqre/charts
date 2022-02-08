@@ -103,7 +103,7 @@ config:
 cloudsql:
   # -- Enable the Cloud SQL Auth Proxy sidecar, used with CloudSQL databases
   # on Google Cloud
-  enabled: false
+  enabled: true
 
   image:
     # -- Cloud SQL Auth Proxy image to use
@@ -119,7 +119,9 @@ cloudsql:
   instanceConnectionName: ""
 
   # -- The Google service account that has an IAM binding to the `vo-cutouts`
-  # Kubernetes service accounts and has the `cloudsql.client` role
+  # Kubernetes service accounts and has the `cloudsql.client` role, access
+  # to the GCS bucket, and ability to sign URLs as itself
+  # @default -- None, must be set
   serviceAccount: ""
 
 cutoutWorker:
