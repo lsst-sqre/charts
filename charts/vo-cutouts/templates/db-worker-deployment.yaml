@@ -67,6 +67,8 @@ spec:
             - "vocutouts.actors"
             - "-Q"
             - "uws"
+            - "-p"
+            - "1"
           env:
             - name: "CUTOUT_DATABASE_PASSWORD"
               valueFrom:
