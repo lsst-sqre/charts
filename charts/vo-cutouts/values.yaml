@@ -126,7 +126,7 @@ cloudsql:
 
 cutoutWorker:
   # -- Number of cutout worker pods to start
-  replicaCount: 1
+  replicaCount: 2
 
   image:
     # -- Stack image to use for cutouts

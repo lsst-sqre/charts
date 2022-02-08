@@ -1,6 +1,6 @@
 # vo-cutouts
 
-![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
+![Version: 0.2.3](https://img.shields.io/badge/Version-0.2.3-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
 
 Image cutout service complying with IVOA SODA
 
@@ -36,7 +36,7 @@ Image cutout service complying with IVOA SODA
 | cutoutWorker.image.tag | string | `"7-stack-lsst_distrib-w_2022_06"` | Stack image tag to use |
 | cutoutWorker.nodeSelector | object | `{}` | Node selection rules for the cutout worker pod |
 | cutoutWorker.podAnnotations | object | `{}` | Annotations for the cutout worker pod |
-| cutoutWorker.replicaCount | int | `1` | Number of cutout worker pods to start |
+| cutoutWorker.replicaCount | int | `2` | Number of cutout worker pods to start |
 | cutoutWorker.resources | object | `{}` | Resource limits and requests for the cutout worker pod |
 | cutoutWorker.tolerations | list | `[]` | Tolerations for the cutout worker pod |
 | databaseWorker.affinity | object | `{}` | Affinity rules for the database worker pod |
