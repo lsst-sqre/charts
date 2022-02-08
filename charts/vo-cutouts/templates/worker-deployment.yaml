@@ -114,7 +114,7 @@ spec:
               rm -r vo-cutouts
               git clone --depth 1 -b "$(echo '{{ .Values.image.tag | default .Chart.AppVersion }}' | sed 's,tickets-,tickets/,')" https://github.com/lsst-sqre/vo-cutouts
               cd vo-cutouts/src/vocutouts
-              dramatiq workers -Q cutout
+              dramatiq workers -Q cutout -p 1 -t 1
 
           env:
             # The following are used by Butler to retrieve its configuration
