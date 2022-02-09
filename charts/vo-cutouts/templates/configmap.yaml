@@ -14,3 +14,4 @@ data:
   CUTOUT_REDIS_HOST: "{{ template "vo-cutouts.fullname" . }}-redis.{{ .Release.Namespace }}"
   CUTOUT_SYNC_TIMEOUT: {{ .Values.config.syncTimeout | quote }}
   SAFIR_LOG_LEVEL: {{ .Values.config.loglevel | quote }}
+  SAFIR_PROFILE: "production"
