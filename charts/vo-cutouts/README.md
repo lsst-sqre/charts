@@ -26,7 +26,7 @@ Image cutout service complying with IVOA SODA
 | config.butlerRepository | string | None, must be set | Configuration for the Butler repository to use |
 | config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
 | config.gcsBucketUrl | string | None, must be set | URL for the GCS bucket into which to store cutouts (must start with `s3`) |
-| config.lifetime | int | 604800 (1 week) | Lifetime of job results in seconds |
+| config.lifetime | int | 2592000 (30 days) | Lifetime of job results in seconds |
 | config.loglevel | string | `"INFO"` | Choose from the text form of Python logging levels |
 | config.syncTimeout | int | 60 (1 minute) | Timeout for results from a sync cutout in seconds |
 | config.timeout | int | 600 (10 minutes) | Timeout for a single cutout job in seconds |

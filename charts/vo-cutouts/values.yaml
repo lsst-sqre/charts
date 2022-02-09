@@ -90,8 +90,8 @@ config:
   timeout: 600
 
   # -- Lifetime of job results in seconds
-  # @default -- 604800 (1 week)
-  lifetime: 604800
+  # @default -- 2592000 (30 days)
+  lifetime: 2592000
 
   # -- Timeout for results from a sync cutout in seconds
   # @default -- 60 (1 minute)
