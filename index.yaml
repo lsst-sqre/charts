@@ -1363,6 +1363,18 @@ entries:
     version: 0.1.0
   exposurelog:
   - apiVersion: v2
+    appVersion: 0.8.0
+    created: "2022-02-11T19:57:23.799238499Z"
+    description: Exposure log service
+    digest: 693d00f8282ccf230c0a3a2a2fdeccb97f4e4458ab55036a8b95c4c37413c0dc
+    maintainers:
+    - name: r-owen
+    name: exposurelog
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/exposurelog-0.2.1/exposurelog-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
     appVersion: 0.6.0
     created: "2022-02-09T23:22:55.999299307Z"
     description: Exposure log service
@@ -7709,4 +7721,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-09T23:22:56.003578096Z"
+generated: "2022-02-11T19:57:23.802190537Z"
