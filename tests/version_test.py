@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from io import BytesIO
 from pathlib import Path
 
 import requests
@@ -44,7 +43,7 @@ def test_versions(tmp_path: Path) -> None:
     for chart in charts_to_check:
         published = max(
             index["entries"][chart],
-            key=lambda e: VersionInfo.parse(e["version"])
+            key=lambda e: VersionInfo.parse(e["version"]),
         )
 
         # If the version number in the current repository is later than the
