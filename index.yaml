@@ -4220,6 +4220,19 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/moneypenny-0.0.1/moneypenny-0.0.1.tgz
     version: 0.0.1
+  narrativelog:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-02-15T22:15:31.187958497Z"
+    description: Narrative log service
+    digest: 366c9666f22a224a58cd8c35da82887df8e267b4b8c31f4a9712f45870ab60fd
+    maintainers:
+    - name: r-owen
+    name: narrativelog
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/narrativelog-0.0.1/narrativelog-0.0.1.tgz
+    version: 0.0.1
   neophile:
   - apiVersion: v2
     appVersion: 0.3.2
@@ -7721,4 +7734,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-11T19:57:23.802190537Z"
+generated: "2022-02-15T22:15:31.191596149Z"
