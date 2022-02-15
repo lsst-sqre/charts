@@ -27,7 +27,6 @@ spec:
         paths:
           - path: {{ .Values.ingress.path }}
             pathType: {{ default "Prefix" .Values.ingress.pathType }}
-            {{- end }}
             backend:
               service:
                 name: {{ $fullName }}
