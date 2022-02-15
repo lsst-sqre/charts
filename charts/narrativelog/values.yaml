@@ -19,8 +19,6 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-pull_secret: ""  # Will reconcile with imagePullSecrets[] later
-
 podAnnotations: {}
 
 podSecurityContext: {}

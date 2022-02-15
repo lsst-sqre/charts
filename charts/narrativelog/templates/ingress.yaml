@@ -1,6 +1,5 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "narrativelog.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -9,33 +8,28 @@ metadata:
     {{- include "narrativelog.labels" . | nindent 4 }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    {{- if .Values.ingress.gafaelfawrAuthQuery }}
+    nginx.ingress.kubernetes.io/auth-method: "GET"
+    nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Token"
+    nginx.ingress.kubernetes.io/auth-signin: "https://{{ .Values.ingress.host }}/login"
+    nginx.ingress.kubernetes.io/auth-url: "https://{{ .Values.ingress.host }}/auth?{{ .Values.ingress.gafaelfawrAuthQuery }}"
+    {{- end }}
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
-  {{- if .Values.ingress.tls }}
-  tls:
-    {{- range .Values.ingress.tls }}
-    - hosts:
-        {{- range .hosts }}
-        - {{ . | quote }}
-        {{- end }}
-      secretName: {{ .secretName }}
-    {{- end }}
+  {{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
+    - host: {{ required "ingress.host must be set" .Values.ingress.host | quote }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ . }}
-            pathType: "Prefix"
+          - path: {{ .Values.ingress.path }}
+            pathType: {{ default "Prefix" .Values.ingress.pathType }}
             backend:
               service:
                 name: {{ $fullName }}
                 port:
-                  number: {{ $svcPort }}
-          {{- end }}
-    {{- end }}
-  {{- end }}
+                  number: {{ .Values.service.port }}
+{{- end }}

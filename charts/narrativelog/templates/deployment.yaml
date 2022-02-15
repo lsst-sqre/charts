@@ -20,21 +20,22 @@ spec:
       labels:
         {{- include "narrativelog.selectorLabels" . | nindent 8 }}
     spec:
-      {{- if .Values.pull_secret }}
-      imagePullSecrets:
-      - name: {{ .Values.pull_secret }}
-      {{- end }}
-      # Don't specify both of pull_secret and imagePullSecrets
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - all
+            readOnlyRootFilesystem: true
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
