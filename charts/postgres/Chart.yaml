@@ -5,4 +5,4 @@ home: https://hub.docker.com/r/lsstsqre/lsp-postgres
 maintainers:
   - name: athornton
 name: postgres
-version: 0.1.0
+version: 0.1.1
