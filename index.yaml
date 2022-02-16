@@ -6454,6 +6454,18 @@ entries:
   postgres:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2022-02-16T20:58:13.588999131Z"
+    description: Postgres RDBMS for LSP
+    digest: 49c7b5c742f7273ee6cbf3f3d652f58bb7be3432731aac4f53fd4fd930c251b8
+    home: https://hub.docker.com/r/lsstsqre/lsp-postgres
+    maintainers:
+    - name: athornton
+    name: postgres
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/postgres-0.1.1/postgres-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2021-04-21T20:36:21.26368015Z"
     description: Postgres RDBMS for LSP
     digest: 13736e58786a3766ca64f3b196f5d50f933ccc124f0a074db1e691a0b966c2b0
@@ -7759,4 +7771,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-16T07:02:21.844383705Z"
+generated: "2022-02-16T20:58:13.591959459Z"
