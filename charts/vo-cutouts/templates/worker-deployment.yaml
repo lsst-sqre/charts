@@ -65,57 +65,8 @@ spec:
             capabilities:
               drop:
                 - "all"
-          image: "{{ .Values.cutoutWorker.image.repository }}:{{ .Values.cutoutWorker.image.tag }}"
+          image: "{{ .Values.cutoutWorker.image.repository }}:{{ .Values.cutoutWorker.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.cutoutWorker.image.pullPolicy | quote }}
-
-          # This tricky command bootstraps the worker on every container
-          # restart.  It requires there exist a branch in the vo-cutouts
-          # GitHub repository that matches the tag (changing "tickets-" to
-          # "tickets/") of the Docker image to use, and retrieves the worker
-          # Python file from there.  It then installs Dramatiq and runs it
-          # with the stack Python.
-          #
-          # The current approach requires a writable root file system so that
-          # image_cutout_backend can be installed into the Conda environment.
-          # It will instead be incorporated into the stack in the future so
-          # that we don't have to do all the setup nonsense below and can go
-          # back to using a read-only root file system.  Once that's done, the
-          # invocation of dramatiq must be replaced with:
-          #
-          # python /home/lsst/.local/bin/dramatiq
-          #
-          # because pip will then install new packages into ~/.local.  The
-          # path in the user home directory uesd by pip install run as a
-          # non-root user is in the Python path by default, so packages
-          # installed that way will be picked up by the stack Python.
-          # However, ~/.local/bin is not in PATH and we want to force the
-          # stack Python (which should be first in PATH), so invoke Dramatiq
-          # with an explicit execution of python.
-          #
-          # This approach is probably temporary and will be replaced with a
-          # more reproducible way of getting the worker source.
-          command:
-            - "/bin/bash"
-            - "-c"
-            - |
-              source /opt/lsst/software/stack/loadLSST.bash
-              setup lsst_distrib
-              set -x
-              pip install --no-cache-dir 'dramatiq[redis]'
-              cd /tmp
-              rm -r cutouts
-              mkdir cutouts
-              rm -r image_cutout_backend
-              git clone --depth 1 -b tickets/DM-32097 https://github.com/lsst-dm/image_cutout_backend.git
-              cd image_cutout_backend
-              setup -r .
-              scons install declare -t current
-              cd ..
-              rm -r vo-cutouts
-              git clone --depth 1 -b "$(echo '{{ .Values.image.tag | default .Chart.AppVersion }}' | sed 's,tickets-,tickets/,')" https://github.com/lsst-sqre/vo-cutouts
-              cd vo-cutouts/src/vocutouts
-              dramatiq workers -Q cutout -p 1 -t 1
-
           env:
             # The following are used by Butler to retrieve its configuration
             # and authenticate to its database.
@@ -148,16 +99,11 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           volumeMounts:
-            - name: "local"
-              mountPath: "/home/lsst"
             - name: "secrets"
               mountPath: "/etc/vo-cutouts/secrets"
             - name: "tmp"
               mountPath: "/tmp"
       volumes:
-        # The /home/lsst home directory, which is used by pip install.
-        - name: "local"
-          emptyDir: {}
         - name: "secrets"
           emptyDir: {}
         - name: "secrets-raw"
