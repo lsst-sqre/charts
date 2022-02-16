@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 0.1.1
+appVersion: 0.1.2
 description: A Helm chart for Kubernetes
 name: sherlock
 type: application
-version: 0.1.4
+version: 0.1.5
 maintainers:
   - name: cbanek
