@@ -46,12 +46,12 @@ spec:
             - "-c"
             - |
               cp -RL /etc/vo-cutouts/secrets-raw/* /etc/vo-cutouts/secrets
-              chown appuser:appuser /etc/vo-cutouts/secrets/*
               chmod 0400 /etc/vo-cutouts/secrets/*
           securityContext:
-            runAsNonRoot: false
-            runAsUser: 0
-            runAsGroup: 0
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "all"
           volumeMounts:
             - name: "secrets"
               mountPath: "/etc/vo-cutouts/secrets"
