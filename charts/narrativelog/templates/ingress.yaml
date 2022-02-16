@@ -1,9 +1,8 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "narrativelog.fullname" . -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ template "narrativelog.fullname" . }}
   labels:
     {{- include "narrativelog.labels" . | nindent 4 }}
   annotations:
@@ -25,11 +24,11 @@ spec:
     - host: {{ required "ingress.host must be set" .Values.ingress.host | quote }}
       http:
         paths:
-          - path: {{ .Values.ingress.path }}
+          - path: {{ default "/narrativelog" .Values.ingress.path }}
             pathType: {{ default "Prefix" .Values.ingress.pathType }}
             backend:
               service:
-                name: {{ $fullName }}
+                name: {{ include "narrativelog.fullname" . }}
                 port:
                   number: {{ .Values.service.port }}
 {{- end }}
