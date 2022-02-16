@@ -54,6 +54,17 @@ spec:
                 name: postgres
                 key: lovelog_password
           {{- end }}
+          {{- with .Values.narrativelog_db }}
+          - name: VRO_DB_NARRATIVELOG_USER
+            value: {{ .user }}
+          - name: VRO_DB_NARRATIVELOG_DB
+            value: {{ .db }}
+          - name: VRO_DB_NARRATIVELOG_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres
+                key: narrativelog_password
+          {{- end }}
           {{- with .Values.exposurelog_db }}
           - name: VRO_DB_EXPOSURELOG_USER
             value: {{ .user }}
