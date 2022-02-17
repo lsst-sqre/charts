@@ -90,8 +90,8 @@ config:
   timeout: 600
 
   # -- Lifetime of job results in seconds
-  # @default -- 604800 (1 week)
-  lifetime: 604800
+  # @default -- 2592000 (30 days)
+  lifetime: 2592000
 
   # -- Timeout for results from a sync cutout in seconds
   # @default -- 60 (1 minute)
@@ -126,14 +126,15 @@ cloudsql:
 
 cutoutWorker:
   # -- Number of cutout worker pods to start
-  replicaCount: 1
+  replicaCount: 2
 
   image:
     # -- Stack image to use for cutouts
-    repository: "lsstsqre/centos"
+    repository: "lsstsqre/vo-cutouts-worker"
 
-    # -- Stack image tag to use
-    tag: "7-stack-lsst_distrib-w_2022_06"
+    # -- Tag of vo-cutouts worker image to use
+    # @default -- The appVersion of the chart
+    tag: ""
 
     # -- Pull policy for cutout workers
     pullPolicy: "IfNotPresent"

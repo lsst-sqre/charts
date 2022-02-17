@@ -1,6 +1,6 @@
 # vo-cutouts
 
-![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
 Image cutout service complying with IVOA SODA
 
@@ -26,17 +26,17 @@ Image cutout service complying with IVOA SODA
 | config.butlerRepository | string | None, must be set | Configuration for the Butler repository to use |
 | config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
 | config.gcsBucketUrl | string | None, must be set | URL for the GCS bucket into which to store cutouts (must start with `s3`) |
-| config.lifetime | int | 604800 (1 week) | Lifetime of job results in seconds |
+| config.lifetime | int | 2592000 (30 days) | Lifetime of job results in seconds |
 | config.loglevel | string | `"INFO"` | Choose from the text form of Python logging levels |
 | config.syncTimeout | int | 60 (1 minute) | Timeout for results from a sync cutout in seconds |
 | config.timeout | int | 600 (10 minutes) | Timeout for a single cutout job in seconds |
 | cutoutWorker.affinity | object | `{}` | Affinity rules for the cutout worker pod |
 | cutoutWorker.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for cutout workers |
-| cutoutWorker.image.repository | string | `"lsstsqre/centos"` | Stack image to use for cutouts |
-| cutoutWorker.image.tag | string | `"7-stack-lsst_distrib-w_2022_06"` | Stack image tag to use |
+| cutoutWorker.image.repository | string | `"lsstsqre/vo-cutouts-worker"` | Stack image to use for cutouts |
+| cutoutWorker.image.tag | string | The appVersion of the chart | Tag of vo-cutouts worker image to use |
 | cutoutWorker.nodeSelector | object | `{}` | Node selection rules for the cutout worker pod |
 | cutoutWorker.podAnnotations | object | `{}` | Annotations for the cutout worker pod |
-| cutoutWorker.replicaCount | int | `1` | Number of cutout worker pods to start |
+| cutoutWorker.replicaCount | int | `2` | Number of cutout worker pods to start |
 | cutoutWorker.resources | object | `{}` | Resource limits and requests for the cutout worker pod |
 | cutoutWorker.tolerations | list | `[]` | Tolerations for the cutout worker pod |
 | databaseWorker.affinity | object | `{}` | Affinity rules for the database worker pod |
