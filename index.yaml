@@ -4236,6 +4236,18 @@ entries:
   narrativelog:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-02-17T00:00:26.573908376Z"
+    description: Narrative log service
+    digest: 8b7e025905d42c5ff3ef8a8d227d00923b5c9a79c2296b01dfb30ed1e5252b7d
+    maintainers:
+    - name: r-owen
+    name: narrativelog
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/narrativelog-0.1.0/narrativelog-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-02-15T22:15:31.187958497Z"
     description: Narrative log service
     digest: 366c9666f22a224a58cd8c35da82887df8e267b4b8c31f4a9712f45870ab60fd
@@ -7771,4 +7783,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-16T20:58:13.591959459Z"
+generated: "2022-02-17T00:00:26.583037525Z"
