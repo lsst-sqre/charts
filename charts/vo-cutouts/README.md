@@ -1,6 +1,6 @@
 # vo-cutouts
 
-![Version: 0.2.3](https://img.shields.io/badge/Version-0.2.3-informational?style=flat-square) ![AppVersion: 0.2.0](https://img.shields.io/badge/AppVersion-0.2.0-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
 Image cutout service complying with IVOA SODA
 
@@ -32,8 +32,8 @@ Image cutout service complying with IVOA SODA
 | config.timeout | int | 600 (10 minutes) | Timeout for a single cutout job in seconds |
 | cutoutWorker.affinity | object | `{}` | Affinity rules for the cutout worker pod |
 | cutoutWorker.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for cutout workers |
-| cutoutWorker.image.repository | string | `"lsstsqre/centos"` | Stack image to use for cutouts |
-| cutoutWorker.image.tag | string | `"7-stack-lsst_distrib-w_2022_06"` | Stack image tag to use |
+| cutoutWorker.image.repository | string | `"lsstsqre/vo-cutouts-worker"` | Stack image to use for cutouts |
+| cutoutWorker.image.tag | string | The appVersion of the chart | Tag of vo-cutouts worker image to use |
 | cutoutWorker.nodeSelector | object | `{}` | Node selection rules for the cutout worker pod |
 | cutoutWorker.podAnnotations | object | `{}` | Annotations for the cutout worker pod |
 | cutoutWorker.replicaCount | int | `2` | Number of cutout worker pods to start |
