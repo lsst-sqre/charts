@@ -57,6 +57,12 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "times-square.fullname" . }}
+          env:
+            - name: "TS_GAFAELFAWR_TOKEN"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "times-square.fullname" . }}-gafaelfawr-token
+                  key: "token"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
