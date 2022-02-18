@@ -41,8 +41,8 @@ ingress:
   # -- Hostname of the deployment to run behind
   host: ""
 
-  # -- Gafaelfawr auth query string (default, unauthenticated)
-  gafaelfawrAuthQuery: ""
+  # -- Gafaelfawr auth query string
+  gafaelfawrAuthQuery: "scope=exec:admin&auth_type=basic"
 
   # -- Additional annotations for the ingress rule
   annotations: {}
