@@ -51,7 +51,7 @@ ingress:
   pathType: ImplementationSpecific
 
   # -- URL path to dispatch to the times-square deployment pod
-  path: "/api/times-square"
+  path: "/times-square/api"
 
 # -- Resource limits and requests for the times-square deployment pod
 resources: {}
