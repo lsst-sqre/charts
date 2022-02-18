@@ -101,3 +101,7 @@ config:
   # -- RSP hostname, for computing internal service URLs
   # @default -- None, must be set
   environmentUrl: ""
+
+redis:
+  auth:
+    enabled: false
