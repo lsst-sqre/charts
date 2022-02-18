@@ -155,7 +155,15 @@ config:
 
     # -- Member attribute of the object class. Values must match the username
     # returned in the token from the OpenID Connect authentication server.
-    groupMember: "member"
+    groupMemberAttr: "member"
+
+    # -- Base DN for the LDAP search to find a user's UID number
+    # @default -- Get the UID number from the upstream authentication provider
+    uidBaseDn: ""
+
+    # -- Attribute containing the user's UID number (only used if uidBaseDn is
+    # set)
+    uidAttr: "uidNumber"
 
   issuer:
     # -- Session length and token expiration (in minutes)
