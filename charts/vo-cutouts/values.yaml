@@ -89,9 +89,10 @@ config:
   # @default -- 600 (10 minutes)
   timeout: 600
 
-  # -- Lifetime of job results in seconds
+  # -- Lifetime of job results in seconds (quote so that Helm doesn't turn it
+  # into a floating point number)
   # @default -- 2592000 (30 days)
-  lifetime: 2592000
+  lifetime: "2592000"
 
   # -- Timeout for results from a sync cutout in seconds
   # @default -- 60 (1 minute)
