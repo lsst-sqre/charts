@@ -109,7 +109,6 @@ spec:
         - name: "secrets-raw"
           secret:
             secretName: {{ template "vo-cutouts.fullname" . }}-secret
-            defaultMode: 0400
         - name: "tmp"
           emptyDir: {}
       {{- with .Values.cutoutWorker.nodeSelector }}
