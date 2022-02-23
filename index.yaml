@@ -7665,6 +7665,18 @@ entries:
   vo-cutouts:
   - apiVersion: v2
     appVersion: 0.3.0
+    created: "2022-02-23T01:25:08.264501473Z"
+    description: Image cutout service complying with IVOA SODA
+    digest: a3b275af37f6731ac50f8a3097ca5dd0e6f4b5f94c4e3e5b26e702792c05d5e9
+    home: https://github.com/lsst-sqre/vo-cutouts
+    maintainers:
+    - name: rra
+    name: vo-cutouts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.3.2/vo-cutouts-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v2
+    appVersion: 0.3.0
     created: "2022-02-23T01:18:46.29763933Z"
     description: Image cutout service complying with IVOA SODA
     digest: 084fa0765d7ee4adcf9334fd508dbe50291e31cc155354b4cb59dd679134cc6e
@@ -7807,4 +7819,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-23T01:18:46.299834159Z"
+generated: "2022-02-23T01:25:08.268363975Z"
