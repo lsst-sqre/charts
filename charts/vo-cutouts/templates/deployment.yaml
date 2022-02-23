@@ -82,7 +82,7 @@ spec:
                 name: {{ template "vo-cutouts.fullname" . }}-config
           readinessProbe:
             httpGet:
-              path: "/cutout/availability"
+              path: "/api/cutout/availability"
               port: "http"
           {{- with .Values.resources }}
           resources:
