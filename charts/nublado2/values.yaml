@@ -54,7 +54,7 @@ jupyterhub:
       enabled: false
     loadRoles:
       self:
-        scopes: ['admin:servers!user']  # Create and delete
+        scopes: ['admin:servers!user', 'read:metrics']
       server:
         scopes: ['inherit']  # Let server use API like user
 
