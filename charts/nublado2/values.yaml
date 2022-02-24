@@ -167,9 +167,9 @@ jupyterhub:
   cull:
     enabled: true
     timeout: 2592000  # 30 days -- shorten later
-    every: 600 # Check every ten minutes
+    every: 600  # Check every ten minutes
     users: true  # log out user when we cull
-    removeNamedServers: true
+    removeNamedServers: true  # Post-stop hook may already do this
     maxAge: 5184000  # 60 days -- shorten later
 
   imagePullSecrets:
