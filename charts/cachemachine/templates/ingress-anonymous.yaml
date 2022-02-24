@@ -23,4 +23,11 @@ spec:
                 name: {{ template "cachemachine.fullname" . }}
                 port:
                   number: {{ .Values.service.port }}
+          - path: "/cachemachine/.*/desired"
+            pathType: "ImplementationSpecific"
+            backend:
+              service:
+                name: {{ template "cachemachine.fullname" . }}
+                port:
+                  number: {{ .Values.service.port }}
 {{- end }}
