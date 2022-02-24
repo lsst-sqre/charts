@@ -12,6 +12,8 @@ jupyterhub:
         enable_auth_state: true
       JupyterHub:
         authenticator_class: nublado2.auth.GafaelfawrAuthenticator
+      ServerApp:
+        shutdown_no_activity_timeout: 604800  # one week
     db:
       # Password comes from the nublado2-secret.
       type: "postgres"
@@ -50,6 +52,11 @@ jupyterhub:
     #  you explicitly enable port 8081 so the labs can talk to the Hub.
     networkPolicy:
       enabled: false
+    loadRoles:
+      self:
+        scopes: ['admin:servers!user']  # Create and delete
+      server:
+        scopes: ['inherit']  # Let server use API like user
 
   prePuller:
     continuous:
@@ -157,10 +164,13 @@ jupyterhub:
         error_page 403 = "/auth/forbidden?scope=exec:notebook";
     pathSuffix: "*"
 
-  # The default culler setting is enabled, with 3600s idle.  This is way
-  #  too short for our purposes.  First cut: just disable it.
   cull:
-    enabled: false
+    enabled: true
+    timeout: 2592000  # 30 days -- shorten later
+    every: 600 # Check every ten minutes
+    users: true  # log out user when we cull
+    removeNamedServers: true
+    maxAge: 5184000  # 60 days -- shorten later
 
   imagePullSecrets:
     - name: pull-secret

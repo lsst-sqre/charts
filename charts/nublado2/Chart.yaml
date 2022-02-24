@@ -1,7 +1,7 @@
 apiVersion: v2
 name: nublado2
-version: 0.8.0
-appVersion: "2.0.0"
+version: 0.8.1
+appVersion: "2.0.1"
 description: Nublado2 JupyterHub installation
 home: https://github.com/lsst-sqre/nublado2
 maintainers:
