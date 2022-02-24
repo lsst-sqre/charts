@@ -515,6 +515,17 @@ entries:
     version: 1.0.0
   cachemachine:
   - apiVersion: v2
+    appVersion: 1.1.1
+    created: "2022-02-24T18:02:49.807798918Z"
+    description: Service to prepull Docker images for the Science Platform
+    digest: 6e4d2e50ba1218cefcf13a747da3ef7ba5186f7de46b6a8680d6b285b85808e4
+    maintainers:
+    - name: cbanek
+    name: cachemachine
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cachemachine-1.2.3/cachemachine-1.2.3.tgz
+    version: 1.2.3
+  - apiVersion: v2
     appVersion: 1.1.0
     created: "2022-01-28T02:11:49.168473988Z"
     description: Service to prepull Docker images for the Science Platform
@@ -4846,6 +4857,26 @@ entries:
     version: 0.8.10
   nublado2:
   - apiVersion: v2
+    appVersion: 2.0.1
+    created: "2022-02-24T18:02:49.918711811Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.1.3-n324.hb93a9b5f
+    description: Nublado2 JupyterHub installation
+    digest: a462e8ba10630976c35f158480cc7ee4bcd85443eb0a64add6cd81e727a2218d
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.8.1/nublado2-0.8.1.tgz
+    version: 0.8.1
+  - apiVersion: v2
     appVersion: 1.6.0
     created: "2022-01-28T00:43:28.134238302Z"
     dependencies:
@@ -7819,4 +7850,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-23T01:25:08.268363975Z"
+generated: "2022-02-24T18:02:49.921656995Z"
