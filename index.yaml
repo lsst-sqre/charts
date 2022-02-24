@@ -516,6 +516,17 @@ entries:
   cachemachine:
   - apiVersion: v2
     appVersion: 1.1.1
+    created: "2022-02-24T19:13:44.566853728Z"
+    description: Service to prepull Docker images for the Science Platform
+    digest: 0f00baed1c278fa264610633efe6446a8e3f601f95076048c07ec4c13d9f4036
+    maintainers:
+    - name: cbanek
+    name: cachemachine
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cachemachine-1.2.4/cachemachine-1.2.4.tgz
+    version: 1.2.4
+  - apiVersion: v2
+    appVersion: 1.1.1
     created: "2022-02-24T18:02:49.807798918Z"
     description: Service to prepull Docker images for the Science Platform
     digest: 6e4d2e50ba1218cefcf13a747da3ef7ba5186f7de46b6a8680d6b285b85808e4
@@ -7870,4 +7881,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-24T18:11:23.268810347Z"
+generated: "2022-02-24T19:13:44.569871629Z"
