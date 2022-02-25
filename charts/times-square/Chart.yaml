@@ -9,7 +9,13 @@ maintainers:
     url: https://github.com/jonathansick
 
 # The chart version.
-version: 0.1.4
+version: 0.1.5
 
 # The app's version corresponding to the image tag.
 appVersion: "0.1.0"
+
+# Additional charts that this chart uses
+dependencies:
+  - name: redis
+    version: 16.0.1
+    repository: https://charts.bitnami.com/bitnami

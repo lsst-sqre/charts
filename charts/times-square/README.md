@@ -1,6 +1,6 @@
 # times-square
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 A parameterized notebook web viewer for the Rubin Science Platform.
 
@@ -14,6 +14,12 @@ A parameterized notebook web viewer for the Rubin Science Platform.
 
 * <https://github.com/lsst-sqre/times-square>
 
+## Requirements
+
+| Repository | Name | Version |
+|------------|------|---------|
+| https://charts.bitnami.com/bitnami | redis | 16.0.1 |
+
 ## Values
 
 | Key | Type | Default | Description |
@@ -23,25 +29,42 @@ A parameterized notebook web viewer for the Rubin Science Platform.
 | autoscaling.maxReplicas | int | `100` | Maximum number of times-square deployment pods |
 | autoscaling.minReplicas | int | `1` | Minimum number of times-square deployment pods |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` | Target CPU utilization of times-square deployment pods |
+| cloudsql.enabled | bool | `false` | Enable the Cloud SQL Auth Proxy sidecar, used with CloudSQL databases on Google Cloud |
+| cloudsql.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for Cloud SQL Auth Proxy images |
+| cloudsql.image.repository | string | `"gcr.io/cloudsql-docker/gce-proxy"` | Cloud SQL Auth Proxy image to use |
+| cloudsql.image.tag | string | `"1.28.1"` | Cloud SQL Auth Proxy tag to use |
+| cloudsql.instanceConnectionName | string | `""` | Instance connection name for a CloudSQL PostgreSQL instance |
+| cloudsql.serviceAccount | string | `""` | The Google service account that has an IAM binding to the `times-square` Kubernetes service accounts and has the `cloudsql.client` role |
+| config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
+| config.environmentUrl | string | None, must be set | RSP hostname, for computing internal service URLs |
+| config.logLevel | string | `"INFO"` | Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" |
+| config.loggerName | string | `"times-square"` | Logger name |
+| config.name | string | `"times-square"` | Name of the service. |
+| config.profile | string | `"production"` | Run profile: "production" or "development" |
 | fullnameOverride | string | `""` | Override the full name for resources (includes the release name) |
 | image.pullPolicy | string | `"Always"` | Pull policy for the times-square image |
-| image.repository | string | `"lsstsqre/times-square"` | Image to use in the times-square deployment |
+| image.repository | string | `"lsstsqre/timessquare"` | Image to use in the times-square deployment |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | Secret names to use for all Docker pulls |
 | ingress.annotations | object | `{}` | Additional annotations for the ingress rule |
 | ingress.enabled | bool | `true` | Create an ingress resource |
-| ingress.gafaelfawrAuthQuery | string | `""` | Gafaelfawr Auth Query string (default, unauthenticated) gafaelfawrAuthQuery: "scope=exec:portal&delegate_to=portal&delegate_scope=read:tap" |
+| ingress.gafaelfawrAuthQuery | string | `"scope=exec:admin&auth_type=basic"` | Gafaelfawr auth query string |
 | ingress.host | string | `""` | Hostname of the deployment to run behind |
-| ingress.path | string | `"/api/times-square"` | URL path to dispatch to the times-square deployment pod |
+| ingress.path | string | `"/times-square/api"` | URL path to dispatch to the times-square deployment pod |
 | ingress.pathType | string | `"ImplementationSpecific"` | Path type for the ingress rule |
 | nameOverride | string | `""` | Override the base name for resources |
 | nodeSelector | object | `{}` | Node selection rules for the times-square deployment pod |
 | podAnnotations | object | `{}` | Annotations for the times-square deployment pod |
+| redis.auth.enabled | bool | `false` |  |
 | replicaCount | int | `1` | Number of web deployment pods to start |
 | resources | object | `{}` | Resource limits and requests for the times-square deployment pod |
 | service.port | int | `8080` | Port of the service to create and map to the ingress |
 | service.type | string | `"ClusterIP"` | Type of service to create |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account. If CloudSQL is in use, the annotation specifying the Google service account will also be added. |
+| serviceAccount.create | bool | `false` | Force creation of a service account. Normally, no service account is used or mounted. If CloudSQL is enabled, a service account is always created regardless of this value. |
+| serviceAccount.name | string | Name based on the fullname template | Name of the service account to use |
 | tolerations | list | `[]` | Tolerations for the times-square deployment pod |
+| vaultSecretsPath | string | None, must be set | Path to the Vault secret (`secret/k8s_operator/<host>/times-square`, for example) |
 
 ----------------------------------------------
 Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
