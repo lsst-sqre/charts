@@ -7683,6 +7683,25 @@ entries:
   times-square:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-02-25T00:32:56.860491081Z"
+    dependencies:
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.0.1
+    description: A parameterized notebook web viewer for the Rubin Science Platform.
+    digest: f14198005769efd2bc0e99e9d479dd2b285e2a8b6d887abe56de9268e7cae905
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: times-square
+    sources:
+    - https://github.com/lsst-sqre/times-square
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/times-square-0.1.5/times-square-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-01-28T02:11:49.642226623Z"
     description: A parameterized notebook web viewer for the Rubin Science Platform.
     digest: b2d53e69a7dc2db10bbd41668b5c69dcb935f9dc90b8cae70839aa3b9c975dcd
@@ -7913,4 +7932,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-24T22:58:29.540375816Z"
+generated: "2022-02-25T00:32:56.86357546Z"
