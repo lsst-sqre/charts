@@ -49,3 +49,15 @@ Selector labels
 app.kubernetes.io/name: {{ include "times-square.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "times-square.serviceAccountName" -}}
+{{- if or .Values.serviceAccount.create .Values.cloudsql.enabled }}
+{{- default (include "times-square.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
