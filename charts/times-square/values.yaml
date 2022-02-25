@@ -7,7 +7,7 @@ replicaCount: 1
 
 image:
   # -- Image to use in the times-square deployment
-  repository: lsstsqre/timessquare
+  repository: lsstsqre/times-square
 
   # -- Pull policy for the times-square image
   pullPolicy: Always
@@ -108,9 +108,6 @@ config:
 
   # -- Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"
   logLevel: "INFO"
-
-  # -- Logger name
-  loggerName: "times-square"
 
   # -- RSP hostname, for computing internal service URLs
   # @default -- None, must be set

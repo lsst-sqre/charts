@@ -1,6 +1,6 @@
 # times-square
 
-![Version: 0.1.5](https://img.shields.io/badge/Version-0.1.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
+![Version: 0.1.6](https://img.shields.io/badge/Version-0.1.6-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.1.0](https://img.shields.io/badge/AppVersion-0.1.0-informational?style=flat-square)
 
 A parameterized notebook web viewer for the Rubin Science Platform.
 
@@ -38,12 +38,11 @@ A parameterized notebook web viewer for the Rubin Science Platform.
 | config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
 | config.environmentUrl | string | None, must be set | RSP hostname, for computing internal service URLs |
 | config.logLevel | string | `"INFO"` | Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL" |
-| config.loggerName | string | `"times-square"` | Logger name |
 | config.name | string | `"times-square"` | Name of the service. |
 | config.profile | string | `"production"` | Run profile: "production" or "development" |
 | fullnameOverride | string | `""` | Override the full name for resources (includes the release name) |
 | image.pullPolicy | string | `"Always"` | Pull policy for the times-square image |
-| image.repository | string | `"lsstsqre/timessquare"` | Image to use in the times-square deployment |
+| image.repository | string | `"lsstsqre/times-square"` | Image to use in the times-square deployment |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` | Secret names to use for all Docker pulls |
 | ingress.annotations | object | `{}` | Additional annotations for the ingress rule |
