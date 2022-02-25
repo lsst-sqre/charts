@@ -89,7 +89,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ template "times-square.fullname" . }}-secret
-                  key: "db-password"
+                  key: "TS_DATABASE_PASSWORD"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
