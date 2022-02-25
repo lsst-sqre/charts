@@ -109,9 +109,6 @@ config:
   # -- Logging level: "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"
   logLevel: "INFO"
 
-  # -- Logger name
-  loggerName: "times-square"
-
   # -- RSP hostname, for computing internal service URLs
   # @default -- None, must be set
   environmentUrl: ""
