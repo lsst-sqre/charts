@@ -4,6 +4,13 @@
 # Each flock listed will be automatically started when mobu is started.
 autostart: []
 
+# -- Cachemachine image policy.  Must be one of "desired" or
+# 'available'.  Determines whether cachemachine reports the images it
+# has or the ones it wants.  Should be "desired" in environments with
+# image streaming enabled (e.g. IDF).
+# @default -- "available"
+cachemachineImagePolicy: "available"
+
 # -- Base URL used to find other services in the environment such as Nublado
 # and TAP
 # @default -- None, must be set
