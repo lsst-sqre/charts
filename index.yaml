@@ -4893,6 +4893,26 @@ entries:
   nublado2:
   - apiVersion: v2
     appVersion: 2.0.2
+    created: "2022-02-28T22:27:57.636582329Z"
+    dependencies:
+    - name: jupyterhub
+      repository: https://jupyterhub.github.io/helm-chart/
+      version: 1.1.3-n324.hb93a9b5f
+    description: Nublado2 JupyterHub installation
+    digest: 2a3ee3f95fb4a2318fa4187779950c5b06c25a199c796da1819bfb266a1c4b3c
+    home: https://github.com/lsst-sqre/nublado2
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: cbanek
+    name: nublado2
+    sources:
+    - https://github.com/lsst-sqre/nublado2
+    - https://github.com/lsst-sqre/charts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/nublado2-0.8.5/nublado2-0.8.5.tgz
+    version: 0.8.5
+  - apiVersion: v2
+    appVersion: 2.0.2
     created: "2022-02-28T16:53:17.640494844Z"
     dependencies:
     - name: jupyterhub
@@ -8021,4 +8041,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-28T18:14:03.350203614Z"
+generated: "2022-02-28T22:27:57.639061144Z"
