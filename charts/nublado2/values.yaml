@@ -192,7 +192,8 @@ config:
   # same with pull_secret_path; it specifies resource in the lab namespace
   pull_secret_path: ""
   pinned_images: []
-  images_url: "http://cachemachine.cachemachine/cachemachine/jupyter/available"
+  # One of "available" or "desired"
+  cachemachine_image_policy: "available"
   sizes:
     - name: Small
       cpu: 1
