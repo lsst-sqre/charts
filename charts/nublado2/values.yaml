@@ -4,6 +4,7 @@
 
 jupyterhub:
   hub:
+    authenticatePrometheus: false
     image:
       name: lsstsqre/nublado2
       tag: "2.0.1"
