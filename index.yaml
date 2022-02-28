@@ -3634,6 +3634,18 @@ entries:
     version: 0.2.2
   mobu:
   - apiVersion: v2
+    appVersion: 4.1.1
+    created: "2022-02-28T18:14:03.346298284Z"
+    description: Generate system load by pretending to be a random scientist
+    digest: 18a8599ae248e587a4b6aa5650088b4b719c4317ffe10ccbd2098d6aee6fa01e
+    home: https://github.com/lsst-sqre/mobu
+    maintainers:
+    - name: cbanek
+    name: mobu
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/mobu-3.2.3/mobu-3.2.3.tgz
+    version: 3.2.3
+  - apiVersion: v2
     appVersion: 4.1.0
     created: "2022-01-28T02:11:49.363765518Z"
     description: Generate system load by pretending to be a random scientist
@@ -8009,4 +8021,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-02-28T16:53:17.644116903Z"
+generated: "2022-02-28T18:14:03.350203614Z"
