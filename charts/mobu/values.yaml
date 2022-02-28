@@ -5,7 +5,7 @@
 autostart: []
 
 # -- Cachemachine image policy.  Must be one of "desired" or
-# 'available'.  Determines whether cachemachine reports the images it
+# "available".  Determines whether cachemachine reports the images it
 # has or the ones it wants.  Should be "desired" in environments with
 # image streaming enabled (e.g. IDF).
 # @default -- "available"
