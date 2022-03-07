@@ -7908,6 +7908,23 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/times-square-0.1.0/times-square-0.1.0.tgz
     version: 0.1.0
+  times-square-ui:
+  - apiVersion: v2
+    appVersion: tickets-DM-33930
+    created: "2022-03-07T20:41:04.823329724Z"
+    description: The front-end for Times Square, a parameterized notebook web viewer
+      for the Rubin Science Platform
+    digest: 5e878ecdf46457489e37ea63e66996f2b0afadaa9f4c866f87ed4dd583f50870
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: times-square-ui
+    sources:
+    - https://github.com/lsst-sqre/times-square-ui
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/times-square-ui-0.1.0-alpha.1/times-square-ui-0.1.0-alpha.1.tgz
+    version: 0.1.0-alpha.1
   vo-cutouts:
   - apiVersion: v2
     appVersion: 0.3.0
@@ -8065,4 +8082,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-03T03:15:43.117513975Z"
+generated: "2022-03-07T20:41:04.826450125Z"
