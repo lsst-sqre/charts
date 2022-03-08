@@ -1957,6 +1957,18 @@ entries:
   gafaelfawr:
   - apiVersion: v2
     appVersion: 3.6.0
+    created: "2022-03-08T00:36:37.950656135Z"
+    description: The Gafaelfawr authentication and authorization system
+    digest: 89c8617af854971f231b0027f1b9f3249d087c50abaa37d54279a55e1be6d1eb
+    home: https://gafaelfawr.lsst.io/
+    maintainers:
+    - name: rra
+    name: gafaelfawr
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/gafaelfawr-4.6.1/gafaelfawr-4.6.1.tgz
+    version: 4.6.1
+  - apiVersion: v2
+    appVersion: 3.6.0
     created: "2022-02-24T22:58:29.537557037Z"
     description: The Gafaelfawr authentication and authorization system
     digest: 4c64396b4b53a745760c02b04dce08b6bd1a63d1098c0b8e294ec3191565520a
@@ -7759,6 +7771,25 @@ entries:
   times-square:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-03-08T00:36:38.057107315Z"
+    dependencies:
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.0.1
+    description: A parameterized notebook web viewer for the Rubin Science Platform.
+    digest: 56a22ef3e6e82f284aa1a7e52fc30179d5691d435a98cad77a5ec2323043c0f3
+    maintainers:
+    - name: jonathansick
+      url: https://github.com/jonathansick
+    name: times-square
+    sources:
+    - https://github.com/lsst-sqre/times-square
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/times-square-0.1.9/times-square-0.1.9.tgz
+    version: 0.1.9
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-02-25T20:01:11.39723328Z"
     dependencies:
     - name: redis
@@ -7928,6 +7959,18 @@ entries:
   vo-cutouts:
   - apiVersion: v2
     appVersion: 0.3.0
+    created: "2022-03-08T00:36:38.161023722Z"
+    description: Image cutout service complying with IVOA SODA
+    digest: fe131593f790ca0986ecc83468d2297176462b9403efd2479485f9ebdfa12cb2
+    home: https://github.com/lsst-sqre/vo-cutouts
+    maintainers:
+    - name: rra
+    name: vo-cutouts
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.3.3/vo-cutouts-0.3.3.tgz
+    version: 0.3.3
+  - apiVersion: v2
+    appVersion: 0.3.0
     created: "2022-02-23T01:25:08.264501473Z"
     description: Image cutout service complying with IVOA SODA
     digest: a3b275af37f6731ac50f8a3097ca5dd0e6f4b5f94c4e3e5b26e702792c05d5e9
@@ -8082,4 +8125,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-07T20:41:04.826450125Z"
+generated: "2022-03-08T00:36:38.164972292Z"
