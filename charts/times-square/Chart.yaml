@@ -9,7 +9,7 @@ maintainers:
     url: https://github.com/jonathansick
 
 # The chart version.
-version: 0.1.8
+version: 0.1.9
 
 # The app's version corresponding to the image tag.
 appVersion: "0.1.0"
