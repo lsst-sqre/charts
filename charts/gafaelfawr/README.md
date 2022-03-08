@@ -1,6 +1,6 @@
 # gafaelfawr
 
-![Version: 4.5.5](https://img.shields.io/badge/Version-4.5.5-informational?style=flat-square) ![AppVersion: 3.5.1](https://img.shields.io/badge/AppVersion-3.5.1-informational?style=flat-square)
+![Version: 4.6.1](https://img.shields.io/badge/Version-4.6.1-informational?style=flat-square) ![AppVersion: 3.6.0](https://img.shields.io/badge/AppVersion-3.6.0-informational?style=flat-square)
 
 The Gafaelfawr authentication and authorization system
 
@@ -20,7 +20,7 @@ The Gafaelfawr authentication and authorization system
 | cloudsql.enabled | bool | `false` | Enable the Cloud SQL Auth Proxy sidecar, used with CloudSQL databases on Google Cloud |
 | cloudsql.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for Cloud SQL Auth Proxy images |
 | cloudsql.image.repository | string | `"gcr.io/cloudsql-docker/gce-proxy"` | Cloud SQL Auth Proxy image to use |
-| cloudsql.image.tag | string | `"1.28.1"` | Cloud SQL Auth Proxy tag to use |
+| cloudsql.image.tag | string | `"1.29.0"` | Cloud SQL Auth Proxy tag to use |
 | cloudsql.instanceConnectionName | string | `""` | Instance connection name for a CloudSQL PostgreSQL instance |
 | cloudsql.serviceAccount | string | `""` | The Google service account that has an IAM binding to the `gafaelfawr` and `gafaelfawr-tokens` Kubernetes service accounts and has the `cloudsql.client` role |
 | config.cilogon.clientId | string | `""` | CILogon client ID. One and only one of this, `config.github.clientId`, or `config.oidc.clientId` must be set. |
@@ -38,8 +38,10 @@ The Gafaelfawr authentication and authorization system
 | config.issuer.influxdb.username | string | `""` | If set, force all InfluxDB tokens to have that username instead of the authenticated identity of the user requesting a token |
 | config.knownScopes | object | See the `values.yaml` file | Names and descriptions of all scopes in use. This is used to populate the new token creation page. Only scopes listed here will be options when creating a new token. |
 | config.ldap.baseDn | string | None, must be set | Base DN for the LDAP search to find a user's groups |
-| config.ldap.groupMember | string | `"member"` | Member attribute of the object class. Values must match the username returned in the token from the OpenID Connect authentication server. |
+| config.ldap.groupMemberAttr | string | `"member"` | Member attribute of the object class. Values must match the username returned in the token from the OpenID Connect authentication server. |
 | config.ldap.groupObjectClass | string | `"posixGroup"` | Object class containing group information |
+| config.ldap.uidAttr | string | `"uidNumber"` | Attribute containing the user's UID number (only used if uidBaseDn is set) |
+| config.ldap.uidBaseDn | string | Get the UID number from the upstream authentication provider | Base DN for the LDAP search to find a user's UID number |
 | config.ldap.url | string | Do not use LDAP | LDAP server URL from which to retrieve user group information |
 | config.loglevel | string | `"INFO"` | Choose from the text form of Python logging levels |
 | config.oidc.audience | string | Value of `config.oidc.clientId` | Audience for the JWT token |

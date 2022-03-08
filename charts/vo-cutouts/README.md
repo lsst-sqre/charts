@@ -1,6 +1,6 @@
 # vo-cutouts
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
+![Version: 0.3.3](https://img.shields.io/badge/Version-0.3.3-informational?style=flat-square) ![AppVersion: 0.3.0](https://img.shields.io/badge/AppVersion-0.3.0-informational?style=flat-square)
 
 Image cutout service complying with IVOA SODA
 
@@ -20,13 +20,13 @@ Image cutout service complying with IVOA SODA
 | cloudsql.enabled | bool | `true` | Enable the Cloud SQL Auth Proxy sidecar, used with CloudSQL databases on Google Cloud |
 | cloudsql.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for Cloud SQL Auth Proxy images |
 | cloudsql.image.repository | string | `"gcr.io/cloudsql-docker/gce-proxy"` | Cloud SQL Auth Proxy image to use |
-| cloudsql.image.tag | string | `"1.28.1"` | Cloud SQL Auth Proxy tag to use |
+| cloudsql.image.tag | string | `"1.29.0"` | Cloud SQL Auth Proxy tag to use |
 | cloudsql.instanceConnectionName | string | `""` | Instance connection name for a CloudSQL PostgreSQL instance |
 | cloudsql.serviceAccount | string | None, must be set | The Google service account that has an IAM binding to the `vo-cutouts` Kubernetes service accounts and has the `cloudsql.client` role, access to the GCS bucket, and ability to sign URLs as itself |
 | config.butlerRepository | string | None, must be set | Configuration for the Butler repository to use |
 | config.databaseUrl | string | None, must be set | URL for the PostgreSQL database |
 | config.gcsBucketUrl | string | None, must be set | URL for the GCS bucket into which to store cutouts (must start with `s3`) |
-| config.lifetime | int | 2592000 (30 days) | Lifetime of job results in seconds |
+| config.lifetime | string | 2592000 (30 days) | Lifetime of job results in seconds (quote so that Helm doesn't turn it into a floating point number) |
 | config.loglevel | string | `"INFO"` | Choose from the text form of Python logging levels |
 | config.syncTimeout | int | 60 (1 minute) | Timeout for results from a sync cutout in seconds |
 | config.timeout | int | 600 (10 minutes) | Timeout for a single cutout job in seconds |
