@@ -1,6 +1,6 @@
 # mobu
 
-![Version: 3.2.0](https://img.shields.io/badge/Version-3.2.0-informational?style=flat-square) ![AppVersion: 4.1.0](https://img.shields.io/badge/AppVersion-4.1.0-informational?style=flat-square)
+![Version: 3.3.0](https://img.shields.io/badge/Version-3.3.0-informational?style=flat-square) ![AppVersion: 4.2.0](https://img.shields.io/badge/AppVersion-4.2.0-informational?style=flat-square)
 
 Generate system load by pretending to be a random scientist
 
@@ -18,10 +18,11 @@ Generate system load by pretending to be a random scientist
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity rules for the mobu frontend pod |
 | autostart | list | `[]` | Autostart specification. Must be a list of mobu flock specifications. Each flock listed will be automatically started when mobu is started. |
+| cachemachineImagePolicy | string | `"available"` | Cachemachine image policy.  Must be one of `desired` or `available`.  Determines whether cachemachine reports the images it has or the ones it wants.  Should be `desired` in environments with image streaming enabled (e.g. IDF). |
 | environmentUrl | string | None, must be set | Base URL used to find other services in the environment such as Nublado and TAP |
 | fullnameOverride | string | `""` | Override the full name for resources (includes the release name) |
 | image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the mobu image |
-| image.repository | string | `"lsstsqre/mobu"` | mobu image to use |
+| image.repository | string | `"ghcr.io/lsst-sqre/mobu"` | mobu image to use |
 | image.tag | string | The appVersion of the chart | Tag of mobu image to use |
 | imagePullSecrets | list | `[]` | Secret names to use for all Docker pulls |
 | ingress.annotations | object | `{}` | Additional annotations to add to the ingress |
