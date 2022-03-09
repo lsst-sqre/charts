@@ -1,14 +1,19 @@
 # Default values for mobu.
 
+# -- Override the base name for resources
+nameOverride: ""
+
+# -- Override the full name for resources (includes the release name)
+fullnameOverride: ""
+
 # -- Autostart specification. Must be a list of mobu flock specifications.
 # Each flock listed will be automatically started when mobu is started.
 autostart: []
 
-# -- Cachemachine image policy.  Must be one of "desired" or
-# "available".  Determines whether cachemachine reports the images it
-# has or the ones it wants.  Should be "desired" in environments with
+# -- Cachemachine image policy.  Must be one of `desired` or
+# `available`.  Determines whether cachemachine reports the images it
+# has or the ones it wants.  Should be `desired` in environments with
 # image streaming enabled (e.g. IDF).
-# @default -- "available"
 cachemachineImagePolicy: "available"
 
 # -- Base URL used to find other services in the environment such as Nublado
@@ -20,18 +25,12 @@ environmentUrl: ""
 # @default -- None, must be set
 vaultSecretsPath: ""
 
-# -- Override the base name for resources
-nameOverride: ""
-
-# -- Override the full name for resources (includes the release name)
-fullnameOverride: ""
-
 image:
   # -- mobu image to use
-  repository: lsstsqre/mobu
+  repository: "ghcr.io/lsst-sqre/mobu"
 
   # -- Pull policy for the mobu image
-  pullPolicy: IfNotPresent
+  pullPolicy: "IfNotPresent"
 
   # -- Tag of mobu image to use
   # @default -- The appVersion of the chart
