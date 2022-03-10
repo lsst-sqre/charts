@@ -6648,6 +6648,18 @@ entries:
   portal:
   - apiVersion: v2
     appVersion: suit-233-7-dev
+    created: "2022-03-10T21:10:42.511198911Z"
+    description: Rubin Science Platform portal aspect
+    digest: ac616c053970f811c8c5d7dcb3dcc8e642703a4332a128c4b97af74f7221b907
+    home: https://github.com/lsst/suit
+    maintainers:
+    - name: cbanek
+    name: portal
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/portal-0.4.1/portal-0.4.1.tgz
+    version: 0.4.1
+  - apiVersion: v2
+    appVersion: suit-233-7-dev
     created: "2022-03-10T20:29:05.076545996Z"
     description: Rubin Science Platform portal aspect
     digest: 97a09d759451889e37ce7cbe94e0586eec71a03cd702ae6e160c0ce77f14b8f7
@@ -8178,4 +8190,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-10T20:29:05.079008808Z"
+generated: "2022-03-10T21:10:42.513963735Z"
