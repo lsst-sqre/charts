@@ -58,8 +58,10 @@ spec:
               value: "{{ .Values.config.debug }}"
           ports:
             - containerPort: 8080
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - mountPath: "/firefly/shared-workarea"
               name: "firefly-shared-workarea"

@@ -108,6 +108,9 @@ redis:
     # -- Pull policy for the Redis image
     pullPolicy: "IfNotPresent"
 
+  # -- Resource limits and requests
+  resources: {}
+
   # -- Pod annotations for the Redis pod
   podAnnotations: {}
 

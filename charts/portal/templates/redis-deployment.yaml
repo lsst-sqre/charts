@@ -46,6 +46,10 @@ spec:
                   key: "ADMIN_PASSWORD"
           ports:
             - containerPort: 6379
+          {{- with .Values.redis.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
