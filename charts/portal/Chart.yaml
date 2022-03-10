@@ -5,4 +5,4 @@ name: portal
 home: "https://github.com/lsst/suit"
 maintainers:
   - name: cbanek
-version: 0.4.0
+version: 0.4.1

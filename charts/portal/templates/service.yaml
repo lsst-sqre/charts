@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "portal.labels" . | nindent 4 }}
 spec:
-  type: "ClusterIP "
+  type: "ClusterIP"
   ports:
     - protocol: "TCP"
       port: 8080

@@ -1,6 +1,6 @@
 # portal
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![AppVersion: suit-233-7-dev](https://img.shields.io/badge/AppVersion-suit--233--7--dev-informational?style=flat-square)
+![Version: 0.4.1](https://img.shields.io/badge/Version-0.4.1-informational?style=flat-square) ![AppVersion: suit-233-7-dev](https://img.shields.io/badge/AppVersion-suit--233--7--dev-informational?style=flat-square)
 
 Rubin Science Platform portal aspect
 
@@ -16,7 +16,7 @@ Rubin Science Platform portal aspect
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` | Affinity rules for the Gafaelfawr frontend pod |
+| affinity | object | `{}` | Affinity rules for the Portal pod |
 | config.cleanupInterval | string | `"36h"` | How long results should be retained before being deleted |
 | config.debug | string | `"FALSE"` | Set to `TRUE` to enable service debugging |
 | config.visualizeFitsSearchPath | string | `"/datasets"` | Search path for FITS files |
@@ -30,23 +30,23 @@ Rubin Science Platform portal aspect
 | image.tag | string | The appVersion of the chart | Tag of Portal image to use |
 | imagePullSecrets | list | `[]` | Secret names to use for all Docker pulls |
 | ingress.annotations | object | `{}` | Additional annotations to add to the ingress |
-| ingress.gafaelfawrAuthQuery | string | `"scope=exec:portal&delegate_to=portal&delegate_scope=read:tap"` | Gafaelfawr Auth Query string (default, unauthenticated) |
+| ingress.gafaelfawrAuthQuery | string | `"scope=exec:portal&delegate_to=portal&delegate_scope=read:tap"` | Gafaelfawr auth query string |
 | ingress.host | string | None, must be set | Hostname for the ingress |
 | nameOverride | string | `""` | Override the base name for resources |
-| nodeSelector | object | `{}` | Node selector rules for the Gafaelfawr frontend pod |
-| podAnnotations | object | `{}` | Annotations for the Gafaelfawr frontend pod |
+| nodeSelector | object | `{}` | Node selector rules for the Portal pod |
+| podAnnotations | object | `{}` | Annotations for the Portal pod |
 | redis.affinity | object | `{}` | Affinity rules for the Redis pod |
 | redis.image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the Redis image |
 | redis.image.repository | string | `"redis"` | Redis image to use |
 | redis.image.tag | string | `"6.2.6"` | Redis image tag to use |
 | redis.nodeSelector | object | `{}` | Node selection rules for the Redis pod |
 | redis.podAnnotations | object | `{}` | Pod annotations for the Redis pod |
+| redis.resources | object | `{"limits":{"memory":"20Mi"}}` | Resource limits and requests |
 | redis.tolerations | list | `[]` | Tolerations for the Redis pod |
 | replicaCount | int | `1` | Number of pods to start |
 | resources | object | `{"limits":{"cpu":2,"memory":"6Gi"}}` | Resource limits and requests. The Portal will use (by default) 93% of container RAM.  This is a smallish Portal; tweak it as you need to in instance definitions in Phalanx. |
-| service.port | int | `80` | Port of the service to create and map to the ingress |
-| service.type | string | `"ClusterIP"` | Type of service to create |
-| tolerations | list | `[]` | Tolerations for the Gafaelfawr frontend pod |
+| securityContext | object | `{}` | Security context for the Portal pod |
+| tolerations | list | `[]` | Tolerations for the Portal pod |
 | vaultSecretsPath | string | None, must be set | Path to the Vault secret (`secret/k8s_operator/<host>/portal`, for example) |
 
 ----------------------------------------------
