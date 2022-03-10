@@ -6645,6 +6645,19 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/plot-navigator-1.0.0/plot-navigator-1.0.0.tgz
     version: 1.0.0
+  portal:
+  - apiVersion: v2
+    appVersion: suit-233-7-dev
+    created: "2022-03-10T20:29:05.076545996Z"
+    description: Rubin Science Platform portal aspect
+    digest: 97a09d759451889e37ce7cbe94e0586eec71a03cd702ae6e160c0ce77f14b8f7
+    home: https://github.com/lsst/suit
+    maintainers:
+    - name: cbanek
+    name: portal
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/portal-0.4.0/portal-0.4.0.tgz
+    version: 0.4.0
   postgres:
   - apiVersion: v2
     appVersion: "1.0"
@@ -8165,4 +8178,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-10T01:17:32.878066798Z"
+generated: "2022-03-10T20:29:05.079008808Z"
