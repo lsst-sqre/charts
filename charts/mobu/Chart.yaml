@@ -1,8 +1,0 @@
-apiVersion: v2
-description: Generate system load by pretending to be a random scientist
-home: https://github.com/lsst-sqre/mobu
-maintainers:
-  - name: cbanek
-name: mobu
-version: 3.3.0
-appVersion: 4.2.0
