@@ -35,7 +35,7 @@ ingress:
   # @default -- None, must be set
   host: ""
 
-  # -- Gafaelfawr Auth Query string (default, unauthenticated)
+  # -- Gafaelfawr auth query string
   gafaelfawrAuthQuery: "scope=exec:portal&delegate_to=portal&delegate_scope=read:tap"
 
   # -- Additional annotations to add to the ingress
@@ -49,17 +49,20 @@ resources:
     cpu: 2.0
     memory: "6Gi"
 
-# -- Annotations for the Gafaelfawr frontend pod
+# -- Annotations for the Portal pod
 podAnnotations: {}
 
-# -- Node selector rules for the Gafaelfawr frontend pod
+# -- Node selector rules for the Portal pod
 nodeSelector: {}
 
-# -- Tolerations for the Gafaelfawr frontend pod
+# -- Tolerations for the Portal pod
 tolerations: []
 
-# -- Affinity rules for the Gafaelfawr frontend pod
+# -- Affinity rules for the Portal pod
 affinity: {}
+
+# -- Security context for the Portal pod
+securityContext: {}
 
 # -- Path to the Vault secret (`secret/k8s_operator/<host>/portal`, for
 # example)
@@ -109,7 +112,9 @@ redis:
     pullPolicy: "IfNotPresent"
 
   # -- Resource limits and requests
-  resources: {}
+  resources:
+    limits:
+      memory: "20Mi"
 
   # -- Pod annotations for the Redis pod
   podAnnotations: {}

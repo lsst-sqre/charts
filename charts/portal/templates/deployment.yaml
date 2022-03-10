@@ -68,6 +68,10 @@ spec:
             - mountPath: "/firefly/config"
               name: "firefly-config"
               readOnly: true
+      {{- with .Values.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       volumes:
         - name: "firefly-shared-workarea"
           {{- if .Values.config.volumes.workareaHostPath }}
