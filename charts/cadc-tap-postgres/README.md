@@ -1,6 +1,6 @@
 # cadc-tap-postgres
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![AppVersion: 1.1](https://img.shields.io/badge/AppVersion-1.1-informational?style=flat-square)
+![Version: 0.2.2](https://img.shields.io/badge/Version-0.2.2-informational?style=flat-square) ![AppVersion: 1.1](https://img.shields.io/badge/AppVersion-1.1-informational?style=flat-square)
 
 CADC TAP PostgresSQL service, used for ObsTAP
 
