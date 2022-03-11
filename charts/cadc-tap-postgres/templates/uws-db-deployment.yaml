@@ -3,28 +3,53 @@ kind: Deployment
 metadata:
   name: {{ template "cadc-tap-postgres.fullname" . }}-uws-db
   labels:
-    app: {{ template "cadc-tap-postgres.fullname" . }}-uws-db
-{{ include "cadc-tap-postgres.labels" . | indent 4 }}
+    {{- include "cadc-tap-postgres.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ template "cadc-tap-postgres.fullname" . }}-uws-db
+      {{- include "cadc-tap-postgres.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: "uws-db"
   template:
     metadata:
+      {{- with .Values.uws.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
-        app: {{ template "cadc-tap-postgres.fullname" . }}-uws-db
-{{ include "cadc-tap-postgres.labels" . | indent 8 }}
+        {{- include "cadc-tap-postgres.labels" . | nindent 8 }}
+        app.kubernetes.io/component: "uws-db"
     spec:
-      containers:
-      - name: postgresql
-        image: lsstdax/tap-postgres-uws:{{ .Values.tag }}
-        imagePullPolicy: {{ .Values.imagePullPolicy }}
-        ports:
-        - containerPort: 5432
-        resources:
-          {{toYaml .Values.aux_resources | nindent 10}}
-      {{- if .Values.pull_secret }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-      - name: {{ .Values.pull_secret }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      automountServiceAccountToken: false
+      containers:
+        - name: "postgresql"
+          image: "{{ .Values.uws.image.repository }}:{{ .Values.uws.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.uws.imagePullPolicy | quote }}
+          ports:
+            - containerPort: 5432
+          {{- with .Values.uws.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: "data"
+              mountPath: "/var/lib/postgresql/data"
+      volumes:
+        - name: "data"
+          emptyDir: {}
+      {{- with .Values.uws.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.uws.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.uws.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
       {{- end }}
