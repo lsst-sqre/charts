@@ -42,8 +42,8 @@ spec:
                 -Duws.jdbc.driverClassName=org.postgresql.Driver
                 -Duws.url=jdbc:postgresql://{{ template "cadc-tap-postgres.fullname" . }}-uws-db/
                 -Dgcs_bucket={{ .Values.config.gcsBucket }}
-                -Dgcs_bucket_url={{ .Values.gcsBucketUrl }}
-                -Dca.nrc.cadc.util.PropertiesReader.dir=/etc/creds/"
+                -Dgcs_bucket_url={{ .Values.config.gcsBucketUrl }}
+                -Dca.nrc.cadc.util.PropertiesReader.dir=/etc/creds/
             - name: "GOOGLE_APPLICATION_CREDENTIALS"
               value: "/etc/creds/google_creds.json"
           ports:
