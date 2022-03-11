@@ -1113,6 +1113,18 @@ entries:
   cadc-tap-postgres:
   - apiVersion: v1
     appVersion: "1.1"
+    created: "2022-03-11T02:08:28.875682917Z"
+    description: CADC TAP PostgresSQL service, used for ObsTAP
+    digest: a1bfd8483c857169d75b14dd706451a46df3c9cdeff223225c9da0a198e9f8c5
+    home: https://github.com/lsst-sqre/tap-postgres
+    maintainers:
+    - name: cbanek
+    name: cadc-tap-postgres
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/cadc-tap-postgres-0.2.1/cadc-tap-postgres-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v1
+    appVersion: "1.1"
     created: "2022-03-11T01:40:02.241723664Z"
     description: CADC TAP PostgresSQL service, used for ObsTAP
     digest: 67dd1ba5294983fb5cd0430e8259ac11edad0fbe3938853ca2e3b485b948f1e5
@@ -8214,4 +8226,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-03-11T01:40:02.245162302Z"
+generated: "2022-03-11T02:08:28.879593437Z"
