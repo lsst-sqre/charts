@@ -1,8 +1,0 @@
-apiVersion: v1
-appVersion: 1.1.6
-description: A Helm chart for the TAP_SCHEMA database
-home: https://github.com/lsst-sqre/lsst-tap-service
-maintainers:
-  - name: cbanek
-name: tap-schema
-version: 1.1.6
