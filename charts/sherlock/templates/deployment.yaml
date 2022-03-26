@@ -40,6 +40,9 @@ spec:
             readOnlyRootFilesystem: true
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: "PUBLISH_URL"
+              value: {{ .Values.publish_url }}
           ports:
             - name: http
               containerPort: 8080
