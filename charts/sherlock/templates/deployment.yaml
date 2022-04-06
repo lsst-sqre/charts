@@ -43,6 +43,13 @@ spec:
           env:
             - name: "PUBLISH_URL"
               value: {{ .Values.publish_url }}
+            {{- if .Values.publish_url }}
+            - name: "PUBLISH_KEY"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "sherlock.fullname" . }}-secret
+                  key: "publish_key"
+            {{- end }}
           ports:
             - name: http
               containerPort: 8080
