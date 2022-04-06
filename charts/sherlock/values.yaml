@@ -84,3 +84,5 @@ serviceAccount:
 
 # -- URL to push status to via HTTP PUTs.
 publish_url: ""
+
+vaultSecretsPath: ""
