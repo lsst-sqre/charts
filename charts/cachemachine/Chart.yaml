@@ -1,7 +1,0 @@
-apiVersion: v2
-name: cachemachine
-version: 1.2.5
-description: Service to prepull Docker images for the Science Platform
-maintainers:
-  - name: cbanek
-appVersion: 1.2.0
