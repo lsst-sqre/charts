@@ -7340,6 +7340,18 @@ entries:
     version: 0.1.0
   sherlock:
   - apiVersion: v2
+    appVersion: 0.1.6
+    created: "2022-04-12T04:17:21.462459353Z"
+    description: A Helm chart for Kubernetes
+    digest: 945046db44a7988eb14b675e951a3c4c891e3365f8db09ef2c347d350dd4a27b
+    maintainers:
+    - name: cbanek
+    name: sherlock
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/sherlock-0.1.11/sherlock-0.1.11.tgz
+    version: 0.1.11
+  - apiVersion: v2
     appVersion: 0.1.5
     created: "2022-04-07T21:51:05.820243257Z"
     description: A Helm chart for Kubernetes
@@ -8361,4 +8373,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-04-07T21:51:05.824953624Z"
+generated: "2022-04-12T04:17:21.465993483Z"
