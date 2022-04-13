@@ -13,6 +13,8 @@ metadata:
     nginx.ingress.kubernetes.io/auth-response-headers: X-Auth-Request-User,X-Auth-Request-Email,X-Auth-Request-Token
     nginx.ingress.kubernetes.io/auth-signin: "https://{{ .Values.ingress.host }}/login"
     nginx.ingress.kubernetes.io/auth-url: "https://{{ .Values.ingress.host }}/auth?{{ .Values.ingress.gafaelfawrAuthQuery }}"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
     {{- end }}
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
