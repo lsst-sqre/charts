@@ -4,8 +4,12 @@ image:
   # -- The tag of the operator container to deploy
   tag: 0.4.1
 
+# -- Name of the Strimzi Kafka cluster
 clusterName: alert-broker
 
+# -- Namespace where the Strimzi Kafka cluster is deployed
 watchNamespace: strimzi
 
+# -- Namespace where the strimzi-registry-operator is deployed
+# (TODO: set this automatically)
 operatorNamespace: strimzi-registry-operator
