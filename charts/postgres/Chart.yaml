@@ -1,8 +1,0 @@
-apiVersion: v2
-appVersion: "1.0"
-description: Postgres RDBMS for LSP
-home: https://hub.docker.com/r/lsstsqre/lsp-postgres
-maintainers:
-  - name: athornton
-name: postgres
-version: 0.1.1
