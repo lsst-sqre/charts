@@ -1379,6 +1379,18 @@ entries:
   datalinker:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-05-13T15:37:54.936633468Z"
+    description: A Helm chart for Kubernetes
+    digest: 932f5e12b4b39abed1d2e67213c21e531ce03dee5e7b9cf3b4887acabf169cb5
+    maintainers:
+    - name: cbanek
+    name: datalinker
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/datalinker-0.1.8/datalinker-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-05-13T05:28:11.386937504Z"
     description: A Helm chart for Kubernetes
     digest: 3eef4d41716a27de2b5a28493e15d7f7bc844d1784ec595161bec7d0f45e448e
@@ -8436,4 +8448,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2022-05-13T05:28:11.390326806Z"
+generated: "2022-05-13T15:37:54.93998299Z"
