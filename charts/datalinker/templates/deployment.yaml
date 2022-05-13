@@ -27,6 +27,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -41,9 +42,9 @@ spec:
             # The following are used by Butler to retrieve its configuration
             # and authenticate to its database.
             - name: "AWS_SHARED_CREDENTIALS_FILE"
-              value: "/tmp/secrets/aws-credentials"
+              value: "/tmp/secrets/aws-credentials.ini"
             - name: "PGPASSFILE"
-              value: "/tmp/secrets/postgres-credentials"
+              value: "/tmp/secrets/postgres-credentials.txt"
             - name: "S3_ENDPOINT_URL"
               value: "https://storage.googleapis.com"
           ports:

@@ -50,6 +50,9 @@ ingress:
   # -- URL path to dispatch to the datalinker deployment pod
   path: "/api/datalink"
 
+  # -- Ingress class
+  className: nginx
+
 # -- Resource limits and requests for the datalinker deployment pod
 resources: {}
 
