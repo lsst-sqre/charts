@@ -23,6 +23,6 @@ spec:
           - name: SSR_CLUSTER_NAME
             value: "{{ .Values.clusterName }}"
           - name: SSR_NAMESPACE
-            value: "{{ .Values.watchNamespace }}"
+            value: {{ .Values.clusterNamespace | quote }}
           command: ["kopf"]
-          args: ["run",  "--standalone",  "-m",  "strimziregistryoperator.handlers",  "--namespace",  "{{ .Values.watchNamespace }}",  "--verbose"]
+          args: ["run",  "--standalone",  "-m",  "strimziregistryoperator.handlers",  "--namespace",  "{{ .Values.clusterNamespace }}",  "--verbose"]

@@ -8,7 +8,7 @@ image:
 clusterName: alert-broker
 
 # -- Namespace where the Strimzi Kafka cluster is deployed
-watchNamespace: strimzi
+clusterNamespace: "default"
 
 # -- Namespace where the strimzi-registry-operator is deployed
 # (TODO: set this automatically)
