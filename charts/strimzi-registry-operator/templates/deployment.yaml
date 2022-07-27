@@ -21,7 +21,7 @@ spec:
           imagePullPolicy: Always
           env:
           - name: SSR_CLUSTER_NAME
-            value: "{{ .Values.clusterName }}"
+            value: {{ required "A valid .Values.clusterName entry required" .Values.clusterName | quote }}
           - name: SSR_NAMESPACE
             value: {{ .Values.clusterNamespace | quote }}
           command: ["kopf"]
