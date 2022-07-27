@@ -17,7 +17,7 @@ spec:
       serviceAccountName: strimzi-registry-operator
       containers:
         - name: operator
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: Always
           env:
           - name: SSR_CLUSTER_NAME

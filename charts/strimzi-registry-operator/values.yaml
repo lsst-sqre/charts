@@ -1,8 +1,10 @@
 image:
   # -- The repository for the container with the operator application
   repository: lsstsqre/strimzi-registry-operator
-  # -- The tag of the operator container to deploy
-  tag: 0.4.1
+
+  # -- Tag of the image
+  # @default -- The appVersion of the chart
+  tag: ""
 
 # -- Name of the Strimzi Kafka cluster
 clusterName: ""
