@@ -17,12 +17,12 @@ spec:
       serviceAccountName: strimzi-registry-operator
       containers:
         - name: operator
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: Always
           env:
           - name: SSR_CLUSTER_NAME
-            value: "{{ .Values.clusterName }}"
+            value: {{ required "A valid .Values.clusterName entry required" .Values.clusterName | quote }}
           - name: SSR_NAMESPACE
-            value: "{{ .Values.watchNamespace }}"
+            value: {{ .Values.clusterNamespace | quote }}
           command: ["kopf"]
-          args: ["run",  "--standalone",  "-m",  "strimziregistryoperator.handlers",  "--namespace",  "{{ .Values.watchNamespace }}",  "--verbose"]
+          args: ["run",  "--standalone",  "-m",  "strimziregistryoperator.handlers",  "--namespace",  "{{ .Values.clusterNamespace }}",  "--verbose"]
