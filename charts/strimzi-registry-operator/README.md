@@ -1,6 +1,6 @@
 # strimzi-registry-operator
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.5.0](https://img.shields.io/badge/AppVersion-0.5.0-informational?style=flat-square)
+![Version: 2.0.0-rc1](https://img.shields.io/badge/Version-2.0.0--rc1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.5.0rc1](https://img.shields.io/badge/AppVersion-0.5.0rc1-informational?style=flat-square)
 
 Operator to create and manage a Confluent Schema Registry in a Strimzi-managed Kafka cluster.
 
@@ -19,7 +19,7 @@ Operator to create and manage a Confluent Schema Registry in a Strimzi-managed K
 |-----|------|---------|-------------|
 | clusterName | string | `""` | Name of the Strimzi Kafka cluster |
 | clusterNamespace | string | `"default"` | Namespace where the Strimzi Kafka cluster is deployed |
-| image.repository | string | `"lsstsqre/strimzi-registry-operator"` | The repository for the container with the operator application |
+| image.repository | string | `"ghcr.io/lsst-sqre/strimzi-registry-operator"` | The repository for the container with the operator application |
 | image.tag | string | The appVersion of the chart | Tag of the image |
 | operatorNamespace | string | `"strimzi-registry-operator"` | Namespace where the strimzi-registry-operator is deployed |
 
