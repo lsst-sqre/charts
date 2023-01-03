@@ -61,7 +61,7 @@ spec:
                 - "all"
             readOnlyRootFilesystem: true
           volumeMounts:
-            - name: {{ template "redis.fullname" . }}
+            - name: "storage"
               mountPath: "/data"
       securityContext:
         fsGroup: 999

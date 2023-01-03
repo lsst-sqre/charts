@@ -1,6 +1,6 @@
 apiVersion: v2
 name: redis
-version: 0.1.2
+version: 0.1.3
 description: Simple single-server Redis deployment with configurable storage
 sources:
   - https://github.com/lsst-sqre/charts/tree/master/charts/redis
