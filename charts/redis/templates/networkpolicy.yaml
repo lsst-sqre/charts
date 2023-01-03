@@ -18,7 +18,7 @@ spec:
     - from:
         - podSelector:
             matchLabels:
-              {{ "redis.fullname" }}-client: "true"
+              {{ template "redis.fullname" . }}-client: "true"
       ports:
         - protocol: "TCP"
           port: 6379
