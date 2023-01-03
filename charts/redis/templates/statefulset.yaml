@@ -93,7 +93,7 @@ spec:
   {{- if (and .Values.persistence.enabled (not .Values.persistence.volumeClaimName)) }}
   volumeClaimTemplates:
     - metadata:
-        name: {{ template "redis.fullname" . }}
+        name: "storage"
       spec:
         accessModes:
           - {{ .Values.persistence.accessMode | quote }}
