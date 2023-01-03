@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ template "redis.fullname" . }}
+  labels:
+    {{- include "redis.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      {{- include "redis.selectorLabels" . | nindent 6 }}
+  policyTypes:
+    - Ingress
+    # Deny all outbound access; Redis doesn't need to talk to anything.
+    - Egress
+  ingress:
+    # Allow inbound access to Redis from any pod in the same namespace with
+    # the appropriate label.
+    - from:
+        - podSelector:
+            matchLabels:
+              {{ "redis.fullname" }}-client: "true"
+      ports:
+        - protocol: "TCP"
+          port: 6379
