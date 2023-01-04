@@ -24,8 +24,10 @@ spec:
         - name: "redis"
           args:
             - "redis-server"
+            {{- if .Values.persistence.enabled }}
             - "--appendonly"
             - "yes"
+            {{- end }}
             {{- if (and .Values.config.secretName .Values.config.secretKey) }}
             - "--requirepass"
             - "$(REDIS_PASSWORD)"
@@ -70,11 +72,11 @@ spec:
         runAsGroup: 999
       {{- if (not .Values.persistence.enabled) }}
       volumes:
-        - name: {{ template "redis.fullname" . }}
+        - name: "storage"
           emptyDir: {}
       {{- else if .Values.persistence.volumeClaimName }}
       volumes:
-        - name: {{ template "redis.fullname" . }}
+        - name: "storage"
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.volumeClaimName | quote }}
       {{- end }}
