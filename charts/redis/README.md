@@ -1,6 +1,6 @@
 # redis
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: 7.0.5](https://img.shields.io/badge/AppVersion-7.0.5-informational?style=flat-square)
+![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: 7.0.5](https://img.shields.io/badge/AppVersion-7.0.5-informational?style=flat-square)
 
 Simple single-server Redis deployment with configurable storage
 
@@ -12,7 +12,7 @@ Simple single-server Redis deployment with configurable storage
 
 ## Source Code
 
-* <https://github.com/lsst-sqre/charts/tree/master/charts/redis>
+* <https://github.com/lsst-sqre/charts/tree/main/charts/redis>
 
 ## Values
 
