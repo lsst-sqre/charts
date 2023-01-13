@@ -11,8 +11,7 @@ image:
   repository: "redis"
 
   # -- Redis image tag to use
-  # @default -- The appVersion of the chart
-  tag: ""
+  tag: "7.0.7"
 
   # -- Pull policy for the Redis image
   pullPolicy: "IfNotPresent"
