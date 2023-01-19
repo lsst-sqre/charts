@@ -12,7 +12,7 @@ cloudSQLImage:
 
 redisImage:
   repository: redis
-  tag: "6.2"
+  tag: "7.0"
   pullPolicy: IfNotPresent
 
 # SQuaSH Cloud SQL instance connection name
