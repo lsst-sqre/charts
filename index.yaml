@@ -4466,6 +4466,18 @@ entries:
     version: 0.0.1
   neophile:
   - apiVersion: v2
+    appVersion: 0.4.0
+    created: "2023-05-03T18:42:36.358874396Z"
+    description: Periodically check for needed dependency updates
+    digest: fc438c87a8e01788938cce5ded65781434072aa2947ac032164d9b2192b14a25
+    home: https://neophile.lsst.io/
+    maintainers:
+    - name: rra
+    name: neophile
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/neophile-0.4.0/neophile-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
     appVersion: 0.3.3
     created: "2022-03-01T01:37:36.367525138Z"
     description: Periodically check for needed dependency updates
@@ -8632,4 +8644,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-03T15:16:59.374921526Z"
+generated: "2023-05-03T18:42:36.362489446Z"
