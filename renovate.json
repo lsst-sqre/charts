@@ -1,7 +1,11 @@
 {
   "extends": [
-    "config:base", "schedule:weekly"
+    "config:base"
   ],
-  "versioning": "docker",
-  "bumpVersion": "patch"
+  "bumpVersion": "patch",
+  "configMigration": true,
+  "schedule": [
+    "before 6am on Monday"
+  ],
+  "timezone": "America/Los_Angeles"
 }
