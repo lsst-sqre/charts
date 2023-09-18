@@ -24,7 +24,7 @@ Simple single-server Redis deployment with configurable storage
 | fullnameOverride | string | `""` | Override the full name for resources (includes the release name) |
 | image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the Redis image |
 | image.repository | string | `"redis"` | Redis image to use |
-| image.tag | string | `"7.2.0"` | Redis image tag to use |
+| image.tag | string | `"7.2.1"` | Redis image tag to use |
 | nameOverride | string | `""` | Override the base name for resources |
 | nodeSelector | object | `{}` | Node selector rules for the Redis pod |
 | persistence.accessMode | string | `"ReadWriteOnce"` | Access mode of storage to request |
