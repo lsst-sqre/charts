@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.0.16](https://img.shields.io/badge/Version-1.0.16-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square)
 
 Simple single-server Redis deployment with configurable storage
 
@@ -24,7 +24,7 @@ Simple single-server Redis deployment with configurable storage
 | fullnameOverride | string | `""` | Override the full name for resources (includes the release name) |
 | image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the Redis image |
 | image.repository | string | `"redis"` | Redis image to use |
-| image.tag | string | `"7.4.3"` | Redis image tag to use |
+| image.tag | string | `"8.0.2"` | Redis image tag to use |
 | nameOverride | string | `""` | Override the base name for resources |
 | nodeSelector | object | `{}` | Node selector rules for the Redis pod |
 | persistence.accessMode | string | `"ReadWriteOnce"` | Access mode of storage to request |
