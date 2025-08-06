@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: strimzi-registry-operator
+  namespace: {{ .Values.clusterNamespace }}
 spec:
   replicas: 1
   strategy:
