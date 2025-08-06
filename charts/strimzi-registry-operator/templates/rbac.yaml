@@ -9,32 +9,24 @@ kind: ClusterRole
 metadata:
   name: strimzi-registry-operator
 rules:
+  # Access to the CustomResourceDefinition API
   - apiGroups: [apiextensions.k8s.io]
     resources: [customresourcedefinitions]
-    verbs: [list, get]
-
-  # Kopf: posting the events about the handlers progress/errors.
+    verbs: [get, list, watch]
   - apiGroups: [events.k8s.io]
     resources: [events]
     verbs: [create]
+  # Access to the built-in resources the operator manages
   - apiGroups: [""]
-    resources: [events]
-    verbs: [create]
-
+    resources: [events, namespaces, secrets, configmaps, services]
+    verbs: [get, list, watch, patch, create]
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: [get, list, watch, patch, create]
   # Application: watching & handling for the custom resource we declare.
   - apiGroups: [roundtable.lsst.codes]
     resources: [strimzischemaregistries]
     verbs: [get, list, watch, patch]
-
-  # Access to the built-in resources the operator manages
-  - apiGroups: [""]
-    resources: [secrets, configmaps, services]
-    verbs: [get, list, watch, patch, create]
-
-  - apiGroups: ["apps"]
-    resources: ["deployments"]
-    verbs: [get, list, watch, patch, create]
-
   # Access to the KafkaUser resource
   - apiGroups: [kafka.strimzi.io]
     resources: [kafkausers, kafkas]
