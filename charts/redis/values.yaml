@@ -11,7 +11,7 @@ image:
   repository: "redis"
 
   # -- Redis image tag to use
-  tag: "8.0.3"
+  tag: "8.2.0"
 
   # -- Pull policy for the Redis image
   pullPolicy: "IfNotPresent"
