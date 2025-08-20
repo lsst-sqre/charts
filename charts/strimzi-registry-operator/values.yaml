@@ -9,8 +9,8 @@ image:
 # -- Name of the Strimzi Kafka cluster
 clusterName: ""
 
-# -- Namespace where the Strimzi Kafka cluster is deployed
-clusterNamespace: "default"
+# -- Namespace where the Strimzi Kafka cluster is deployed (required)
+clusterNamespace: ""
 
 # -- Namespace where the strimzi-registry-operator is deployed
 operatorNamespace: strimzi-registry-operator
