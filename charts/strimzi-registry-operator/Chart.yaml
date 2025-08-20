@@ -5,6 +5,6 @@ description: Operator to create and manage a Confluent Schema Registry in a Stri
 home: https://github.com/lsst-sqre/strimzi-registry-operator
 type: application
 maintainers:
-  - name: swnelson
+  - name: afausti
   - name: jonathansick
 appVersion: 0.6.0
