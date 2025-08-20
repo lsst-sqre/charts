@@ -50,4 +50,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: strimzi-registry-operator
-    namespace: {{ .Values.operatorNamespace }}
+    namespace: {{ .Release.Namespace }}
