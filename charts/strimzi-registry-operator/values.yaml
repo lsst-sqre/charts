@@ -13,4 +13,5 @@ clusterName: ""
 clusterNamespace: ""
 
 # -- Namespace where the strimzi-registry-operator is deployed
-operatorNamespace: strimzi-registry-operator
+# @default -- strimzi-registry-operator
+operatorNamespace: "strimzi-registry-operator"
