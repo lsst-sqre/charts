@@ -8261,6 +8261,21 @@ entries:
     version: 0.1.0
   strimzi-registry-operator:
   - apiVersion: v2
+    appVersion: 0.7.1
+    created: "2025-09-30T18:40:19.74475314Z"
+    description: Operator to create and manage a Confluent Schema Registry in a Strimzi-managed
+      Kafka cluster.
+    digest: 899288d27dae42589e918f1036bceac5cc160004a3a90f700da12b7f2512ffa6
+    home: https://github.com/lsst-sqre/strimzi-registry-operator
+    maintainers:
+    - name: afausti
+    - name: jonathansick
+    name: strimzi-registry-operator
+    type: application
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/strimzi-registry-operator-2.1.3/strimzi-registry-operator-2.1.3.tgz
+    version: 2.1.3
+  - apiVersion: v2
     appVersion: 0.7.0
     created: "2025-08-21T20:13:18.275020909Z"
     description: Operator to create and manage a Confluent Schema Registry in a Strimzi-managed
@@ -8854,4 +8869,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2025-08-25T21:50:24.792449718Z"
+generated: "2025-09-30T18:40:19.746159296Z"
