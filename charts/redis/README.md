@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.1.4](https://img.shields.io/badge/Version-1.1.4-informational?style=flat-square)
+![Version: 1.1.5](https://img.shields.io/badge/Version-1.1.5-informational?style=flat-square)
 
 Simple single-server Redis deployment with configurable storage
 
@@ -31,7 +31,8 @@ Simple single-server Redis deployment with configurable storage
 | persistence.enabled | bool | `true` | Whether to persist Redis storage and thus tokens. Setting this to false will use `emptyDir` and reset all tokens on every restart. |
 | persistence.size | string | `"1Gi"` | Amount of persistent storage to request |
 | persistence.storageClass | string | `""` | Class of storage to request |
-| persistence.volumeClaimName | string | `""` | Use an existing PVC, not dynamic provisioning. If this is set, the size, storageClass, and accessMode settings are ignored. |
+| persistence.k8up.enabled | bool | `false` | Whether to enable k8up backup of the redis PVC |
+| persistence.volumeClaimName | string | `""` | Use an existing PVC, not dynamic provisioning. If this is set, the size, storageClass, accessMode, and k8up settings are ignored. |
 | podAnnotations | object | `{}` | Annotations for the Redis pod |
 | resources | object | `{}` | Resource limits and requests for the Redis pod |
 | tolerations | list | `[]` | Tolerations for the Redis pod |

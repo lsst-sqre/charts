@@ -96,6 +96,10 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: "storage"
+        {{- if .Values.persistence.k8up.enabled }}
+        labels:
+          k8up.io/backup-target: "true"
+        {{- end }}
       spec:
         accessModes:
           - {{ .Values.persistence.accessMode | quote }}
