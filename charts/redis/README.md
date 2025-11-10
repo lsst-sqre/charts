@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.1.5](https://img.shields.io/badge/Version-1.1.5-informational?style=flat-square)
+![Version: 1.1.6](https://img.shields.io/badge/Version-1.1.6-informational?style=flat-square)
 
 Simple single-server Redis deployment with configurable storage
 
@@ -24,15 +24,15 @@ Simple single-server Redis deployment with configurable storage
 | fullnameOverride | string | `""` | Override the full name for resources (includes the release name) |
 | image.pullPolicy | string | `"IfNotPresent"` | Pull policy for the Redis image |
 | image.repository | string | `"redis"` | Redis image to use |
-| image.tag | string | `"8.2.2"` | Redis image tag to use |
+| image.tag | string | `"8.2.3"` | Redis image tag to use |
 | nameOverride | string | `""` | Override the base name for resources |
 | nodeSelector | object | `{}` | Node selector rules for the Redis pod |
 | persistence.accessMode | string | `"ReadWriteOnce"` | Access mode of storage to request |
 | persistence.enabled | bool | `true` | Whether to persist Redis storage and thus tokens. Setting this to false will use `emptyDir` and reset all tokens on every restart. |
+| persistence.k8up.enabled | bool | `false` | Whether to enable k8up backup of the redis PVC |
 | persistence.size | string | `"1Gi"` | Amount of persistent storage to request |
 | persistence.storageClass | string | `""` | Class of storage to request |
-| persistence.k8up.enabled | bool | `false` | Whether to enable k8up backup of the redis PVC |
-| persistence.volumeClaimName | string | `""` | Use an existing PVC, not dynamic provisioning. If this is set, the size, storageClass, accessMode, and k8up settings are ignored. |
+| persistence.volumeClaimName | string | `""` | Use an existing PVC, not dynamic provisioning. If this is set, the size, storageClass, accessMode and k8up settings are ignored. |
 | podAnnotations | object | `{}` | Annotations for the Redis pod |
 | resources | object | `{}` | Resource limits and requests for the Redis pod |
 | tolerations | list | `[]` | Tolerations for the Redis pod |
