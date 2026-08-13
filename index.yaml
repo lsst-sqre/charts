@@ -6936,6 +6936,18 @@ entries:
     version: 0.1.0
   redis:
   - apiVersion: v2
+    created: "2026-08-13T15:30:06.542063031Z"
+    description: Simple single-server Redis deployment with configurable storage
+    digest: 7166d50e687d57d5a97943ab950b631afcd75983abf955269f4d8ebf9fb6e446
+    maintainers:
+    - name: rra
+    name: redis
+    sources:
+    - https://github.com/lsst-sqre/charts/tree/main/charts/redis
+    urls:
+    - https://github.com/lsst-sqre/charts/releases/download/redis-1.2.0/redis-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
     created: "2026-08-04T17:08:03.371372098Z"
     description: Simple single-server Redis deployment with configurable storage
     digest: eb41b9b4d6f2da322f105574e8837a3cfc56f723945ef2e88e4d209b51ae45fa
@@ -9001,4 +9013,4 @@ entries:
     urls:
     - https://github.com/lsst-sqre/charts/releases/download/vo-cutouts-0.1.0/vo-cutouts-0.1.0.tgz
     version: 0.1.0
-generated: "2026-08-04T17:08:03.372570942Z"
+generated: "2026-08-13T15:30:06.543142519Z"
