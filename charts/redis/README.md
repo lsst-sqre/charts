@@ -1,6 +1,6 @@
 # redis
 
-![Version: 1.1.14](https://img.shields.io/badge/Version-1.1.14-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square)
 
 Simple single-server Redis deployment with configurable storage
 
@@ -19,6 +19,8 @@ Simple single-server Redis deployment with configurable storage
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity rules for the Redis pod |
+| config.maxMemory | string | Do not set a limit | Maximum memory to use for cached data. An `mb` suffix can be used to indicate MiB. For Redis with persistent storage, this should be set to somewhat less than the available memory. See [the Redis documentation](https://redis.io/docs/latest/develop/reference/eviction/#maxmem) for more details. |
+| config.maxMemoryPolicy | string | Do not set an eviction policy. | Eviction policy. Only meaningful in combination with `maxMemory`. See [the Redis documentation](https://redis.io/docs/latest/develop/reference/eviction/#eviction-policies) for more details. |
 | config.secretKey | string | Do not require authentication | Key inside secret from which to get the Redis password. If set, `config.secretName` must also be set. |
 | config.secretName | string | Do not require authentication | Name of secret from which to get the Redis password. If set, `config.secretKey` must also be set. |
 | fullnameOverride | string | `""` | Override the full name for resources (includes the release name) |

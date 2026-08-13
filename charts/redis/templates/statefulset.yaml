@@ -32,6 +32,14 @@ spec:
             - "--requirepass"
             - "$(REDIS_PASSWORD)"
             {{- end }}
+            {{- if .Values.config.maxMemory }}
+            - "--maxmemory"
+            - {{ .Values.config.maxMemory | quote }}
+            {{- end }}
+            {{- if .Values.config.maxMemoryPolicy }}
+            - "--maxmemory-policy"
+            - {{ .Values.config.maxMemoryPolicy | quote }}
+            {{- end }}
           {{- if (and .Values.config.secretName .Values.config.secretKey) }}
           env:
             - name: "REDIS_PASSWORD"

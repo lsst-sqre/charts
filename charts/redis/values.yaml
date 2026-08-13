@@ -17,6 +17,21 @@ image:
   pullPolicy: "IfNotPresent"
 
 config:
+  # -- Maximum memory to use for cached data. An `mb` suffix can be used to
+  # indicate MiB. For Redis with persistent storage, this should be set to
+  # somewhat less than the available memory. See [the Redis
+  # documentation](https://redis.io/docs/latest/develop/reference/eviction/#maxmem)
+  # for more details.
+  # @default -- Do not set a limit
+  maxMemory: ""
+
+  # -- Eviction policy. Only meaningful in combination with `maxMemory`. See
+  # [the Redis
+  # documentation](https://redis.io/docs/latest/develop/reference/eviction/#eviction-policies)
+  # for more details.
+  # @default -- Do not set an eviction policy.
+  maxMemoryPolicy: ""
+
   # -- Name of secret from which to get the Redis password. If set,
   # `config.secretKey` must also be set.
   # @default -- Do not require authentication
